@@ -6,4 +6,4 @@ RUN curl -fsSL https://deb.nodesource.com/setup_12.x | bash
 RUN apt-get install -qq -y nodejs
 RUN npm update && chmod +x ./build.sh
 EXPOSE 3000 27017
-CMD ["./build.sh"]
+#CMD ["./build.sh"]
