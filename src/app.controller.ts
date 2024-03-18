@@ -6,10 +6,7 @@ import { AuthService } from './auth/auth.service';
 export class AppController {
   constructor(private readonly authService: AuthService) {}
 
-  @Get("")
-  async home(){
-    return "heLo";
-  }
+  
   @UseGuards(AuthGuard('local'))
   @Post('login')
   async login(@Request() req) {
