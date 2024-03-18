@@ -4,6 +4,6 @@ RUN apt-get update && apt-get -qq -y install curl
 RUN curl -fsSL  https://deb.nodesource.com/setup_18.x |bash
 RUN apt-get install -qq -y nodejs
 RUN npm update && chmod +x ./build.sh
-RUN npm install @nestjs/swagger swagger-ui-express 
+RUN npm install @nestjs/swagger swagger-ui-express  --force
 EXPOSE 3000 27017
 #CMD ["./build.sh"]
