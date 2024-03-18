@@ -12,7 +12,7 @@ const options = new DocumentBuilder()
     .build();
 
 const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('api-docs', app, document);
+  SwaggerModule.setup('/api/docs', app, document);
   app.enableCors();
   await app.listen(3000);
 }
