@@ -6,7 +6,7 @@ import { AuthService } from './auth/auth.service';
 export class AppController {
   constructor(private readonly authService: AuthService) {}
 
-  @Get("home")
+  @Get("")
   async home(){
     return "heLo";
   }
