@@ -6,10 +6,19 @@ import { AuthService } from './auth/auth.service';
 export class AppController {
   constructor(private readonly authService: AuthService) {}
 
+  @Get("home")
+  async home(){
+    return "heLo";
+  }
   @UseGuards(AuthGuard('local'))
   @Post('login')
   async login(@Request() req) {
     return this.authService.login(req.user);
+  }
+  @UseGuards(AuthGuard('local'))
+  @Post('login')
+  async register(@Request() req) {
+    return this.authService.register(req.user);
   }
 
   @UseGuards(AuthGuard('jwt'))
