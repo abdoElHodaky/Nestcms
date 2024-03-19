@@ -13,7 +13,7 @@ export class AppController {
     return this.authService.login(req.user);
   }
   @UseGuards(AuthGuard('local'))
-  @Post('login')
+  @Post('register')
   async register(@Request() req) {
     return this.authService.register(req.user);
   }
