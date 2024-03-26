@@ -16,4 +16,8 @@ export class UsersService {
   async findOne(email: string): Promise<User> {
     return await this.userModel.findOne({ email }, '-__v').exec();
   }
+
+  async find_Id(_id: string): Promise<User> {
+    return await this.userModel.findOne({ _id }, '-__v').exec();
+  }
 }
