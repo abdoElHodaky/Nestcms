@@ -6,5 +6,5 @@ export const ScheduleSchema = new mongoose.Schema({
   author: String,
   creationDate: String,
   endingDate:String,
-  
+  userIds: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
 });
