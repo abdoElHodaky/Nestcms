@@ -6,6 +6,7 @@ export const ScheduleSchema = new mongoose.Schema({
   author: String,
   creationDate: String,
   endingDate:String,
+  status:String,
   clientId: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   employeeId: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 });
