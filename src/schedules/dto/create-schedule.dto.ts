@@ -4,5 +4,6 @@ export class CreateScheduleDto {
   readonly content: string;
   readonly startDate: string;
   readonly endDate:string;
-  
+  readonly employeeId?:string;
+  readonly clientId?:string
 }
