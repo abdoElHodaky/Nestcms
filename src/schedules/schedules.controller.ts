@@ -3,12 +3,11 @@ import { CreateScheduleDto } from './dto/create-schedule.dto';
 import { ScheduleService } from './schedules.service';
 import { CurrentUserInterceptor } from '../currentuser.interceptor';
 //import { UpdateArticleDto } from './dto/update-article.dto';
-@UseInterceptors(CurrentUserInterceptor)
-@Controller('api/schedules')
+//@UseInterceptors(CurrentUserInterceptor)
+@Controller('api.schedules')
 export class ScheduleController {
   constructor(private readonly scheduleService: ScheduleService) {}
   @Post("schedule")
-  
   async createSchedule(@Body() createScheduleDto: CreateScheduleDto) {
     return this.scheduleService.create(createScheduleDto);
   }
