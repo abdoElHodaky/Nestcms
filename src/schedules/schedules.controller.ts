@@ -6,11 +6,11 @@ import { CurrentUserInterceptor } from '../currentuser.interceptor';
 @UseInterceptors(CurrentUserInterceptor)
 @Controller('api/schedules')
 export class ScheduleController {
-  constructor(private readonly articlesService: ArticlesService) {}
+  constructor(private readonly scheduleService: ScheduleService) {}
   @Post("schedule")
   
   async createSchedule(@Body() createScheduleDto: CreateScheduleDto) {
-    return this.articlesService.create(createScheduleDto);
+    return this.scheduleService.create(createScheduleDto);
   }
 /*
   @Get()
