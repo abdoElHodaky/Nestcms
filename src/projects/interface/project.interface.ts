@@ -3,5 +3,5 @@ export interface Project {
   startDate:string;
   endDate:string;
   content:string;
-  
+  employeeId:string
 }
