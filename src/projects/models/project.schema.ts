@@ -7,6 +7,6 @@ export const ProjectSchema = new mongoose.Schema({
   startDate: String,
   endDate:String,
   status:String,
-  clientId: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-  employeeId: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  client: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  employee: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 },{timestamp:true});
