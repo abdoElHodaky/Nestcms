@@ -6,4 +6,6 @@ export class CreateProjectDto {
   readonly startDate: string;
   readonly endDate:string;
   readonly status:string;
+  readonly employeeId?:string;
+  
 }
