@@ -1,9 +1,11 @@
-import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put } from '@nestjs/common';
+import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CreateScheduleDto } from './dto/create-schedule.dto';
 import { ScheduleService } from './schedules.service';
-import { CurrentUserInterceptor } from '../currentuser.interceptor';
+//import { CurrentUserInterceptor } from '../currentuser.interceptor';
 //import { UpdateArticleDto } from './dto/update-article.dto';
 //@UseInterceptors(CurrentUserInterceptor)
+@UseGuards(AuthGuard('jwt'))
 @Controller('api.schedules')
 export class ScheduleController {
   constructor(private readonly scheduleService: ScheduleService) {}
