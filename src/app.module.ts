@@ -7,7 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { SchedulesModule } from './schedules/schedules.module';
 import { ProjectsModule } from './projects/projects.module';
-import { DesignsModule } from './projects/designs.module';
+//import { DesignsModule } from './projects/designs.module';
 
 
 @Module({
@@ -18,7 +18,7 @@ import { DesignsModule } from './projects/designs.module';
     UsersModule, 
     SchedulesModule,
     ProjectsModule,
-    DesignsModule,
+    //DesignsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
