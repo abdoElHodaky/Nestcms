@@ -12,6 +12,6 @@ import { DesignSchema } from './models/design.schema';
   imports: [MongooseModule.forFeature([{ name: 'Project', schema: ProjectSchema },{name: 'Design', schema: DesignSchema}])],
   providers: [ProjectService],
   exports: [ProjectService],
-  controllers: [ProjectController],
+  controllers: [ProjectController,DesignController],
 })
 export class ProjectsModule {}
