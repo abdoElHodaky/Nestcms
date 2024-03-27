@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { CreateScheduleDto } from './dto/create-schedule.dto';
 import { ScheduleService } from './schedules.service';
@@ -10,10 +10,15 @@ import { ScheduleService } from './schedules.service';
 export class ScheduleController {
   constructor(private readonly scheduleService: ScheduleService) {}
   @Post("")
-  async createSchedule(@Body() createScheduleDto: CreateScheduleDto) {
+  async create(@Body() createScheduleDto: CreateScheduleDto) {
     return this.scheduleService.create(createScheduleDto);
   }
+  @Get("")
+  async findAll(@Request() req){
+    return this.scheduleService.all(req.user.id);
+  }
 /*
+
   @Get()
   async findAll() {
     return this.articlesService.findAll();
