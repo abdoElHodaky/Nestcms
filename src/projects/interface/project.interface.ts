@@ -6,5 +6,5 @@ export interface Project {
   content:string;
   status:string;
   employeeId:string;
-  designs:Design[]
+  designs?:Design[]
 }
