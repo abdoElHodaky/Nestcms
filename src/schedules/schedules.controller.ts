@@ -9,7 +9,7 @@ import { ScheduleService } from './schedules.service';
 @Controller('api/schedules')
 export class ScheduleController {
   constructor(private readonly scheduleService: ScheduleService) {}
-  @Post("")
+  @Post("create")
   async create(@Body() createScheduleDto: CreateScheduleDto) {
     return this.scheduleService.create(createScheduleDto);
   }
