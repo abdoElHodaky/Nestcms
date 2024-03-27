@@ -6,7 +6,7 @@ import { ArticlesModule } from './articles/articles.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { SchedulesModule } from './schedules/schedules.module';
-//import config from './config';
+import { ProjectsModule } from './projects/projects.module';
 
 @Module({
   imports: [
@@ -15,6 +15,7 @@ import { SchedulesModule } from './schedules/schedules.module';
     AuthModule,
     UsersModule, 
     SchedulesModule,
+    ProjectsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
