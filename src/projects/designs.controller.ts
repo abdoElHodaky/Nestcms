@@ -3,7 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { ProjectService } from "./projects.service";
 @UseGuards(AuthGuard('jwt'))
 @Controller('projects/:id')
-export class ProjectController {
+export class DesignController {
   constructor(private readonly projectService: ProjectService) {}
  /* @Post("")
   async create(@Body() createScheduleDto: CreateScheduleDto) {
