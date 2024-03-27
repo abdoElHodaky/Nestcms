@@ -1,4 +1,4 @@
-FROM node:14.21.3-alpine3.17
+FROM node:12.17.0-alpine3.9
 COPY . .
 RUN apk add --no-cache tzdata  npm
 RUN node --optimize_for_size --max_old_space_size=490
