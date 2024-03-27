@@ -6,4 +6,4 @@ export const DesignSchema = new mongoose.Schema({
   path:String,
   project: { type: mongoose.Schema.Types.ObjectId, ref: 'Project'},
  // employee: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
-},{timestamp:true});
+},{timestamps:true});
