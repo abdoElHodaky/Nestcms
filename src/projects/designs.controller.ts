@@ -6,13 +6,12 @@ import { CreateDesignDto } from "./dto/create-design.dto";
 @Controller('api/projects/:id')
 export class DesignController {
   constructor(private readonly projectService: ProjectService) {}
-  @Post("")
-  async create(@Body() createDesignDto: CreateDesignDto) {
-    return {}
-    //return this.scheduleService.create(createScheduleDto);
+  @Post("addDesign")
+  async create(@Body() createDesignDto: CreateDesignDto,@Param("id") id:string) {
+    return this.projectService.addDesign(id,createScheduleDto);
   }
   
-  @Get("")
+  @Get("designs")
   async findAll(@Param("id") id:string){
    // return this.scheduleService.all(req.user.id);
    return id
