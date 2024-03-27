@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
+import { Model ,Types} from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateScheduleDto } from './dto/create-schedule.dto';
 import { Schedule } from './interface/schedule.interface';
@@ -11,8 +11,8 @@ export class ScheduleService {
  
   async create(createScheduleDto: CreateScheduleDto): Promise<Schedule> {
     const createdSchedule = new this.scheduleModel(createScheduleDto);
-    const client =await this.userService.find_Id(createScheduleDto.clientId)
-    const employee = await this.userService.find_Id(createScheduleDto.employeeId)
+    const client =await this.userService.find_Id(new Types.ObjectId(createScheduleDto.clientId))
+    const employee = await this.userService.find_Id(new Types.ObjectId(createScheduleDto.employeeId))
     createdSchedule.client=client 
     createdSchedule.employee=employee
     return await createdSchedule.save();
