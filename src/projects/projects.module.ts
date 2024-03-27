@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ProjectService } from './projects.service';
 import { ProjectController } from './projects.controller';
-import { DesignController } from './design.controller';
+import { DesignController } from './designs.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ProjectSchema } from './models/project.schema';
 import { DesignSchema } from './models/design.schema';
