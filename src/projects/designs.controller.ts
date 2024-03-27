@@ -5,10 +5,12 @@ import { ProjectService } from "./projects.service";
 @Controller('projects/:id')
 export class DesignController {
   constructor(private readonly projectService: ProjectService) {}
- /* @Post("")
-  async create(@Body() createScheduleDto: CreateScheduleDto) {
-    return this.scheduleService.create(createScheduleDto);
+  @Post("")
+  async create(@Body() createDesignDto: CreateDesignDto) {
+    return {}
+    //return this.scheduleService.create(createScheduleDto);
   }
+  /*
   @Get("")
   async findAll(@Request() req){
     return this.scheduleService.all(req.user.id);
