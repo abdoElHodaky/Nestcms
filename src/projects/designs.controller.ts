@@ -2,7 +2,7 @@ import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGua
 import { AuthGuard } from '@nestjs/passport';
 import { ProjectService } from "./projects.service";
 @UseGuards(AuthGuard('jwt'))
-@Controller('api/projects/:id')
+@Controller('projects/:id')
 export class DesignController {
   constructor(private readonly projectService: ProjectService) {}
  /* @Post("")
