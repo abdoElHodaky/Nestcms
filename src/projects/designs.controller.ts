@@ -8,7 +8,7 @@ export class DesignController {
   constructor(private readonly projectService: ProjectService) {}
   @Post("addDesign")
   async create(@Body() createDesignDto: CreateDesignDto,@Param("id") id:string) {
-    return this.projectService.addDesign(id,createScheduleDto);
+    return this.projectService.addDesign(id,createDesignDto);
   }
   
   @Get("designs")
