@@ -9,9 +9,7 @@ import { DesignController } from './designs.controller';
 import { DesignSchema } from './models/design.schema';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: 'Project', schema: ProjectSchema },{
-    name: 'Design', schema: DesignSchema
-  }])],
+  imports: [MongooseModule.forFeature([{ name: 'Project', schema: ProjectSchema },{name: 'Design', schema: DesignSchema}])],
   providers: [ProjectService],
   exports: [ProjectService],
   controllers: [ProjectController],
