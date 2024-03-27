@@ -1,4 +1,4 @@
-FROM node:18-alpine3.19
+FROM node:14-alpine3.19
 COPY . .
 RUN apk add --no-cache tzdata  npm
 #RUN npm update && chmod +x ./build.sh
