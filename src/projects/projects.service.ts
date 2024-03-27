@@ -23,8 +23,8 @@ export class ProjectService {
     const design =new this.designModel(createDesignDto);
     design.project=project
     await design.save()
-    //project.designs.push(design)
-    return project
+    project.designs.push(design)
+    return await project.save()
     
   }
 /*
