@@ -9,7 +9,7 @@ export class ScheduleService {
   constructor(@InjectModel('Schedule') private readonly scheduleModel: Model<Schedule>) {}
   private userService:UsersService
  
-  async create(createScheduleDto: CreateScheduleDto): Promise<Project> {
+  async create(createScheduleDto: CreateScheduleDto): Promise<Schedule> {
     const createdSchedule = new this.scheduleModel(createScheduleDto);
     const client =await this.userService.find_Id(createScheduleDto.clientId)
     const employee = await this.userService.find_Id(createScheduleDto.employeeId)
