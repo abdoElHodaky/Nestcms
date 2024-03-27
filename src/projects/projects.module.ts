@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ProjectService } from './projects.service';
 import { ProjectController } from './projects.controller';
+import { DesignController } from './design.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ProjectSchema } from './models/project.schema';
 import { DesignSchema } from './models/design.schema';
@@ -9,6 +10,6 @@ import { DesignSchema } from './models/design.schema';
   imports: [MongooseModule.forFeature([{ name: 'Project', schema: ProjectSchema },{ name :"Design" , schema :Design}])],
   providers: [ProjectService],
   exports: [ProjectService],
-  controllers: [ProjectController],
+  controllers: [ProjectController,DesignController],
 })
 export class ProjectsModule {}
