@@ -11,14 +11,14 @@ export class ScheduleService {
  
   async create(createScheduleDto: CreateScheduleDto): Promise<Schedule> {
     const createdSchedule = new this.scheduleModel(createScheduleDto);
-    const client =await this.userService.find_Id(new Types.ObjectId(createScheduleDto.clientId))
-    const employee = await this.userService.find_Id(new Types.ObjectId(createScheduleDto.employeeId))
+    const client =await this.userService.find_Id(createScheduleDto.clientId)
+    const employee = await this.userService.find_Id(createScheduleDto.employeeId)
     createdSchedule.client=client 
     createdSchedule.employee=employee
     return await createdSchedule.save();
   }
   async all(id:string):Promise<Schedule[]>{
-    const employee = await this.userService.find_Id(new Types.ObjectId(createScheduleDto.employeeId))
+    const employee = await this.userService.find_Id(createScheduleDto.employeeId)
     return this.scheduleModel.populate({
       path:"employee",
       match:"employee._id":employee._id
