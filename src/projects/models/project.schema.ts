@@ -10,4 +10,4 @@ export const ProjectSchema = new mongoose.Schema({
   client: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   employee: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   designs:[{ type: mongoose.Schema.Types.ObjectId, ref:"Design"}],
-});
+},{timestamps:true});
