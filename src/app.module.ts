@@ -13,7 +13,7 @@ import { DesignsModule } from './projects/designs.module';
 @Module({
   imports: [
     MongooseModule.forRoot("mongodb+srv://abdoarh36:TyWF4ABOefQhJFbP@cluster0.bc7sxu7.mongodb.net/nestcms", { useNewUrlParser: true, useFindAndModify: false }),
-    ArticlesModule,
+    //ArticlesModule,
     AuthModule,
     UsersModule, 
     SchedulesModule,
