@@ -5,7 +5,7 @@ import { ProjectService } from "./projects.service";
 @Controller('api/projects/:id')
 export class DesignController {
   constructor(private readonly projectService: ProjectService) {}
-  @Post("")
+  @Post("add")
   async create(@Body() createDesignDto: CreateDesignDto) {
     return {}
     //return this.scheduleService.create(createScheduleDto);
