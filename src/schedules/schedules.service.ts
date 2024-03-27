@@ -21,7 +21,7 @@ export class ScheduleService {
     const employee = await this.userService.find_Id(uid)
     return this.scheduleModel.populate({
       path:"employee",
-      match:"employee._id":employee._id
+      match:"employee._id":employee._id,
     }).exec()
   }
 /*
