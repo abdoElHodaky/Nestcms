@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Model ,Types} from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { CreateScheduleDto } from './dto/create-contract.dto';
-import { Schedule } from './interface/contract.interface';
+import { CreateContractDto } from './dto/create-contract.dto';
+import { Contract } from './interface/contract.interface';
 import { UsersService} from "../users/users.service"
 @Injectable()
 export class ContractService {
