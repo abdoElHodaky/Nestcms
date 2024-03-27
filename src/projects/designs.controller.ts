@@ -1,6 +1,7 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ProjectService } from "./projects.service";
+import { CreateDesignDto } from "./dto/create-design.dto";
 @UseGuards(AuthGuard('jwt'))
 @Controller('api/projects/:id')
 export class DesignController {
