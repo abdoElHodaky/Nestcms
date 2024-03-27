@@ -17,6 +17,13 @@ export class ScheduleService {
     createdSchedule.employee=employee
     return await createdSchedule.save();
   }
+  async all(id:string):Promise<Schedule[]>{
+    const employee = await this.userService.find_Id(new Types.ObjectId(createScheduleDto.employeeId))
+    return this.scheduleModel.populate({
+      path:"employee",
+      match:"employee._id":employee._id
+    }).exec()
+  }
 /*
   async findOne(email: string): Promise<User> {
     return await this.userModel.findOne({ email }, '-__v').exec();
