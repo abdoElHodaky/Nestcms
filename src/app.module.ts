@@ -15,7 +15,7 @@ import { ProjectsModule } from './projects/projects.module';
     AuthModule,
     UsersModule, 
     SchedulesModule,
-    ProjectsModule,
+    //ProjectsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
