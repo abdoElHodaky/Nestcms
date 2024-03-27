@@ -1,3 +1,4 @@
+import { Design } from "./design.interface";
 export interface Project {
   _id: string;
   startDate:string;
@@ -5,5 +6,5 @@ export interface Project {
   content:string;
   status:string;
   employeeId:string;
-  designs:[]
+  designs:Design[]
 }
