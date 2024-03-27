@@ -1,18 +1,22 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ProjectService } from "./projects.service";
+import { CreateProjectDto } from "./dto/create-project.dto";
+
 @UseGuards(AuthGuard('jwt'))
 @Controller('api/projects')
 export class ProjectController {
   constructor(private readonly projectService: ProjectService) {}
- /* @Post("")
-  async create(@Body() createScheduleDto: CreateScheduleDto) {
-    return this.scheduleService.create(createScheduleDto);
+  @Post("")
+  async create(@Body() createScheduleDto: CreateProjectDto) {
+   return this.projectService.create(createScheduleDto);
+   
   }
   @Get("")
   async findAll(@Request() req){
-    return this.scheduleService.all(req.user.id);
-  }*/
+   // return this.scheduleService.all(req.user.id);
+    return
+  }
 /*
 
   @Get()
