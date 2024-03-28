@@ -10,8 +10,9 @@ export class ContractService {
   private userService:UsersService
  
   async create(createContractDto: CreateContractDto): Promise<Contract> {
-    const [client,employee]=await this.userService.findMany_Id([createContractDto.clientId,createContractDto.employeeId])
-    const createdContract = new this.contractModel(createContractDto);
+    const {clientId,employeeId,...rest}=createContractDto
+    const [client,employee]=await this.userService.findMany_Id([clientId,employeeId])
+    const createdContract = new this.contractModel(rest);
     createdContract.client=client
     createdContract.employee=employee
     //const client =await this.userService.find_Id(CreateContractDto.clientId)
