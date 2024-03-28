@@ -2,12 +2,12 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 export class LoginUserDto {
   @ApiProperty({
     
-    description: 'This is a required property',
+    type:String
   })
   readonly email: string;
   @ApiProperty({
     
-    description: 'This is a required property',
+    type:String
   })
   readonly password: string;
 }
