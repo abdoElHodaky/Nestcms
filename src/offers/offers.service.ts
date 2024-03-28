@@ -25,7 +25,7 @@ export class ContractService {
     offer.client=client
     return await offer.save()
   }
-  async all(uid:string):Promise<Contract[]>{
+  async all(uid:string):Promise<Offer[]>{
     const employee = await this.userService.find_Id(uid)
     return this.offerModel.find().populate({
       path:"employee",
