@@ -9,7 +9,7 @@ import { UsersModule } from './users/users.module';
 import { SchedulesModule } from './schedules/schedules.module';
 import { ProjectsModule } from './projects/projects.module';
 //import { DesignsModule } from './projects/designs.module';
-import {apiroutes,homeroutes} from "./routes.ts";
+import {apiroutes,homeroutes} from "./routes";
 
 @Module({
   imports: [
