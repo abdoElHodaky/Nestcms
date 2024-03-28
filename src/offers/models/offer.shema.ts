@@ -5,7 +5,8 @@ export const OfferSchema = new mongoose.Schema({
   content: String,
   author: String,
   creationDate: String,
+  price:Number,
   status:String,
-  clientId: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-  employeeId: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  client: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  employee: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 },{timestamp:true});
