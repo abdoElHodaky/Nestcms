@@ -5,15 +5,20 @@ import { CreateProjectDto } from './dto/create-project.dto';
 import { Project } from './interface/project.interface';
 import { CreateDesignDto } from './dto/create-design.dto';
 import { Design } from './interface/design.interface'
+import { UsersService } from "../users/users.service";
 @Injectable()
 export class ProjectService {
+  private userService:UsersService
   constructor(@InjectModel('Project') private readonly projectModel: Model<Project>,
               @InjectModel('Design') private readonly designModel: Model<Design>
              ) {}
 
  
   async create(createProjectDto: CreateProjectDto): Promise<Project> {
-    const createdProject = new this.projectModel(createProjectDto);
+    const { employeeId,...rest }=createProjectDto
+    const employee=await this.userService.find_Id(employeeId)
+    const createdProject = new this.projectModel(rest);
+    createdProject.employee=employee
     return await createdProject.save();
   }
 
