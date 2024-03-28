@@ -1,6 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateContractDto {
+  
   @ApiProperty()
   readonly title: string;
   @ApiProperty()
@@ -15,6 +16,11 @@ export class CreateContractDto {
   readonly status:string;
   @ApiPropertyOptional()
   readonly path?:string
-  //readonly employeeId?:string;
+  @ApiPropertyOptional()
+  readonly employeeId?:string;
+  @ApiPropertyOptional()
+  readonly clientId?:string;
+  @ApiPropertyOptional()
+  readonly offerId?:string
 
 }
