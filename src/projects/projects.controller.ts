@@ -4,7 +4,7 @@ import { ProjectService } from "./projects.service";
 import { CreateProjectDto } from "./dto/create-project.dto";
 
 @UseGuards(AuthGuard('jwt'))
-@Controller('api/projects')
+@Controller('projects')
 export class ProjectController {
   constructor(private readonly projectService: ProjectService) {}
   @Post("")
