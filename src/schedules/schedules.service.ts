@@ -10,10 +10,10 @@ export class ScheduleService {
   private userService:UsersService
  
   async create(createScheduleDto: CreateScheduleDto): Promise<Schedule> {
-    const [clientId,employeeId]=createScheduleDto
+    const {clientId,employeeId,...rest}=createScheduleDto
     const [client,employee]=await this.userService.findMany_Id([clientId,employeeId])
     //const employee = await this.userService.find_Id(createScheduleDto.employeeId)
-    const createdSchedule = new this.scheduleModel(...createScheduleDto);
+    const createdSchedule = new this.scheduleModel(rest);
     createdSchedule.client=client;
     createdSchedule.employee=employee;
     return await createdSchedule.save();
