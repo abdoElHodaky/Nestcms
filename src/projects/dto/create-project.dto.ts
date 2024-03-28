@@ -1,11 +1,17 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+
 export class CreateProjectDto {
-  
+  @ApiProperty()
   readonly title: string;
+  @ApiProperty()
   readonly content: string;
-  readonly author: string;
+  @ApiProperty()
   readonly startDate: string;
+  @ApiProperty()
   readonly endDate:string;
+  @ApiPropertyOptional()
   readonly status:string;
+  @ApiPropertyOptional()
   readonly employeeId?:string;
   
 }
