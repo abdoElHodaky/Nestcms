@@ -4,10 +4,12 @@ import { InjectModel } from '@nestjs/mongoose';
 import { CreateContractDto } from './dto/create-contract.dto';
 import { Contract } from './interface/contract.interface';
 import { UsersService} from "../users/users.service"
+import { OfferService} from "../offers/offers.service"
 @Injectable()
 export class ContractService {
   constructor(@InjectModel('Contract') private readonly contractModel: Model<Contract>) {}
   private userService:UsersService
+  private offerService:OfferService
  
   async create(createContractDto: CreateContractDto): Promise<Contract> {
     const {clientId,employeeId,...rest}=createContractDto
@@ -20,8 +22,14 @@ export class ContractService {
     
     return await createdContract.save();
   }
-  async createFrom_Offer(){
-    
+  async createFrom_Offer(offerId:string):Promise<Contract>{
+    const offer = await this.offerService.find_Id(offerId)
+    const createdContract = new this.contractModel();
+    createdContract.offer=offer
+    createdContract.client=offer.client
+    createdContract.employee=offer.employee
+    return await createdContract.save()
+  
   }
   async all(uid:string):Promise<Contract[]>{
     const employee = await this.userService.find_Id(uid)
