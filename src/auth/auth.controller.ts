@@ -2,8 +2,8 @@ import { Controller, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginUserDto } from '../users/dto/login-user.dto';
 import { CreateUserDto } from '../users/dto/create-user.dto';
-import { ApiTags, ApiExcludeController } from "@nestjs/swagger";
-@ApiExcludeController()
+import { ApiTags, ApiExcludeEndpoint } from "@nestjs/swagger";
+@ApiExcludeEndpoint()
 @ApiTags("Auth")
 @Controller('auth')
 export class AuthController {
