@@ -3,7 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { ProjectService } from "./projects.service";
 import { CreateProjectDto } from "./dto/create-project.dto";
 import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
-@@ApiBearerAuth('JWTAuthorization')
+@ApiBearerAuth('JWTAuthorization')
 @ApiTags("Project")
 @UseGuards(AuthGuard('jwt'))
 @Controller('api/projects')
