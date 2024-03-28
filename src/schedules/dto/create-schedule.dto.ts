@@ -2,28 +2,16 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 
 export class CreateScheduleDto {
-   @ApiProperty({
-   type:String
-  })
+   @ApiProperty()
   readonly title: string;
-   @ApiProperty({
-    type:String
-    
-  })
+   @ApiProperty()
   readonly content: string;
-   @ApiProperty({
-  })type:String
+   @ApiProperty()
   readonly startDate: string;
-   @ApiProperty({
-    type:String
-  })
+   @ApiProperty()
   readonly endDate:string;
-   @ApiPropertyOptial({
-    type:String
-  })
+   @ApiPropertyOptial()
   readonly employeeId?:string;
-   @ApiPropertyOptial({
-    type:String
-  })
+   @ApiPropertyOptial()
   readonly clientId?:string
 }
