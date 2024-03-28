@@ -2,7 +2,8 @@ import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGua
 import { AuthGuard } from '@nestjs/passport';
 import { ProjectService } from "./projects.service";
 import { CreateDesignDto } from "./dto/create-design.dto";
-import { ApiTags } from "@nestjs/swagger";
+import { ApiTags,ApiSecurity } from "@nestjs/swagger";
+@ApiSecurity("bearer")
 @ApiTags("Project.Design")
 @UseGuards(AuthGuard('jwt'))
 @Controller('api/projects/:id/designs')
