@@ -5,7 +5,7 @@ import { CreateProjectDto } from "./dto/create-project.dto";
 import { ApiTags } from "@nestjs/swagger";
 @ApiTags("Project")
 @UseGuards(AuthGuard('jwt'))
-@Controller(['api','projects'])
+@Controller('api/projects')
 export class ProjectController {
   constructor(private readonly projectService: ProjectService) {}
   @Post("")
