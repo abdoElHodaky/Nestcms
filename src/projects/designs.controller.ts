@@ -2,16 +2,18 @@ import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGua
 import { AuthGuard } from '@nestjs/passport';
 import { ProjectService } from "./projects.service";
 import { CreateDesignDto } from "./dto/create-design.dto";
+import { ApiTag } from "@nestjs/swagger";
+@ApiTag("Project.Design")
 @UseGuards(AuthGuard('jwt'))
-@Controller('projects/:id')
+@Controller(['api','projects/:id','designs'])
 export class DesignController {
   constructor(private readonly projectService: ProjectService) {}
-  @Post("addDesign")
+  @Post("add")
   async create(@Body() createDesignDto: CreateDesignDto,@Param("id") id:string) {
     return this.projectService.addDesign(id,createDesignDto);
   }
   
-  @Get("designs")
+  @Get("")
   async findAll(@Param("id") id:string){
    // return this.scheduleService.all(req.user.id);
    return id
