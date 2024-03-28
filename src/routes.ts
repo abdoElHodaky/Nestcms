@@ -16,7 +16,7 @@ export const apiroutes= [{
         },
     ],
 }];
-export const routes= [{
+export const homeroutes= [{
     path: '',
    // module: NinjaModule,
     children: [
