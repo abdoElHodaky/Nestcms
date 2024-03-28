@@ -3,33 +3,27 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateScheduleDto {
    @ApiProperty({
-    
-    description: 'This is a required property',
+   type:String
   })
   readonly title: string;
    @ApiProperty({
+    type:String
     
-    description: 'This is a required property',
   })
   readonly content: string;
    @ApiProperty({
-    
-    description: 'This is a required property',
-  })
+  })type:String
   readonly startDate: string;
    @ApiProperty({
-    
-    description: 'This is a required property',
+    type:String
   })
   readonly endDate:string;
    @ApiPropertyOptial({
-    
-    description: 'This is a required property',
+    type:String
   })
   readonly employeeId?:string;
    @ApiPropertyOptial({
-    
-    description: 'This is a required property',
+    type:String
   })
   readonly clientId?:string
 }
