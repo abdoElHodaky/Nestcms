@@ -10,8 +10,8 @@ export class CreateScheduleDto {
   readonly startDate: string;
    @ApiProperty()
   readonly endDate:string;
-   @ApiPropertyOptial()
+   @ApiPropertyOptional()
   readonly employeeId?:string;
-   @ApiPropertyOptial()
+   @ApiPropertyOptional()
   readonly clientId?:string
 }
