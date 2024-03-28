@@ -2,9 +2,10 @@ import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGua
 import { AuthGuard } from '@nestjs/passport';
 import { ProjectService } from "./projects.service";
 import { CreateProjectDto } from "./dto/create-project.dto";
-
+import { ApiTag } from "@nestjs/swagger";
+@ApiTag("Project")
 @UseGuards(AuthGuard('jwt'))
-@Controller('projects')
+@Controller(['api','projects'])
 export class ProjectController {
   constructor(private readonly projectService: ProjectService) {}
   @Post("")
