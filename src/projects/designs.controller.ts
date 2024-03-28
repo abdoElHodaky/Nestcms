@@ -5,7 +5,7 @@ import { CreateDesignDto } from "./dto/create-design.dto";
 import { ApiTags } from "@nestjs/swagger";
 @ApiTags("Project.Design")
 @UseGuards(AuthGuard('jwt'))
-@Controller(['api','projects/:id','designs'])
+@Controller('api/projects/:id/designs')
 export class DesignController {
   constructor(private readonly projectService: ProjectService) {}
   @Post("add")
