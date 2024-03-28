@@ -19,7 +19,7 @@ export class ProjectService {
 
   async addDesign(id:string,createDesignDto:CreateDesignDto):Promise<Project>{
     
-    const project=await this.projectModel.findById(new Types.ObjectId(id)).exec()
+    const project=await this.projectModel.findById(id).exec()
     const design =new this.designModel(createDesignDto);
     design.project=project
     await design.save()
