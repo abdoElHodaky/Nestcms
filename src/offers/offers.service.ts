@@ -32,6 +32,9 @@ export class ContractService {
       match:{"employee._id":employee._id},
     }).exec();
   }
+  async find_Id(_id:string):Promise<Offer>{
+    return await this.offerModel.findById(_id).exec()
+  }
 /*
   async findOne(email: string): Promise<User> {
     return await this.userModel.findOne({ email }, '-__v').exec();
