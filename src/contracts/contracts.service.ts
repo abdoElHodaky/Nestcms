@@ -20,6 +20,9 @@ export class ContractService {
     
     return await createdContract.save();
   }
+  async createFrom_Offer(){
+    
+  }
   async all(uid:string):Promise<Contract[]>{
     const employee = await this.userService.find_Id(uid)
     return this.contractModel.find().populate({
