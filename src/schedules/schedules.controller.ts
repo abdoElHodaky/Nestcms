@@ -2,11 +2,11 @@ import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGua
 import { AuthGuard } from '@nestjs/passport';
 import { CreateScheduleDto } from './dto/create-schedule.dto';
 import { ScheduleService } from './schedules.service';
-import { ApiTag } from "@nestjs/swagger";
+import { ApiTags } from "@nestjs/swagger";
 //import { CurrentUserInterceptor } from '../currentuser.interceptor';
 //import { UpdateArticleDto } from './dto/update-article.dto';
 //@UseInterceptors(CurrentUserInterceptor)
-@ApiTag("Schedule")
+@ApiTags("Schedule")
 @UseGuards(AuthGuard('jwt'))
 @Controller(["api",'schedules'])
 export class ScheduleController {
