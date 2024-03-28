@@ -6,7 +6,7 @@ import { ScheduleService } from './schedules.service';
 //import { UpdateArticleDto } from './dto/update-article.dto';
 //@UseInterceptors(CurrentUserInterceptor)
 @UseGuards(AuthGuard('jwt'))
-@Controller('api/schedules')
+@Controller('schedules')
 export class ScheduleController {
   constructor(private readonly scheduleService: ScheduleService) {}
   @Post("create")
