@@ -7,12 +7,12 @@ import { ApiTags, ApiExcludeEndpoint } from "@nestjs/swagger";
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
-  @ApiExcludeEndpoint()
+  //@ApiExcludeEndpoint()
   @Post('login')
   async login(@Body() loginUserDto: LoginUserDto) {
     return this.authService.login(loginUserDto);
   }
-  @ApiExcludeEndpoint()
+  //@ApiExcludeEndpoint()
   @Post('register')
   async register(@Body() createUserDto: CreateUserDto) {
     return this.authService.register(createUserDto);
