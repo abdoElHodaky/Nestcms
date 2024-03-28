@@ -11,12 +11,13 @@ export class ContractService {
   private userService:UsersService
  
   async create(createOfferDto: CreateOfferDto): Promise<Contract> {
-    const {clientId,employeeId,...rest}=CreateOfferDto
-    const [client,employee]=await this.userService.findMany_Id([clientId,employeeId])
+    const {employeeId,...rest}=CreateOfferDto
+    const employee=await this.userService.find_Id(employeeId)
     const createdOffer = new this.offerModel(rest);
-    createdOffer.client=client
     createdOffer.employee=employee
     return await createdOffer.save();
+  }
+  async accept(acceptOfferDto:AcceptOfferDto):Prmosie<Offer>{
   }
   async all(uid:string):Promise<Contract[]>{
     const employee = await this.userService.find_Id(uid)
