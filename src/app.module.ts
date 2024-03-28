@@ -15,13 +15,13 @@ import {apiroutes,homeroutes} from "./routes.ts";
   imports: [
     MongooseModule.forRoot("mongodb+srv://abdoarh36:TyWF4ABOefQhJFbP@cluster0.bc7sxu7.mongodb.net/nestcms", { useNewUrlParser: true, useFindAndModify: false }),
     //ArticlesModule,
-   /* AuthModule,
-    UsersModule, 
+     AuthModule,
+   // UsersModule, 
     SchedulesModule,
-    ProjectsModule,*/
+    ProjectsModule,
     //DesignsModule,
     RouterModule.forRoot(homeroutes),
-    RouterModule.forRoot(apiroutes)
+    RouterModule.forRoot(apiroutes),
   ],
   controllers: [AppController],
   providers: [AppService],
