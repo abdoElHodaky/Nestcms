@@ -9,6 +9,16 @@ const options = new DocumentBuilder()
     .setDescription('')
     .setVersion('1.0')
     .addServer('/', '')
+    .addBearerAuth(
+        {
+          bearerFormat: 'Bearer',
+          scheme: 'Bearer',
+          type: 'http',
+          in: 'Header',
+        },
+        'JWTAuthorization',
+      );
+
     .build();
 
 const document = SwaggerModule.createDocument(app, options);
