@@ -8,7 +8,7 @@ import { ApiTags } from "@nestjs/swagger";
 //@UseInterceptors(CurrentUserInterceptor)
 @ApiTags("Schedule")
 @UseGuards(AuthGuard('jwt'))
-@Controller(["api",'schedules'])
+@Controller("api/schedules")
 export class ScheduleController {
   constructor(private readonly scheduleService: ScheduleService) {}
   @Post("create")
