@@ -2,8 +2,8 @@ import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGua
 import { AuthGuard } from '@nestjs/passport';
 import { ProjectService } from "./projects.service";
 import { CreateDesignDto } from "./dto/create-design.dto";
-import { ApiTag } from "@nestjs/swagger";
-@ApiTag("Project.Design")
+import { ApiTags } from "@nestjs/swagger";
+@ApiTags("Project.Design")
 @UseGuards(AuthGuard('jwt'))
 @Controller(['api','projects/:id','designs'])
 export class DesignController {
