@@ -20,4 +20,8 @@ export class UsersService {
   async find_Id(_id: string): Promise<User> {
     return await this.userModel.findById(_id).exec();
   }
+
+  async findMany_Id(_ids:string[]):Promise<User[]>{
+    return await this.userModel.find().where('_id').in(_ids).exec()
+  }
 }
