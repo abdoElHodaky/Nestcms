@@ -18,6 +18,6 @@ export class UsersService {
   }
 
   async find_Id(_id: string): Promise<User> {
-    return await this.userModel.findById(new Types.ObjectId(_id)).exec();
+    return await this.userModel.findById(_id).exec();
   }
 }
