@@ -8,7 +8,7 @@ const options = new DocumentBuilder()
     .setTitle('nestcmsapi')
     .setDescription('')
     .setVersion('1.0')
-    .addServer('/', '')
+    .addBasicAuth()
     .addBearerAuth(
         {
           bearerFormat: 'Bearer',
@@ -17,7 +17,8 @@ const options = new DocumentBuilder()
           in: 'Header',
         },
         'JWTAuthorization',
-      );
+      )
+    .addServer('/', '')
 
     .build();
 
