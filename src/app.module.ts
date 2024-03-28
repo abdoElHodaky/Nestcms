@@ -1,5 +1,4 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
-import { RouterModule } from "@nestjs/core";
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -15,13 +14,11 @@ import {apiroutes,homeroutes} from "./routes";
   imports: [
     MongooseModule.forRoot("mongodb+srv://abdoarh36:TyWF4ABOefQhJFbP@cluster0.bc7sxu7.mongodb.net/nestcms", { useNewUrlParser: true, useFindAndModify: false }),
     //ArticlesModule,
-   //  AuthModule,
-   // UsersModule, 
-   // SchedulesModule,
-  //  ProjectsModule,
+      AuthModule,
+      UsersModule, 
+     SchedulesModule,
+     ProjectsModule,
     //DesignsModule,
-    RouterModule.forRoot(homeroutes),
-    RouterModule.forRoot(apiroutes),
   ],
   controllers: [AppController],
   providers: [AppService],
