@@ -1,4 +1,4 @@
-FROM mongo:6.0.13-jammy
+FROM mongo:7.0.7-jammy
 COPY . .
 ENV NODE_ENV ${NODE_ENV}
 RUN apt-get update && apt-get -qq -y install curl
