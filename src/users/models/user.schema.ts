@@ -6,5 +6,7 @@ export const UserSchema = new mongoose.Schema({
   type:String,
   fullName:String,
   Age:Number,
-  Addresse:String
+  Addresse:String,
+  isEmployee:Boolean,
+  isAdmin:Boolean,
 },{timestamps:true});
