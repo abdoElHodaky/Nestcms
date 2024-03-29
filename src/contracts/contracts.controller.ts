@@ -14,7 +14,7 @@ export class ContractController {
   constructor(private readonly contractService: ContractService) {}
   @Post("create")
   async create(@Body() createContractDto: CreateContractDto) {
-    return await this.contractService.create(createScheduleDto);
+    return await this.contractService.create(createContractDto);
   }
   @Get("")
   async findAll(@Request() req){
