@@ -13,32 +13,36 @@ export class ContractService {
   private offerService:OfferService
  
   async create(createContractDto: CreateContractDto): Promise<Contract> {
-    const {clientId,employeeId,...rest}=createContractDto
+    const {clientId,employeeId,offerId,...rest}=createContractDto
     const [client,employee]=await this.userService.findMany_Id([clientId,employeeId])
     const createdContract = new this.contractModel(rest);
     createdContract.client=client
     createdContract.employee=employee
+    if (offerId!=""){
+      return await this.createFrom_Offer(offerId,createdContract);
+    }
+
     //const client =await this.userService.find_Id(CreateContractDto.clientId)
     //const employee = await this.userService.find_Id(createScheduleDto.employeeId)
-    
     return await createdContract.save();
   }
-  async createFrom_Offer(offerId:string):Promise<Contract | Offer>{
+  async createFrom_Offer(offerId:string,contract:Contract):Promise<Contract>{
+    
     const offer = await this.offerService.find_Id(offerId)
     if(offer.status="Accept_Client"){
-    const createdContract = new this.contractModel();
+    const createdContract = contract;
     createdContract.offer=offer
     createdContract.client=offer.client
     createdContract.employee=offer.employee
     return await createdContract.save()}
     else{
-      return offer
+      return contract
     }
   
   }
   async all(uid:string):Promise<Contract[]>{
     const employee = await this.userService.find_Id(uid)
-    return this.contractModel.find().populate({
+    return await this.contractModel.find().populate({
       path:"employee",
       match:{"employee._id":employee._id},
     }).exec();
