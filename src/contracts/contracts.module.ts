@@ -4,7 +4,7 @@ import { ProjectController } from './contracts.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ContractSchema } from './models/contract.schema';
 @Module({
-  imports: [MongooseModule.forFeature([{ name: 'Project', schema: ProjectSchema },{name: 'Design', schema: DesignSchema}])],
+  imports: [MongooseModule.forFeature([{ name: 'Contract', schema: ContractSchema }])],
   providers: [ContractService],
   exports: [ContractService],
   controllers: [ContractController],
