@@ -3,7 +3,7 @@ import { Model ,Types} from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateContractDto } from './dto/create-contract.dto';
 import { Contract } from './interface/contract.interface';
-import { Offer } from './interface/offer.interface';
+import { Offer } from '../offers/interface/offer.interface';
 import { UsersService} from "../users/users.service"
 import { OfferService} from "../offers/offers.service"
 @Injectable()
