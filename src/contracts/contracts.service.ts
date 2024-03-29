@@ -26,7 +26,7 @@ export class ContractService {
     //const employee = await this.userService.find_Id(createScheduleDto.employeeId)
     return await createdContract.save();
   }
-  async createFrom_Offer(offerId:string,contract:Model<Contract>):Promise<Contract>{
+  async createFrom_Offer(offerId:string,contract):Promise<Contract>{
     
     const offer = await this.offerService.find_Id(offerId)
     if(offer.status="Accept_Client"){
