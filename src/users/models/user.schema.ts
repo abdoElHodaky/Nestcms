@@ -7,4 +7,4 @@ export const UserSchema = new mongoose.Schema({
   fullName:String,
   Age:Number,
   Addresse:String
-});
+},{timestamps:true});
