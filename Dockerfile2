@@ -1,9 +1,12 @@
-FROM node:14.17.6-alpine3.13
+FROM mongo:6.0.8-jammy
 COPY . .
 ENV NODE_ENV ${NODE_ENV}
-RUN apk add --no-cache tzdata  npm
-#RUN node --optimize_for_size --max_old_space_size=490
-RUN npm install 
-RUN npm install @nestjs/swagger@4.5.3  swagger-ui-express@4.1.4  --force
+
+RUN apt-get update && apt-get -qq -y install curl
+RUN curl -fsSL  https://deb.nodesource.com/setup_16.x |bash
+RUN apt-get install -qq -y nodejs
+RUN RUN node --optimize_for_size --max_old_space_size=490 
+RUN npm update 
+RUN npm install @nestjs/swagger@4.5.3 swagger-ui-express@4.1.4 --force
 EXPOSE 3000 27017
 CMD ["npm","run","start"]
