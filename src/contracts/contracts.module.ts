@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ContractService } from './contracts.service';
-import { ProjectController } from './contracts.controller';
+import { ContractController } from './contracts.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ContractSchema } from './models/contract.schema';
 @Module({
