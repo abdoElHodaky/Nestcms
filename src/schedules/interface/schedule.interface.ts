@@ -1,3 +1,4 @@
+import { Employee ,Client } from "../users/user.interface";
 export class Schedule{
  _id:string;
  title: string;
@@ -6,6 +7,6 @@ export class Schedule{
   creationDate: string;
   endingDate:string;
   status:string;
-  client?:{};
-  employee?:{};
+  client?:Client;
+  employee?:Employee;
 }
