@@ -4,6 +4,11 @@ export interface User {
   password: string;
   fullName:string;
   Address:string;
+  type:string;
+  isEmployee?:boolean
+  employeeType?:string
+  isAdmin?:boolean;
+  adminType?:string
   schedules?:[]
   projects?:[]
 }
