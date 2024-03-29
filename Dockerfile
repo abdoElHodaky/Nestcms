@@ -1,5 +1,6 @@
 FROM mongo:6.0.13-jammy
 COPY . .
+ENV NODE_ENV ${NODE_ENV}
 RUN apt-get update && apt-get -qq -y install curl
 RUN curl -fsSL  https://deb.nodesource.com/setup_18.x |bash
 RUN apt-get install -qq -y nodejs
