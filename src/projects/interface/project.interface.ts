@@ -5,6 +5,6 @@ export interface Project {
   endDate:string;
   content:string;
   status:string;
-  employeeId:string;
+  employee?:{};
   designs?:Design[]
 }
