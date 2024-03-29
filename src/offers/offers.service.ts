@@ -6,7 +6,7 @@ import { Offer } from './interface/offer.interface';
 import { UsersService} from "../users/users.service"
 import { ContractService} from "../contracts/contracts.service"
 @Injectable()
-export class ContractService {
+export class OfferService {
   constructor(@InjectModel('Offer') private readonly offerModel: Model<Offer>) {}
   private userService:UsersService
  
