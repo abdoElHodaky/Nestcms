@@ -2,7 +2,7 @@ FROM mongo:6.0.8-jammy
 COPY . .
 ENV NODE_ENV ${NODE_ENV}
 
-RUN apt-get update && apt-get -qq -y install curl nodejs
+RUN apt-get update && apt-get -qq -y install curl nodejs npm
 #RUN curl -fsSL  https://deb.nodesource.com/setup_12.x |bash
 #RUN apt-get install -qq -y nodejs
 RUN  node --optimize_for_size --max_old_space_size=490 
