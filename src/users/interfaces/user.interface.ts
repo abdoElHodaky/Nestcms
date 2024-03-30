@@ -14,17 +14,17 @@ export interface User {
   projects?:[]
 }
 
-export class Employee extends User {
+export class Employee implements User {
   isEmployee:boolean=true;
   employeeType:string;
 }
 
-export class Client extends User {
+export class Client implements User {
   isEmployee:boolean=false;
   isAdmin:boolean=false;
 }
 
-export class Admin extends User {
+export class Admin implements User {
   isAdmin:boolean=true;
   adminType:string;
 }
