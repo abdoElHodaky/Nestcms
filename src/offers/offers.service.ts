@@ -22,7 +22,7 @@ export class OfferService {
   async accept(acceptOfferDto:AcceptOfferDto):Promise<Offer>{
     const {offerId,clientId}=acceptOfferDto
     const client = await this.userService.find_Id(clientId)
-    const offer= this.offerModel.findById(offerId).exec()
+    const offer= await this.offerModel.findById(offerId).exec()
     offer.status=acceptOfferDto.status
     offer.client=client
     return await offer.save()
