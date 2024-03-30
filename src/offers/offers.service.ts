@@ -13,7 +13,7 @@ export class OfferService {
   private userService:UsersService
  
   async create(createOfferDto: CreateOfferDto): Promise<Offer> {
-    const {employeeId,...rest}=CreateOfferDto
+    const {employeeId,...rest}=createOfferDto
     const employee=await this.userService.find_Id(employeeId)
     const createdOffer = new this.offerModel(rest);
     createdOffer.employee=employee
