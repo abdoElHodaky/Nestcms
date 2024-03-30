@@ -16,8 +16,8 @@ export class ContractController {
   async create(@Body() createContractDto: CreateContractDto) {
     return await this.contractService.create(createContractDto);
   }
-  @Get("")
-  async findAll(@Request() req){
+  @Get("employee")
+  async employee_all(@Request() req){
     return await this.contractService.all_employee(req.user.id);
   }
 /*
