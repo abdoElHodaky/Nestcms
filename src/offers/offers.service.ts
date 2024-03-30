@@ -12,7 +12,7 @@ export class OfferService {
   constructor(@InjectModel('Offer') private readonly offerModel: Model<Offer>) {}
   private userService:UsersService
  
-  async create(createOfferDto: CreateOfferDto): Promise<Contract> {
+  async create(createOfferDto: CreateOfferDto): Promise<Offer> {
     const {employeeId,...rest}=CreateOfferDto
     const employee=await this.userService.find_Id(employeeId)
     const createdOffer = new this.offerModel(rest);
