@@ -18,7 +18,7 @@ export class ContractController {
   }
   @Get("")
   async findAll(@Request() req){
-    return await this.contractService.all(req.user.id);
+    return await this.contractService.all_employee(req.user.id);
   }
 /*
 
