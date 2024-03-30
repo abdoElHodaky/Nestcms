@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { Model ,Types} from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateOfferDto } from './dto/create-offer.dto';
+import { AcceptOfferDto } from './dto/accept-offer.dto';
+
 import { Offer } from './interface/offer.interface';
 import { UsersService} from "../users/users.service"
 import { ContractService} from "../contracts/contracts.service"
@@ -17,7 +19,7 @@ export class OfferService {
     createdOffer.employee=employee
     return await createdOffer.save();
   }
-  async accept(acceptOfferDto:AcceptOfferDto):Prmosie<Offer>{
+  async accept(acceptOfferDto:AcceptOfferDto):Promise<Offer>{
     const {offerId,clientId}=acceptOfferDto
     const client = await this.userService.find_Id(clientId)
     const offer= this.offerModel.findById(offerId).exec()
