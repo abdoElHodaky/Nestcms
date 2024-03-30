@@ -32,6 +32,9 @@ export class ProjectService {
     return await project.save()
     
   }
+  async LinkContract(contractId:string){
+    return
+  }
 /*
   async findOne(email: string): Promise<User> {
     return await this.userModel.findOne({ email }, '-__v').exec();
