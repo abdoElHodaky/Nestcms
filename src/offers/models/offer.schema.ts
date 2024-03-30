@@ -9,4 +9,4 @@ export const OfferSchema = new mongoose.Schema({
   status:String,
   client: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   employee: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
-},{timestamp:true});
+},{timestamps:true});
