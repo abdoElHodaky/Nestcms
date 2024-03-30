@@ -20,16 +20,16 @@ export class OfferService {
     return await createdOffer.save();
   }
   async accept(acceptOfferDto:AcceptOfferDto):Promise<Offer>{
-    const {offerId,clientId}=acceptOfferDto
+    const {offerId,clientId,status}=acceptOfferDto
     const client = await this.userService.find_Id(clientId)
     const offer= await this.offerModel.findById(offerId).exec()
-    offer.status=acceptOfferDto.status
+    offer.status=status
     offer.client=client
     return await offer.save()
   }
   async all(uid:string):Promise<Offer[]>{
     const employee = await this.userService.find_Id(uid)
-    return this.offerModel.find().populate({
+    return await this.offerModel.find().populate({
       path:"employee",
       match:{"employee._id":employee._id},
     }).exec();
