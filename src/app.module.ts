@@ -17,7 +17,7 @@ import { ContractsModule } from './contracts/contracts.module';
       //UsersModule, 
      SchedulesModule,
      ProjectsModule,
-     //ContractsModule,
+     ContractsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
