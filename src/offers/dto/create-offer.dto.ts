@@ -13,5 +13,5 @@ export class CreateOfferDto {
   @ApiProperty()
   readonly status:string;
   @ApiPropertyOptional()
-  readonly employeeId?:string;
+  readonly employeeId:string;
 }
