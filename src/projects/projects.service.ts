@@ -11,6 +11,7 @@ import { ContractService } from "../contracts/contracts.service";
 @Injectable()
 export class ProjectService {
   private userService:UsersService
+  private contractService:ContractService
   constructor(@InjectModel('Project') private readonly projectModel: Model<Project>,
               @InjectModel('Design') private readonly designModel: Model<Design>
              ) {}
