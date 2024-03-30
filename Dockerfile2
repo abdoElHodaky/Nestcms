@@ -3,7 +3,7 @@ COPY . .
 ENV NODE_ENV ${NODE_ENV}
 
 RUN apt-get update && apt-get -qq -y install curl nodejs
-R#UN curl -fsSL  https://deb.nodesource.com/setup_12.x |bash
+#RUN curl -fsSL  https://deb.nodesource.com/setup_12.x |bash
 #RUN apt-get install -qq -y nodejs
 RUN  node --optimize_for_size --max_old_space_size=490 
 RUN npm update 
