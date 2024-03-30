@@ -40,12 +40,15 @@ export class ContractService {
     }
   
   }
-  async all(uid:string):Promise<Contract[]>{
+  async all_employee(uid:string):Promise<Contract[]>{
     const employee = await this.userService.find_Id(uid)
     return await this.contractModel.find().populate({
       path:"employee",
       match:{"employee._id":employee._id},
     }).exec();
+  }
+  async find_Id(_id:string):Promise<Contract>{
+    return await this.contractModel.findById(_id).exec()
   }
 /*
   async findOne(email: string): Promise<User> {
