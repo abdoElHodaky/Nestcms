@@ -13,7 +13,7 @@ import { OffersModule } from './offers/offers.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot( process.env.MONGO_URI, { useNewUrlParser: true, useFindAndModify: false }),
+    MongooseModule.forRoot( process.env.MONGO_URI, { useNewUrlParser: true, useFindAndModify: false,useUnifiedTopology: true   }),
     //ArticlesModule,
       AuthModule,
       //UsersModule, 
