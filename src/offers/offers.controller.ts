@@ -1,6 +1,7 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { CreateOfferDto } from './dto/create-offer.dto';
+import { AcceptOfferDto } from './dto/accept-offer.dto';
 import { OfferService } from './offers.service';
 import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 //import { CurrentUserInterceptor } from '../currentuser.interceptor';
