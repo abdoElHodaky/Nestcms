@@ -1,4 +1,5 @@
 import { Design } from "./design.interface";
+import { Contract } from "../contracts/contract.interface";
 export interface Project {
   _id: string;
   startDate:string;
@@ -6,5 +7,6 @@ export interface Project {
   content:string;
   status:string;
   employee?:{};
-  designs?:Design[]
+  designs?:Design[];
+  contract?:Contract
 }
