@@ -20,6 +20,10 @@ export class OfferController {
   async employee_all(@Request() req){
     return await this.offerService.employee_all(req.user.id);
   }
+  @Post("accept")
+  async employee_accept(@Body() acceptOfferDto:AcceptOfferDto){
+    return await this.offerService.accept(acceptOfferDto)
+  }
 /*
 
   @Get()
