@@ -8,6 +8,8 @@ import { AuthModule } from './auth/auth.module';
 import { SchedulesModule } from './schedules/schedules.module';
 import { ProjectsModule } from './projects/projects.module';
 import { ContractsModule } from './contracts/contracts.module';
+import { OffersModule } from './offers/offers.module';
+
 
 @Module({
   imports: [
@@ -17,7 +19,8 @@ import { ContractsModule } from './contracts/contracts.module';
       //UsersModule, 
      SchedulesModule,
      ProjectsModule,
-     ContractsModule,
+     OffersModule,
+     //ContractsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
