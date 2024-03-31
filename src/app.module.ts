@@ -19,7 +19,7 @@ import { OffersModule } from './offers/offers.module';
       //UsersModule, 
      SchedulesModule,
      ProjectsModule,
-     OffersModule,
+    // OffersModule,
      //ContractsModule,
   ],
   controllers: [AppController],
