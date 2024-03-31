@@ -1,9 +1,10 @@
 import * as mongoose from 'mongoose';
 
 export const PermissionSchema = new mongoose.Schema({
-  type:string,
+  type:String,
+  endDate:String,
   status:{
-    type:string,
+    type:String,
     enum:["granted","rejected","revoke"]
   },
   granted_by:{
