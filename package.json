@@ -51,7 +51,7 @@
     "tslint": "5.16.0",
     "typescript": "3.4.3"
   },
-  "jest": {
+ /* "jest": {
     "moduleFileExtensions": [
       "js",
       "json",
@@ -64,5 +64,5 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  }*/
 }
