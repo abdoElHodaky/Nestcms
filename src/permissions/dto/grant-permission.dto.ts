@@ -10,5 +10,7 @@ export class GrantPermissionDto {
    @ApiPropertyOptional()
   readonly granted_by?:{};
    @ApiPropertyOptional()
+  readonly granted_for?:{};
+   @ApiPropertyOptional()
    readonly on?:{}
 }
