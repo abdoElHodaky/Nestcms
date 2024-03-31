@@ -10,6 +10,10 @@ export const PermissionSchema = new mongoose.Schema({
   granted_by:{
       type: mongoose.Schema.Types.ObjectId,
       ref:"User"
+  },
+  granted_for:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref:"User"
   }
   ,on: {
     type: mongoose.Schema.Types.ObjectId,
