@@ -10,5 +10,5 @@ RUN rm -rf package-lock.json
 RUN npm i -g npm@6.14.12
 RUN npm cache verify && npm cache clean --force
 RUN npm  install
-RUN npm install @nestjs/swagger swagger-ui-express --force
+RUN npm install @types/mongoose  @nestjs/swagger swagger-ui-express --force
 EXPOSE 3000
