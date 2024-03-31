@@ -25,10 +25,9 @@ export class UsersService {
     return await this.userModel.find().where('_id').in(_ids).exec()
   }
   async my_Permissions(_id:string):Promise<User[]>{
-    return await this.userModel.find().populate([
+    return await this.userModel.findById(_id).populate([
       {
-        path:"permissions",
-        match:{"permissions.for._id":_id}
+        path:"permissions"
       }
     ]).exec()
   }
