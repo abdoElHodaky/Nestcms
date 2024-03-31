@@ -6,6 +6,6 @@ RUN apk add --no-cache build-base tzdata python3 sqlite-dev sqlite git
 RUN git config --global url."https://".insteadOf ssh:// && chmod +x build.sh
 RUN npm config set ssl-strict=false
 ENV NODE_ENV production
-RUN npm i -g npm && npm cache clean --force
+RUN npm i -g npm@6.14.12
 RUN npm install @nestjs/swagger swagger-ui-express
 EXPOSE 3000
