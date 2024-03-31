@@ -8,9 +8,9 @@ export class GrantPermissionDto {
    @ApiProperty()
   readonly endDate:string;
    @ApiPropertyOptional()
-  readonly granted_by?:{};
+  readonly _by?:{};
    @ApiPropertyOptional()
-  readonly granted_for?:{};
+  readonly _for?:{};
    @ApiPropertyOptional()
    readonly on?:{}
 }
