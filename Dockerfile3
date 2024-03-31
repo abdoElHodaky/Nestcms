@@ -1,0 +1,11 @@
+FROM node:10-alpine
+#WORKDIR /app
+COPY . .
+#RUN mkdir tmp
+RUN apk add --no-cache build-base tzdata python3 sqlite-dev sqlite git
+RUN git config --global url."https://".insteadOf ssh:// && chmod +x build.sh
+RUN npm config set ssl-strict=false
+ENV NODE_ENV production
+RUN npm i
+RUN npm install @nestjs/swagger swagger-ui-express
+EXPOSE 3000
