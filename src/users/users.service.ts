@@ -28,7 +28,7 @@ export class UsersService {
     return await this.userModel.find().populate([
       {
         path:"permissions",
-        match:{"permission.for._id":_id}
+        match:{"permissions.for._id":_id}
       }
     ]).exec()
   }
