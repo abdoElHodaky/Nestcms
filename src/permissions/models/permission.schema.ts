@@ -1,7 +1,16 @@
 import * as mongoose from 'mongoose';
 
 export const PermissionSchema = new mongoose.Schema({
-  on: {
+  type:string,
+  status:{
+    type:string,
+    enum:["granted","rejected","revoke"]
+  },
+  granted_by:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"User"
+  }
+  ,on: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     refPath: 'onModel'
