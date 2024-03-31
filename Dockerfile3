@@ -9,6 +9,6 @@ RUN npm config set ssl-strict=false
 RUN rm -rf package-lock.json
 RUN npm i -g npm@6.14.12
 RUN npm cache verify && npm cache clean --force
-RUN npm install --only-package-lock
+RUN npm  install
 RUN npm install @nestjs/swagger swagger-ui-express --force
 EXPOSE 3000
