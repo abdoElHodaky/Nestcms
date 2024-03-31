@@ -7,11 +7,11 @@ export const PermissionSchema = new mongoose.Schema({
     type:String,
     enum:["granted","rejected","revoke"]
   },
-  granted_by:{
+  _by:{
       type: mongoose.Schema.Types.ObjectId,
       ref:"User"
   },
-  granted_for:{
+  _for:{
     type: mongoose.Schema.Types.ObjectId,
     ref:"User"
   }
