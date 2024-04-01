@@ -9,8 +9,8 @@ export class CreateProjectStepDto {
   @ApiProperty()
   readonly projectId:string;
   @ApiPorperty()
-  startDate:string;
+  readonly startDate:string;
   @ApiProperty()
-  endDate:string;
+  readonly endDate:string;
   
 }
