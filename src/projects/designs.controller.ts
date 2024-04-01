@@ -18,7 +18,7 @@ export class DesignController {
   @Get("")
   async findAll(@Param("id") id:string){
    // return this.scheduleService.all(req.user.id);
-   return id
+   return this.projectService.designs(id)
   }
   /*
 
