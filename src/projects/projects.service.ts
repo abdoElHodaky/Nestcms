@@ -43,7 +43,7 @@ export class ProjectService {
     return await project.save()
   }
   async designs(projectId:string):Promise<Design[]>{
-    const project = await this.projectModel.aggregate([
+    const projectData = await this.projectModel.aggregate([
             { $match: { project: Types.ObjectId(projectId) } },
             {
                 $lookup: {
@@ -54,7 +54,7 @@ export class ProjectService {
                 },
             },
         ]);
-    return project.designs;
+    return projectData[0].designs;
   }
 /*
   async findOne(email: string): Promise<User> {
