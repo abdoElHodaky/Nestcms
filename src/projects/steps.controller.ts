@@ -12,7 +12,7 @@ export class StepController {
   constructor(private readonly projectService: ProjectService) {}
   @Post("add")
   async create(@Body() createProjectStepDto: CreateProjectStepDto,@Param("id") id:string) {
-    return this.projectService.addDesign(id,createProjectStepDto);
+    return this.projectService.addStep(id,createProjectStepDto);
   }
   
   @Get("")
