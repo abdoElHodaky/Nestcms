@@ -20,7 +20,7 @@ import { OffersModule } from './offers/offers.module';
      SchedulesModule,
      ProjectsModule,
     // OffersModule,
-     //ContractsModule,
+     ContractsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
