@@ -46,7 +46,7 @@ export class ContractService {
       path:"employee",
       match:{"employee":employee._id},
     }).exec();*/
-    const contract = await this.contractModel.aggregate([
+    const contractData = await this.contractModel.aggregate([
             { $match: { employee: mongoose.Types.ObjectId(uid) } },
             {
                 $lookup: {
@@ -57,7 +57,7 @@ export class ContractService {
                 },
             },
         ]);
-     return contract.employee
+     return contractData
   }
   async find_Id(_id:string):Promise<Contract>{
     return await this.contractModel.findById(_id).exec()
