@@ -3,11 +3,15 @@ import { Model ,Types} from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateScheduleDto } from './dto/create-schedule.dto';
 import { Schedule } from './interface/schedule.interface';
-import { UsersService} from "../users/users.service"
+import { UsersService} from "../users/users.service";
+import { ProjectService} from "../projects/projects.service"
+
+
 @Injectable()
 export class ScheduleService {
   constructor(@InjectModel('Schedule') private readonly scheduleModel: Model<Schedule>) {}
   private userService:UsersService
+  private projectService:ProjectService
  
   async create(createScheduleDto: CreateScheduleDto): Promise<Schedule> {
     const {clientId,employeeId,...rest}=createScheduleDto
@@ -29,6 +33,15 @@ export class ScheduleService {
       match:{"employee._id":employee._id},
     }
     ]).exec();
+  }
+  async linkProject(scheduleId,projectId:string):Promise<Schedule>{
+    const project=await this.projectService.find_Id(projectId)
+    const schedule=await this.scheduleModel.findById(scheduleId)
+    schedule.project=project
+    //project.schedule=schedule
+    //await project.save()
+    await schedule.save()
+    return schedule
   }
 /*
   async findOne(email: string): Promise<User> {
