@@ -2,8 +2,10 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 
 export class CreateProjectStepDto {
-  @ApiProperty()
-  readonly desc:string;
+  @ApiPropertyOptional()
+  readonly content?:string;
+  @ApiPropertyOptional()
+  readonly status?:string
   @ApiProperty()
   readonly projectId:string;
   @ApiPorperty()
