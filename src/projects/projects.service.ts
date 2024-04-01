@@ -3,6 +3,7 @@ import { Model,Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { LinkToContractDto } from './dto/link-contract.dto';
+import { CreateProjectStepDto } from './dto/create-project-step.dto';
 import { Project } from './interface/project.interface';
 import { CreateDesignDto } from './dto/create-design.dto';
 import { Design } from './interface/design.interface';
