@@ -42,10 +42,22 @@ export class ContractService {
   }
   async employee_all(uid:string):Promise<Contract[]>{
     const employee = await this.userService.find_Id(uid)
-    return await this.contractModel.find().populate({
+   /* return await this.contractModel.find().populate({
       path:"employee",
       match:{"employee":employee._id},
-    }).exec();
+    }).exec();*/
+    const contract = await this.contractModel.aggregate([
+            { $match: { employee: mongoose.Types.ObjectId(uid) } },
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "employee",
+                    foreignField: "_id",
+                    as: "employee",
+                },
+            },
+        ]);
+     return contract.employee
   }
   async find_Id(_id:string):Promise<Contract>{
     return await this.contractModel.findById(_id).exec()
