@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards, Post, Request } from '@nestjs/common';
+import { Controller, Get, UseGuards, Post,Body, Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -16,7 +16,7 @@ export class UsersController {
   @UseGuards(AuthGuard('jwt'))
   @Get('permissions')
   async getPermission(@Request() req) {
-   return this.userService.my_Permissions(req.user._id)
+   return this.usersService.my_Permissions(req.user._id)
   }
 
 }
