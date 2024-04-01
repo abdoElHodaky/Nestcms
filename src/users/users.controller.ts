@@ -16,7 +16,7 @@ export class UsersController {
   @UseGuards(AuthGuard('jwt'))
   @Get('permissions')
   async getPermission(@Request() req) {
-   return this.userService.permissions(req.user._id)
+   return this.userService.my_Permissions(req.user._id)
   }
 
 }
