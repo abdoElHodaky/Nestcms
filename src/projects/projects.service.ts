@@ -5,7 +5,8 @@ import { CreateProjectDto } from './dto/create-project.dto';
 import { LinkToContractDto } from './dto/link-contract.dto';
 import { Project } from './interface/project.interface';
 import { CreateDesignDto } from './dto/create-design.dto';
-import { Design } from './interface/design.interface'
+import { Design } from './interface/design.interface';
+import { ProjectStep } from "./interface/project-step.interface";
 import { UsersService } from "../users/users.service";
 import { ContractService } from "../contracts/contracts.service";
 @Injectable()
@@ -13,7 +14,9 @@ export class ProjectService {
   private userService:UsersService
   private contractService:ContractService
   constructor(@InjectModel('Project') private readonly projectModel: Model<Project>,
-              @InjectModel('Design') private readonly designModel: Model<Design>
+              @InjectModel('Design') private readonly designModel: Model<Design>,
+              @InjectModel('ProjectStep') private readonly stepModel: Model<ProjectStep>,
+              
              ) {}
 
  
@@ -35,6 +38,16 @@ export class ProjectService {
     return await project.save()
     
   }
+  async addStep(id:string,createProjectStepDto:CreateProjectStepDto):Promise<Project>{
+    
+    const project=await this.projectModel.findById(id).exec()
+    const step= new this.stepModel(createProjectStepDto)
+    project.steps.push(step)
+    step.project=project
+    await step.save()
+    return await project.save()
+  }
+  
   async LinkContract(linkToContractDto:LinkToContractDto):Promise<Project>{
     const {projectId,contractId}=linkToContractDto
     const project=await this.projectModel.findById(projectId)
