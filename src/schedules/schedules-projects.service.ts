@@ -14,6 +14,7 @@ export class ScheduleProjectService {
   private projectService:ProjectService
  
   async create(createProjectScheduleDto: CreateProjectScheduleDto): Promise<ScheduleProject> {
+    const {projectId,...rest}=createProjectScheduleDto
     
   }
 }
