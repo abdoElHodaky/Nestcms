@@ -1,7 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 
-export class CreateScheduleDto {
+export class CreateProjectScheduleDto {
    @ApiProperty()
   readonly title: string;
    @ApiProperty()
