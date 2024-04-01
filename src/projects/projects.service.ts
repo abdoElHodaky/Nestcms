@@ -42,6 +42,20 @@ export class ProjectService {
     project.contract=contract
     return await project.save()
   }
+  async designs(projectId:string):Promise<Project|Design[]>{
+    const project = await this.projectModel.aggregate([
+            { $match: { project: mongoose.Types.ObjectId(projectId) } },
+            {
+                $lookup: {
+                    from: "designs",
+                    localField: "designs",
+                    foreignField: "_id",
+                    as: "designs",
+                },
+            },
+        ]);
+    return project?.designs
+  }
 /*
   async findOne(email: string): Promise<User> {
     return await this.userModel.findOne({ email }, '-__v').exec();
