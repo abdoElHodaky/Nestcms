@@ -1,4 +1,5 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Get, UseGuards, Post, Request } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ApiExcludeEndpoint } from "@nestjs/swagger";
@@ -11,4 +12,11 @@ export class UsersController {
   async register(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('permissions')
+  async getPermission(@Request() req) {
+   return this.userService.permissions(req.user._id)
+  }
+
 }
