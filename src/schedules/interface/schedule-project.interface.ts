@@ -6,7 +6,7 @@ export class ScheduleProject{
  title: string;
   content: string;
   author: string;
-  creationDate: string;
+  startingDate: string;
   endingDate:string;
   status:string;
   project?:Project;
