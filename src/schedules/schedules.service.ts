@@ -34,7 +34,7 @@ export class ScheduleService {
     }
     ]).exec();
   }
-  async linkProject(scheduleId,projectId:string):Promise<Schedule>{
+ /* async linkProject(scheduleId,projectId:string):Promise<Schedule>{
     const project=await this.projectService.find_Id(projectId)
     const schedule=await this.scheduleModel.findById(scheduleId)
     schedule.project=project
@@ -42,7 +42,7 @@ export class ScheduleService {
     //await project.save()
     await schedule.save()
     return schedule
-  }
+  }*/
 /*
   async findOne(email: string): Promise<User> {
     return await this.userModel.findOne({ email }, '-__v').exec();
