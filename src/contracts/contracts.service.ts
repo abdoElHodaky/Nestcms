@@ -53,7 +53,7 @@ export class ContractService {
                     from: "users",
                     localField: "employee",
                     foreignField: "_id",
-                    as: "employee",
+                    as: "employees",
                 },
             },
         ]);
