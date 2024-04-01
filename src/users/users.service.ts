@@ -25,10 +25,22 @@ export class UsersService {
     return await this.userModel.find().where('_id').in(_ids).exec()
   }
   async my_Permissions(_id:string):Promise<User[]>{
-    return await this.userModel.findById(_id).populate([
+    /*return await this.userModel.findById(_id).populate([
       {
         path:"permissions"
       }
-    ]).exec()
+    ]).exec()*/
+    const userData = await this.userModel.aggregate([
+            { $match: { username: mongoose.Types.ObjectId(_id) } },
+            {
+                $lookup: {
+                    from: "permissions",
+                    localField: "permissions",
+                    foreignField: "for",
+                    as: "permissions_have",
+                },
+            },
+        ]);
+    return userData
   }
 }
