@@ -16,7 +16,7 @@ import { OffersModule } from './offers/offers.module';
     MongooseModule.forRoot( process.env.MONGO_URI, { useNewUrlParser: true, useFindAndModify: false,useUnifiedTopology: true   }),
     //ArticlesModule,
       AuthModule,
-      //UsersModule, 
+      UsersModule, 
      SchedulesModule,
      ProjectsModule,
     // OffersModule,
