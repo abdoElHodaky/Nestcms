@@ -13,7 +13,7 @@ export class ScheduleProjectService {
   private userService:UsersService
   private projectService:ProjectService
  
-  async create(createProjectScheduleDto: CreateProjectScheduleDto): Promise<Schedule> {
+  async create(createProjectScheduleDto: CreateProjectScheduleDto): Promise<ScheduleProject> {
     
   }
 }
