@@ -44,7 +44,7 @@ export class ContractService {
     const employee = await this.userService.find_Id(uid)
     return await this.contractModel.find().populate({
       path:"employee",
-      match:{"employee._id":employee._id},
+      match:{"employee":employee._id},
     }).exec();
   }
   async find_Id(_id:string):Promise<Contract>{
