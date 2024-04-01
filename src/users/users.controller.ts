@@ -2,7 +2,7 @@ import { Controller, Get, UseGuards, Post,Body, Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { ApiExcludeEndpoint } from "@nestjs/swagger";
+import { ApiExcludeEndpoint , ApiBearerAuth } from "@nestjs/swagger";
 
 @Controller('users')
 export class UsersController {
@@ -12,7 +12,8 @@ export class UsersController {
   async register(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
-
+  
+  @ApiBearerAuth('JWTAuthorization')
   @UseGuards(AuthGuard('jwt'))
   @Get('permissions')
   async getPermission(@Request() req) {
