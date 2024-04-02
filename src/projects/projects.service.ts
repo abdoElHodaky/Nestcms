@@ -4,10 +4,10 @@ import { InjectModel } from '@nestjs/mongoose';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { LinkToContractDto } from './dto/link-contract.dto';
 import { CreateProjectStepDto } from './dto/create-project-step.dto';
-import { Project } from './interface/project.interface';
+import { Project } from './interface/project';
 import { CreateDesignDto } from './dto/create-design.dto';
-import { Design } from './interface/design.interface';
-import { ProjectStep } from "./interface/project-step.interface";
+import { Design } from './interface/design';
+import { ProjectStep } from "./interface/project-step";
 import { UsersService } from "../users/users.service";
 import { ContractService } from "../contracts/contracts.service";
 @Injectable()
