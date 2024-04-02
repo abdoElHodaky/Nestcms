@@ -33,7 +33,7 @@ export const routes= [
         },
         {
             path: '/offers',
-            module: OfferssModule,
+            module: OffersModule,
         }
     ],
 }];
