@@ -7,7 +7,7 @@ export const ScheduleProjectSchema = new mongoose.Schema({
   startingDate: String,
   endingDate:String,
   status:String,
-  projectsteps:[{ type: mongoose.Schema.Types.ObjectId, ref: 'ProjectStep'}],
+  //projectsteps:[{ type: mongoose.Schema.Types.ObjectId, ref: 'ProjectStep'}],
   project: { type: mongoose.Schema.Types.ObjectId, ref: 'Project'},
   employee: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 },{timestamps:true});
