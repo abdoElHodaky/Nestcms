@@ -1,4 +1,4 @@
-export class Contract {
+export interface Contract {
   title: string;
   content: string;
   author: string;
