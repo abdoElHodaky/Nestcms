@@ -9,7 +9,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 @ApiBearerAuth('JWTAuthorization')
 @ApiTags("Schedule")
 @UseGuards(AuthGuard('jwt'))
-@Controller("schedules")
+@Controller("api/schedules")
 export class ScheduleController {
   constructor(private readonly scheduleService: ScheduleService) {}
   @Post("create")
