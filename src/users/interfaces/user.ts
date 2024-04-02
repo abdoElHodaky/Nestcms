@@ -16,8 +16,8 @@ export class User implements _User {
 }
 
 export class Employee extends User {
-  isEmployee:boolean=true;
-  employeeType:string;
+  isEmployee?:boolean=true;
+  employeeType?:string;
 }
 
 export class Client extends User {
