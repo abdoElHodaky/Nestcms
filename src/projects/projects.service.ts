@@ -71,6 +71,20 @@ export class ProjectService {
         ]);
     return projectData[0].designs;
   }
+  async steps(projectId:string):Promise<ProjectStep>{
+    const projectData = await this.projectModel.aggregate([
+            { $match: { project: new Types.ObjectId(projectId) } },
+            {
+                $lookup: {
+                    from: "steps",
+                    localField: "steps",
+                    foreignField: "_id",
+                    as: "steps",
+                },
+            },
+        ]);
+    return projectData[0].steps;
+  }
   async employees(projectId:string):Promise<Employee>{
     const project = await this.projectModel.findById(projectId).exec()
     return await this.userService.find_Id(project.employee?._id)
