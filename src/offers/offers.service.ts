@@ -39,7 +39,11 @@ export class OfferService {
     return await this.offerModel.findById(_id).exec()
   }
   async LinkContract(linkToContract:LinkToContract):Promise<Offer>{
-    return
+    const {offerId,contractId}=linkToContractDto
+    const offer=await this.offerModel.findById(offerId)
+    const contract=await this.contractService.find_Id(contractId)
+    offer.contract=contract
+    return await offer.save()
   }
 /*
   async findOne(email: string): Promise<User> {
