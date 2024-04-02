@@ -1,4 +1,5 @@
-export interface Contract {
+import _Contract from "./contract.d";
+export class Contract implements _Contract{
   title: string;
   content: string;
   author: string;
