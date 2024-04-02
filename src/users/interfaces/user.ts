@@ -21,10 +21,10 @@ export class Employee extends User {
 }
 
 export class Client extends User {
-  readonly isEmployee=false
-  readonly isAdmin=false
-  readonly employeeType=""
-  readonly adminType=""
+  readonly isEmployee:boolean=false
+  readonly isAdmin:boolean=false
+  readonly employeeType:string=""
+  readonly adminType:string=""
 }
 
 export class Admin extends User {
