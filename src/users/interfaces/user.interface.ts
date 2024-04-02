@@ -1,4 +1,5 @@
-export interface User {
+import _User from "./user.d";
+export interface User implements _User {
   _id: string;
   email: string;
   password: string;
