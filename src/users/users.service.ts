@@ -3,7 +3,7 @@ import { Model,Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './interfaces/user';
-
+import { Project } from "../../projects/interface/project";
 @Injectable()
 export class UsersService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
@@ -43,7 +43,7 @@ export class UsersService {
         ]);
     return userData
   }
-  async my_Projects(uid:string):Promise<Array>{
+  async my_Projects(uid:string):Promise<Project[]>{
     const userData = await this.userModel.aggregate([
             { $match: { employee: new Types.ObjectId(uid) } },
             {
