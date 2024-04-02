@@ -59,7 +59,7 @@ export class ProjectService {
   }
   async designs(projectId:string):Promise<Design[]>{
     const projectData = await this.projectModel.aggregate([
-            { $match: { project: new Types.ObjectId(projectId) } },
+            { $match: { _id: new Types.ObjectId(projectId) } },
             {
                 $lookup: {
                     from: "designs",
