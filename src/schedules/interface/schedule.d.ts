@@ -7,4 +7,3 @@ declare interface _Schedule {
   status:string;
 }
 export default _Schedule
-//export default _ScheduleProject
