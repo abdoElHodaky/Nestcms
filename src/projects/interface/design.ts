@@ -1,4 +1,4 @@
-import { Project } from "./project.interface";
+import { Project } from "./project";
 import _Design from "./design.d";
 export class Design implements _Design {
   _id:string;
