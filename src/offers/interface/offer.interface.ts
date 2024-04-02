@@ -1,4 +1,4 @@
-import { Client,Employee } from "../../users/interface/user";
+import { Client,Employee } from "../../users/interfaces/user";
 import { Contract } from "../../contracts/interface/contract";
 export interface Offer {
   title: string;
