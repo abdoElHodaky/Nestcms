@@ -31,7 +31,7 @@ export class UsersService {
       }
     ]).exec()*/
     const userData = await this.userModel.aggregate([
-            { $match: { _id: Types.ObjectId(_id) } },
+            { $match: { _id: new Types.ObjectId(_id) } },
             {
                 $lookup: {
                     from: "permissions",
