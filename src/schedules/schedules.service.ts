@@ -24,7 +24,7 @@ export class ScheduleService {
   }
   async all(uid:string):Promise<Schedule[]>{
     const employee = await this.userService.find_Id(uid)
-    return this.scheduleModel.find().populate([
+    return await this.scheduleModel.find().populate([
     {
       path:"client",
     },
