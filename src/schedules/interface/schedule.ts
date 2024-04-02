@@ -1,4 +1,4 @@
-import { Employee ,Client } from "../../users/user";
+import { Employee ,Client } from "../../users/interfaces/user";
 import _Schedule from "./schedule.d"
 export class Schedule implements _Schedule{
  _id:string;
