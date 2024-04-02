@@ -4,9 +4,20 @@ import { AuthModule } from "./auth/auth.module";
 import { ContractsModule } from "./contracts/contracts.module";
 import { OffersModule } from "./offers/offers.module";
 import { UsersModule } from "./users/users.module";
-export const apiroutes= [{
+export const routes= [
+    {  path: '',
+       children: [
+        {
+            path: '/auth',
+            module: AuthModule,
+        },
+        {
+            path: '/users',
+            module: UsersModule,
+        }
+    ],
+    },{
     path: 'api',
-   // module: NinjaModule,
     children: [
         {
             path: '/schedules',
