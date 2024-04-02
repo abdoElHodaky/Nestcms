@@ -1,5 +1,5 @@
 import { Project } from "./project.interface";
-export class Design {
+export interface Design {
   _id:string;
   desc:string;
   path:string;
