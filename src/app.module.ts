@@ -10,13 +10,12 @@ import { SchedulesModule } from './schedules/schedules.module';
 import { ProjectsModule } from './projects/projects.module';
 import { ContractsModule } from './contracts/contracts.module';
 import { OffersModule } from './offers/offers.module';
-import { homeroutes,apiroutes} from ".routes";
-
+import { routes } from "./routes";
 @Module({
   imports: [
     MongooseModule.forRoot( process.env.MONGO_URI, {connectTimeoutMS: 10000,
         socketTimeoutMS: 30000 }),
-    RouterModule.forRoot([homeroutes,apiroutes])
+    RouterModule.forRoot(routes)
      /* AuthModule,
       UsersModule, 
      SchedulesModule,
