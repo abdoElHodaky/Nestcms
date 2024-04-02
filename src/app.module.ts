@@ -13,7 +13,7 @@ import { OffersModule } from './offers/offers.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot( process.env.MONGO_URI, {  useFindAndModify: false,useUnifiedTopology: true,connectTimeoutMS: 10000,
+    MongooseModule.forRoot( process.env.MONGO_URI, {  useUnifiedTopology: true,connectTimeoutMS: 10000,
         socketTimeoutMS: 30000 }),
     //ArticlesModule,
       AuthModule,
