@@ -1,4 +1,4 @@
-export class Offer {
+export interface Offer {
   title: string;
   content: string;
   creationDate: string;
