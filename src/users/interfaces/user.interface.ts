@@ -15,17 +15,17 @@ export class User implements _User {
   projects?:[]
 }
 
-export class Employee extends User {
+export class Employee implements _User {
   isEmployee:boolean=true;
   employeeType:string;
 }
 
-export class Client extends User {
+export class Client implements _User {
   isEmployee:boolean=false;
   isAdmin:boolean=false;
 }
 
-export class Admin extends User {
+export class Admin implements _User {
   isAdmin:boolean=true;
   adminType:string;
 }
