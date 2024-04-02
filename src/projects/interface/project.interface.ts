@@ -1,5 +1,5 @@
 import { Design } from "./design.interface";
-import { ProjectStep } from "./interface/project-step.interface";
+import { ProjectStep } from "./project-step.interface";
 import { Contract } from "../contracts/contract.interface";
 import _Project from "project.d"
 export class Project implements _Project {
