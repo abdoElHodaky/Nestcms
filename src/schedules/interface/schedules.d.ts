@@ -3,7 +3,6 @@ declare interface _Schedule {
  title: string;
   content: string;
   author: string;
-  creationDate: string;
   endingDate:string;
   status:string;
 }
@@ -17,4 +16,4 @@ declare interface _ScheduleProject{
   status:string;
 }
 export default _Schedule
-export default _ScheduleProject
+//export default _ScheduleProject
