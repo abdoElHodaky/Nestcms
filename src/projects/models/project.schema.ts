@@ -11,4 +11,5 @@ export const ProjectSchema = new mongoose.Schema({
   employee: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   designs:[{ type: mongoose.Schema.Types.ObjectId, ref:"Design"}],
   contract:{ type: mongoose.Schema.Types.ObjectId, ref: 'Contract'},
+  steps:[{ type: mongoose.Schema.Types.ObjectId, ref: 'ProjectStep'}]
 },{timestamps:true});
