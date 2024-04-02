@@ -11,5 +11,5 @@ export class Project implements _Project {
   employee?:{};
   designs?:Design[];
   contract?:Contract;
-  steps:ProjectStep[];
+  steps?:ProjectStep[];
 }
