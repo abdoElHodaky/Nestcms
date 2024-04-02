@@ -9,7 +9,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 @ApiBearerAuth('JWTAuthorization')
 @ApiTags("Contract")
 @UseGuards(AuthGuard('jwt'))
-@Controller("contracts")
+@Controller("api/contracts")
 export class ContractController {
   constructor(private readonly contractService: ContractService) {}
   @Post("create")
