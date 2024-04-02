@@ -2,6 +2,7 @@ import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGua
 import { AuthGuard } from '@nestjs/passport';
 import { ProjectService } from "./projects.service";
 import { CreateProjectDto } from "./dto/create-project.dto";
+import { LinkToContractDto } from "./dto/link-contract.dto";
 import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 @ApiBearerAuth('JWTAuthorization')
 @ApiTags("Project")
@@ -18,6 +19,10 @@ export class ProjectController {
   async findAll(@Request() req){
    // return this.scheduleService.all(req.user.id);
     return
+  }
+  @Post("linkcontract")
+  async link_contract(@Body() linkToContractDto:LinkToContractDto){
+    return this.projectService.linkContract(linkToContractDto)
   }
 /*
 
