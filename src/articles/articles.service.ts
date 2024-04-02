@@ -27,9 +27,9 @@ export class ArticlesService {
     return await this.articleModel.findById(id).exec();
   }
 
-  async delete(id: string): Promise<Article> {
+ /* async delete(id: string): Promise<Article> {
     return await this.articleModel.findByIdAndRemove(id);
-  }
+  }*/
 
   async update(id: string, article: UpdateArticleDto) {
     const updatedArticle = this.articleModel.findByIdAndUpdate(id, article, { new: true });
