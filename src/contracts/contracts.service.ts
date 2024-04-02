@@ -47,7 +47,7 @@ export class ContractService {
       match:{"employee":employee._id},
     }).exec();*/
     const contractData = await this.contractModel.aggregate([
-            { $match: { employee: Types.ObjectId(uid) } },
+            { $match: { employee: new Types.ObjectId(uid) } },
             {
                 $lookup: {
                     from: "users",
