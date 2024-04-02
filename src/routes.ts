@@ -3,7 +3,7 @@ import { ProjectsModule } from "./projects/projects.module";
 import { AuthModule } from "./auth/auth.module";
 import { ContractsModule } from "./contracts/contracts.module";
 import { OffersModule } from "./offers/offers.module";
-
+import { UsersModule } from "./users/users.module";
 export const apiroutes= [{
     path: 'api',
    // module: NinjaModule,
@@ -34,5 +34,9 @@ export const homeroutes= [{
             path: '/auth',
             module: AuthModule,
         },
+        {
+            path: '/users',
+            module: UsersModule,
+        }
     ],
 }];
