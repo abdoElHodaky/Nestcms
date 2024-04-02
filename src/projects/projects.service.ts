@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Model,Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateProjectDto } from './dto/create-project.dto';
-import { LinkToContractDto } from './dto/link-contract.dto';
+import { LinkContractDto } from './dto/link-contract.dto';
 import { CreateProjectStepDto } from './dto/create-project-step.dto';
 import { Project } from './interface/project';
 import { CreateDesignDto } from './dto/create-design.dto';
@@ -10,7 +10,7 @@ import { Design } from './interface/design';
 import { ProjectStep } from "./interface/project-step";
 import { UsersService } from "../users/users.service";
 import { ContractService } from "../contracts/contracts.service";
-import { Employee } from "../../users/interfaces/user";
+import { Employee } from "../users/interfaces/user";
 @Injectable()
 export class ProjectService {
   private userService:UsersService
@@ -50,8 +50,8 @@ export class ProjectService {
     return await project.save()
   }
   
-  async LinkContract(linkToContractDto:LinkToContractDto):Promise<Project>{
-    const {projectId,contractId}=linkToContractDto
+  async LinkContract(linkContractDto:LinkContractDto):Promise<Project>{
+    const {projectId,contractId}=linkContractDto
     const project=await this.projectModel.findById(projectId)
     const contract=await this.contractService.find_Id(contractId)
     project.contract=contract
