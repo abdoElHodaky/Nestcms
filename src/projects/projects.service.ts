@@ -10,7 +10,7 @@ import { Design } from './interface/design';
 import { ProjectStep } from "./interface/project-step";
 import { UsersService } from "../users/users.service";
 import { ContractService } from "../contracts/contracts.service";
-import { Employee } from "../../users/interface/user";
+import { Employee } from "../../users/interfaces/user";
 @Injectable()
 export class ProjectService {
   private userService:UsersService
@@ -73,7 +73,7 @@ export class ProjectService {
   }
   async employees(projectId:string):Promise<Employee>{
     const project = await this.projectModel.findById(projectId).exec()
-    return this.userService.find_Id(project.employee)
+    return this.userService.find_Id(project.employee?._id)
   }
 /*
   async findOne(email: string): Promise<User> {
