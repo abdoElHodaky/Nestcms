@@ -7,6 +7,6 @@ ENV NODE_ENV ${NODE_ENV}
 RUN rm -rf package-lock.json
 RUN npm i -g npm@6.14.0
 RUN npm cache verify && npm cache clean --force
-RUN npm i && npm install @types/mime@4.0.0
-RUN npm run build
+RUN npm install
+RUN npx tsc
 EXPOSE 3000
