@@ -1,6 +1,8 @@
 import { SchedulesModule } from "./schedules/schedules.module";
 import { ProjectsModule } from "./projects/projects.module";
 import { AuthModule } from "./auth/auth.module";
+import { ContractsModule } from "./contracts/contracts.module";
+import { OffersModule } from "./offers/offers.module";
 
 export const apiroutes= [{
     path: 'api',
@@ -14,6 +16,14 @@ export const apiroutes= [{
             path: '/projects',
             module: ProjectsModule,
         },
+        {
+            path: '/contracts',
+            module: ContractsModule,
+        },
+        {
+            path: '/offers',
+            module: OfferssModule,
+        }
     ],
 }];
 export const homeroutes= [{
@@ -22,7 +32,7 @@ export const homeroutes= [{
     children: [
         {
             path: '/auth',
-            module: SchedulesModule,
+            module: AuthModule,
         },
     ],
 }];
