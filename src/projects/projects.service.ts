@@ -73,7 +73,7 @@ export class ProjectService {
   }
   async employees(projectId:string):Promise<Employee>{
     const project = await this.projectModel.findById(projectId).exec()
-    return this.userService.findMany_Id(projects.employees)
+    return this.userService.find_Id(project.employee._id)
   }
 /*
   async findOne(email: string): Promise<User> {
