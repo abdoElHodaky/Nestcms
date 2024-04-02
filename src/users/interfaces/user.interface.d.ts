@@ -1,4 +1,4 @@
-export default interface User{
+declare interface User{
   _id: string;
   email: string;
   password: string;
@@ -13,3 +13,4 @@ export default interface User{
   schedules?:[]
   projects?:[]
 }
+export default _User
