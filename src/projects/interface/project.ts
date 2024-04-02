@@ -1,6 +1,6 @@
-import { Design } from "./design.interface";
-import { ProjectStep } from "./project-step.interface";
-import { Contract } from "../contracts/interface/contract.interface";
+import { Design } from "./design";
+import { ProjectStep } from "./project-step";
+import { Contract } from "../contracts/interface/contract";
 import _Project from "./project.d"
 export class Project implements _Project {
   _id: string;
