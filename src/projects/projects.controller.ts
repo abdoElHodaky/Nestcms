@@ -6,7 +6,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 @ApiBearerAuth('JWTAuthorization')
 @ApiTags("Project")
 @UseGuards(AuthGuard('jwt'))
-@Controller('projects')
+@Controller('api/projects')
 export class ProjectController {
   constructor(private readonly projectService: ProjectService) {}
   @Post("")
