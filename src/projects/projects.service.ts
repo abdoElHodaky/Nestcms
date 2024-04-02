@@ -72,18 +72,8 @@ export class ProjectService {
     return projectData[0].designs;
   }
   async employees(projectId:string):Promise<Employee>{
-    const projectData = await this.projectModel.aggregate([
-            { $match: { project: new Types.ObjectId(projectId) } },
-            {
-                $lookup: {
-                    from: "$users",
-                    localField: "employee",
-                    foreignField: "_id",
-                    as: "employees",
-                },
-            },
-        ]);
-    return projectData[0].employees
+    const project = await this.projectModel.findById(projectId).exec()
+    return projects.employees
   }
 /*
   async findOne(email: string): Promise<User> {
