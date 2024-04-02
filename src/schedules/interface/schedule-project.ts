@@ -10,6 +10,6 @@ export class ScheduleProject implements _ScheduleProject {
   endingDate:string;
   status:string;
   project?:Project;
-  projectSteps?:ProjectStep[]
+ // projectSteps?:ProjectStep[]
   
 }
