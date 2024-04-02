@@ -1,3 +1,5 @@
+import { Client,Employee } from "../../users/interface/user";
+import { Contract } from "../../contracts/interface/contract";
 export interface Offer {
   title: string;
   content: string;
@@ -5,7 +7,7 @@ export interface Offer {
   endDate:string;
   status:string;
   price:string;
-  contract?:{};
-  client?:{};
-  employee?:{};
+  contract?:Contract;
+  client?:Client;
+  employee?:Employee;
 }
