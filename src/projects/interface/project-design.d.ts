@@ -1,6 +1,6 @@
-declare interface _ProjectDesign{
+declare interface _Design{
   _id:string;
   desc:string;
   path:string;
 }
-export default _ProjectDesign
+export default _Design
