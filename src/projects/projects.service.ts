@@ -89,6 +89,9 @@ export class ProjectService {
     const project = await this.projectModel.findById(projectId).exec()
     return await this.userService.find_Id(project.employee?._id)
   }
+  async find_Id(projectId:string):Promise<Project>{
+    return await this.projectModel.findById(projectId)
+  }
 /*
   async findOne(email: string): Promise<User> {
     return await this.userModel.findOne({ email }, '-__v').exec();
