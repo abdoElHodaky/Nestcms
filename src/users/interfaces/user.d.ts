@@ -1,4 +1,4 @@
-declare interface User{
+declare interface _User{
   _id: string;
   email: string;
   password: string;
