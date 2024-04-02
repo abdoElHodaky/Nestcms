@@ -43,7 +43,7 @@ export class UsersService {
         ]);
     return userData
   }
-  async my_projects(uid:string):Promise<Array>{
+  async my_Projects(uid:string):Promise<Array>{
     const userData = await this.userModel.aggregate([
             { $match: { employee: new Types.ObjectId(uid) } },
             {
