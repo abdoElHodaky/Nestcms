@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Model ,Types} from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateScheduleDto } from './dto/create-schedule.dto';
-import { Schedule } from './interface/schedule.interface';
+import { Schedule } from './interface/schedule';
 import { UsersService} from "../users/users.service";
 import { ProjectService} from "../projects/projects.service"
 
