@@ -10,19 +10,18 @@ import { SchedulesModule } from './schedules/schedules.module';
 import { ProjectsModule } from './projects/projects.module';
 import { ContractsModule } from './contracts/contracts.module';
 import { OffersModule } from './offers/offers.module';
-import { routes } from "./routes";
+//import { routes } from "./routes";
 @Module({
   imports: [
     MongooseModule.forRoot( process.env.MONGO_URI, {connectTimeoutMS: 10000,
         socketTimeoutMS: 30000 }),
-    AuthModule,
-    UsersModule,
-    RouterModule.register(routes),
-       /*
-     SchedulesModule,
-     ProjectsModule,
+      AuthModule,
+      UsersModule,
+   // RouterModule.register(routes),
+      SchedulesModule,
+      ProjectsModule,
       OffersModule,
-     ContractsModule,*/
+      ContractsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
