@@ -1,4 +1,4 @@
-import { Employee ,Client } from "../users/user.interface";
+import { Employee ,Client } from "../users/user";
 export interface Schedule{
  _id:string;
  title: string;
