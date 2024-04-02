@@ -5,7 +5,7 @@ import { ContractsModule } from "./contracts/contracts.module";
 import { OffersModule } from "./offers/offers.module";
 import { UsersModule } from "./users/users.module";
 export const routes= [
-    {  path: '',
+    /*{  path: '',
        children: [
         {
             path: '/auth',
@@ -16,7 +16,8 @@ export const routes= [
             module: UsersModule,
         }
     ],
-    },{
+    }, */
+    {
     path: 'api',
     children: [
         {
