@@ -3,7 +3,7 @@ import { Model,Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './interfaces/user';
-import { Project } from "../../projects/interface/project";
+import { Project } from "../projects/interface/project";
 @Injectable()
 export class UsersService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
