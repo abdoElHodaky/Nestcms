@@ -19,6 +19,7 @@ export class ScheduleProjectService {
     const createdSchedule=new this.model(rest);
     createdSchedule.project=project
     return await createdSchedule.save()
-    
   }
+  
+  
 }
