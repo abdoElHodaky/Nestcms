@@ -15,7 +15,10 @@ export class ScheduleProjectService {
  
   async create(createProjectScheduleDto: CreateProjectScheduleDto): Promise<ScheduleProject> {
     const {projectId,...rest}=createProjectScheduleDto
-    return 
+    const project=await this.projectService.find_Id(projectId)
+    const createdSchedule=new this.model(rest);
+    createdSchedule.project=project
+    return await createdSchedule.save()
     
   }
 }
