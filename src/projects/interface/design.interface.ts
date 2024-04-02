@@ -1,6 +1,6 @@
 import { Project } from "./project.interface";
-import _Design from "project-design";
-export class Design implements _Design {
+import _ProjectDesign from "project-design.d";
+export class Design implements _ProjectDesign {
   _id:string;
   desc:string;
   path:string;
