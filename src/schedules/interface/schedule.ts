@@ -1,5 +1,6 @@
 import { Employee ,Client } from "../users/user";
-export interface Schedule{
+import _Schedule from "./schedule.d"
+export class Schedule implements _Schedule{
  _id:string;
  title: string;
   content: string;
