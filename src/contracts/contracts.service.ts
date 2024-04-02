@@ -3,6 +3,7 @@ import { Model ,Types} from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateContractDto } from './dto/create-contract.dto';
 import { Contract } from './interface/contract';
+import { Employee } from "../users/interface/user"
 import { Offer } from '../offers/interface/offer.interface';
 import { UsersService} from "../users/users.service"
 import { OfferService} from "../offers/offers.service"
@@ -40,14 +41,14 @@ export class ContractService {
     }
   
   }
-  async employee_all(uid:string):Promise<Contract[]>{
+  async employee_all(uid:string):Promise<Employee[]>{
     const employee = await this.userService.find_Id(uid)
    /* return await this.contractModel.find().populate({
       path:"employee",
       match:{"employee":employee._id},
     }).exec();*/
     const contractData = await this.contractModel.aggregate([
-            { $match: { employee: new Types.ObjectId(uid) } },
+            { $match: { _id: new Types.ObjectId(uid) } },
             {
                 $lookup: {
                     from: "users",
@@ -57,7 +58,7 @@ export class ContractService {
                 },
             },
         ]);
-     return contractData
+     return contractData[0].employees
   }
   async find_Id(_id:string):Promise<Contract>{
     return await this.contractModel.findById(_id).exec()
