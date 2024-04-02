@@ -45,7 +45,7 @@ export class UsersService {
   }
   async my_Projects(uid:string):Promise<Project[]>{
     const userData = await this.userModel.aggregate([
-            { $match: { employee: new Types.ObjectId(uid) } },
+            { $match: { _id: new Types.ObjectId(uid) } },
             {
                 $lookup: {
                     from: "projects",
