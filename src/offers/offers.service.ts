@@ -3,7 +3,7 @@ import { Model ,Types} from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateOfferDto } from './dto/create-offer.dto';
 import { AcceptOfferDto } from './dto/accept-offer.dto';
-import { LinkToContract } from "./dto/link-contract.dto";
+import { LinkToContractDto } from "./dto/link-contract.dto";
 import { Offer } from './interface/offer.interface';
 import { UsersService} from "../users/users.service"
 import { ContractService} from "../contracts/contracts.service"
@@ -38,7 +38,7 @@ export class OfferService {
   async find_Id(_id:string):Promise<Offer>{
     return await this.offerModel.findById(_id).exec()
   }
-  async LinkContract(linkToContract:LinkToContract):Promise<Offer>{
+  async LinkContract(linkToContractDto:LinkToContractDto):Promise<Offer>{
     const {offerId,contractId}=linkToContractDto
     const offer=await this.offerModel.findById(offerId)
     const contract=await this.contractService.find_Id(contractId)
