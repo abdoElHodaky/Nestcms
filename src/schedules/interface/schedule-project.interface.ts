@@ -1,7 +1,7 @@
 import { Project } from "../projects/interface/project.interface";
 import { ProjectStep } from "../projects/interface/project-step.interface";
-
-export interface ScheduleProject{
+import _ScheduleProject from"./schedules.d";
+export class ScheduleProject implements _ScheduleProject {
  _id:string;
  title: string;
   content: string;
