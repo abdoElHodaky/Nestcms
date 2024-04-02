@@ -7,9 +7,9 @@ RUN git config --global url."https://".insteadOf ssh:// && chmod +x build.sh
 RUN npm config set ssl-strict=false
 ENV NODE_ENV ${NODE_ENV}
 RUN rm -rf package-lock.json
-RUN npm i -g npm@8.12.2
-#RUN npm cache verify && npm cache clean --force
-Run npx npm-check-updates@14.1.1
+RUN npm i -g npm@6.14.0
+RUN npm cache verify && npm cache clean --force
+Run npx npm-check-updates@12.5.4
 Run ncu -u
 RUN npm install @types/mongoose  @nestjs/swagger@4.5.3 swagger-ui-express@4.1.4 --force
 EXPOSE 3000
