@@ -6,11 +6,5 @@ declare interface _User{
   username:string;
   Address:string;
   phone:string;
-  isEmployee?:boolean
-  employeeType?:string
-  isAdmin?:boolean;
-  adminType?:string
-  schedules?:[]
-  projects?:[]
 }
 export default _User
