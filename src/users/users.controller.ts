@@ -20,4 +20,14 @@ export class UsersController {
    return this.usersService.my_Permissions(req.user._id)
   }
 
+
+  @ApiBearerAuth('JWTAuthorization')
+  @UseGuards(AuthGuard('jwt'))
+  @Get("projects")
+  async getProjects(@Request() req){
+    return this.usersService.my_Projects(req.user._id)
+  }
+
+
+
 }
