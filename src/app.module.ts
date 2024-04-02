@@ -15,9 +15,10 @@ import { routes } from "./routes";
   imports: [
     MongooseModule.forRoot( process.env.MONGO_URI, {connectTimeoutMS: 10000,
         socketTimeoutMS: 30000 }),
+    AuthModule,
+    UsersModule,
     RouterModule.register(routes),
-      AuthModule,
-      UsersModule, /*
+       /*
      SchedulesModule,
      ProjectsModule,
       OffersModule,
