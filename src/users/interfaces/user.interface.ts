@@ -1,5 +1,5 @@
 import _User from "./user.d";
-export interface User implements _User {
+export class User implements _User {
   _id: string;
   email: string;
   password: string;
@@ -15,17 +15,17 @@ export interface User implements _User {
   projects?:[]
 }
 
-export class Employee implements User {
+export class Employee extends User {
   isEmployee:boolean=true;
   employeeType:string;
 }
 
-export class Client implements User {
+export class Client extends User {
   isEmployee:boolean=false;
   isAdmin:boolean=false;
 }
 
-export class Admin implements User {
+export class Admin extends User {
   isAdmin:boolean=true;
   adminType:string;
 }
