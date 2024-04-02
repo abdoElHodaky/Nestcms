@@ -37,6 +37,9 @@ export class OfferService {
   async find_Id(_id:string):Promise<Offer>{
     return await this.offerModel.findById(_id).exec()
   }
+  async LinkContract(){
+    return
+  }
 /*
   async findOne(email: string): Promise<User> {
     return await this.userModel.findOne({ email }, '-__v').exec();
