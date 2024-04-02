@@ -50,5 +50,8 @@
     "tsconfig-paths": "3.8.0",
     "tslint": "5.16.0",
     "typescript": "3.4.3"
+  },
+  "engine":{
+    "node":"12.x"
   }
 }
