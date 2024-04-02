@@ -1,5 +1,5 @@
 import { Project } from "./project.interface";
-import _Design from "design.d";
+import _Design from "./design.d";
 export class Design implements _Design {
   _id:string;
   desc:string;
