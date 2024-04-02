@@ -1,4 +1,4 @@
-import { Project } from "./project.interface";
+import { Project } from "./project";
 //import { Contract } from "../contracts/contract.interface";
 import _ProjectStep from "./project-step.d";
 export class ProjectStep implements _ProjectStep {
