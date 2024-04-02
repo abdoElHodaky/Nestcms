@@ -37,17 +37,3 @@ export const routes= [
         }
     ],
 }];
-export const homeroutes= [{
-    path: '',
-   // module: NinjaModule,
-    children: [
-        {
-            path: '/auth',
-            module: AuthModule,
-        },
-        {
-            path: '/users',
-            module: UsersModule,
-        }
-    ],
-}];
