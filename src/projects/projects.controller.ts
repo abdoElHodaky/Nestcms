@@ -22,7 +22,7 @@ export class ProjectController {
   }
   @Post("linkcontract")
   async link_contract(@Body() linkToContractDto:LinkToContractDto){
-    return this.projectService.linkContract(linkToContractDto)
+    return this.projectService.LinkContract(linkToContractDto)
   }
 /*
 
