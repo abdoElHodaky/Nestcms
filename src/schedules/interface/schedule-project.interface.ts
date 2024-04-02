@@ -1,7 +1,7 @@
 import { Project } from "../projects/interface/project.interface";
 import { ProjectStep } from "../projects/interface/project-step.interface";
 
-export class ScheduleProject{
+export interface ScheduleProject{
  _id:string;
  title: string;
   content: string;
