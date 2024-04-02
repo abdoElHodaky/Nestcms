@@ -2,7 +2,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class LinkToContractDto {
   @ApiProperty()
-  readonly OfferId: string;
+  readonly offerId: string;
   @ApiProperty()
   readonly contractId: string;
   
