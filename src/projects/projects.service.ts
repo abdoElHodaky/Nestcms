@@ -76,7 +76,7 @@ export class ProjectService {
             { $match: { project: new Types.ObjectId(projectId) } },
             {
                 $lookup: {
-                    from: "users",
+                    from: "$users",
                     localField: "employee",
                     foreignField: "_id",
                     as: "employees",
