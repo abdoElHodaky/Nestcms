@@ -13,7 +13,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 export class ScheduleProjectController {
   constructor(private readonly scheduleService: ScheduleProjectService) {}
   @Post("create")
-  async create(@Body() createScheduleProjectDto: CreateScheduleProjectDto) {
+  async create(@Body() createScheduleProjectDto: CreateProjectScheduleDto) {
     return this.scheduleService.create(createScheduleProjectDto);
   }
   
