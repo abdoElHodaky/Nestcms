@@ -8,7 +8,7 @@ import { Payment } from './interface/payment.interface';
 import { UsersService} from "../users/users.service"
 import { ContractService} from "../contracts/contracts.service"
 @Injectable()
-export class OfferService {
+export class PaymentService {
   constructor(@InjectModel('Payment') private readonly paymModel: Model<Payment>) {}
   private userService:UsersService
   private contractService:ContractService
@@ -35,10 +35,10 @@ export class OfferService {
       match:{"employee._id":employee._id},
     }).exec();
   }*/
-  async find_Id(_id:string):Promise<Offer>{
+  async find_Id(_id:string):Promise<Payment>{
     return await this.paymModel.findById(_id).exec()
   }
-  async LinkContract(paymentLinkToContractDto:PaymentLinkToContractDto):Promise<Offer>{
+  async LinkContract(paymentLinkToContractDto:PaymentLinkToContractDto):Promise<Payment>{
     const {offerId,contractId}=paymentLinkToContractDto
     const payment=await this.paymModel.findById(offerId)
     const contract=await this.contractService.find_Id(contractId)
