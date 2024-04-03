@@ -13,13 +13,16 @@ export class PaymentService {
   private userService:UsersService
   private contractService:ContractService
  
- /* async create(createPaymentDto: CreatePaymentDto): Promise<Offer> {
-    const {employeeId,...rest}=createPaymentDto
-    const employee=await this.userService.find_Id(employeeId)
-    const createdPayment = new this.offerModel(rest);
-    createdPayment.employee=employee
-    return await createdPayment.save();
-  }
+   async create(createPaymentDto: CreatePaymentDto): Promise<Offer> {
+    const {clientId,contractId,...rest}=createPaymentDto
+    const linkcontract:PaymentLinkToContractDto
+    const client=await this.userService.find_Id(clientId)
+    const createdPayment = new this.paymModel(rest);
+    createdPayment.client=client
+    await createdPayment.save();
+    linkcontract={paymentId:createdPayment._id,contractId:contractId}
+    return await this.LinkContract(linkcontract)
+  }/*
   async accept(acceptOfferDto:AcceptOfferDto):Promise<Offer>{
     const {offerId,clientId,status}=acceptOfferDto
     const client = await this.userService.find_Id(clientId)
