@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
-export class LinkToContractDto {
+export class ProjectLinkToContractDto {
   @ApiProperty()
   readonly projectId: string;
   @ApiProperty()
