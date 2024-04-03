@@ -2,7 +2,7 @@ import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGua
 import { AuthGuard } from '@nestjs/passport';
 import { ProjectService } from "./projects.service";
 import { CreateProjectDto } from "./dto/create-project.dto";
-import { LinkToContractDto } from "./dto/link-contract.dto";
+import { ProjectLinkToContractDto } from "./dto/link-contract.dto";
 import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 @ApiBearerAuth('JWTAuthorization')
 @ApiTags("Project")
@@ -21,8 +21,8 @@ export class ProjectController {
     return
   }
   @Post("linkcontract")
-  async link_contract(@Body() linkToContractDto:LinkToContractDto){
-    return this.projectService.LinkContract(linkToContractDto)
+  async link_contract(@Body() projectLinkToContractDto:ProjectLinkToContractDto){
+    return this.projectService.LinkContract(projectLinkToContractDto)
   }
 /*
 
