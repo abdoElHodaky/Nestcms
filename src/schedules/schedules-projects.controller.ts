@@ -7,7 +7,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 //import { UpdateArticleDto } from './dto/update-article.dto';
 //@UseInterceptors(CurrentUserInterceptor)
 @ApiBearerAuth('JWTAuthorization')
-@ApiTags("Schedule.Project")
+@ApiTags("Project.Schedule")
 @UseGuards(AuthGuard('jwt'))
 @Controller("api/schedules/projects")
 export class ScheduleProjectController {
