@@ -3,7 +3,7 @@ import { RouterModule } from "@nestjs/core";
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-//import { ArticlesModule } from './articles/articles.module';
+import { PaymentsModule } from './payments/payments.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { SchedulesModule } from './schedules/schedules.module';
@@ -17,6 +17,7 @@ import { OffersModule } from './offers/offers.module';
         socketTimeoutMS: 30000 }),
       AuthModule,
       UsersModule,
+      PaymentsModule,
    // RouterModule.register(routes),
       SchedulesModule,
       ProjectsModule,
