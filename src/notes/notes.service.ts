@@ -8,7 +8,7 @@ import { Note } from './interface/note.interface';
 import { UsersService} from "../users/users.service"
 import { ContractService} from "../contracts/contracts.service"
 @Injectable()
-export class OfferService {
+export class NoteService {
   constructor(@InjectModel('Note') private readonly NoteModel: Model<Offer>) {}
   private userService:UsersService
   private contractService:ContractService
