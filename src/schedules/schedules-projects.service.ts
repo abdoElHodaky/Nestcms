@@ -21,7 +21,7 @@ export class ScheduleProjectService {
     return await createdSchedule.save()
   }
 
-  async LinkStep():Promise<ScheduleProject>{
+  async project():Promise<ScheduleProject>{
     return
   }
   
