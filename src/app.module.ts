@@ -1,5 +1,5 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
-import { RouterModule } from "@nestjs/core";
+//import { RouterModule } from "@nestjs/core";
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -10,6 +10,7 @@ import { SchedulesModule } from './schedules/schedules.module';
 import { ProjectsModule } from './projects/projects.module';
 import { ContractsModule } from './contracts/contracts.module';
 import { OffersModule } from './offers/offers.module';
+import { NotesModule } from "./notes/notes.module";
 //import { routes } from "./routes";
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { OffersModule } from './offers/offers.module';
       AuthModule,
       UsersModule,
       PaymentsModule,
-   // RouterModule.register(routes),
+      NotesModule,
       SchedulesModule,
       ProjectsModule,
       OffersModule,
