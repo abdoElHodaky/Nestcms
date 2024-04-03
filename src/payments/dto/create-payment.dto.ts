@@ -1,7 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreatePaymentDto {
-  @ApiPropertyOptional()
+  @ApiProperty()
   readonly contractId:string;
   @ApiProperty()
   readonly clientId:string;
