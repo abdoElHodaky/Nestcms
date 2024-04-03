@@ -14,7 +14,7 @@ export class PaymentService {
   private contractService:ContractService
  
    async create(createPaymentDto: CreatePaymentDto): Promise<Offer> {
-    const {clientId,contractId,...rest}=createPaymentDto
+    const {contractId,clientId,...rest}=createPaymentDto
     const linkcontract:PaymentLinkToContractDto
     const client=await this.userService.find_Id(clientId)
     const createdPayment = new this.paymModel(rest);
