@@ -11,7 +11,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 @ApiBearerAuth('JWTAuthorization')
 @ApiTags("Offer")
 @UseGuards(AuthGuard('jwt'))
-@Controller(["api","offers"])
+@Controller(["api/offers"])
 export class OfferController {
   constructor(private readonly offerService: OfferService) {}
   @Post("create")
