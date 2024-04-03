@@ -2,6 +2,7 @@ import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGua
 import { AuthGuard } from '@nestjs/passport';
 import { CreateOfferDto } from './dto/create-offer.dto';
 import { AcceptOfferDto } from './dto/accept-offer.dto';
+import { LinkToContract } from "./dto/link-contract";
 import { OfferService } from './offers.service';
 import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 //import { CurrentUserInterceptor } from '../currentuser.interceptor';
@@ -10,7 +11,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 @ApiBearerAuth('JWTAuthorization')
 @ApiTags("Offer")
 @UseGuards(AuthGuard('jwt'))
-@Controller("api/offers")
+@Controller(["api","offers"])
 export class OfferController {
   constructor(private readonly offerService: OfferService) {}
   @Post("create")
@@ -24,6 +25,10 @@ export class OfferController {
   @Post("accept")
   async employee_accept(@Body() acceptOfferDto:AcceptOfferDto){
     return await this.offerService.accept(acceptOfferDto)
+  }
+  @Post("linkcontract)
+  async linkContract(linkToContract:LinkToContract){
+    return await this.offerService.LinkContract(linkToContract);
   }
 /*
 
