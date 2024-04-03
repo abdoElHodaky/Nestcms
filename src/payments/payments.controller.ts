@@ -28,7 +28,7 @@ export class PaymentController {
   }*/
   @Post("linkcontract")
   async linkContract(@Body() paymentLinkToContractDto: PaymentLinkToContractDto){
-    return await this.offerService.LinkContract(paymentLinkToContractDto);
+    return await this.paymentService.LinkContract(paymentLinkToContractDto);
   }
 /*
 
