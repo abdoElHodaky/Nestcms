@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { CreateOfferDto } from './dto/create-offer.dto';
-import { AcceptOfferDto } from './dto/accept-offer.dto';
+import { CreatePaymentDto } from './dto/create-offer.dto';
+//import { AcceptOfferDto } from './dto/accept-offer.dto';
 import { PaymentLinkToContractDto } from "./dto/link-contract.dto";
 import { PaymentService } from './offers.service';
 import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
@@ -14,10 +14,10 @@ import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 @Controller(["api/payments"])
 export class PaymentController {
   constructor(private readonly paymentService: PaymentService) {}
-/*  @Post("create")
-  async create(@Body() createOfferDto: CreateOfferDto) {
-    return await this.offerService.create(createOfferDto);
-  }
+  @Post("create")
+  async create(@Body() createPaymentDto: CreatePaymentDto) {
+    return await this.paymentService.create(createPaymentDto);
+  }/*
   @Get("employee")
   async employee_all(@Request() req){
     return await this.offerService.employee_all(req.user.id);
