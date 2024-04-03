@@ -1,4 +1,7 @@
 import _Contract from "./contract.d";
+import { Client, Employee } from "../../users/interfaces/user";
+import { Offer } from "../../offers/interface/offer";
+
 export class Contract implements _Contract{
   title: string;
   content: string;
@@ -6,8 +9,8 @@ export class Contract implements _Contract{
   creationDate: string;
   status:string;
   path:string;
-  offer?:{};
-  client?:{};
-  employee?:{};
+  offer?:Offer;
+  client?:Client;
+  employee?:Employee;
 
 }
