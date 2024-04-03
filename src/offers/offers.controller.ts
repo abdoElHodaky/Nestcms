@@ -26,8 +26,8 @@ export class OfferController {
   async employee_accept(@Body() acceptOfferDto:AcceptOfferDto){
     return await this.offerService.accept(acceptOfferDto)
   }
-  @Post("linkcontract)
-  async linkContract(linkToContract:LinkToContract){
+  @Post("linkcontract")
+  async linkContract(@Body() linkToContract:LinkToContract){
     return await this.offerService.LinkContract(linkToContract);
   }
 /*
