@@ -20,7 +20,7 @@ export class ProjectController {
    // return this.scheduleService.all(req.user.id);
     return
   }
-  @Post("linkcontract")
+  @Post("contract")
   async link_contract(@Body() projectLinkToContractDto:ProjectLinkToContractDto){
     return this.projectService.LinkContract(projectLinkToContractDto)
   }
