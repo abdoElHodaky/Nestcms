@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { CreateScheduleDto } from './dto/create-schedule-project.dto';
+import { CreateScheduleDto } from './dto/create-project-schedule.dto';
 import { ScheduleProjectService } from './schedules-projects.service';
 import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 //import { CurrentUserInterceptor } from '../currentuser.interceptor';
