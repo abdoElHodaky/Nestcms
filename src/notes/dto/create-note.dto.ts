@@ -12,6 +12,6 @@ export class CreateNoteDto {
   readonly onId:string
   @ApiProperty()
   readonly onType:string
-  @ApiPropery()
+  @ApiProperty()
   readonly authorId:string;
 }
