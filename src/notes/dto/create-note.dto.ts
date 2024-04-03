@@ -6,7 +6,7 @@ export class CreateNoteDto {
   readonly title: string;
   @ApiProperty()
   readonly content: string;
-  @ApiProperty()
+  @ApiPropertyOptional()
   readonly status:string;
   @ApiProperty()
   readonly onId:string
