@@ -9,7 +9,7 @@ import { UsersService} from "../users/users.service"
 import { ContractService} from "../contracts/contracts.service"
 @Injectable()
 export class NoteService {
-  constructor(@InjectModel('Note') private readonly NoteModel: Model<Offer>) {}
+  constructor(@InjectModel('Note') private readonly noteModel: Model<Note>) {}
   private userService:UsersService
   private contractService:ContractService
  
