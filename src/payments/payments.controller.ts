@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { CreatePaymentDto } from './dto/create-offer.dto';
+import { CreatePaymentDto } from './dto/create-payment.dto';
 //import { AcceptOfferDto } from './dto/accept-offer.dto';
 import { PaymentLinkToContractDto } from "./dto/link-contract.dto";
 import { PaymentService } from './offers.service';
