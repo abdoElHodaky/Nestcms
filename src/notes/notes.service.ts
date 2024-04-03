@@ -14,7 +14,7 @@ export class NoteService {
   private contractService:ContractService
  
   async create(createNoteDto: CreateNoteDto): Promise<Note> {
-    const {authorId,...rest}=createOfferDto
+    const {authorId,...rest}=createNoteDto
     const author=await this.userService.find_Id(authorId)
     const createdNote = new this.noteModel(rest);
     createdNote.author=author
