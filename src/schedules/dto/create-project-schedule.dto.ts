@@ -4,13 +4,13 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 export class CreateProjectScheduleDto {
    @ApiProperty()
   readonly title: string;
-   @ApiProperty()
+   @ApiPropertyOptional()
   readonly content: string;
    @ApiProperty()
   readonly startDate: string;
    @ApiProperty()
   readonly endDate:string;
-   @ApiPropertyOptional()
+   @ApiProperty()
   readonly projectId?:string;
    
 }
