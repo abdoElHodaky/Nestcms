@@ -14,6 +14,11 @@ import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 @Controller(["api/payments"])
 export class PaymentController {
   constructor(private readonly paymentService: PaymentService) {}
+ 
+  @Get()
+  async All() {
+    return this.paymentService.All();
+  }
   @Post("create")
   async create(@Body() createPaymentDto: CreatePaymentDto) {
     return await this.paymentService.create(createPaymentDto);
@@ -26,11 +31,11 @@ export class PaymentController {
   async employee_accept(@Body() acceptOfferDto:AcceptOfferDto){
     return await this.offerService.accept(acceptOfferDto)
   }*/
-  @Post("linkcontract")
+  /*@Post("linkcontract")
   async linkContract(@Body() paymentLinkToContractDto: PaymentLinkToContractDto){
     return await this.paymentService.LinkContract(paymentLinkToContractDto);
   }
-/*
+
 
   @Get()
   async findAll() {
