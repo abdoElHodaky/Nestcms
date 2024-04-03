@@ -41,6 +41,9 @@ export class PaymentService {
   async find_Id(_id:string):Promise<Payment>{
     return await this.paymModel.findById(_id).exec()
   }
+  async All(): Promise<Payment[]>{
+    return await this.paymModel.find().exec()
+  }
   async LinkContract(paymentLinkToContractDto:PaymentLinkToContractDto):Promise<Payment>{
     const {paymentId,contractId}=paymentLinkToContractDto
     const payment=await this.paymModel.findById(paymentId)
