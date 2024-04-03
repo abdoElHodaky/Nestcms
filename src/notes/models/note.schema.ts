@@ -15,6 +15,7 @@ export const NoteSchema = new mongoose.Schema({
     type: String,
     required: true,
     enum: ['Project', 'Design']
-  }
+  },
+  author:{ type:mongoose.Schema.Types.ObjectId,ref:"User"}
 
 },{timestamps:true});
