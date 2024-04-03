@@ -14,11 +14,11 @@ export class PaymentService {
   private contractService:ContractService
  
    async create(createPaymentDto: CreatePaymentDto): Promise<Payment> {
-    const {contractId,clientId,...rest}=createPaymentDto
+    const {contractId,...rest}=createPaymentDto
     let linkcontract:PaymentLinkToContractDto
-    const client=await this.userService.find_Id(clientId)
+    const contract=await this.contractService.find_Id(contractId)
     const createdPayment = new this.paymModel(rest);
-    createdPayment.client=client
+    createdPayment.client=contract.client
     await createdPayment.save();
     linkcontract={paymentId:createdPayment._id.toHexString(),contractId:contractId}
     return await this.LinkContract(linkcontract)
