@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Model ,Types} from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { CreatePaymentDto } from './dto/create-offer.dto';
+import { CreatePaymentDto } from './dto/create-payment.dto';
 //import { AcceptOfferDto } from './dto/accept-offer.dto';
 import { PaymentLinkToContractDto } from "./dto/link-contract.dto";
 import { Payment } from './interface/payment.interface';
@@ -13,9 +13,9 @@ export class PaymentService {
   private userService:UsersService
   private contractService:ContractService
  
-   async create(createPaymentDto: CreatePaymentDto): Promise<Offer> {
+   async create(createPaymentDto: CreatePaymentDto): Promise<Payment> {
     const {contractId,clientId,...rest}=createPaymentDto
-    const linkcontract:PaymentLinkToContractDto
+    let linkcontract:PaymentLinkToContractDto
     const client=await this.userService.find_Id(clientId)
     const createdPayment = new this.paymModel(rest);
     createdPayment.client=client
@@ -42,8 +42,8 @@ export class PaymentService {
     return await this.paymModel.findById(_id).exec()
   }
   async LinkContract(paymentLinkToContractDto:PaymentLinkToContractDto):Promise<Payment>{
-    const {offerId,contractId}=paymentLinkToContractDto
-    const payment=await this.paymModel.findById(offerId)
+    const {paymentId,contractId}=paymentLinkToContractDto
+    const payment=await this.paymModel.findById(paymentId)
     const contract=await this.contractService.find_Id(contractId)
     payment.contract=contract
     return await payment.save()
