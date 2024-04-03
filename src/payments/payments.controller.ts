@@ -3,7 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { CreatePaymentDto } from './dto/create-payment.dto';
 //import { AcceptOfferDto } from './dto/accept-offer.dto';
 import { PaymentLinkToContractDto } from "./dto/link-contract.dto";
-import { PaymentService } from './offers.service';
+import { PaymentService } from './payments.service';
 import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 //import { CurrentUserInterceptor } from '../currentuser.interceptor';
 //import { UpdateArticleDto } from './dto/update-article.dto';
