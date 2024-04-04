@@ -92,7 +92,7 @@ export class ProjectService {
                 $lookup: {
                     from: "notes",
                     localField: "_id",
-                    foreignField: "onId",
+                    foreignField: "on",
                     as: "notes",
                 },
             },
