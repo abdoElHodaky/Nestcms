@@ -4,7 +4,11 @@ import { Client } from "./users/interfaces/user";
 @Injectable()
 class PayTabsService{
   async values(obj){
-      return obj.values()
+      let arr=[]
+      for(var i in obj){
+        arr.push(obj[i])
+      }
+    return arr;
    }
    async config(profile:string,serverk:string,region:string):Promise<any>
     {
