@@ -9,7 +9,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 //@ApiSecurity("bearer")
 @ApiTags("Project.Note")
 @UseGuards(AuthGuard('jwt'))
-@Controller('')
+@Controller('api/projects/:id/notes')
 export class NoteController {
   private noteService:NoteService;
   constructor(private readonly projectService: ProjectService) {}
