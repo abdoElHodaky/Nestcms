@@ -7,7 +7,7 @@ import { DesignController } from './designs.controller';
 @Module({
   imports: [],
   providers: [ProjectService ],
-  exports: [ProjectService ],
+  exports: [ ],
   controllers: [DesignController],
 })
 export class DesignsModule {}
