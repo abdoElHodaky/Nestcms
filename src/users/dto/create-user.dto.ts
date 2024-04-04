@@ -14,11 +14,11 @@ export class CreateUserDto {
   @ApiPropertyOptional()
   readonly phone?:string
   @ApiPropertyOptional()
-  readonly isEmployee?:boolean
+   isEmployee?:boolean
   @ApiPropertyOptional()
-  readonly employeeType?:string
+   employeeType?:string
   @ApiPropertyOptional()
-  readonly isAdmin?:boolean
+   isAdmin?:boolean
   @ApiPropertyOptional()
-  readonly adminType?:string
+   adminType?:string
 }
