@@ -15,13 +15,13 @@ export class StepController {
     return this.projectService.addStep(id,createProjectStepDto);
   }
   
-/*  @Get("")
+  @Get("")
   async findAll(@Param("id") id:string){
    // return this.scheduleService.all(req.user.id);
    return this.projectService.steps(id)
-  }*/
-  /*
-
+  }
+  
+/*
   @Get()
   async findAll() {
     return this.articlesService.findAll();
