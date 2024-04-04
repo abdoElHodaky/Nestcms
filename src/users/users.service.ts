@@ -10,8 +10,19 @@ import { Project } from "../projects/interface/project";
 export class UsersService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
-  async create(createUserDto: CreateUserDto): Promise<User> {
-    const createdUser = new this.userModel(createUserDto);
+  async create(userType:string,createUserDto: CreateUserDto): Promise<User> {
+    let cudto=createUserDto
+    switch (userType){
+      case "Employee":
+        cutdo=<CreateEmplyeeDto>{...cutdto};
+        break;
+      case "Client":
+        cutdto=<CreateClientDto>{...cudto}
+        break;
+      default:
+        break
+    }
+    const createdUser = new this.userModel(cutdo);
     return await createdUser.save();
   }
 
