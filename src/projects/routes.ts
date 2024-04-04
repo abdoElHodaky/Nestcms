@@ -8,21 +8,21 @@ export const routes:Routes= [
     
     {
     path: 'api/projects',
-    controller:ProjectController,
+    module:ProjectController,
     children: [
         {
             path: '/:id',
             children:[
               {
                 path:"/designs",
-                controller:DesignController
+                module:DesignController
               },
               {
                 path:"/steps",
-                controller:StepController
+                module:StepController
               },{
                 path:"/notes",
-                controller:NoteController
+                module:NoteController
               }
             ]
         },
