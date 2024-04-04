@@ -14,10 +14,10 @@ export class UsersService {
     let cudto=createUserDto
     switch (userType){
       case "Employee":
-        cutdo=<CreateEmplyeeDto>{...cudto};
+        cutdo=<CreateEmplyeeDto>cudto;
         break;
       case "Client":
-        cutdto=<CreateClientDto>{...cudto}
+        cutdto=<CreateClientDto>cudto;
         break;
       default:
         break
