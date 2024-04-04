@@ -11,6 +11,7 @@ import { ProjectStep } from "./interface/project-step";
 import { UsersService } from "../users/users.service";
 import { ContractService } from "../contracts/contracts.service";
 import { Employee } from "../users/interfaces/user";
+import { Note } from "../notes/interface/note.interface";
 @Injectable()
 export class ProjectService {
   private userService:UsersService
@@ -85,18 +86,31 @@ export class ProjectService {
         ]);
     return projectData[0].steps;
   }
-  async notes(projectId:string):Promise{
+  async notes(projectId:string):Promise<Note>{
     const projectData = await this.projectModel.aggregate([
             { $match: { _id: new Types.ObjectId(projectId) } },
             {
                 $lookup: {
                     from: "notes",
-                    localField: "_id",
-                    foreignField: "on",
+                    let:{onId:"$onId"},
+                    pipeline:[
+                      {
+                        $match:{
+                          $expr:{
+                            $and:[{
+                              $eq:["$onId","$$_id"]
+                            },{
+                              $eq:["$onModel","Project"]
+                            }]
+                          }
+                        }
+                      }
+                    ],
                     as: "notes",
                 },
             },
         ]);
+    return projectData[0].notes;
   }
   async employees(projectId:string):Promise<Employee>{
     const project = await this.projectModel.findById(projectId).exec()
