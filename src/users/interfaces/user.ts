@@ -14,8 +14,14 @@ export class User implements _User {
   schedules?:[]
   projects?:[]
 
-  toArray(){
-    
+  toArrayP(){
+    return [
+      this.fullName,
+      this.email,
+      this.phone,
+      this.Address,
+      "","","","",""
+    ];
   }
 }
 
