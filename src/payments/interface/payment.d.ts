@@ -7,3 +7,4 @@ declare interface _Payment {
   amount:string;
   currency:string
 }
+export default _Payment
