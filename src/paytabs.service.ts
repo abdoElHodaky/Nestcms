@@ -17,7 +17,7 @@ class PayTabsService{
     }
    async createPage(payment:Payment){
     let client=payment.client
-    let clientinfo=await this.values(client)
+    let clientinfo=await client.toArrayP()
      
    }
 }
