@@ -8,7 +8,7 @@ export const routes= [
     
     {
     path: 'api/projects',
-    controller:ProjectCintroller,
+    controller:ProjectController,
     children: [
         {
             path: '/:id',
