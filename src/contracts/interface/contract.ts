@@ -1,7 +1,7 @@
 import _Contract from "./contract.d";
 import { Client, Employee } from "../../users/interfaces/user";
 import { Offer } from "../../offers/interface/offer.interface";
-
+import { Payment} from "../../payments/interface/payment.interface";
 export class Contract implements _Contract{
   _id:string;
   title: string;
@@ -13,5 +13,6 @@ export class Contract implements _Contract{
   offer?:Offer;
   client?:Client;
   employee?:Employee;
+  payments?:Payment[]
 
 }
