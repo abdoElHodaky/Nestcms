@@ -7,7 +7,7 @@ import { StepController } from './steps.controller';
 import { ProjectStepSchema } from './models/project-step.schema';
 import { DesignController } from './designs.controller';
 import { DesignSchema } from './models/design.schema';
-import { NoteController } from './note.controller';
+import { NoteController } from './notes.controller';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: 'Project', schema: ProjectSchema },{name: 'Design', schema: DesignSchema}, {name: 'ProjectStep', schema: ProjectStepSchema}])],
