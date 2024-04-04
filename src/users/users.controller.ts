@@ -7,11 +7,11 @@ import { ApiExcludeEndpoint , ApiBearerAuth , ApiTags } from "@nestjs/swagger";
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-  @ApiExcludeEndpoint()
+ /* @ApiExcludeEndpoint()
   @Post('register')
   async register(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
-  }
+  }*/
   @ApiBearerAuth('JWTAuthorization')
   @UseGuards(AuthGuard('jwt'))
   @Get('me')
