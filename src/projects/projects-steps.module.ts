@@ -7,7 +7,7 @@ import { StepController } from './steps.controller';
 @Module({
   imports: [],
   providers: [ProjectService ],
-  exports: [ProjectService ],
+  exports: [ ],
   controllers: [StepController],
 })
 export class StepsModule {}
