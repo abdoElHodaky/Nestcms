@@ -2,23 +2,23 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { CreateUserDto } from "./create-user.dto";
 export class CreateClientUserDto extends CreateUserDto {
   @ApiProperty()
-  readonly fullname:string
+   readonly fullname:string
   @ApiProperty()
-  readonly username:string
+   readonly username:string
   @ApiProperty()
-  readonly email: string;
+   readonly email: string;
   @ApiProperty()
-  readonly password: string;
+   readonly password: string;
   @ApiPropertyOptional()
-  readonly address?:string
+   readonly address?:string
   @ApiPropertyOptional()
-  readonly phone?:string
+   readonly phone?:string
   @ApiPropertyOptional()
-  isEmployee?:boolean=false
+   readonly isEmployee?:boolean=false
   @ApiPropertyOptional()
-   employeeType?:string=""
+   readonly employeeType?:string=""
   @ApiPropertyOptional()
-  isAdmin?:boolean=false
+   readonly isAdmin?:boolean=false
   @ApiPropertyOptional()
-   adminType?:string=false
+   readonly adminType?:string=false
 }
