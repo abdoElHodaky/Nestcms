@@ -2,8 +2,8 @@ import { Controller, Get, UseGuards, Post,Body, Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { ApiExcludeEndpoint , ApiBearerAuth } from "@nestjs/swagger";
-
+import { ApiExcludeEndpoint , ApiBearerAuth , ApiTags } from "@nestjs/swagger";
+@ApiTags("User")
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
