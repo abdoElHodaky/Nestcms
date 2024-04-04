@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 //import { MongooseModule } from '@nestjs/mongoose';
-import { NoteController } from './note.controller';
+import { NoteController } from './notes.controller';
 //import { DesignSchema } from './models/design.schema';
 @Module({
   imports: [],
