@@ -17,6 +17,6 @@ import { routes} from "./routes";
            RouterModule.register(routes)],
   providers: [ProjectService],
   exports: [ProjectService],
-  //controllers: [ProjectController,DesignController,StepController,NoteController],
+  controllers: [ProjectController],
 })
 export class ProjectsModule {}
