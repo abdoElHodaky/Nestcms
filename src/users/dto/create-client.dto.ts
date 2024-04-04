@@ -3,11 +3,11 @@ import { CreateUserDto } from "./create-user.dto";
 export class CreateClientDto extends CreateUserDto {
   
   @ApiPropertyOptional()
-   readonly isEmployee?:boolean=false
+    isEmployee?:boolean=false
   @ApiPropertyOptional()
-   readonly employeeType?:string=""
+    employeeType?:string=""
   @ApiPropertyOptional()
-   readonly isAdmin?:boolean=false
+    isAdmin?:boolean=false
   @ApiPropertyOptional()
-   readonly adminType?:string=false
+    adminType?:string=false
 }
