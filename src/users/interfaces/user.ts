@@ -13,6 +13,10 @@ export class User implements _User {
   adminType?:string
   schedules?:[]
   projects?:[]
+
+  toArray(){
+    
+  }
 }
 
 export class Employee extends User {
