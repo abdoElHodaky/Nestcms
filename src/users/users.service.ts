@@ -22,7 +22,7 @@ export class UsersService {
         
         break;
       case "Client":
-        let cudto:CreateClientDto=cudto;
+        let cudto:CreateClientDto=createUserDto;
         cudto.isEmployee=false
         cudto.employeeType=""
         createdUser=new this.userModel(cudto)
