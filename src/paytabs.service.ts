@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import paytabs from "paytabs_pt2";
 import { Client } from "./users/interfaces/user";
+import { Payment } from "./payments/interface/payment";
 @Injectable()
 class PayTabsService{
   async values(obj){
@@ -14,5 +15,9 @@ class PayTabsService{
     {
       await paytabs.config(profile,serverk,region)
     }
-   async createPage(){}
+   async createPage(payment:Payment){
+    let client=payment.client
+    let clientinfo=await this.values(client)
+     
+   }
 }
