@@ -1,6 +1,7 @@
 import { Client } from "../../users/interfaces/user";
 import { Contract } from "../../contracts/interface/contract";
-export interface Payment {
+import _Payment from "./payment.d";
+export class Payment extends _Payment {
   _id:string;
   title: string;
   content?: string;
