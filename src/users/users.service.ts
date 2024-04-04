@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { Model,Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
-import { CreateClientDto } from './dto/create-client.dto';
-import { CreateEmployeeDto } from './dto/create-employee.dto';
+//import { CreateClientDto } from './dto/create-client.dto';
+//import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { User } from './interfaces/user';
 import { Project } from "../projects/interface/project";
 @Injectable()
@@ -12,7 +12,7 @@ export class UsersService {
 
   async create(userType:string,createUserDto: CreateUserDto): Promise<User> {
     let cudto=createUserDto
-    switch (userType){
+    /*switch (userType){
       case "Employee":
         let cudto:CreateEmployeeDto=cutdo ;
         break;
@@ -21,7 +21,7 @@ export class UsersService {
         break;
       default:
         break
-    }
+    }*/
     const createdUser = new this.userModel(cutdo);
     return await createdUser.save();
   }
