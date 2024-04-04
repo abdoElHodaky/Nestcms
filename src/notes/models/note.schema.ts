@@ -6,7 +6,7 @@ export const NoteSchema = new mongoose.Schema({
     type:String,
     enum:["seen","read"]
   }
-  ,on: {
+  ,onId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     refPath: 'onModel'
