@@ -5,6 +5,6 @@ class PayTabsService{
    
    async config(profile:string,serverk:string,region:string):Promise<any>
     {
-      await paytabs.config(profile,serverK,region)
+      await paytabs.config(profile,serverk,region)
     }
 }
