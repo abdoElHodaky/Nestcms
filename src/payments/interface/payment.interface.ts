@@ -12,5 +12,8 @@ export class Payment implements _Payment {
   contract?:Contract;
   client?:Client;
 
-  toArray(){}
+  toArrayP(){  
+    return [this._id,this.amount,this.currency,this.content]
+ 
+   }
 }
