@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { Model,Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
-//import { CreateClientDto } from './dto/create-client.dto';
-//import { CreateEmployeeDto } from './dto/create-employee.dto';
+import { CreateClientDto } from './dto/create-client.dto';
+import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { User } from './interfaces/user';
 import { Project } from "../projects/interface/project";
 @Injectable()
@@ -11,18 +11,26 @@ export class UsersService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
   async create(userType:string,createUserDto: CreateUserDto): Promise<User> {
-    let cudto=createUserDto
-    /*switch (userType){
+   // let cudto=createUserDto
+    let createdUser;
+    switch (userType){
       case "Employee":
-        let cudto:CreateEmployeeDto=cutdo ;
+        let cemdto:CreateEmployeeDto=createUserDto
+         cemdto.isEmployee=true
+         cemdto.employeeType=createUserDto.employeeType
+         createdUser=new this.userModel(cemdto)
+        
         break;
       case "Client":
-        let cutdto:CreateClientDto=cudto;
+        let cudto:CreateClientDto=cudto;
+        cudto.isEmployee=false
+        cudto.employeeType=""
+        createdUser=new this.userModel(cudto)
         break;
       default:
         break
-    }*/
-    const createdUser = new this.userModel(cutdo);
+    }
+    //const createdUser = new this.userModel(cutdo);
     return await createdUser.save();
   }
 
