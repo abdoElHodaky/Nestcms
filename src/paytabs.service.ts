@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import paytabs from "paytabs_pt2";
 import { Client } from "./users/interfaces/user";
-import { Payment } from "./payments/interface/payment";
+import { Payment } from "./payments/interface/payment.interface";
 @Injectable()
 class PayTabsService{
   async values(obj){
