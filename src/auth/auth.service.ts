@@ -11,8 +11,8 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async register(createUSerDto: CreateUserDto) {
-    this.usersService.create(createUSerDto);
+  async register(UserType:string,createUSerDto: CreateUserDto) {
+    this.usersService.create(UserType,createUSerDto);
   }
 
   async validateUser(username: string, pass: string): Promise<any> {
