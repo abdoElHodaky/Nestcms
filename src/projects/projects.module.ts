@@ -7,11 +7,12 @@ import { StepController } from './steps.controller';
 import { ProjectStepSchema } from './models/project-step.schema';
 import { DesignController } from './designs.controller';
 import { DesignSchema } from './models/design.schema';
+import { NoteController } from './note.controller';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: 'Project', schema: ProjectSchema },{name: 'Design', schema: DesignSchema}, {name: 'ProjectStep', schema: ProjectStepSchema}])],
   providers: [ProjectService],
   exports: [ProjectService],
-  controllers: [ProjectController,DesignController,StepController],
+  controllers: [ProjectController,DesignController,StepController,NoteController],
 })
 export class ProjectsModule {}
