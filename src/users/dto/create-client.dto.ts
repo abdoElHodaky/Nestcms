@@ -9,5 +9,5 @@ export class CreateClientDto extends CreateUserDto {
   @ApiPropertyOptional()
     isAdmin?:boolean=false
   @ApiPropertyOptional()
-    adminType?:string=false
+    adminType?:string=""
 }
