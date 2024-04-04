@@ -7,9 +7,10 @@ import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 //@ApiSecurity("bearer")
 @ApiTags("Project.Step")
 @UseGuards(AuthGuard('jwt'))
-@Controller('api/projects/:id/steps')
+@Controller('steps')
 export class StepController {
   constructor(private readonly projectService: ProjectService) {}
+  
   @Post("add")
   async create(@Body() createProjectStepDto: CreateProjectStepDto,@Param("id") id:string) {
     return this.projectService.addStep(id,createProjectStepDto);
@@ -17,7 +18,6 @@ export class StepController {
   
   @Get("")
   async findAll(@Param("id") id:string){
-   // return this.scheduleService.all(req.user.id);
    return this.projectService.steps(id)
   }
   
@@ -38,4 +38,5 @@ export class StepController {
     console.log('delete article with id -> ', id);
     return this.articlesService.delete(id);
   }*/
+  
   }
