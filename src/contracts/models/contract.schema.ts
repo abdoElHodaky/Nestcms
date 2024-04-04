@@ -9,5 +9,6 @@ export const ContractSchema = new mongoose.Schema({
   path:String,
   offer: { type: mongoose.Schema.Types.ObjectId, ref: 'Offer'},
   client: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-  employee: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  employee: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  payments: [{ type :mongoose.Schema.Types.ObjectId, ref :"Payment" }]
 },{timestamps:true});
