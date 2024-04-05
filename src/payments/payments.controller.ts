@@ -36,7 +36,7 @@ export class PaymentController {
     return await this.paymentService.Pay(paymentId,{callback:url+"/callback",return:url+"/return"});
   }
   
-  @Res({passthrough:true})
+  //@Res({passthrough:true})
   @Post("pay/callback")
   async payCallback(@Request() req:Request){
     let res=req.body
@@ -51,7 +51,7 @@ export class PaymentController {
 
   }
   
-  @Res({passthrough:true})
+  //@Res({passthrough:true})
   @Post("pay/return")
   async payReturn(@Request() req:Request){
    /* let res=req.body
@@ -67,7 +67,7 @@ export class PaymentController {
   }
 
 
-  @Res({passthrough:true})
+  //@Res({passthrough:true})
   @Post("pay/verify")
   async payVerify(@Request() req){
     let res=req.body
