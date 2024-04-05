@@ -56,6 +56,14 @@ export class PaymentService {
      let payment=await this.find_Id(paymentId)
     return await this.payTabService.createPage(payment,urls)
   }
+
+  async verify(transR:string):Promise<any>{
+    return await this.payTabService.payVerify(transR)
+  }
+
+  async payCallback(result:any):Promise<any>{
+    return await this.payTabService.payCallback(result)
+  }
 /*
   async findOne(email: string): Promise<User> {
     return await this.userModel.findOne({ email }, '-__v').exec();
