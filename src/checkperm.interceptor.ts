@@ -17,4 +17,5 @@ export class CheckPermInterceptor implements NestInterceptor {
     // run the actual route handler
     return handler.handle();
   }
+  async check(){}
 }
