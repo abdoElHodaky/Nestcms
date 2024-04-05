@@ -7,6 +7,7 @@ export const PaymentSchema = new mongoose.Schema({
   status:String,
   amount:String,
   currency:String,
+  transR:String,
   client: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   contract: { type: mongoose.Schema.Types.ObjectId, ref: 'Contract'}
 },{timestamps:true});
