@@ -5,7 +5,7 @@ export enum Permission {
     MODIFY="Modify",
 }
 
-export enum onModel {
+export enum OnModel {
   PAYMENT="Payment",
   PROJECT="Project",
   SCHEDULE="Schedule",
