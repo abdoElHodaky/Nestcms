@@ -18,7 +18,7 @@ export class PermGuard implements CanActivate {
     let {_perms,_mdls}=permissions
     let _permissions = this.userService.my_Permissions(userId)[0].permissions
     let res=_permissions.filter(({onModel,type},i)=>{
-      if(_mdls.includes(onModel)==true && _perms.includes(type))
+      if(_mdls.includes(onModel)==true && _perms.includes(type)==true)
         return true
     })
     if (res.length>0) return true
