@@ -61,7 +61,7 @@ export class PaymentService {
     let res= await this.payTabService.payVerify(transR)
     let { valid,code }=res
     if (valid===true){
-      let payment=await this.find_Id(paymentId)
+      let payment=await this.await this.paymModel.findById(paymentId)
       payment.status="paid"
       payment.transR=transR
       await payment.save()
