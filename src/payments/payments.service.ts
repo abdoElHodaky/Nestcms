@@ -7,12 +7,13 @@ import { PaymentLinkToContractDto } from "./dto/link-contract.dto";
 import { Payment } from './interface/payment.interface';
 import { UsersService} from "../users/users.service"
 import { ContractService} from "../contracts/contracts.service"
+import { PayTabsService } from "../paytabs.service";
 @Injectable()
 export class PaymentService {
   constructor(@InjectModel('Payment') private readonly paymModel: Model<Payment>) {}
   private userService:UsersService
   private contractService:ContractService
- 
+  private payTabsService:PayTabsService
    async create(createPaymentDto: CreatePaymentDto): Promise<Payment> {
     const {contractId,...rest}=createPaymentDto
     let linkcontract:PaymentLinkToContractDto
@@ -50,6 +51,10 @@ export class PaymentService {
     const contract=await this.contractService.find_Id(contractId)
     payment.contract=contract
     return await payment.save()
+  }
+  async Pay(paymentId:string):Promise<any>{
+     let payment=await this.find_Id(paymentId)
+    return await this.payTabsService.createPage(payment)
   }
 /*
   async findOne(email: string): Promise<User> {
