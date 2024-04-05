@@ -13,6 +13,6 @@ export class CheckPermGuard implements CanActivate {
     return check(request);
   }
   async check(req){
-    let permissions = this.userService.my_Permissions(req.user._id)[0].permissions
+    let permissions = this.userService.my_Permissions(req.user.userId)[0].permissions
   }
 }
