@@ -57,8 +57,21 @@ export class PaymentService {
     return await this.payTabService.createPage(payment,urls)
   }
 
-  async verify(transR:string):Promise<any>{
-    return await this.payTabService.payVerify(transR)
+  async verify(transR:string,paymentId:string):Promise<any>{
+    let res= await this.payTabService.payVerify(transR)
+    let { valid,code }=res
+    if (valid===true){
+      let payment=await this.find_Id(paymentId)
+      payment.status="paid"
+      payment.transR=transR
+      await payment.save()
+      return {message:"Payment success , Thanks"}
+
+    }
+    else{
+      return res
+    }
+    
   }
 
   async payCallback(result:any):Promise<any>{
