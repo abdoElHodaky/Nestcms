@@ -12,7 +12,7 @@ export class PermGuard implements CanActivate {
     const permissions = this.reflector.getAllAndOverride<{_perms:string[],_mdls:string[]}>("permissions",[context.getHandler(),context.getClass()])
     
     const {userId} = context.switchToHttp().getRequest().user;
-    return check(permissions,userId);
+    return this.check(permissions,userId);
   }
   async check(permissions,userId){
     let {_perms,_mdls}=permissions
