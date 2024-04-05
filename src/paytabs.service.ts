@@ -29,11 +29,23 @@ export class PayTabService{
      return  res.redirect_url
      
    }
-  async payPageCallback(result:any){
-    return result
+  async payPageCallback(result:any):Promise<any> {
+    let {respCode,respMessage,transRef,respStatus} =result
+    return {
+      trans:transRef,
+      status:respStatus,
+      code:respCode,
+      message:respMessage,
+    }
   }
-  async payPageReturn(result:any){
-    return result
+  async payPageReturn(result:any):Promise<any>{
+    let {respCode,respMessage,transRef,respStatus} =result
+    return {
+      trans:transRef,
+      status:respStatus,
+      code:respCode,
+      message:respMessage,
+    }
   }
   async payVerify(transR:string){
     let valid=false;
