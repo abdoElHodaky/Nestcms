@@ -8,33 +8,38 @@ import { ApiTags,ApiSecurity,ApiBearerAuth,ApiExcludeEndpoint } from "@nestjs/sw
 //import { CurrentUserInterceptor } from '../currentuser.interceptor';
 //import { UpdateArticleDto } from './dto/update-article.dto';
 //@UseInterceptors(CurrentUserInterceptor)
-@ApiBearerAuth('JWTAuthorization')
+//@ApiBearerAuth('JWTAuthorization')
 @ApiTags("Payment")
-@UseGuards(AuthGuard('jwt'))
+//@UseGuards(AuthGuard('jwt'))
 @Controller(["api/payments"])
 export class PaymentController {
   constructor(private readonly paymentService: PaymentService) {}
  
+  @ApiBearerAuth('JWTAuthorization')
+  @UseGuards(AuthGuard('jwt'))
   @Get()
   async All() {
     return this.paymentService.All();
   }
+  @ApiBearerAuth('JWTAuthorization')
+  @UseGuards(AuthGuard('jwt'))
   @Post("create")
   async create(@Body() createPaymentDto: CreatePaymentDto) {
     return await this.paymentService.create(createPaymentDto);
   }
+  
   @Post("pay/:id")
   async pay(@Param("id") paymentId:string,@Request() req){
     const url =`${req.baseUrl}${req.path}`
     return await this.paymentService.Pay(paymentId,{callback:url+"/callback",return:url+"/return"});
   }
-  @ApiExcludeEndpoint()
+  
   @Post("pay/callback")
   async payCallback(@Request() req){
     return req.body
   }
   
-  @ApiExcludeEndpoint()
+  
   @Post("pay/return")
   async payReturn(@Request() req){
     return req.body
