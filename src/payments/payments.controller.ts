@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request } from '@nestjs/common';
+import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request ,Res } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { CreatePaymentDto } from './dto/create-payment.dto';
 //import { AcceptOfferDto } from './dto/accept-offer.dto';
@@ -36,12 +36,13 @@ export class PaymentController {
     return await this.paymentService.Pay(paymentId,{callback:url+"/callback",return:url+"/return"});
   }
   
+  @Res({passthrough:true})
   @Post("pay/callback")
   async payCallback(@Request() req){
     return req.body;
   }
   
-  
+  @Res({passthrough:true})
   @Post("pay/return")
   async payReturn(@Request() req){
     return req.body;
