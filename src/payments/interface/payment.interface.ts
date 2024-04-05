@@ -11,13 +11,14 @@ export class Payment implements _Payment {
   currency:string
   contract?:Contract;
   client?:Client;
+  transR?:string
 
   toArrayP(){  
     return [this._id,this.amount,this.currency,this.content]
    }
   static toArrayP(arrp:Payment[]){
     let arr=arrp.map((p,i)=>{
-      let v=`Pay_${p._id}`;
+      let v=`${p._id}`;
       return {v:[p._id,p.amount,p.currency,p.content]}
     })
     return arr
