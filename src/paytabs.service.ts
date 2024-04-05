@@ -62,7 +62,6 @@ export class PayTabService{
          res=result
     });
     return {transRef:transR,code:res['response_code:'],valid:valid}
-
-
   }
+  
 }
