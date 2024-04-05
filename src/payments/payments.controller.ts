@@ -38,7 +38,7 @@ export class PaymentController {
   
   @Res({passthrough:true})
   @Post("pay/callback")
-  async payCallback(@Request() req){
+  async payCallback(@Request() req:Request){
     let res=req.body
     /*let {respCode,respMessage,transRef,respStatus} =res
     return {
@@ -53,7 +53,7 @@ export class PaymentController {
   
   @Res({passthrough:true})
   @Post("pay/return")
-  async payReturn(@Request() req){
+  async payReturn(@Request() req:Request){
    /* let res=req.body
     let {respCode,respMessage,transRef,respStatus} =res
     return {
