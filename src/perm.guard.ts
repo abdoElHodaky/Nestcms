@@ -3,7 +3,7 @@ import { UsersService } from './users/users.service';
 
 @Injectable()
 // "implements" guide us how to put together an interceptor
-export class CheckPermGuard implements CanActivate {
+export class PermGuard implements CanActivate {
   constructor(private userService: UsersService) {}
   // handler refers to the route handler
   canActivate(
