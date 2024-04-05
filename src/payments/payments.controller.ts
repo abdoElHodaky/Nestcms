@@ -4,7 +4,7 @@ import { CreatePaymentDto } from './dto/create-payment.dto';
 //import { AcceptOfferDto } from './dto/accept-offer.dto';
 import { PaymentLinkToContractDto } from "./dto/link-contract.dto";
 import { PaymentService } from './payments.service';
-import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
+import { ApiTags,ApiSecurity,ApiBearerAuth,ApiExcludeEndpoint } from "@nestjs/swagger";
 //import { CurrentUserInterceptor } from '../currentuser.interceptor';
 //import { UpdateArticleDto } from './dto/update-article.dto';
 //@UseInterceptors(CurrentUserInterceptor)
@@ -26,6 +26,17 @@ export class PaymentController {
   @Post("pay/:id")
   async pay(@Param("id") paymentId:string){
     return await this.paymentService.Pay(paymentId);
+  }
+  @ApiExcludeEndpoint()
+  @Post("pay/callback")
+  async payCallback(@Request() req){
+    return req.body
+  }
+  
+  @ApiExcludeEndpoint()
+  @Post("pay/return")
+  async payReturn(@Request() req){
+    return req.body
   }
   /*
   @Get("employee")
