@@ -11,6 +11,7 @@ export class CheckPermInterceptor implements NestInterceptor {
     const { userId } = request.session || {};
     if (userId) {
       const user = await this.userService.find_Id(userId);
+      const permissions = await this.userService.my_Permisions(userId)[0].permissions
       
     }
     // run the actual route handler
