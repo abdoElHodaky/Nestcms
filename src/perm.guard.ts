@@ -9,7 +9,7 @@ export class PermGuard implements CanActivate {
   // handler refers to the route handler
   canActivate(
     context: ExecutionContext,
-  ): boolean | Promise<boolean> | Observable<boolean> {
+  ): boolean | Promise<boolean> {
     const permissions = this.reflector.getAllAndOverride<{_perms:string[],_mdls:string[]}>("permissions",[context.getHandler(),context.getClass()])
     
     const {userId} = context.switchToHttp().getRequest().user;
