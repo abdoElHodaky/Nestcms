@@ -30,21 +30,23 @@ export class PayTabService{
      
    }
   async payCallback(result:any):Promise<any> {
-    let {respCode,respMessage,transRef,respStatus} =result
+    let {respCode,respMessage,transRef,respStatus,cart} =result
     return {
       trans:transRef,
       status:respStatus,
       code:respCode,
       message:respMessage,
+      paymentId:cart.cart_id
     }
   }
   async payReturn(result:any):Promise<any>{
-    let {respCode,respMessage,transRef,respStatus} =result
+    let {respCode,respMessage,transRef,respStatus,cart} =result
     return {
       trans:transRef,
       status:respStatus,
       code:respCode,
       message:respMessage,
+      paymentId:cart.cart_id
     }
   }
   async payVerify(transR:string){
