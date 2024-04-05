@@ -40,11 +40,12 @@ export class PaymentController {
   @Post("pay/callback")
   async payCallback(@Request() req){
     let res=req.body
-    let {respCode,respMessage,transRef}=res
+    let {respCode,respMessage,transRef,respStatus} =res
     return {
+      trans:transRef,
+      status:respStatus,
       code:respCode,
       message:respMessage,
-      trans:transRef
     }
   }
   
@@ -52,14 +53,27 @@ export class PaymentController {
   @Post("pay/return")
   async payReturn(@Request() req){
     let res=req.body
-    let {respCode,respMessage,transRef}=res
+    let {respCode,respMessage,transRef,respStatus} =res
     return {
+      trans:transRef,
+      status:respStatus,
       code:respCode,
       message:respMessage,
-      trans:transRef
     }
     
   }
+
+
+  @Res({passthrough:true})
+  @Post("pay/verify")
+  async payVerify(@Request() req){
+    let res=req.body
+    let {transRef} =res
+    return this.PayTabService.verify(transRef)
+    
+  }
+
+
   /*
   @Get("employee")
   async employee_all(@Request() req){
