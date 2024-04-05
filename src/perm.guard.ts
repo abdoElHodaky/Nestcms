@@ -9,12 +9,13 @@ export class PermGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-    const permissions = this.reflector.getAllAndOverride<string[],string[]>("permissions",[context.getHandler(),context.getClass()])
+    const permissions = this.reflector.getAllAndOverride<{_perms:string[],_mdls:string[]}>("permissions",[context.getHandler(),context.getClass()])
     
     const {userId} = context.switchToHttp().getRequest().user;
     return check(permissions,userId);
   }
   async check(permissions,userId){
+    let {_perms,_mdls}=permissions
     let _permissions = this.userService.my_Permissions(userId)[0].permissions
     
   }
