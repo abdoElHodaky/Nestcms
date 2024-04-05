@@ -3,7 +3,7 @@ import paytabs from "paytabs_pt2";
 import { Client } from "./users/interfaces/user";
 import { Payment } from "./payments/interface/payment.interface";
 @Injectable()
-export class PayTabsService{
+export class PayTabService{
   async values(obj){
       let arr=[]
       for(var i in obj){
