@@ -1,6 +1,7 @@
-import {NestInterceptor,ExecutionContext,CallHandler,Injectable,CanActivate,Reflector } from '@nestjs/common';
+import {NestInterceptor,ExecutionContext,CallHandler,Injectable,CanActivate } from '@nestjs/common';
+import { Reflector } from "@nestjs/core";
 import { UsersService } from './users/users.service';
-import { Permission } from "./permissions/permissions-models.decorator";
+import { Permissions } from "./permissions/permissions-models.decorator";
 @Injectable()
 // "implements" guide us how to put together an interceptor
 export class PermGuard implements CanActivate {
