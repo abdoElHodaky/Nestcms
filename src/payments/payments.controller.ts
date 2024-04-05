@@ -69,8 +69,7 @@ export class PaymentController {
   async payVerify(@Request() req){
     let res=req.body
     let {transRef} =res
-    return this.PayTabService.verify(transRef)
-    
+    return this.paymentService.verify(transRef)
   }
 
 
