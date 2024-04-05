@@ -10,7 +10,7 @@ export class CheckPermInterceptor implements NestInterceptor {
     const request = context.switchToHttp().getRequest();
     const { userId } = request.session || {};
     if (userId) {
-      const permissions = await this.userService.my_Permissions(userId)[0].permissions;
+      const user = await this.userService.find_Id(userId);
       
     }
     // run the actual route handler
