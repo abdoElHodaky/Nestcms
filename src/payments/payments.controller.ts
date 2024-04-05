@@ -30,7 +30,7 @@ export class PaymentController {
   
   @ApiBearerAuth('JWTAuthorization')
   @UseGuards(AuthGuard('jwt'))
-  @Post("pay/:id")
+  @Get("pay/:id")
   async pay(@Param("id") paymentId:string,@Request() req){
     const url =`${req.baseUrl}${req.path}`
     return await this.paymentService.Pay(paymentId,{callback:url+"/callback",return:url+"/return"});
