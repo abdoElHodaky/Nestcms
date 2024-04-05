@@ -26,9 +26,13 @@ class PayTabsService{
     "AR",urls,(result)=>{
        res=result
      })
-     return  result.redirect_url
+     return  res.redirect_url
      
    }
-  async payPageCallback(){}
-  async payPageReturn(){}
+  async payPageCallback(result:{}){
+    return result
+  }
+  async payPageReturn(result:{}){
+    return result
+  }
 }
