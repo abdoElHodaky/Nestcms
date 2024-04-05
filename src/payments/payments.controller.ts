@@ -36,13 +36,13 @@ export class PaymentController {
   
   @Post("pay/callback")
   async payCallback(@Request() req){
-    return req.body
+    return req.body;
   }
   
   
   @Post("pay/return")
   async payReturn(@Request() req){
-    return req.body
+    return req.body;
   }
   /*
   @Get("employee")
