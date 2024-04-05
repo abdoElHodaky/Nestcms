@@ -35,4 +35,22 @@ export class PayTabService{
   async payPageReturn(result:any){
     return result
   }
+  async payVerify(transR:string){
+    let valid=false;
+    let res;
+    paytabs.validatePayment(transR,result=>{
+      if (result['response_code:'] === 400)
+    {
+        valid=false
+    }
+    else
+    {
+        valid=true;
+    }
+         res=result
+    });
+    return {transRef:transR,code:res['response_code:'],valid:valid}
+
+
+  }
 }
