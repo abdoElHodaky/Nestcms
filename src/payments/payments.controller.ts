@@ -28,6 +28,8 @@ export class PaymentController {
     return await this.paymentService.create(createPaymentDto);
   }
   
+  @ApiBearerAuth('JWTAuthorization')
+  @UseGuards(AuthGuard('jwt'))
   @Post("pay/:id")
   async pay(@Param("id") paymentId:string,@Request() req){
     const url =`${req.baseUrl}${req.path}`
