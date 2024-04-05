@@ -39,7 +39,8 @@ export class PaymentController {
   //@Res({passthrough:true})
   @Post("pay/callback")
   async payCallback(@Request() req:Request){
-    let res=req.body
+    let res=await this.paymentService.payCallback(req.body)
+    let rp=await this.paymentService.verify(res.transR,res.paymentId)
     /*let {respCode,respMessage,transRef,respStatus} =res
     return {
       trans:transRef,
@@ -47,33 +48,28 @@ export class PaymentController {
       code:respCode,
       message:respMessage,
     }*/
-    return this.paymentService.payCallback(res)
+     return rp
 
   }
   
   //@Res({passthrough:true})
   @Post("pay/return")
   async payReturn(@Request() req:Request){
-   /* let res=req.body
-    let {respCode,respMessage,transRef,respStatus} =res
+    
+    let res=await this.paymentService.payCallback(req.body)
+    let rp=await this.paymentService.verify(res.transR,res.paymentId)
+    /*let {respCode,respMessage,transRef,respStatus} =res
     return {
       trans:transRef,
       status:respStatus,
       code:respCode,
       message:respMessage,
+    }*/
+     return rp
     }
-    */
-    return this.paymentService.payCallback(req.body)
-  }
 
 
-  //@Res({passthrough:true})
-  @Post("pay/verify")
-  async payVerify(@Request() req){
-    let res=req.body
-    let {transRef} =res
-    return this.paymentService.verify(transRef)
-  }
+  
 
 
   /*
