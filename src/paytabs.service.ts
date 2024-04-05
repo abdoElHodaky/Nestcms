@@ -15,7 +15,7 @@ export class PayTabsService{
     {
       await paytabs.config(profile,serverk,region)
     }
-   async createPage(payment:Payment,urls:{}):Promise<any>{
+   async createPage(payment:Payment,urls:any):Promise<any>{
     let res;
     let client=payment.client
     let clientinfo=await client.toArrayP()
