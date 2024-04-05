@@ -40,19 +40,21 @@ export class PaymentController {
   @Post("pay/callback")
   async payCallback(@Request() req){
     let res=req.body
-    let {respCode,respMessage,transRef,respStatus} =res
+    /*let {respCode,respMessage,transRef,respStatus} =res
     return {
       trans:transRef,
       status:respStatus,
       code:respCode,
       message:respMessage,
-    }
+    }*/
+    return this.paymentService.payCallback(res)
+
   }
   
   @Res({passthrough:true})
   @Post("pay/return")
   async payReturn(@Request() req){
-    let res=req.body
+   /* let res=req.body
     let {respCode,respMessage,transRef,respStatus} =res
     return {
       trans:transRef,
@@ -60,7 +62,8 @@ export class PaymentController {
       code:respCode,
       message:respMessage,
     }
-    
+    */
+    return this.paymentService.payCallback(req.body)
   }
 
 
