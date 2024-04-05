@@ -22,7 +22,12 @@ export class PaymentController {
   @Post("create")
   async create(@Body() createPaymentDto: CreatePaymentDto) {
     return await this.paymentService.create(createPaymentDto);
-  }/*
+  }
+  @Post("pay/:id")
+  async pay(@Param("id") paymentId:string){
+    return await this.paymentService.Pay(paymentId);
+  }
+  /*
   @Get("employee")
   async employee_all(@Request() req){
     return await this.offerService.employee_all(req.user.id);
