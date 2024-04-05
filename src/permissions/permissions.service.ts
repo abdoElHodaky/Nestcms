@@ -14,4 +14,8 @@ export class PermissionService {
   async findMany_Id(_ids:string[]):Promise<Permission[]>{
     return await this.permModel.find().where('_id').in(_ids).exec()
   }
+
+/*  async findModel_forUId(model:string,uid:string):Promise<Permission>{
+     return await this.permModel.find({onModel:model,for:uid}).exec()
+  } */
 }
