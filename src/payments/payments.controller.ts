@@ -25,7 +25,8 @@ export class PaymentController {
   }
   @Post("pay/:id")
   async pay(@Param("id") paymentId:string,@Request() req){
-    return await this.paymentService.Pay(paymentId,{callback:req.baseUrl+req.path+"/callback",return:req.baseUrl+req.path+"/return"});
+    const url =`${req.baseUrl}${req.path}`
+    return await this.paymentService.Pay(paymentId,{callback:url+"/callback",return:url+"/return"});
   }
   @ApiExcludeEndpoint()
   @Post("pay/callback")
