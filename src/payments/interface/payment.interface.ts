@@ -16,8 +16,9 @@ export class Payment implements _Payment {
     return [this._id,this.amount,this.currency,this.content]
    }
   static toArrayP(arrp:Payment[]){
-    let arr=arrp.map(p=>{
-      return {`Pay_${p._id}`:[p._id,p.amount,p.currency,p.content]}
+    let arr=arrp.map((p,i)=>{
+      let v=`Pay_${p._id}`;
+      return {v:[p._id,p.amount,p.currency,p.content]}
     })
     return arr
     
