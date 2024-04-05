@@ -16,23 +16,23 @@ class PayTabsService{
       await paytabs.config(profile,serverk,region)
     }
    async createPage(payment:Payment,urls:{}):Promise<any>{
-    let res={};
+    let res;
     let client=payment.client
     let clientinfo=await client.toArrayP()
     let paymentinfo=await payment.toArrayP()
-    let urls=[urls.callback,urls.return]
+    let _urls=[urls.callback,urls.return]
     await paytabs.createPaymentPage(['all'],['sale','ecom'],paymentinfo,
     clientinfo,clientinfo,
-    "AR",urls,(result)=>{
+    "AR",_urls,(result)=>{
        res=result
      })
      return  res.redirect_url
      
    }
-  async payPageCallback(result:{}){
+  async payPageCallback(result:any){
     return result
   }
-  async payPageReturn(result:{}){
+  async payPageReturn(result:any){
     return result
   }
 }
