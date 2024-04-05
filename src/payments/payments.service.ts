@@ -52,7 +52,7 @@ export class PaymentService {
     payment.contract=contract
     return await payment.save()
   }
-  async Pay(paymentId:string,urls:any):Promise<any>{
+  async Pay(paymentId:string,urls:{callback:string,return:string}):Promise<any>{
      let payment=await this.find_Id(paymentId)
     return await this.payTabService.createPage(payment,urls)
   }
