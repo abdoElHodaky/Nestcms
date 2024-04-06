@@ -4,7 +4,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { ProjectService } from "./projects.service";
 import { NoteService } from "../notes/notes.service";
 import { CreateNoteDto } from "../notes/dto/create-note.dto";
-import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
+import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger";
 @ApiBearerAuth('JWTAuthorization')
 //@ApiSecurity("bearer")
 @ApiTags("Project.Note")
@@ -13,12 +13,15 @@ import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 export class NoteController {
   private noteService:NoteService;
   constructor(private readonly projectService: ProjectService) {}
+  
   @Post("add")
+  @ApiOperation({description:" add note for specific project "})
   async create(@Body() createNoteDto: CreateNoteDto) {
     return this.noteService.create(createNoteDto);
   }
   
   @Get("")
+  @ApiOperation({description:" get notes of specific project "})
   async findAll(@Param("id") id:string){
    // return this.scheduleService.all(req.user.id);
    return this.projectService.notes(id)
