@@ -2,7 +2,7 @@ import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGua
 import { AuthGuard } from '@nestjs/passport';
 import { CreateProjectScheduleDto } from './dto/create-project-schedule.dto';
 import { ScheduleProjectService } from './schedules-projects.service';
-import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
+import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger";
 //import { CurrentUserInterceptor } from '../currentuser.interceptor';
 //import { UpdateArticleDto } from './dto/update-article.dto';
 //@UseInterceptors(CurrentUserInterceptor)
@@ -13,6 +13,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 export class ScheduleProjectController {
   constructor(private readonly scheduleService: ScheduleProjectService) {}
   @Post("create")
+  @ApiOperation({description:"create schedule for specific project"})
   async create(@Body() createScheduleProjectDto: CreateProjectScheduleDto) {
     return this.scheduleService.create(createScheduleProjectDto);
   }
