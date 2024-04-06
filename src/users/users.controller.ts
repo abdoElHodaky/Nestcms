@@ -14,6 +14,7 @@ export class UsersController {
   }*/
   @ApiBearerAuth('JWTAuthorization')
   @UseGuards(AuthGuard('jwt'))
+  @ApiOperation({description:" specific user"})
   @Get('me')
   getProfile(@Request() req) {
     // As we use the JWT guard on this method,
@@ -23,6 +24,7 @@ export class UsersController {
   }
   @ApiBearerAuth('JWTAuthorization')
   @UseGuards(AuthGuard('jwt'))
+  @ApiOperation({description:" permissions of specific user"})
   @Get('permissions')
   async getPermission(@Request() req) {
    return this.usersService.my_Permissions(req.user._id)
@@ -31,6 +33,7 @@ export class UsersController {
 
   @ApiBearerAuth('JWTAuthorization')
   @UseGuards(AuthGuard('jwt'))
+  @ApiOperation({description:" projects of specific user"})
   @Get("projects")
   async getProjects(@Request() req){
     return this.usersService.my_Projects(req.user._id)
