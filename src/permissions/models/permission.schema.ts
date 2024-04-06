@@ -26,7 +26,7 @@ export const PermissionSchema = new mongoose.Schema({
   onModel: {
     type: String,
     required: true,
-    enum: ['Project', 'ProjectSchedule']
+    enum: ['Project', 'ProjectSchedule',"Permission"]
   }
 
 },{timestamps:true});
