@@ -11,15 +11,15 @@ import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger"
 export class DesignController {
   constructor(private readonly projectService: ProjectService) {}
  
-  @ApiOperation({description:" add designs of specific project "})
   @Post("add")
+  @ApiOperation({description:" add designs of specific project "})
   async create(@Body() createDesignDto: CreateDesignDto,@Param("id") id:string) {
     return this.projectService.addDesign(id,createDesignDto);
   }
 
  
-  @ApiOperation({description:" designs of specific project "})
   @Get("")
+  @ApiOperation({description:" designs of specific project "})
   async findAll(@Param("id") id:string){
    // return this.scheduleService.all(req.user.id);
    return this.projectService.designs(id)
