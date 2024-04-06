@@ -13,13 +13,13 @@ import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger"
 export class ContractController {
   constructor(private readonly contractService: ContractService) {}
   
-  @ApiOpetation({description:"create contract for specific client"})
+  @ApiOperation({description:"create contract for specific client"})
   @Post("create")
   async create(@Body() createContractDto: CreateContractDto) {
     return await this.contractService.create(createContractDto);
   }
   
-  @ApiOpetation({description:"get contract of specific employee"})
+  @ApiOperation({description:"get contract of specific employee"})
   @Get("employee")
   async employee_all(@Request() req){
     return await this.contractService.employee_all(req.user.id);
