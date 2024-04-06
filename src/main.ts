@@ -6,7 +6,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 const options = new DocumentBuilder()
     .setTitle('nestcmsapi')
-    .setDescription('')
+    .setDescription('Api for Construction company workflow')
     .setVersion('1.0')
    /* .addBasicAuth()*/
     .addBearerAuth(
