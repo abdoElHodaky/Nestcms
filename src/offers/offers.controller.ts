@@ -4,7 +4,7 @@ import { CreateOfferDto } from './dto/create-offer.dto';
 import { AcceptOfferDto } from './dto/accept-offer.dto';
 import { OfferLinkToContractDto } from "./dto/link-contract.dto";
 import { OfferService } from './offers.service';
-import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
+import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger";
 //import { CurrentUserInterceptor } from '../currentuser.interceptor';
 //import { UpdateArticleDto } from './dto/update-article.dto';
 //@UseInterceptors(CurrentUserInterceptor)
@@ -15,18 +15,25 @@ import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 export class OfferController {
   constructor(private readonly offerService: OfferService) {}
   @Post("create")
+  @ApiOperation({description:"create offer"})
   async create(@Body() createOfferDto: CreateOfferDto) {
     return await this.offerService.create(createOfferDto);
   }
+  
   @Get("employee")
+  @ApiOperation({description:"get all employee of specific offer"})
   async employee_all(@Request() req){
     return await this.offerService.employee_all(req.user.id);
   }
+  
   @Post("accept")
+  @ApiOperation({description:"accept offer by specific user"})
   async employee_accept(@Body() acceptOfferDto:AcceptOfferDto){
     return await this.offerService.accept(acceptOfferDto)
   }
+  
   @Post("contract")
+  @ApiOperation({description:"link contract for offer"})
   async linkContract(@Body() offerLinkToContractDto:OfferLinkToContractDto){
     return await this.offerService.LinkContract(offerLinkToContractDto);
   }
