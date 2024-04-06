@@ -13,7 +13,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger"
 export class ContractController {
   constructor(private readonly contractService: ContractService) {}
   
-  @ApiOperation({description:"create contract for specific client"})
+  @ApiOperation({description:"create contract for specific client from specific offer"})
   @Post("create")
   async create(@Body() createContractDto: CreateContractDto) {
     return await this.contractService.create(createContractDto);
