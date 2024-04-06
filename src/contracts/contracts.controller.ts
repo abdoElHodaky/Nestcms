@@ -2,7 +2,7 @@ import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGua
 import { AuthGuard } from '@nestjs/passport';
 import { CreateContractDto } from './dto/create-contract.dto';
 import { ContractService } from './contracts.service';
-import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
+import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger";
 //import { CurrentUserInterceptor } from '../currentuser.interceptor';
 //import { UpdateArticleDto } from './dto/update-article.dto';
 //@UseInterceptors(CurrentUserInterceptor)
@@ -12,10 +12,14 @@ import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 @Controller("api/contracts")
 export class ContractController {
   constructor(private readonly contractService: ContractService) {}
+  
+  @ApiOpetation({description:"create contract for specific client"})
   @Post("create")
   async create(@Body() createContractDto: CreateContractDto) {
     return await this.contractService.create(createContractDto);
   }
+  
+  @ApiOpetation({description:"get contract of specific employee"})
   @Get("employee")
   async employee_all(@Request() req){
     return await this.contractService.employee_all(req.user.id);
