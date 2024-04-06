@@ -4,7 +4,7 @@ import { CreatePaymentDto } from './dto/create-payment.dto';
 //import { AcceptOfferDto } from './dto/accept-offer.dto';
 import { PaymentLinkToContractDto } from "./dto/link-contract.dto";
 import { PaymentService } from './payments.service';
-import { ApiTags,ApiSecurity,ApiBearerAuth,ApiExcludeEndpoint } from "@nestjs/swagger";
+import { ApiTags,ApiSecurity,ApiBearerAuth,ApiExcludeEndpoint,ApiOperation } from "@nestjs/swagger";
 //import { CurrentUserInterceptor } from '../currentuser.interceptor';
 //import { UpdateArticleDto } from './dto/update-article.dto';
 //@UseInterceptors(CurrentUserInterceptor)
@@ -18,12 +18,16 @@ export class PaymentController {
   @ApiBearerAuth('JWTAuthorization')
   @UseGuards(AuthGuard('jwt'))
   @Get()
+  @ApiOperation({description:"get all payments"})
   async All() {
     return this.paymentService.All();
   }
+
+  
   @ApiBearerAuth('JWTAuthorization')
   @UseGuards(AuthGuard('jwt'))
   @Post("create")
+  @ApiOperation({description:"create payment"})
   async create(@Body() createPaymentDto: CreatePaymentDto) {
     return await this.paymentService.create(createPaymentDto);
   }
@@ -31,6 +35,7 @@ export class PaymentController {
   @ApiBearerAuth('JWTAuthorization')
   @UseGuards(AuthGuard('jwt'))
   @Get("pay/:id")
+  @ApiOperation({description:"Process payment"})
   async pay(@Param("id") paymentId:string,@Request() req){
     const url =`${req.baseUrl}${req.path}`
     return await this.paymentService.Pay(paymentId,{callback:url+"/callback",return:url+"/return"});
@@ -38,6 +43,7 @@ export class PaymentController {
   
   //@Res({passthrough:true})
   @Post("pay/callback")
+  @ApiOperation({description:"callback for payments"})
   async payCallback(@Request() req:Request){
     let res=await this.paymentService.payCallback(req.body)
     let rp=await this.paymentService.verify(res.transR,res.paymentId)
@@ -54,6 +60,7 @@ export class PaymentController {
   
   //@Res({passthrough:true})
   @Post("pay/return")
+  @ApiOperation({description:"return of payments"})
   async payReturn(@Request() req:Request){
     
     let res=await this.paymentService.payCallback(req.body)
