@@ -11,22 +11,22 @@ import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger"
 export class ProjectController {
   constructor(private readonly projectService: ProjectService) {}
  
-  @ApiOperation({description:" add project  "})
   @Post("")
+  @ApiOperation({description:" add project  "})
   async create(@Body() createProjectDto: CreateProjectDto) {
    return this.projectService.create(createProjectDto);
    
   }
 
-  @ApiOperation({description:" get projects of specific employee  "})
   @Get("")
+  @ApiOperation({description:" get projects of specific employee  "})
   async findAll(@Request() req){
    // return this.scheduleService.all(req.user.id);
     return
   }
   
-  @ApiOperation({description:" link project to contract "})
   @Post("contract")
+  @ApiOperation({description:" link project to contract "})
   async link_contract(@Body() projectLinkToContractDto:ProjectLinkToContractDto){
     return this.projectService.LinkContract(projectLinkToContractDto)
   }
