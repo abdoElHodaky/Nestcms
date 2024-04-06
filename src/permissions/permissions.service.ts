@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Model,Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Permission } from './permission.interface';
-import { CreatePermissionDto } from "./dto-create-permission.dto";
+import { CreatePermissionDto } from "./dto/create-permission.dto";
 @Injectable()
 export class PermissionService {
   constructor(@InjectModel('Permission') private readonly permModel: Model<Permission>) {}
