@@ -1,13 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { Model,Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-//import { Permission } from './interface/permission.interface';
-
+import { Permission } from './permission.interface';
+import { CreatePermissionDto } from "./dto-create-permission.dto";
 @Injectable()
 export class PermissionService {
- // constructor(@InjectModel('Permission') private readonly permModel: Model<Permission>) {}
+  constructor(@InjectModel('Permission') private readonly permModel: Model<Permission>) {}
 
-  /*async find_Id(_id: string): Promise<Permission> {
+  async create(createPermission :CreatePermissionDto):Promise<Permission>{
+   
+  }
+  async find_Id(_id: string): Promise<Permission> {
     return await this.permModel.findById(_id).exec();
   }
 
