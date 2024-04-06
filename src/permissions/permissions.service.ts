@@ -7,8 +7,8 @@ import { CreatePermissionDto } from "./dto/create-permission.dto";
 export class PermissionService {
   constructor(@InjectModel('Permission') private readonly permModel: Model<Permission>) {}
 
-  async create(createPermission :CreatePermissionDto):Promise<Permission>{
-   
+  async create(createPermission :CreatePermissionDto):Promise<Permission|void>{
+    return
   }
   async find_Id(_id: string): Promise<Permission> {
     return await this.permModel.findById(_id).exec();
