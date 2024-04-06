@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-
+//import { User,Admin } from "../../users/interfaces/user";
 export class CreatePermissionDto {
   @ApiProperty()
   readonly type: string;
@@ -11,12 +11,12 @@ export class CreatePermissionDto {
   readonly endDate:string;
   
    @ApiPropertyOptional()
-  readonly _by?:{};
+    readonly _byId?:string;
   
    @ApiPropertyOptional()
-  readonly _for?:{};
+    readonly _forId:string;
   
    @ApiPropertyOptional()
-   readonly on?:{}
+   readonly onType?:string
 
 }
