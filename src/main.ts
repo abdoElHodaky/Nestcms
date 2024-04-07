@@ -30,7 +30,7 @@ const options = new DocumentBuilder()
     .addTag('Project.Step'," project steps endpoints")
     .addTag('Project.Design',"designs endpoints of specific project")
     .build();
-
+app.get("/",(req,res)=>{res.redirect("docs")})
 const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('docs', app, document);
   app.enableCors();
