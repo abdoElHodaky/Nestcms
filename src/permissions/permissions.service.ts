@@ -8,7 +8,8 @@ export class PermissionService {
   constructor(@InjectModel('Permission') private readonly permModel: Model<Permission>) {}
 
   async create(createPermission :CreatePermissionDto):Promise<Permission|void>{
-    return
+    let perm=new this.permModel(createPermission)
+    return await perm.save()
   }
   async find_Id(_id: string): Promise<Permission> {
     return await this.permModel.findById(_id).exec();
