@@ -1,5 +1,6 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request ,Res } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { PermGuard } from "../perm.guard";
 import { CreatePermissiontDto } from './dto/create-permission.dto';
 import { PermissionService } from './permissions.service';
 import { ApiTags,ApiSecurity,ApiBearerAuth,ApiExcludeEndpoint,ApiOperation } from "@nestjs/swagger";
@@ -23,7 +24,7 @@ export class PermissionController {
 
   
   @ApiBearerAuth('JWTAuthorization')
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(AuthGuard('jwt'),PermGuard({}))
   @Post("create")
   @ApiOperation({description:"create permission"})
   async create(@Body() createPermissiontDto: CreatePermissiontDto) {
