@@ -2,8 +2,8 @@ import {NestInterceptor,ExecutionContext,CallHandler,Injectable,CanActivate } fr
 import { Reflector } from "@nestjs/core";
 import { UsersService } from './users/users.service';
 import { Permissions } from "./permissions/permissions-models.decorator";
+
 @Injectable()
-// "implements" guide us how to put together an interceptor
 export class PermGuard implements CanActivate {
   constructor(private userService: UsersService, private reflector:Reflector ) {}
   // handler refers to the route handler
