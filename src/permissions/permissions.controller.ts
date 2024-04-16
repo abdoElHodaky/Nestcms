@@ -19,12 +19,13 @@ export class PermissionController {
   @Get()
   @ApiOperation({description:"get all permissions"})
   async All() {
-    return this.permissionService.All();
+  //  return this.permissionService.All();
   }
 
   
   @ApiBearerAuth('JWTAuthorization')
-  @UseGuards(AuthGuard('jwt'),PermGuard({_perms:["Write"],_models:["Permission"]}))
+  @PermGuard({_perms:["Write"],_models:["Permission"]})
+  @UseGuards(AuthGuard('jwt'),PermGuard)
   @Post("create")
   @ApiOperation({description:"create permission"})
   async create(@Body() createPermissionDto: CreatePermissionDto) {
