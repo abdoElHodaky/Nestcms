@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request ,Res } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { PermGuard } from "../perm.guard";
-import { CreatePermissiontDto } from './dto/create-permission.dto';
+import { CreatePermissionDto } from './dto/create-permission.dto';
 import { PermissionService } from './permissions.service';
 import { ApiTags,ApiSecurity,ApiBearerAuth,ApiExcludeEndpoint,ApiOperation } from "@nestjs/swagger";
 //import { CurrentUserInterceptor } from '../currentuser.interceptor';
@@ -27,8 +27,8 @@ export class PermissionController {
   @UseGuards(AuthGuard('jwt'),PermGuard({_perms:["Write"],_models:["Permission"]}))
   @Post("create")
   @ApiOperation({description:"create permission"})
-  async create(@Body() createPermissiontDto: CreatePermissiontDto) {
-    return await this.permissionService.create(createPermissiontDto);
+  async create(@Body() createPermissionDto: CreatePermissionDto) {
+    return await this.permissionService.create(createPermissionDto);
   }
   
   
