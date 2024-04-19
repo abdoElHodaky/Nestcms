@@ -37,7 +37,7 @@ export class PaymentController {
   @Get("pay/:id")
   @ApiOperation({description:"Process payment"})
   async pay(@Param("id") paymentId:string,@Request() req){
-    const url =`${req.baseUrl}${req.path}`
+    const url =`${req.baseUrl}/pay`
     return await this.paymentService.Pay(paymentId,{callback:url+"/callback",return:url+"/return"});
   }
   
