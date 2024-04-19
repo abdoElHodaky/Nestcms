@@ -9,7 +9,7 @@ import { NotesModule } from "./notes/notes.module";
 import { PermissionsModule } from "./permissions/permissions.module";
 
 
-const modules=[PermissionsModule,AuthModule,
+export const modules=[PermissionsModule,AuthModule,
                UsersModule,SchedulesModule,
                ProjectsModule,OffersModule,
                NotesModule]
