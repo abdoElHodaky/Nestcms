@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { PermissionService } from './permissions.service';
 import { APP_GUARD } from '@nestjs/core';
-import { APP_GUARD } from '@nestjs/core';
+//import { APP_GUARD } from '@nestjs/core';
 import { PermGuard} from "../perm.guard";
 import { MongooseModule } from '@nestjs/mongoose';
 import { PermissionSchema } from './models/permission.schema';
@@ -11,7 +11,7 @@ import { PermissionSchema } from './models/permission.schema';
     provide:APP_GUARD,
     useClass:PermGuard
   }],
-  exports: [PermissionService],
+  exports: [PermissionService,PermGuard],
   controllers: [],
 })
 export class PermissionsModule {}
