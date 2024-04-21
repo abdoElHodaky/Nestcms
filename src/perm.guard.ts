@@ -5,9 +5,11 @@ import { Permissions } from "./permissions/permissions-models.decorator";
 
 @Injectable()
 export class PermGuard implements CanActivate {
-  private userService: UsersService
-  private reflector?:Reflector
-  constructor(//private userService: UsersService, private reflector?:Reflector
+ // private userService: UsersService
+ // private reflector?:Reflector
+  constructor(
+              private userService: UsersService,
+              private reflector:Reflector
   ) {}
   // handler refers to the route handler
   canActivate(
