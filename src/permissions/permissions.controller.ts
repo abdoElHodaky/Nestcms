@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request ,Res } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { Permissions } from "../permissions-models.decorator";
+import { Permissions } from "./permissions-models.decorator";
 import { CreatePermissionDto } from './dto/create-permission.dto';
 import { PermissionService } from './permissions.service';
 import { ApiTags,ApiSecurity,ApiBearerAuth,ApiExcludeEndpoint,ApiOperation } from "@nestjs/swagger";
