@@ -9,5 +9,6 @@ export enum OnModel {
   PAYMENT="Payment",
   PROJECT="Project",
   SCHEDULE="Schedule",
-  PROJECTSECHEDULE="ProjectSchedule"
+  PROJECTSECHEDULE="ProjectSchedule",
+  PERMISSION="Permission"
 }
