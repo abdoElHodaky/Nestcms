@@ -17,8 +17,8 @@ export class ContractService {
     const {clientId,employeeId,offerId,...rest}=createContractDto
     const [client,employee]=await this.userService.findMany_Id([clientId,employeeId])
     const createdContract = new this.contractModel(rest);
-    createdContract.client=client
-    createdContract.employee=employee
+    createdContract.client=new Types.ObjectId(client._id)
+    createdContract.employee=new Types.ObjectId(employee._id)
     if (offerId!=""){
       return await this.createFrom_Offer(offerId,createdContract);
     }
