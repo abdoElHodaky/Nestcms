@@ -25,7 +25,7 @@ export class OfferService {
     const client = await this.userService.find_Id(clientId)
     const offer= await this.offerModel.findById(offerId).exec()
     offer.status=status
-    offer.client=client
+    offer.client=new Types.ObjectId(client._id)
     return await offer.save()
   }
   async employee_all(uid:string):Promise<Offer[]>{
