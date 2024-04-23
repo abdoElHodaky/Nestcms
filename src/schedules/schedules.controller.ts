@@ -1,5 +1,10 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+
+import { PermGuard } from "../perm.guard";
+import { Permissions } from "../permissions-models.decorator";
+import { Perm , OnModel } from '../permissions-models.enum';
+
 import { CreateScheduleDto } from './dto/create-schedule.dto';
 import { ScheduleService } from './schedules.service';
 import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger";
@@ -8,11 +13,13 @@ import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger"
 //@UseInterceptors(CurrentUserInterceptor)
 @ApiBearerAuth('JWTAuthorization')
 @ApiTags("Schedule")
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt')) 
 @Controller("api/schedules")
 export class ScheduleController {
   constructor(private readonly scheduleService: ScheduleService) {}
   
+  @Permissions({perms:[Perms.WRITE],models:[OnModel.SCHEDULE]})
+  @UseGuards(PermGuard)
   @Post("create")
   @ApiOperation({description:"create schedule for specific client"})
   async create(@Body() createScheduleDto: CreateScheduleDto) {
