@@ -19,7 +19,7 @@ export class PaymentService {
     let linkcontract:PaymentLinkToContractDto
     const contract=await this.contractService.find_Id(contractId)
     const createdPayment = new this.paymModel(rest);
-    createdPayment.client=contract.client
+    createdPayment.client=new Types.ObjectId(contract.client._id)
     await createdPayment.save();
     linkcontract={paymentId:createdPayment._id,contractId:contractId}
     return await this.LinkContract(linkcontract)
