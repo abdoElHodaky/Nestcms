@@ -1,4 +1,4 @@
-export enum Perm{
+export enum Perms{
     APPROVE = 'Approve',
     READ = 'Read',
     WRITE = 'Write',
