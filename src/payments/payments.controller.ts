@@ -1,5 +1,6 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request ,Res } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { PermGuard } from "../perm.guard";
 import { CreatePaymentDto } from './dto/create-payment.dto';
 import { Permission , OnModel } from '../permissions/permissions-models.enum';
 import { PaymentLinkToContractDto } from "./dto/link-contract.dto";
@@ -75,7 +76,13 @@ export class PaymentController {
      return rp
     }
 
-    
+  @ApiBearerAuth('JWTAuthorization')
+  @Permissions({perms:[Perms.Read],models:[OnModel.PAYMENT]})
+  @UseGuards(AuthGuard('jwt'),PermGuard)
+  @Get("/:userId")
+  async ofUser(@Param("userId") userId:string){
+    return userId
+  }
 
   
 
