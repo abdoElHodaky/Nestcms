@@ -81,7 +81,7 @@ export class PaymentController {
   @UseGuards(AuthGuard('jwt'),PermGuard)
   @Get("/:userId")
   async ofUser(@Param("userId") userId:string){
-    return userId
+    return this.paymentService.ofUser(userId)
   }
 
   
