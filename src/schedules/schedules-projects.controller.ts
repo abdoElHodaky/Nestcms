@@ -1,5 +1,10 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+
+import { PermGuard } from "../perm.guard";
+import { Permissions } from "../permissions-models.decorator";
+import { Perm , OnModel } from '../permissions-models.enum';
+
 import { CreateProjectScheduleDto } from './dto/create-project-schedule.dto';
 import { ScheduleProjectService } from './schedules-projects.service';
 import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger";
@@ -12,6 +17,9 @@ import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger"
 @Controller("api/schedules/projects")
 export class ScheduleProjectController {
   constructor(private readonly scheduleService: ScheduleProjectService) {}
+   
+  @Permissions({perms:[Perms.WRITE],models:[OnModel.SCHEDULE]})
+  @UseGuards(PermGuard)
   @Post("create")
   @ApiOperation({description:"create schedule for specific project"})
   async create(@Body() createScheduleProjectDto: CreateProjectScheduleDto) {
