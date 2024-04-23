@@ -21,6 +21,7 @@ export class PermissionService {
   async grant(_id:string,userId:string):Promise<Permsission>{
     let perm= await this.permModel.findById(_id).exec()
     perm.for=new Types.ObjectId(userId)
+    perm.status="granted"
     return await perm.save()
     
   }
