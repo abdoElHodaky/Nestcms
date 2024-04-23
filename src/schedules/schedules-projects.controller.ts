@@ -18,7 +18,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger"
 export class ScheduleProjectController {
   constructor(private readonly scheduleService: ScheduleProjectService) {}
    
-  @Permissions({perms:[Perms.WRITE],models:[OnModel.SCHEDULE]})
+  @Permissions({perms:[Perms.WRITE],models:[OnModel.PROJECTSECHEDULE]})
   @UseGuards(PermGuard)
   @Post("create")
   @ApiOperation({description:"create schedule for specific project"})
