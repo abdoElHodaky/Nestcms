@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request ,Res } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { CreatePaymentDto } from './dto/create-payment.dto';
-//import { AcceptOfferDto } from './dto/accept-offer.dto';
+import { Permission , OnModel } from '../permissions/permissions-models.enum';
 import { PaymentLinkToContractDto } from "./dto/link-contract.dto";
 import { PaymentService } from './payments.service';
 import { ApiTags,ApiSecurity,ApiBearerAuth,ApiExcludeEndpoint,ApiOperation } from "@nestjs/swagger";
@@ -75,6 +75,7 @@ export class PaymentController {
      return rp
     }
 
+    
 
   
 
