@@ -18,8 +18,8 @@ export class ScheduleService {
     const [client,employee]=await this.userService.findMany_Id([clientId,employeeId])
     //const employee = await this.userService.find_Id(createScheduleDto.employeeId)
     const createdSchedule = new this.scheduleModel(rest);
-    createdSchedule.client=client;
-    createdSchedule.employee=employee;
+    createdSchedule.client=new Types.ObjectId(client._id);
+    createdSchedule.employee=new Types.ObjectId(employee._id);
     return await createdSchedule.save();
   }
   async all(uid:string):Promise<Schedule[]>{
