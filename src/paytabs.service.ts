@@ -11,9 +11,10 @@ export class PayTabService{
       }
     return arr;
    }
-   async config(profile:string,serverk:string,region:string):Promise<any>
+   async start():Promise<any>
     {
-      await paytabs.config(profile,serverk,region)
+      const {PAYTABS_PROFILE,PAYTABS_SERVERK,PAYTABS_REGION}=process.env
+      await paytabs.setConfig(PAYTABS_PROFILE,PAYTABS_SERVERK,PAYTABS_REGION)
     }
    async createPage(payment:Payment,urls:any):Promise<any>{
     let res;
