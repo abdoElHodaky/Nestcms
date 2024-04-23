@@ -19,12 +19,13 @@ export class PermissionService {
     return await this.permModel.find().where('_id').in(_ids).exec()
   }
   async grant(_id:string,userId:string):Promise<Permsission>{
-    let perm= await this.permModel.findById(_id)
+    let perm= await this.permModel.findById(_id).exec()
     perm.for=new Types.ObjectId(userId)
     perm.status="granted"
     return await perm.save()
     
   }
+  
 
 /*  async findModel_forUId(model:string,uid:string):Promise<Permission>{
      return await this.permModel.find({onModel:model,for:uid}).exec()
