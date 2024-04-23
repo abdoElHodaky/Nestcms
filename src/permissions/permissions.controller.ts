@@ -26,7 +26,7 @@ export class PermissionController {
 
   
   @ApiBearerAuth('JWTAuthorization')
-  @Permissions({perms:[Perms.WRITE],models:[Perms.PERMISSION]})
+  @Permissions({perms:[Perms.WRITE],models:[OnModel.PERMISSION]})
   @UseGuards(AuthGuard('jwt'),PermGuard)
   @Post("create")
   @ApiOperation({description:"create permission"})
