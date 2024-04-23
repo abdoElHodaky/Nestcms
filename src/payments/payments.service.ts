@@ -77,6 +77,12 @@ export class PaymentService {
   async payCallback(result:any):Promise<any>{
     return await this.payTabService.payCallback(result)
   }
+
+  async ofUser(userId:string):Promise<Payment[]>{
+    return await this.paymModel.find().where({
+      client:new Types.ObjectId(userId)
+    }).exec()
+  }
 /*
   async findOne(email: string): Promise<User> {
     return await this.userModel.findOne({ email }, '-__v').exec();
