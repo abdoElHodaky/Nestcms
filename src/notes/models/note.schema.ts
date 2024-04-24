@@ -1,6 +1,7 @@
-import * as mongoose from 'mongoose';
-
-export const NoteSchema = new mongoose.Schema({
+import { SchemaFactory } from "@nestjs/mongoose";
+import { HydratedDocument } from "mongoose";
+import { Note } from "../interface/note.interface";
+/*export const NoteSchema = new mongoose.Schema({
   type:String,
   status:{
     type:String,
@@ -18,4 +19,8 @@ export const NoteSchema = new mongoose.Schema({
   },
   author:{ type:mongoose.Schema.Types.ObjectId,ref:"User"}
 
-},{timestamps:true});
+},{timestamps:true});*/
+
+export const NoteSchema = SchemaFactory.createForClass(Note,{
+  timestamps:true
+});
