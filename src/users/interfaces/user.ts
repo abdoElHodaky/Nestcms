@@ -27,7 +27,9 @@ import { HydratedDocument } from "mongoose";
   }
 }*/
 export type UserDocument = HydratedDocument<User>
-
+export type ClientDocument = HydratedDocument<Client>
+export type EmployeeDocument = HydratedDocument<Employee>
+export type AdminDocument = HydratedDocument<Admin>
 
 @Schema({
     toJSON:{
@@ -81,19 +83,52 @@ export class User{
     obj_invoices: [Invoice]*/
 }
 
+@Schema({
+    toJSON:{
+        versionKey: false,
+    },
+    toObject:{
+        versionKey: false,
+    }
+})
 export class Employee extends User {
+  @Prop()
   isEmployee?:boolean=true;
+  @Prop()
   employeeType?:string;
 }
 
+@Schema({
+    toJSON:{
+        versionKey: false,
+    },
+    toObject:{
+        versionKey: false,
+    }
+})
 export class Client extends User {
+  @Prop()
   readonly isEmployee?:boolean=false
+  @Prop()
   readonly isAdmin?:boolean=false
+  @Prop()
   readonly employeeType?:string=""
+  @Prop()
   readonly adminType?:string=""
 }
 
+@Schema({
+    toJSON:{
+        versionKey: false,
+    },
+    toObject:{
+        versionKey: false,
+    }
+})
+  
 export class Admin extends User {
+  @Prop()
   isAdmin?:boolean=true;
+  @Prop()
   adminType?:string;
 }
