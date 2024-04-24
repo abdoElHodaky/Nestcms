@@ -1,7 +1,6 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import mongoose, { HydratedDocument } from "mongoose";
-
-export const ScheduleSchema = new mongoose.Schema({
+import {  SchemaFactory } from "@nestjs/mongoose";
+import { Schedule } from "../interface/schedule";
+/*export const ScheduleSchema = new mongoose.Schema({
   title: String,
   content: String,
   author: String,
@@ -10,4 +9,8 @@ export const ScheduleSchema = new mongoose.Schema({
   status:String,
   client: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   employee: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+});
+*/
+export const ScheduleSchema = SchemaFactory.createForClass(Schedule,{
+  timestamps:true
 });
