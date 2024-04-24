@@ -1,4 +1,5 @@
-import * as mongoose from 'mongoose';
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import mongoose, { HydratedDocument } from "mongoose";
 
 export const ScheduleSchema = new mongoose.Schema({
   title: String,
