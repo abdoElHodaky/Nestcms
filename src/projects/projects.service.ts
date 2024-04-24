@@ -55,7 +55,7 @@ export class ProjectService {
     const {projectId,contractId}=projectLinkToContractDto
     const project=await this.projectModel.findById(projectId)
     const contract=await this.contractService.find_Id(contractId)
-    project.contract=new Types.ObjectId(contract._id)
+    project.contract=contract
     return await project.save()
   }
   async designs(projectId:string):Promise<Design[]>{
@@ -114,7 +114,7 @@ export class ProjectService {
   }
   async employees(projectId:string):Promise<Employee>{
     const project = await this.projectModel.findById(projectId).exec()
-    return await this.userService.find_Id(project.employee?._id)
+    return await this.userService.find_Id(project.employee._id)
   }
   async find_Id(projectId:string):Promise<Project>{
     return await this.projectModel.findById(projectId)
