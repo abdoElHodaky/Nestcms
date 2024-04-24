@@ -1,5 +1,8 @@
-import * as mongoose from 'mongoose';
+import { SchemaFactory } from "@nestjs/mongoose";
+import { HydratedDocument } from "mongoose";
+import { Project } from "../interface/project";
 
+/*
 export const ProjectSchema = new mongoose.Schema({
   title: String,
   content: String,
@@ -12,4 +15,8 @@ export const ProjectSchema = new mongoose.Schema({
   designs:[{ type: mongoose.Schema.Types.ObjectId, ref:"Design"}],
   contract:{ type: mongoose.Schema.Types.ObjectId, ref: 'Contract'},
   steps:[{ type: mongoose.Schema.Types.ObjectId, ref: 'ProjectStep'}]
-},{timestamps:true});
+},{timestamps:true});*/
+
+export const ProjectSchema = SchemaFactory.createForClass(Project,{
+  timestamps:true
+});
