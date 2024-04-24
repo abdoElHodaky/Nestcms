@@ -17,7 +17,7 @@ export class NoteService {
     const {authorId,...rest}=createNoteDto
     const author=await this.userService.find_Id(authorId)
     const createdNote = new this.noteModel(rest);
-    createdNote.author=new Types.ObjectId(author._id)
+    createdNote.author=author
     return await createdNote.save();
   }
   
