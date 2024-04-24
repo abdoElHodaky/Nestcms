@@ -39,6 +39,7 @@ export class UsersController {
   @Get("projects")
   async getProjects(@Request() req){
     let user= this.usersService.my_Projects(req.user._id) as User
+    return user.projects
   }
 
 
