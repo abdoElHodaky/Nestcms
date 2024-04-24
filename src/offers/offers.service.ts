@@ -17,7 +17,7 @@ export class OfferService {
     const {employeeId,...rest}=createOfferDto
     const employee=await this.userService.find_Id(employeeId)
     const createdOffer = new this.offerModel(rest);
-    createdOffer.employee=Types.ObjectId(employee._id)
+    createdOffer.employee=employee
     return await createdOffer.save();
   }
   async accept(acceptOfferDto:AcceptOfferDto):Promise<Offer>{
@@ -25,7 +25,7 @@ export class OfferService {
     const client = await this.userService.find_Id(clientId)
     const offer= await this.offerModel.findById(offerId).exec()
     offer.status=status
-    offer.client=new Types.ObjectId(client._id)
+    offer.client=client
     return await offer.save()
   }
   async employee_all(uid:string):Promise<Offer[]>{
@@ -42,7 +42,7 @@ export class OfferService {
     const {offerId,contractId}=offerLinkToContractDto
     const offer=await this.offerModel.findById(offerId)
     const contract=await this.contractService.find_Id(contractId)
-    offer.contract=new Types.ObjectId(contract._id)
+    offer.contract=contract
     return await offer.save()
   }
 /*
