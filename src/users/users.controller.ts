@@ -2,6 +2,7 @@ import { Controller, Get, UseGuards, Post,Body, Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { User } from "./interfaces/user";
 import { ApiExcludeEndpoint , ApiBearerAuth , ApiTags , ApiOperation } from "@nestjs/swagger";
 @ApiTags("User")
 @Controller('users')
@@ -27,7 +28,8 @@ export class UsersController {
   @ApiOperation({description:" permissions of specific user"})
   @Get('permissions')
   async getPermission(@Request() req) {
-   return this.usersService.my_Permissions(req.user._id)
+   let user =this.usersService.my_Permissions(req.user._id) as User
+   return user.permissions
   }
 
 
@@ -36,7 +38,7 @@ export class UsersController {
   @ApiOperation({description:" projects of specific user"})
   @Get("projects")
   async getProjects(@Request() req){
-    return this.usersService.my_Projects(req.user._id)
+    let user= this.usersService.my_Projects(req.user._id) as User
   }
 
 
