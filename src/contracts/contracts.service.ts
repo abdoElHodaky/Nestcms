@@ -17,8 +17,8 @@ export class ContractService {
     const {clientId,employeeId,offerId,...rest}=createContractDto
     const [client,employee]=await this.userService.findMany_Id([clientId,employeeId])
     const createdContract = new this.contractModel(rest);
-    createdContract.client=new Types.ObjectId(client._id)
-    createdContract.employee=new Types.ObjectId(employee._id)
+    createdContract.client=client
+    createdContract.employee=employee
     if (offerId!=""){
       return await this.createFrom_Offer(offerId,createdContract);
     }
@@ -32,9 +32,9 @@ export class ContractService {
     const offer = await this.offerService.find_Id(offerId)
     if(offer.status="Accept_Client"){
     const createdContract = contract;
-    createdContract.offer=new Types.ObjectId(offer._id)
-    createdContract.client=new Types.ObjectId(offer.client._id)
-    createdContract.employee=new Types.ObjectId(offer.employee._id)
+    createdContract.offer=offer
+    createdContract.client=offer.client
+    createdContract.employee=offer.employee
     return await createdContract.save()}
     else{
       return contract
