@@ -1,6 +1,6 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { SchemaFactory } from "@nestjs/mongoose";
 import mongoose, { HydratedDocument } from "mongoose";
-
+import { User } from "../interfaces/user";
 /*export const UserSchema = new mongoose.Schema({
   email: String,
   password: String,
@@ -13,7 +13,7 @@ import mongoose, { HydratedDocument } from "mongoose";
   isAdmin:Boolean,
   employeeType:String,
   adminType:String
-},{timestamps:true});*/
+},{timestamps:true});
 
 export type UserDocument = HydratedDocument<User>
 
@@ -59,6 +59,6 @@ export class User{
         {type : mongoose.Types.ObjectId , ref: 'Invoice'}
     ]})
     obj_invoices: [Invoice]*/
-}
+//}
 
 export const UserSchema = SchemaFactory.createForClass(User);
