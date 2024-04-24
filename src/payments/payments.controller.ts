@@ -2,6 +2,7 @@ import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGua
 import { AuthGuard } from '@nestjs/passport';
 import { PermGuard } from "../perm.guard";
 import { CreatePaymentDto } from './dto/create-payment.dto';
+import { Permissions } from "../permissions/permissions-models.decorator";
 import { Perms, OnModel } from '../permissions/permissions-models.enum';
 import { PaymentLinkToContractDto } from "./dto/link-contract.dto";
 import { PaymentService } from './payments.service';
