@@ -1,6 +1,6 @@
 import { SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
-import { Payment } from "../interface/payment";
+import { Payment } from "../interface/payment.interface";
 
 /*export const PaymentSchema = new mongoose.Schema({
   title: String,
