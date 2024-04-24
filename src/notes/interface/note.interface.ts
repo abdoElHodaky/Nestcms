@@ -20,13 +20,13 @@ export class Note {
       enum:["seen","read"]
   })
   status:string;
-  @Prop({type:Types.ObjectId,refPath:"onType",required:true})
+  @Prop({type:Types.ObjectId,refPath:"onModel",required:true})
   onId:string;
   @Prop({type:String,
       required:true,
       enum: ['Project', 'Design']
   })
-  onType:string;
+  onModel:string;
   @Prop({type:Types.ObjectId,ref:"User"})
   author?:User
 }
