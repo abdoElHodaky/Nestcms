@@ -15,17 +15,28 @@ export type PermissionDocument = HydratedDocument<Permission>
 export class Permission {
   @Prop()
   _id:string;
-  @Prop()
+  @Prop({
+      type:String,
+      enum:["Approve","Read","Write","Modify"]
+  })
   type:string;
   @Prop()
   status:string
-  @Prop()
+  @Prop({type: mongoose.Schema.Types.ObjectId,ref:"User" })
   _by:Admin
-  @Prop()
+  @Prop({type: mongoose.Schema.Types.ObjectId,ref:"User" })
   _for:User
-  @Prop()
+  @Prop({type: mongoose.Schema.Types.ObjectId,
+       required: true,
+       refPath: 'onModel'
+  })
   onId:string;
-  @Prop()
+  @Prop({
+      type: String,
+    required: true,
+    enum: ['Project', 'ProjectSchedule',"Permission"]
+  
+  })
   onModel:string
 
 }
