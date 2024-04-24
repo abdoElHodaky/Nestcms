@@ -34,18 +34,22 @@ export class UsersService {
     return await createdUser.save();
   }
 
-  async findOne(email: string): Promise<User> {
+  async findOne(email: string): Promise<User|UserDocument> {
     return await this.userModel.findOne({ email }, '-__v').exec();
   }
 
-  async find_Id(_id: string): Promise<User> {
-    return await this.userModel.findById(_id).exec();
+  async find_Id(_id: string): Promise<User|UserDocument> {
+    let user=await this.userModel.findById(_id).exec();
+    if(user instanceof UserDocument) return user 
+    else return user
+
   }
 
-  async findMany_Id(_ids:string[]):Promise<User[]>{
-    return await this.userModel.find().where('_id').in(_ids).exec()
+  async findMany_Id(_ids:string[]):Promise<User[]|UserDocument[]>{
+    let users=await this.userModel.find().where('_id').in(_ids).exec()
+    return users
   }
-  async my_Permissions(_id:string):Promise<User[]>{
+  async my_Permissions(_id:string):Promise<User[]|UserDocument[]>{
     /*return await this.userModel.findById(_id).populate([
       {
         path:"permissions"
