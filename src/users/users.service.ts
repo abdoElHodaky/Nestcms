@@ -4,13 +4,13 @@ import { InjectModel } from '@nestjs/mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { CreateClientDto } from './dto/create-client.dto';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
-import { UserDocument } from './interfaces/user';
+import { UserDocument , User } from './interfaces/user';
 //import { Project } from "../projects/interface/project";
 @Injectable()
 export class UsersService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
-  async create(userType:string,createUserDto: CreateUserDto): Promise<UserDocument> {
+  async create(userType:string,createUserDto: CreateUserDto): Promise<User> {
    // let cudto=createUserDto
     let createdUser;
     switch (userType){
@@ -34,21 +34,21 @@ export class UsersService {
     return await createdUser.save();
   }
 
-  async findOne(email: string): Promise<UserDocument> {
+  async findOne(email: string): Promise<User> {
     return await this.userModel.findOne({ email }, '-__v').exec();
   }
 
-  async find_Id(_id: string): Promise<UserDocument> {
+  async find_Id(_id: string): Promise<User> {
     let user=await this.userModel.findById(_id).exec();
      return user 
 
   }
 
-  async findMany_Id(_ids:string[]):Promise<UserDocument[]>{
+  async findMany_Id(_ids:string[]):Promise<User[]>{
     let users=await this.userModel.find().where('_id').in(_ids).exec()
     return users
   }
-  async my_Permissions(_id:string):Promise<UserDocument>{
+  async my_Permissions(_id:string):Promise<User>{
     /*return await this.userModel.findById(_id).populate([
       {
         path:"permissions"
@@ -67,7 +67,7 @@ export class UsersService {
         ]);
     return userData[0]
   }
-  async my_Projects(uid:string):Promise<UserDocument>{
+  async my_Projects(uid:string):Promise<User>{
     const userData = await this.userModel.aggregate([
             { $match: { _id: new Types.ObjectId(uid) } },
             {
