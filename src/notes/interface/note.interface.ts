@@ -15,18 +15,17 @@ export type NoteDocument = HydratedDocument<Note>
 export class Note {
   @Prop()
   _id:string;
-  @Prop({type:{
+  @Prop({
       type:String,
       enum:["seen","read"]
-  }})
+  })
   status:string;
   @Prop({type:Types.ObjectId,refPath:"onType",required:true})
   onId:string;
-  @Prop({type:{
-      type:String,
+  @Prop({type:String,
       required:true,
       enum: ['Project', 'Design']
-  }})
+  })
   onType:string;
   @Prop({type:Types.ObjectId,ref:"User"})
   author?:User
