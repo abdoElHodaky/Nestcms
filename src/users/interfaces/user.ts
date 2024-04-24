@@ -55,13 +55,13 @@ export class User{
     @Prop()
     Address:string
     @Prop()
-    isEmployee:boolean
+    isEmployee?:boolean
     @Prop()
-    isAdmin:boolean
+    isAdmin?:boolean
     @Prop()
-    employeeType:string
+    employeeType?:string
     @Prop()
-    adminType:string
+    adminType?:string
     
    
    toArrayP(){
