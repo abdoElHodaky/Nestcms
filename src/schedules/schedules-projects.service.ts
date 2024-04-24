@@ -17,7 +17,7 @@ export class ScheduleProjectService {
     const {projectId,...rest}=createProjectScheduleDto
     const project=await this.projectService.find_Id(projectId)
     const createdSchedule=new this.model(rest);
-    createdSchedule.project=new Types.ObjectId(project._id)
+    createdSchedule.project=project
     return await createdSchedule.save()
   }
 
