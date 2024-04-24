@@ -1,6 +1,7 @@
-import * as mongoose from 'mongoose';
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import mongoose, { HydratedDocument } from "mongoose";
 
-export const UserSchema = new mongoose.Schema({
+/*export const UserSchema = new mongoose.Schema({
   email: String,
   password: String,
   username:String,
@@ -12,4 +13,50 @@ export const UserSchema = new mongoose.Schema({
   isAdmin:Boolean,
   employeeType:String,
   adminType:String
-},{timestamps:true});
+},{timestamps:true});*/
+
+export type UserDocument = HydratedDocument<User>
+
+@Schema({
+    toJSON:{
+        versionKey: false,
+    },
+    toObject:{
+        versionKey: false,
+    }
+})
+export class User{
+  
+    @Prop()
+    fullName: string
+    @Prop({unique:true})
+    username:string
+    @Prop({unique: true})
+    phone: string
+    @Prop()
+    email:string
+    @Prop()
+    passwordHash:string
+    @Prop()
+    Age:number
+    @Prop()
+    Address:string
+    @Prop()
+    isEmployee:boolean
+    @Prop()
+    isAdmin:boolean
+    @Prop()
+    employeeType:string
+    @Prop()
+    adminType:string
+    
+   
+
+    //Add one to many relation to InvoiceSchema
+    /*@Prop({type:[
+        {type : mongoose.Types.ObjectId , ref: 'Invoice'}
+    ]})
+    obj_invoices: [Invoice]*/
+}
+
+export const UserSchema = SchemaFactory.createForClass(User);
