@@ -36,7 +36,7 @@ export class User{
     @Prop()
     email:string
     @Prop()
-    passwordHash:string
+    password:string
     @Prop()
     Age:number
     @Prop()
