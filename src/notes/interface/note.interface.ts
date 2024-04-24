@@ -15,7 +15,10 @@ export type NoteDocument = HydratedDocument<Note>
 export class Note {
   @Prop()
   _id:string;
-  @Prop()
+  @Prop({type:{
+      type:String,
+      enum:["seen","read"]
+  }})
   status:string;
   @Prop()
   onId:string;
