@@ -30,13 +30,13 @@ export class Contract {
   status:string;
   @Prop()
   path:string;
-  @Prop({type:mongoose.Schema.Types.ObjectId,ref:"Offer"})
+  @Prop({type:{type:mongoose.Schema.Types.ObjectId,ref:"Offer"}})
   offer?:Offer;
-  @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
+  @Prop({type:{type:mongoose.Schema.Types.ObjectId,ref:"User"}})
   client?:Client;
-  @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
+  @Prop({type:{type:mongoose.Schema.Types.ObjectId,ref:"User"}})
   employee?:Employee;
-  @Prop([{type:mongoose.Schema.Types.ObjectId,ref:"Payment"}])
+  @Prop({type:{type:mongoose.Schema.Types.ObjectId,ref:"Payment"}})
   payments?:Payment[]
 
 }
