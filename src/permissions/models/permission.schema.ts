@@ -1,6 +1,7 @@
-import * as mongoose from 'mongoose';
+import { SchemaFactory } from "@nestjs/mongoose";
 
-export const PermissionSchema = new mongoose.Schema({
+
+/*export const PermissionSchema = new mongoose.Schema({
   type:{
     type:String,
     enum:["Approve","Read","Write","Modify"]
@@ -29,4 +30,6 @@ export const PermissionSchema = new mongoose.Schema({
     enum: ['Project', 'ProjectSchedule',"Permission"]
   }
 
-},{timestamps:true});
+},{timestamps:true});*/
+
+export const PermissionSchema = SchemaFactory.createForClass(Permission);
