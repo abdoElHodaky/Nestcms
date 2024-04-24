@@ -24,7 +24,7 @@ export class Note {
   onId:string;
   @Prop({type:String,
       required:true,
-      enum: ['Project', 'Design']
+      enum: ['Project', 'Design','Schedule']
   })
   onModel:string;
   @Prop({type:Types.ObjectId,ref:"User"})
