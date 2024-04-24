@@ -2,9 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { Model,Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Permission } from './permission.interface';
+import { UsersService } from "../users/users.service";
 import { CreatePermissionDto } from "./dto/create-permission.dto";
 @Injectable()
 export class PermissionService {
+  private userS:UsersService
   constructor(@InjectModel('Permission') private readonly permModel: Model<Permission>) {}
 
   async create(createPermission :CreatePermissionDto):Promise<Permission|void>{
@@ -21,7 +23,7 @@ export class PermissionService {
   async grant(_id:string,userId:string):Promise<Permission>
   {
     let perm= await this.permModel.findById(_id).exec()
-    perm._for=new Types.ObjectId(userId)
+    perm._for= await this.userS.find_Id(userId)
     perm.status="granted"
     return await perm.save()
     
