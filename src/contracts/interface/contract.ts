@@ -1,18 +1,42 @@
-import _Contract from "./contract.d";
+//import _Contract from "./contract.d";
+import { Prop, Schema } from "@nestjs/mongoose";
+import mongoose , {HydratedDocument} from "mongoose"
+
 import { Client, Employee } from "../../users/interfaces/user";
 import { Offer } from "../../offers/interface/offer.interface";
 import { Payment} from "../../payments/interface/payment.interface";
-export class Contract implements _Contract{
+export type ContractDocument = HydratedDocument<Contract>
+
+@Schema({
+    toJSON:{
+        versionKey: false,
+    },
+    toObject:{
+        versionKey: false,
+    }
+})
+export class Contract {
+  @Prop()
   _id:string;
+  @Prop()
   title: string;
+  @Prop()
   content: string;
-  author: string;
+  @Prop()
+ // author: string;
+  @Prop()
   creationDate: string;
+  @Prop()
   status:string;
+  @Prop()
   path:string;
+  @Prop({type:mongoose.Schema.Types.ObjectId,ref:"Offer"})
   offer?:Offer;
+  @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
   client?:Client;
+  @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
   employee?:Employee;
+  @Prop([{type:mongoose.Schema.Types.ObjectId,ref:"Payment"}])
   payments?:Payment[]
 
 }
