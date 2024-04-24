@@ -1,5 +1,7 @@
-import _User from "./user.d";
-export class User implements _User {
+import { Prop, Schema } from "@nestjs/mongoose";
+
+//import _User from "./user.d";
+/*export class User implements _User {
   _id: string;
   email: string;
   password: string;
@@ -23,6 +25,59 @@ export class User implements _User {
       "","","","",""
     ];
   }
+}*/
+
+
+@Schema({
+    toJSON:{
+        versionKey: false,
+    },
+    toObject:{
+        versionKey: false,
+    }
+})
+export class User{
+  
+    @Prop()
+    _id:string
+    @Prop()
+    fullName: string
+    @Prop({unique:true})
+    username:string
+    @Prop({unique: true})
+    phone: string
+    @Prop()
+    email:string
+    @Prop()
+    password:string
+    @Prop()
+    Age:number
+    @Prop()
+    Address:string
+    @Prop()
+    isEmployee:boolean
+    @Prop()
+    isAdmin:boolean
+    @Prop()
+    employeeType:string
+    @Prop()
+    adminType:string
+    
+   
+   toArrayP(){
+    return [
+      this.fullName,
+      this.email,
+      this.phone,
+      this.Address,
+      "","","","",""
+    ];
+  }
+    //Add one to many relation to InvoiceSchema
+    /*@Prop({type:[
+        {type : mongoose.Types.ObjectId , ref: 'Invoice'}
+    ]})
+    obj_invoices: [Invoice]*/
 }
 
 export class Employee extends User {
