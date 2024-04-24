@@ -14,4 +14,6 @@ import { Offer } from "../interface/offer.interface";
 },{timestamps:true});*/
 
 
-export const OfferSchema = SchemaFactory.createForClass(Offer);
+export const OfferSchema = SchemaFactory.createForClass(Offer,{
+  timestamps:true
+});
