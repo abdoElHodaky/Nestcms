@@ -10,7 +10,7 @@ import { Project } from "../projects/interface/project";
 export class UsersService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
-  async create(userType:string,createUserDto: CreateUserDto): Promise<User> {
+  async create(userType:string,createUserDto: CreateUserDto): Promise<UserDocument> {
    // let cudto=createUserDto
     let createdUser;
     switch (userType){
