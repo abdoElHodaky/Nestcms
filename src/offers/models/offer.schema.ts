@@ -1,6 +1,8 @@
 import { SchemaFactory } from "@nestjs/mongoose";
-//import { HydratedDocument } from "mongoose";
+import { HydratedDocument } from "mongoose";
 import { Offer } from "../interface/offer.interface";
+
+export type OfferDocument = HydratedDocument<Offer>
 
 /*export const OfferSchema = new mongoose.Schema({
   title: String,
