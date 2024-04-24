@@ -1,7 +1,9 @@
 import { Prop, Schema } from "@nestjs/mongoose";
-import mongoose from "mongoose"
+import mongoose , {HydratedDocument} from "mongoose"
 import { Client,Employee } from "../../users/interfaces/user";
 import { Contract } from "../../contracts/interface/contract";
+
+export type OfferDocument = HydratedDocument<Offer>
 
 @Schema({
     toJSON:{
