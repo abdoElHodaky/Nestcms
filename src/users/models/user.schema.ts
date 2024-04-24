@@ -61,6 +61,5 @@ export class User{
     obj_invoices: [Invoice]*/
 //}
 
-export type UserDocument = HydratedDocument<User>
 
 export const UserSchema = SchemaFactory.createForClass(User);
