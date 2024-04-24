@@ -2,7 +2,7 @@ import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGua
 import { AuthGuard } from '@nestjs/passport';
 import { PermGuard } from "../perm.guard";
 import { Permissions } from "./permissions-models.decorator";
-import { Perm , OnModel } from './permissions-models.enum';
+import { Perms , OnModel } from './permissions-models.enum';
 import { CreatePermissionDto } from './dto/create-permission.dto';
 import { PermissionService } from './permissions.service';
 import { ApiTags,ApiSecurity,ApiBearerAuth,ApiExcludeEndpoint,ApiOperation } from "@nestjs/swagger";
