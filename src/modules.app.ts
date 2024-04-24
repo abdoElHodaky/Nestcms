@@ -7,9 +7,9 @@ import { ContractsModule } from './contracts/contracts.module';
 import { OffersModule } from './offers/offers.module';
 import { NotesModule } from "./notes/notes.module";
 import { PermissionsModule } from "./permissions/permissions.module";
-
+import { ArticlesModule } from "./articles/articles.module";
 
 export const modules=[PermissionsModule,AuthModule,
                UsersModule,SchedulesModule,
                ProjectsModule,OffersModule,
-               NotesModule]
+               NotesModule,ArticlesModule]
