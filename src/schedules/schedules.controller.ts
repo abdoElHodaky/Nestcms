@@ -2,8 +2,8 @@ import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGua
 import { AuthGuard } from '@nestjs/passport';
 
 import { PermGuard } from "../perm.guard";
-import { Permissions } from "../permissions-models.decorator";
-import { Perms , OnModel } from '../permissions-models.enum';
+import { Permissions } from "../permissions/permissions-models.decorator";
+import { Perms , OnModel } from '../permissions/permissions-models.enum';
 
 import { CreateScheduleDto } from './dto/create-schedule.dto';
 import { ScheduleService } from './schedules.service';
