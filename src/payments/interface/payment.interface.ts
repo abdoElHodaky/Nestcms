@@ -4,6 +4,9 @@ import mongoose , {HydratedDocument} from "mongoose"
 import { Client } from "../../users/interfaces/user";
 import { Contract } from "../../contracts/interface/contract";
 //import _Payment from "./payment.d";
+
+export type PaymentDocument = HydratedDocument<Payment>
+    
 @Schema({
     toJSON:{
         versionKey: false,
