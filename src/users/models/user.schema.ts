@@ -28,6 +28,8 @@ export type UserDocument = HydratedDocument<User>
 export class User{
   
     @Prop()
+    _id:string
+    @Prop()
     fullName: string
     @Prop({unique:true})
     username:string
