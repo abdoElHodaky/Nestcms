@@ -3,7 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 
 import { PermGuard } from "../perm.guard";
 import { Permissions } from "../permissions-models.decorator";
-import { Perm , OnModel } from '../permissions-models.enum';
+import { Perms , OnModel } from '../permissions-models.enum';
 
 import { CreateProjectScheduleDto } from './dto/create-project-schedule.dto';
 import { ScheduleProjectService } from './schedules-projects.service';
