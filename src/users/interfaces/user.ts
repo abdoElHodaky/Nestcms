@@ -1,5 +1,5 @@
 import { Prop, Schema } from "@nestjs/mongoose";
-
+import { HydratedDocument } from "mongoose";
 //import _User from "./user.d";
 /*export class User implements _User {
   _id: string;
@@ -26,6 +26,7 @@ import { Prop, Schema } from "@nestjs/mongoose";
     ];
   }
 }*/
+export type UserDocument = HydratedDocument<User>
 
 
 @Schema({
