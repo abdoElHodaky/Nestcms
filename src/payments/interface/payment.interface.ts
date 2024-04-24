@@ -13,15 +13,25 @@ import { Contract } from "../../contracts/interface/contract";
     }
 })
 export class Payment {
+  @Prop()
   _id:string;
+  @Prop()
   title: string;
+  @Prop()
   content?: string;
+  @Prop()
   date: string;
+  @Prop()
   status:string;
+  @Prop()  
   amount:string;
+  @Prop()
   currency:string
+  @Prop({type:mongoose.Schema.Types.ObjectId,ref:"Contract"})
   contract?:Contract;
+  @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
   client?:Client;
+  @Prop()
   transR?:string
 
   toArrayP(){  
