@@ -2,9 +2,9 @@
 import { Prop, Schema } from "@nestjs/mongoose";
 import mongoose , {HydratedDocument} from "mongoose"
 
-import { ClientDocument, EmployeeDocument } from "../../users/interfaces/user";
-import { OfferDocumet } from "../../offers/interface/offer.interface";
-import { PaymentDocument } from "../../payments/interface/payment.interface";
+import { Client, Employee } from "../../users/interfaces/user";
+import { Offer } from "../../offers/interface/offer.interface";
+import { Payment } from "../../payments/interface/payment.interface";
 export type ContractDocument = HydratedDocument<Contract>
 
 @Schema({
@@ -31,12 +31,12 @@ export class Contract {
   @Prop()
   path:string;
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"Offer"})
-  offer?:OfferDocument;
+  offer?:Offer;
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
-  client?:ClientDocument;
+  client?:Client;
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
-  employee?:EmployeeDocument;
+  employee?:Employee;
   @Prop({type:{type:mongoose.Schema.Types.ObjectId,ref:"Payment"}})
-  payments?:PaymentDocument[]
+  payments?:Payment[]
 
 }
