@@ -77,7 +77,7 @@ export class PaymentController {
     }
 
   @ApiBearerAuth('JWTAuthorization')
-  @Permissions({perms:[Perms.Read],models:[OnModel.PAYMENT]})
+  @Permissions({perms:[Perms.READ],models:[OnModel.PAYMENT]})
   @UseGuards(AuthGuard('jwt'),PermGuard)
   @Get("/:userId")
   async ofUser(@Param("userId") userId:string){
