@@ -13,7 +13,7 @@ export type PaymentDocument = HydratedDocument<Payment>
     },
     toObject:{
         versionKey: false,
-    }
+    }, timestamps:true
 })
 export class Payment {
   @Prop()
