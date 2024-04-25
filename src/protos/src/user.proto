@@ -17,4 +17,24 @@ message User {
  optional google.protobuf.Timestamp updated_at=13;
 }
 
+message CreateReq{
+  User user=1;
+}
+message CreateRes{
+ User user=1;
+}
+message LoginReq{
+ string username=1;
+ string password=2;
+ 
+}
+message LoginRes{
+ User user=1;
+}
+
+service UserService {
+ rpc create (CreateReq) returns (CreateRes);
+ rpc login (LoginReq) returns (LoginRes);
+}
+
 
