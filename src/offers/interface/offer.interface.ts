@@ -11,7 +11,7 @@ export type OfferDocument = HydratedDocument<Offer>
     },
     toObject:{
         versionKey: false,
-    }
+    },timestamps:true
 })
 export class Offer {
   @Prop()
