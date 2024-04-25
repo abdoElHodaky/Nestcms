@@ -21,6 +21,4 @@ import { Note } from "../interface/note.interface";
 
 },{timestamps:true});*/
 
-export const NoteSchema = SchemaFactory.createForClass(Note,{
-  timestamps:true
-});
+export const NoteSchema = SchemaFactory.createForClass(Note);
