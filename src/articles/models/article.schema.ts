@@ -10,6 +10,4 @@ export const ArticleSchema = new mongoose.Schema({
   creationDate: String,
 });*/
 
-export const ArticleSchema = SchemaFactory.createForClass(Article,{
-  timestamps:true
-});
+export const ArticleSchema = SchemaFactory.createForClass(Article);
