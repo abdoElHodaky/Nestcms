@@ -11,6 +11,4 @@ import { Schedule } from "../interface/schedule";
   employee: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 });
 */
-export const ScheduleSchema = SchemaFactory.createForClass(Schedule,{
-  timestamps:true
-});
+export const ScheduleSchema = SchemaFactory.createForClass(Schedule);
