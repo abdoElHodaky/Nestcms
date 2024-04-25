@@ -12,7 +12,7 @@ export type DesignDocument = HydratedDocument<Design>
     },
     toObject:{
         versionKey: false,
-    }
+    }, timestamps:true
 })
 export class Design  {
   @Prop()
