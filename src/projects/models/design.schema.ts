@@ -10,6 +10,4 @@ import { Design } from "../interface/design";
  // employee: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 },{timestamps:true});*/
 
-export const DesignSchema = SchemaFactory.createForClass(Design,{
-  timestamps:true
-});
+export const DesignSchema = SchemaFactory.createForClass(Design);
