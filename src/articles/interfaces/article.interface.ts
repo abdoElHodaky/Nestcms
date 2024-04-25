@@ -11,7 +11,8 @@ export type ArticleDocument = HydratedDocument<Article>
     },
     toObject:{
         versionKey: false,
-    }
+    },
+    timestamps:true
 })
 export class Article {
   @Prop()
