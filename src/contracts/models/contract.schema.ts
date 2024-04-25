@@ -17,7 +17,5 @@ export type ContractDocument = HydratedDocument<Contract>
   payments: [{ type :mongoose.Schema.Types.ObjectId, ref :"Payment" }]
 },{timestamps:true});*/
 
-export const ContractSchema = SchemaFactory.createForClass(Contract,{
-  timestamps:true
-});
+export const ContractSchema = SchemaFactory.createForClass(Contract);
 
