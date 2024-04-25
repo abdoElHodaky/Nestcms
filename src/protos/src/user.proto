@@ -13,6 +13,8 @@ message User {
  optional bool isAdmin=9;
  optional string employeeType=10;
  optional string adminType=11;
- optional google.protobuf.Timestamp created_at=12
- optional google.protobuf.Timestamp updated_at=13
+ optional google.protobuf.Timestamp created_at=12;
+ optional google.protobuf.Timestamp updated_at=13;
 }
+
+
