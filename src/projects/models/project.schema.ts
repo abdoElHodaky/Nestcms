@@ -17,6 +17,4 @@ export const ProjectSchema = new mongoose.Schema({
   steps:[{ type: mongoose.Schema.Types.ObjectId, ref: 'ProjectStep'}]
 },{timestamps:true});*/
 
-export const ProjectSchema = SchemaFactory.createForClass(Project,{
-  timestamps:true
-});
+export const ProjectSchema = SchemaFactory.createForClass(Project);
