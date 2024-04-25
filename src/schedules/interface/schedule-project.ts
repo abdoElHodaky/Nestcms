@@ -12,7 +12,8 @@ export type ScheduleProjectDocument = HydratedDocument<ScheduleProject>
     },
     toObject:{
         versionKey: false,
-    }
+    },
+    timestamps:true
 })
 export class ScheduleProject  {
  @Prop()
