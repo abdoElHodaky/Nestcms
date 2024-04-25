@@ -13,7 +13,7 @@ export type ContractDocument = HydratedDocument<Contract>
     },
     toObject:{
         versionKey: false,
-    }
+    },timestamps:true
 })
 export class Contract {
   @Prop()
