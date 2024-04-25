@@ -10,7 +10,7 @@ export type NoteDocument = HydratedDocument<Note>
     },
     toObject:{
         versionKey: false,
-    }
+    }, timestamps:true
 })
 export class Note {
   @Prop()
