@@ -13,7 +13,7 @@ export type ProjectStepDocument = HydratedDocument<ProjectStep>
     },
     toObject:{
         versionKey: false,
-    }
+    },timestamps:true
 })
 export class ProjectStep  {
   @Prop()
