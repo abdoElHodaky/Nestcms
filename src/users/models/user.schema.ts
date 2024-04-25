@@ -62,4 +62,4 @@ export class User{
 //}
 
 
-export const UserSchema = SchemaFactory.createForClass(User,{timestamps:true});
+export const UserSchema = SchemaFactory.createForClass(User);
