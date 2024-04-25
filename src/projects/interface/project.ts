@@ -15,7 +15,7 @@ export type ProjectDocument = HydratedDocument<Projectt>
     },
     toObject:{
         versionKey: false,
-    }
+    }, timestamps:true
 })
 export class Project  {
   @Prop()
