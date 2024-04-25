@@ -14,6 +14,4 @@ import { Payment } from "../interface/payment.interface";
   contract: { type: mongoose.Schema.Types.ObjectId, ref: 'Contract'}
 },{timestamps:true}); */
 
-export const PaymentSchema = SchemaFactory.createForClass(Payment,{
-  timestamps:true
-});
+export const PaymentSchema = SchemaFactory.createForClass(Payment);
