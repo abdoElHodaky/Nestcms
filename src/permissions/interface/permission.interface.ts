@@ -10,7 +10,7 @@ export type PermissionDocument = HydratedDocument<Permission>
     },
     toObject:{
         versionKey: false,
-    }
+    },timestamps:true
 })
 export class Permission {
   @Prop()
