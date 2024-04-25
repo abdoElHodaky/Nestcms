@@ -13,7 +13,5 @@ export const ScheduleProjectSchema = new mongoose.Schema({
   employee: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 },{timestamps:true});*/
 
-export const ScheduleProjectSchema = SchemaFactory.createForClass(ScheduleProject,{
-  timestamps:true
-});
+export const ScheduleProjectSchema = SchemaFactory.createForClass(ScheduleProject);
 
