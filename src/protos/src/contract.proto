@@ -1,4 +1,19 @@
 syntax ="proto3";
 import "google/protobuf/timestamp.proto";
+import "user.proto";
+import "offer.proto";
 
-message Contract {}
+enum ContractStatus{
+
+}
+message Contract {
+  string _id=1;
+  string content=2;
+  string path=3;
+  ContractStatus status=4;
+  optional  Offer offer=5;
+  optional User client=6;
+  optional User employee=7;
+  optional google.protobuf.Timestamp created_at=8;
+  optional google.protobuf.Timestamp updated_at=8;
+}
