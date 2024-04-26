@@ -1,12 +1,16 @@
 syntax ="proto3";
 import "google/protobuf/timestamp.proto";
 import "user.proto";
+import "contract.proto";
 
 enum OfferStatus{
+
  REVIEW=0;
  APPROVED_CLIENT=1;
  REJECTED_CLIENT=2;
  CONVERTED_CONTRACT=3;
+ CLOSED=4;
+
 }
 
 message Offer {
