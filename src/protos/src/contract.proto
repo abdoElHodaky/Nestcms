@@ -4,6 +4,11 @@ import "user.proto";
 import "offer.proto";
 
 enum ContractStatus{
+  REVIEW=0;
+  APPROVED_CLIENT=1;
+  REJECTED_CLIENT=2;
+  EDIDIT_EMPLOYEE=3;
+  CLOSED=4;
 
 }
 message Contract {
