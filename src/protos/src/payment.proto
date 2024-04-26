@@ -1,4 +1,23 @@
 syntax ="proto3";
 import "google/protobuf/timestamp.proto";
+import "contract.proto";
+import "user.proto";
 
-message Payment {}
+enum PaymentStatus{
+
+}
+
+message Payment {
+ string _id=1;
+ string title=2;
+ optional string content=3;
+ string date=4;
+ PaymentStatus status=5;
+ int32 amount=6;
+ string currency=7;
+ optional Contract contract=8;
+ optional User client=9;
+ string transR=10;
+ optional google.protobuf.Timestamp created_at=11;
+ optional google.protobuf.Timestamp updated_at=12;
+}
