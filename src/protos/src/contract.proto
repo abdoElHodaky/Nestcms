@@ -22,5 +22,5 @@ message Contract {
   optional User employee=7;
   optional google.protobuf.Timestamp created_at=8;
   optional google.protobuf.Timestamp updated_at=9;
-  optional repeated Payment payments=10;
+  repeated optional Payment payments=10;
 }
