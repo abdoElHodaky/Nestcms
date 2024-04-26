@@ -1,1 +1,23 @@
+syntax ="proto3";
+import "google/protobuf/timestamp.proto";
+import "user.proto";
 
+enum OfferStatus{
+ REVIEW=0;
+ APPROVED_CLIENT=1;
+ REJECTED_CLIENT=2;
+ CONVERTED_CONTRACT=3;
+}
+
+message Offer {
+  string _id=1;
+  string title=2;
+  string content=3;
+  OfferStatus status =4;
+  int32 price=5;
+  optional User employee=6;
+  optional User client=7;
+  optional Contract contract=8;
+  optional google.protobuf.Timestamp created_at=9;
+  optional google.protobuf.Timestamp updated_at=10;
+}
