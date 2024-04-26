@@ -125,7 +125,6 @@ export class Client extends User {
         versionKey: false,
     }
 })
-  
 export class Admin extends User {
   @Prop()
   isAdmin?:boolean=true;
