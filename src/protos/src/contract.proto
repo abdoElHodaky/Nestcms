@@ -2,6 +2,7 @@ syntax ="proto3";
 import "google/protobuf/timestamp.proto";
 import "user.proto";
 import "offer.proto";
+import "payment.proto";
 
 enum ContractStatus{
   REVIEW=0;
@@ -20,5 +21,6 @@ message Contract {
   optional User client=6;
   optional User employee=7;
   optional google.protobuf.Timestamp created_at=8;
-  optional google.protobuf.Timestamp updated_at=8;
+  optional google.protobuf.Timestamp updated_at=9;
+  optional repeated Payment payments=10;
 }
