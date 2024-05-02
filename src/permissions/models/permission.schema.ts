@@ -1,5 +1,5 @@
 import { SchemaFactory } from "@nestjs/mongoose";
-
+import { Permission } from "../interface/permission.interface";
 
 /*export const PermissionSchema = new mongoose.Schema({
   type:{
