@@ -27,7 +27,7 @@ export class UsersController {
   @UseGuards(AuthGuard('jwt'))
   @ApiOperation({description:" permissions of specific user"})
   @Get('permissions')
-  async getPermission(@Request() req) {
+  async getPermission(@Request() req) :Promise<any>{
    let user =this.usersService.my_Permissions(req.user._id) 
    return user.permissions
   }
@@ -37,7 +37,7 @@ export class UsersController {
   @UseGuards(AuthGuard('jwt'))
   @ApiOperation({description:" projects of specific user"})
   @Get("projects")
-  async getProjects(@Request() req){
+  async getProjects(@Request() req):Promise<any>{
     let user= this.usersService.my_Projects(req.user._id)
     return user.projects
   }
