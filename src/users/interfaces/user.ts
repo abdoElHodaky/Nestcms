@@ -1,6 +1,6 @@
 import { Prop, Schema } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
-import _User from "./user.d";
+//import _User from "./user.d";
 /*export class User implements _User {
   _id: string;
   email: string;
