@@ -10,6 +10,6 @@ import { PermissionsModule } from "./permissions/permissions.module";
 import { ArticlesModule } from "./articles/articles.module";
 
 export const modules=[PermissionsModule,AuthModule,ContractsModule,
-               UsersModule,SchedulesModule,PaymentsModule
+               UsersModule,SchedulesModule,PaymentsModule,
                ProjectsModule,OffersModule,
                NotesModule,ArticlesModule]
