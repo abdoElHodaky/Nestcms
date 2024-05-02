@@ -48,7 +48,7 @@ export class UsersService {
     let users=await this.userModel.find().where('_id').in(_ids).exec()
     return users
   }
-  async my_Permissions(_id:string):Promise<User>{
+  async my_Permissions(_id:string):Promise<any>{
     /*return await this.userModel.findById(_id).populate([
       {
         path:"permissions"
@@ -67,7 +67,7 @@ export class UsersService {
         ]);
     return userData[0]
   }
-  async my_Projects(uid:string):Promise<User>{
+  async my_Projects(uid:string):Promise<any>{
     const userData = await this.userModel.aggregate([
             { $match: { _id: new Types.ObjectId(uid) } },
             {
