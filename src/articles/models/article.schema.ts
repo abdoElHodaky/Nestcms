@@ -1,6 +1,6 @@
 import { SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
-import { Article } from "../interface/article.interface";
+import { Article } from "../interfaces/article.interface";
 
 /*
 export const ArticleSchema = new mongoose.Schema({
