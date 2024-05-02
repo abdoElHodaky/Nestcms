@@ -1,7 +1,7 @@
 import { Prop, Schema } from "@nestjs/mongoose";
 import {Types ,HydratedDocument } from "mongoose";
 
-import { Admin , User } from "../users/interfaces/user";
+import { Admin , User } from ".../../users/interfaces/user";
 export type PermissionDocument = HydratedDocument<Permission>
 
 @Schema({
