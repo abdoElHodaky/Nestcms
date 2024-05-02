@@ -28,7 +28,7 @@ export class UsersController {
   @ApiOperation({description:" permissions of specific user"})
   @Get('permissions')
   async getPermission(@Request() req) :Promise<any>{
-   let user =this.usersService.my_Permissions(req.user._id) 
+   let user =await this.usersService.my_Permissions(req.user._id) 
    return user.permissions
   }
 
@@ -38,7 +38,7 @@ export class UsersController {
   @ApiOperation({description:" projects of specific user"})
   @Get("projects")
   async getProjects(@Request() req):Promise<any>{
-    let user= this.usersService.my_Projects(req.user._id)
+    let user= await this.usersService.my_Projects(req.user._id)
     return user.projects
   }
 
