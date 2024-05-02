@@ -1,5 +1,5 @@
 import { Prop, Schema } from "@nestjs/mongoose";
-import mongoose , {HydratedDocument} from "mongoose"
+import mongoose , {HydratedDocument,Types} from "mongoose"
 
 import { Client} from "../../users/interfaces/user";
 import { Contract } from "../../contracts/interface/contract";
