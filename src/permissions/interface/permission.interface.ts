@@ -22,11 +22,11 @@ export class Permission {
   type:string;
   @Prop()
   status:string
-  @Prop({type: mongoose.Schema.Types.ObjectId,ref:"User" })
+  @Prop({type: Types.ObjectId,ref:"User" })
   _by:Admin
-  @Prop({type: mongoose.Schema.Types.ObjectId,ref:"User" })
+  @Prop({type: Types.ObjectId,ref:"User" })
   _for:User
-  @Prop({type: mongoose.Schema.Types.ObjectId,
+  @Prop({type: Types.ObjectId,
        required: true,
        refPath: 'onModel'
   })
