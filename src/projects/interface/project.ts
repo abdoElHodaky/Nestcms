@@ -7,7 +7,7 @@ import { ProjectStep } from "./project-step";
 import { Contract } from "../../contracts/interface/contract";
 import { Employee } from "../../users/interfaces/user";
 //import _Project from "./project.d"
-export type ProjectDocument = HydratedDocument<Projectt>
+export type ProjectDocument = HydratedDocument<Project>
     
 @Schema({
     toJSON:{
