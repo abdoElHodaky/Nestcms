@@ -19,7 +19,7 @@ export class PaymentService {
     let linkcontract:PaymentLinkToContractDto
     const contract=await this.contractService.find_Id(contractId)
     const createdPayment = new this.paymModel(rest);
-    createdPayment.client=new Types.ObjectId(contract.client._id)
+    createdPayment.client=contract.client
     await createdPayment.save();
     linkcontract={paymentId:createdPayment._id,contractId:contractId}
     return await this.LinkContract(linkcontract)
@@ -49,7 +49,7 @@ export class PaymentService {
     const {paymentId,contractId}=paymentLinkToContractDto
     const payment=await this.paymModel.findById(paymentId)
     const contract=await this.contractService.find_Id(contractId)
-    payment.contract=Types.ObjectId(contract._id)
+    payment.contract=contract
     return await payment.save()
   }
   async Pay(paymentId:string,urls:{callback:string,return:string}):Promise<any>{
