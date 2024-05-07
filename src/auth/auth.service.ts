@@ -38,11 +38,7 @@ export class AuthService {
       sub: foundUser._id,
       role: '',
     };
-    if (foundUser.email === 'sam@t.fr') {
-      payload.role = 'admin';
-    } else {
-      payload.role = 'user';
-    }
+    
     return {
       access_token: this.jwtService.sign(payload),
     };
