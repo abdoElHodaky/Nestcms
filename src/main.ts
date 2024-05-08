@@ -35,7 +35,7 @@ const options = new DocumentBuilder()
   const document = SwaggerModule.createDocument(app, options);
   const theme = new SwaggerTheme();
   SwaggerModule.setup('docs', app, document,{
-    explorer: true,
+    explorer: false,
     customCss: theme.getBuffer(SwaggerThemeNameEnum.ONE_DARK)
 
   });
