@@ -34,11 +34,11 @@ const options = new DocumentBuilder()
   
   const document = SwaggerModule.createDocument(app, options);
   const theme = new SwaggerTheme();
-  const options = {
+  SwaggerModule.setup('docs', app, document,{
     explorer: true,
     customCss: theme.getBuffer(SwaggerThemeNameEnum.ONE_DARK)
-  };
-  SwaggerModule.setup('docs', app, document,options);
+
+  });
   app.enableCors();
   await app.listen(3000);
 }
