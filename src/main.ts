@@ -36,7 +36,7 @@ const options = new DocumentBuilder()
   const theme = new SwaggerTheme();
   const options = {
     explorer: true,
-    customCss: theme.getBuffer(SwaggerThemeNameEnum.ONEDARK)
+    customCss: theme.getBuffer(SwaggerThemeNameEnum.ONE_DARK)
   };
   SwaggerModule.setup('docs', app, document,options);
   app.enableCors();
