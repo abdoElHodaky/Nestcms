@@ -1,4 +1,5 @@
 import { NestFactory } from '@nestjs/core';
+import { SwaggerTheme, SwaggerThemeNameEnum } from 'swagger-themes';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
@@ -32,7 +33,12 @@ const options = new DocumentBuilder()
     .build();
   
   const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('docs', app, document);
+  const theme = new SwaggerTheme();
+  const options = {
+    explorer: true,
+    customCss: theme.getBuffer(SwaggerThemeNameEnum.ONEDARK)
+  };
+  SwaggerModule.setup('docs', app, document,options);
   app.enableCors();
   await app.listen(3000);
 }
