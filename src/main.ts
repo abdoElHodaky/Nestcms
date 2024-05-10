@@ -37,7 +37,7 @@ const options = new DocumentBuilder()
   SwaggerModule.setup('docs', app, document,{
     explorer: false,
     customCss: theme.getBuffer(SwaggerThemeNameEnum.ONE_DARK),
-    customSitetitle:"Endpoints of construction company",
+    customSiteTitle:"Endpoints of construction company",
     customFavico:"../assets/favicon-16x16.png"
   });
   app.enableCors();
