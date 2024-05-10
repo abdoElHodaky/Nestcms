@@ -38,7 +38,7 @@ const options = new DocumentBuilder()
     explorer: false,
     customCss: theme.getBuffer(SwaggerThemeNameEnum.ONE_DARK),
     customSiteTitle:"Endpoints of construction company",
-    customFavico:"../assets/favicon-16x16.png"
+    customfavIcon:"../assets/favicon-16x16.png"
   });
   app.enableCors();
   await app.listen(3000);
