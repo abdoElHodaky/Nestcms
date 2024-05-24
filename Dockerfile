@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:18-alpine
 COPY . .
 RUN apk add --no-cache build-base tzdata python3 sqlite-dev sqlite git
 RUN git config --global url."https://".insteadOf ssh:// && chmod +x build.sh
