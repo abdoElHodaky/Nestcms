@@ -1,5 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional } from 'class-validator';
+import { IsObjectId } from 'class-validator-mongo-object-id';
 
 
 export class CreateScheduleDto {
@@ -20,10 +21,12 @@ export class CreateScheduleDto {
    readonly endDate:string;
    
    @IsOptional()
+   @IsObjectId()
    @ApiPropertyOptional()
    readonly employeeId?:string;
    
    @IsOptional()
+   @IsObjectId()
    @ApiPropertyOptional()
    readonly clientId?:string
 }
