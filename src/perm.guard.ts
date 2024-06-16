@@ -1,9 +1,9 @@
 import {NestInterceptor,ExecutionContext,CallHandler,Injectable,CanActivate } from '@nestjs/common';
 import { Reflector } from "@nestjs/core";
-import { UsersService } from './users/users.service';
+import { UsersService,User } from './users/';
 import { Permissions } from "./permissions/permissions-models.decorator";
 import { AuthGuard } from '@nestjs/passport';
-import { User} from "./users/interfaces/user"
+//import { User} from "./users/interfaces/user"
 @Injectable()
 export class PermGuard implements CanActivate {
  private userService: UsersService
