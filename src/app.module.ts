@@ -14,7 +14,7 @@ import { NotesModule } from "./notes/notes.module";
 import { PermissionsModule } from "./permissions/permissions.module";
 */
 import { APP_GUARD } from '@nestjs/core';
-import { PermGuard} from "./perm.guard";
+import { PermGuard, OptionalJwtAuthGuard  } from "./perm.guard";
 import { modules } from "./modules.app";
 @Module({
   imports: [
@@ -35,7 +35,11 @@ import { modules } from "./modules.app";
   providers: [AppService,{
     provide:APP_GUARD,
     useClass:PermGuard
-  }
+  },
+    {
+      provide:APP_GUARD,
+      useClass:OptionalJwtAuthGuard
+    }
   ],
 })
 export class AppModule {}
