@@ -29,8 +29,10 @@ export class OrgzService {
   async find_Id(_id:string):Promise<Orgz>{
     return await this.orgzModel.findById(_id).exec()
   }
-  /*
-  async findOne(email: string): Promise<User> {
-    return await this.userModel.findOne({ email }, '-__v').exec();
-  } */
+  
+  async all(ownerId?:strimg): Promise<Orgz[]> {
+    return await this.orgzModel.find({
+      owner:(ownerId !=undefined)?{_id:ownerId}:{}
+    }).exec();
+  } 
 }
