@@ -5,8 +5,8 @@ import { CreateOfferDto } from './dto/create-offer.dto';
 import { AcceptOfferDto } from './dto/accept-offer.dto';
 import { OfferLinkToContractDto } from "./dto/link-contract.dto";
 import { Offer } from './interface/offer.interface';
-import { UsersService} from "../users/users.service"
-import { ContractService} from "../contracts/contracts.service"
+import { UsersService} from "../users/"
+import { ContractService} from "../contracts/"
 @Injectable()
 export class OfferService {
   constructor(@InjectModel('Offer') private readonly offerModel: Model<Offer>) {}
