@@ -1,7 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional } from 'class-validator';
 import { IsObjectId } from 'class-validator-mongo-object-id';
-
+import { Address} from "../../address/address";
 export class CreateOrgzDto {
   
   @IsNotEmpty()
@@ -22,18 +22,13 @@ export class CreateOrgzDto {
   readonly ownerId:string;
   
   @IsNotEmpty()
-  @ApiProperty({type:"object",
+  @ApiProperty({type:()=>Address ,
     default:{
       street:"",
       city:"",
-      postalCode:"",
+      state:"",
       country:""
     }
   })
-  readonly address:{
-    city:string,
-    street:string,
-    postalCode:string,
-    country:string
-  }
+  readonly address:Address
 }
