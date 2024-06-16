@@ -1,8 +1,10 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional } from 'class-validator';
+import { IsObjectId } from 'class-validator-mongo-object-id';
 
 
 export class CreateProjectStepDto {
+  
   @IsOptional()
   @ApiPropertyOptional()
   readonly content?:string;
@@ -12,6 +14,7 @@ export class CreateProjectStepDto {
   readonly status?:string
   
   @IsNotEmpty()
+  @IsObjectId()
   @ApiProperty()
   readonly projectId:string;
   
