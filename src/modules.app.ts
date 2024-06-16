@@ -3,7 +3,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/';
 import { SchedulesModule } from './schedules/';
 import { ProjectsModule } from './projects/';
-import { ContractsModule } from './contracts/contracts.module';
+import { ContractsModule } from './contracts/';
 import { OffersModule } from './offers/offers.module';
 import { NotesModule } from "./notes/notes.module";
 import { PermissionsModule } from "./permissions/permissions.module";
