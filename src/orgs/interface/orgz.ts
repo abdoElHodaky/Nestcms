@@ -15,7 +15,7 @@ export type NoteDocument = HydratedDocument<Orgz>
 export class Orgz {
   @Prop()
   _id:string;
-  @Prop()
+  @Prop({type:Object})
   address:{
     city:string,
     street:string,
