@@ -18,7 +18,7 @@ export class PermGuard implements CanActivate {
   ): boolean | Promise<boolean> {
     const permissions = this.reflector.getAllAndOverride<{_perms:string[],_mdls:string[]}>("permissions",[context.getHandler(),context.getClass()])
     const req = context.switchToHttp().getRequest(); 
-    if(permissions!=undefined) return this.check(permissions,req?.user?._id); 
+    if(permissions!=undefined && req?.user!=undefined) return this.check(permissions,req?.user?._id); 
     else return true
   }
   async check(permissions,userId){
@@ -33,11 +33,11 @@ export class PermGuard implements CanActivate {
   }
 }
 
-export class OptionalJwtAuthGuard extends AuthGuard('jwt') {
+/*export class OptionalJwtAuthGuard extends AuthGuard('jwt') {
 
   // Override handleRequest so it never throws an error
   handleRequest(err, user, info, context) {
     return (user!=undefined)?user:new User();
   }
 
-}
+}*/
