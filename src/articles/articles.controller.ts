@@ -8,7 +8,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger"
 
 @ApiBearerAuth('JWTAuthorization')
 @ApiTags("Article")
-@Controller('articles')
+@Controller('api/articles')
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
  
