@@ -33,7 +33,7 @@ export class User{
     Age:number
     @Prop({type:Object})
     address:Address
-  }
+    
     @Prop()
     isEmployee?:boolean
     @Prop()
