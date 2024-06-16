@@ -3,9 +3,9 @@ import { Model ,Types} from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateContractDto } from './dto/create-contract.dto';
 import { Contract } from './interface/contract';
-import { Employee } from "../users/interfaces/user"
+import { Employee,UsersService } from "../users/"
 import { Offer } from '../offers/interface/offer.interface';
-import { UsersService} from "../users/users.service"
+//import { UsersService} from "../users/users.service"
 import { OfferService} from "../offers/offers.service"
 @Injectable()
 export class ContractService {
