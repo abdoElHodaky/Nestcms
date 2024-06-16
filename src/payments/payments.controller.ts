@@ -13,7 +13,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth,ApiExcludeEndpoint,ApiOperation } fro
 //@ApiBearerAuth('JWTAuthorization')
 @ApiTags("Payment")
 //@UseGuards(AuthGuard('jwt'))
-@Controller(["api/payments"])
+@Controller(["payments","api/payments"])
 export class PaymentController {
   constructor(private readonly paymentService: PaymentService) {}
  
