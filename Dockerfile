@@ -7,7 +7,7 @@ ENV NODE_ENV ${NODE_ENV}
 RUN rm -rf package-lock.json
 RUN npm i -g npm@8.12.2 pm2
 RUN npm cache verify && npm cache clean --force
-RUN npm install swagger-themes && npm i
+RUN npm install swagger-themes class-validator-mongo-object-id   && npm i
 #RUN npm install paytabs_pt2 
 RUN npm run build 
 EXPOSE 3000
