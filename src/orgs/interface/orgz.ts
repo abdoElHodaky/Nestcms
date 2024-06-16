@@ -34,6 +34,10 @@ export class Orgz {
       enum: ['Project', 'Design','Schedule']
   })*/
   //onModel:string;
+  @Prop()
+  title:string
+  @Prop()
+  description:string
   @Prop({type:Types.ObjectId,ref:"User"})
   owner?:User
 }
