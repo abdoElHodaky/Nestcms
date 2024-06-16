@@ -12,7 +12,7 @@ export class OrgzController {
   constructor(private readonly orgzService: OrgzService) {}
   
   @Get("")
-  async all():Promise<Orgz[]>{
+  async all(){
      return await this.orgzService.all()
   }
 
