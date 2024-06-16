@@ -77,7 +77,7 @@ export class User{
       this.fullName,
       this.email,
       this.phone,
-      this.Address,
+      Object.values(this.Address),
       "","","","",""
     ];
   }
