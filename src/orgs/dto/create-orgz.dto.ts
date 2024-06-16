@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateOrgzDto {
   
@@ -11,8 +11,11 @@ export class CreateOrgzDto {
   @ApiProperty()
   readonly description: string;
   
+  @IsOptional()
   @ApiPropertyOptional()
   readonly status:string;
+  
+  @IsOptional()
   @ApiPropertyOptional()
   readonly ownerId:string;
   
