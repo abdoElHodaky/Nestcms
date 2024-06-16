@@ -5,10 +5,10 @@ import { Response} from "express";
 export class AppController {
   constructor() {}
   
- // @Redirect("/docs")
+  @Redirect("/docs")
   @Get("")
   async index(@Res() res:Response ){   
     res.redirect("docs")
-    return
+    
    }
 }
