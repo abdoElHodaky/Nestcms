@@ -3,8 +3,8 @@ import { Model ,Types} from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateProjectScheduleDto } from './dto/create-project-schedule.dto';
 import { ScheduleProject } from './interface/schedule-project';
-import { UsersService} from "../users/users.service";
-import { ProjectService} from "../projects/projects.service"
+import { UsersService} from "../users/";
+import { ProjectService} from "../projects/"
 
 
 @Injectable()
