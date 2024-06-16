@@ -23,7 +23,12 @@ export class CreateUserDto {
 
   @IsOptional()
   @ApiPropertyOptional()
-  readonly address?:string
+  readonly address?:{
+    city:string,
+    street:string,
+    postalCode:string,
+    country:string
+  }
 
   @IsNotEmpty()
   @ApiPropertyOptional()
