@@ -19,7 +19,7 @@ export class OrgzController {
 
   @UseGuards(AuthGuard('jwt'))
   @Post("")
-  async create(/*@Body() createNoteDto: CreateNoteDto*/) {
+  async create(@Body() createOrzDto: CreateOrgzDto) {
     return //await this.noteService.create(createNoteDto);
   }
   
