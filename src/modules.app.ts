@@ -1,6 +1,6 @@
 import { PaymentsModule } from './payments/payments.module';
 import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
+import { UsersModule } from './users/';
 import { SchedulesModule } from './schedules/schedules.module';
 import { ProjectsModule } from './projects/projects.module';
 import { ContractsModule } from './contracts/contracts.module';
