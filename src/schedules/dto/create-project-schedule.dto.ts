@@ -1,8 +1,10 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional } from 'class-validator';
+import { IsObjectId } from 'class-validator-mongo-object-id';
 
 
 export class CreateProjectScheduleDto {
+   
    @IsNotEmpty()
    @ApiProperty()
    readonly title: string;
@@ -20,6 +22,7 @@ export class CreateProjectScheduleDto {
     readonly endDate:string;
 
    @IsOptional()
+   @IsObjectId()
    @ApiProperty()
    readonly projectId?:string;
    
