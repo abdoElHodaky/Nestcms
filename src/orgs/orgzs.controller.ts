@@ -7,7 +7,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 @ApiBearerAuth('JWTAuthorization')
 @ApiTags("Orgz")
 
-@Controller(["orgzs","api/orgzs"])
+@Controller("orgzs")
 export class OrgzController {
   constructor(private readonly orgzService: OrgzService) {}
   
