@@ -3,7 +3,7 @@ import { Controller, Get, Post,
 //import { Response} from "express";
 import {OptionalJwtAuthGuard} from "./perm.guard";
 
-@UseGuards(OptionalJwtAuthGuard)
+//@UseGuards(OptionalJwtAuthGuard)
 @Controller()
 export class AppController {
   constructor() {}
