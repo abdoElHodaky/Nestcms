@@ -1,5 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional } from 'class-validator';
+import { IsObjectId } from 'class-validator-mongo-object-id';
 
 export class CreateContractDto {
   
@@ -29,14 +30,19 @@ export class CreateContractDto {
   @ApiPropertyOptional()
   readonly path?:string
   
-  @IsNotEmpty()
+  @IsOptional()
+  @IsObjectId()
   @ApiPropertyOptional()
   readonly employeeId?:string;
+
+
   @IsOptional()
+  @IsObjectId()
   @ApiPropertyOptional()
   readonly clientId?:string;
   
   @IsOptional()
+  @IsObjectId()
   @ApiPropertyOptional()
   readonly offerId?:string
 
