@@ -3,7 +3,7 @@ import { Reflector } from "@nestjs/core";
 import { UsersService } from './users/users.service';
 import { Permissions } from "./permissions/permissions-models.decorator";
 import { AuthGuard } from '@nestjs/passport';
-
+import { User} from "./users/interfaces/user"
 @Injectable()
 export class PermGuard implements CanActivate {
  private userService: UsersService
@@ -36,7 +36,7 @@ export class OptionalJwtAuthGuard extends AuthGuard('jwt') {
 
   // Override handleRequest so it never throws an error
   handleRequest(err, user, info, context) {
-    return (user!=undefined)user:{};
+    return (user!=undefined)user:new User();
   }
 
 }
