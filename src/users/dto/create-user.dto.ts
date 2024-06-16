@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsNotEmpty, IsOptional ,IsBoolean,IsEmail,IsPhone} from 'class-validator';
+import { IsNotEmpty, IsOptional ,IsBoolean,IsEmail} from 'class-validator';
 
 export class CreateUserDto {
   
@@ -37,7 +37,7 @@ export class CreateUserDto {
   }
 
   @IsNotEmpty()
-  @IsPhone()
+  
   @ApiPropertyOptional()
   readonly phone?:string
 
