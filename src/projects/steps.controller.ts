@@ -7,7 +7,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger"
 //@ApiSecurity("bearer")
 @ApiTags("Project.Step")
 @UseGuards(AuthGuard('jwt'))
-@Controller(['api/projects/:id/steps','projects/:id/steps'])
+@Controller('projects/:id/steps')
 export class StepController {
   constructor(private readonly projectService: ProjectService) {}
   
