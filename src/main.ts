@@ -6,7 +6,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 const options = new DocumentBuilder()
-    .setTitle('nestcmsapi')
+    .setTitle('Construction Company Management System')
     .setDescription('Api for Construction company workflow')
     .setVersion('1.0')
    /* .addBasicAuth()*/
@@ -30,6 +30,8 @@ const options = new DocumentBuilder()
     .addTag('Project.Schedule'," schedules endpoints for specific project")
     .addTag('Project.Step'," project steps endpoints")
     .addTag('Project.Design',"designs endpoints of specific project")
+    .addTag('Orgz',"orginzations endpoints")
+    .addTag('Note','notes endpoints')
     .build();
   
   const document = SwaggerModule.createDocument(app, options);
