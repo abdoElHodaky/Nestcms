@@ -22,8 +22,8 @@ export class CreateUserDto {
   readonly password: string;
 
   @IsOptional()
-  @ApiPropertyOptional({type:Object,
-    example:{
+  @ApiPropertyOptional({type:"object",
+    default:{
       country:"",
       street:"",
       postalCode:""
