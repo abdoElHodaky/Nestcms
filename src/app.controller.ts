@@ -4,7 +4,7 @@ export class AppController {
   constructor() {}
   @Get("")
   async index(@Res() res:Response ){   
-    res.redirect("docs")
+    res.redirected("docs")
  
    }
 }
