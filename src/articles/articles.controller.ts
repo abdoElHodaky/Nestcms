@@ -3,11 +3,17 @@ import { CreateArticleDto } from './dto/create-article.dto';
 import { ArticlesService } from './articles.service';
 import { CheckauthorInterceptor } from '../checkauthor.interceptor';
 import { UpdateArticleDto } from './dto/update-article.dto';
+import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger";
 
+
+@ApiBearerAuth('JWTAuthorization')
+@ApiTags("Article")
 @Controller('articles')
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
+ 
   @Post()
+  @UseGuards(AuthGuard('jwt'))
   @UseInterceptors(CheckauthorInterceptor)
   async createArticle(@Body() createArticleDto: CreateArticleDto) {
     return this.articlesService.create(createArticleDto);
