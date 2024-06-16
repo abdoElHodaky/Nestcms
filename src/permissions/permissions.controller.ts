@@ -12,7 +12,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth,ApiExcludeEndpoint,ApiOperation } fro
 //@ApiBearerAuth('JWTAuthorization')
 @ApiTags("Permission")
 //@UseGuards(AuthGuard('jwt'))
-@Controller(["api/permissions"])
+@Controller("permissions")
 export class PermissionController {
   constructor(private readonly permissionService: PermissionService) {}
  
