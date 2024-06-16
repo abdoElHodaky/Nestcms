@@ -1,5 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional } from 'class-validator';
+import { IsObjectId } from 'class-validator-mongo-object-id';
 
 export class CreateNoteDto {
   
@@ -16,13 +17,16 @@ export class CreateNoteDto {
   readonly status:string;
   
   @IsNotEmpty()
+  @IsObjectId()
   @ApiProperty()
   readonly onId:string
+  
   @IsNotEmpty()
   @ApiProperty()
   readonly onModel:string
   
   @IsOptional()
+  @IsObjectId()
   @ApiProperty()
   readonly authorId?:string;
 }
