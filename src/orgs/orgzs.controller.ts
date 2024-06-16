@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { CreateNoteDto } from './dto/create-note.dto';
+import { CreateOrgzDto } from './dto/create-orgz.dto';
 //import { NoteService } from './notes.service';
 import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 
