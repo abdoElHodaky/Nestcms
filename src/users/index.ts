@@ -1,4 +1,4 @@
-export {UsersModules} from "./users.module";
+export {UsersModule} from "./users.module";
 export {UsersService} from "./users.service";
 export * from "./dto/"
 export * from "./interfaces/user";
