@@ -1,5 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional } from 'class-validator';
+import { IsObjectId } from 'class-validator-mongo-object-id';
 
 export class CreateOrgzDto {
   
@@ -16,6 +17,7 @@ export class CreateOrgzDto {
   readonly status:string;
   
   @IsOptional()
+  @IsObjectId()
   @ApiPropertyOptional()
   readonly ownerId:string;
   
