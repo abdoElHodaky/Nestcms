@@ -7,20 +7,21 @@ import { UpdateArticleDto } from './dto/update-article.dto';
 import { ApiTags,ApiSecurity,ApiBearerAuth,ApiExcludeEndpoint,ApiOperation } from "@nestjs/swagger";
 
 
-@ApiBearerAuth('JWTAuthorization')
-@UseGuards(AuthGuard('jwt'))
+
 @ApiTags("Article")
 @Controller('api/articles')
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
- 
+
+  @ApiBearerAuth('JWTAuthorization')
+  @UseGuards(AuthGuard('jwt'))
   @UseInterceptors(CheckauthorInterceptor)
   @Post()
   async createArticle(@Body() createArticleDto: CreateArticleDto) {
     return this.articlesService.create(createArticleDto);
   }
   
-  @ApiExcludeEndpoint()
+  
   @Get()
   async findAll() {
     return this.articlesService.findAll();
@@ -31,7 +32,8 @@ export class ArticlesController {
     return this.articlesService.findOne(id);
   }
   
-  
+  @ApiBearerAuth('JWTAuthorization')
+  @UseGuards(AuthGuard('jwt'))
   @UseInterceptors(CheckauthorInterceptor)
   @Delete(':id')
   async deleteArticle(@Param('id') id: string) {
@@ -41,7 +43,8 @@ export class ArticlesController {
    // return this.articlesService.delete(id);
   }
   
-  
+  @ApiBearerAuth('JWTAuthorization')
+  @UseGuards(AuthGuard('jwt'))
   @UseInterceptors(CheckauthorInterceptor)
   @Put(':id')
   async updateArticle(@Param('id') id: string, @Body() article: UpdateArticleDto) {
