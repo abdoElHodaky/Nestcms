@@ -30,7 +30,7 @@ export class OrgzService {
     return await this.orgzModel.findById(_id).exec()
   }
   
-  async all(ownerId?:strimg): Promise<Orgz[]> {
+  async all(ownerId?:string): Promise<Orgz[]> {
     return await this.orgzModel.find({
       owner:(ownerId !=undefined)?{_id:ownerId}:{}
     }).exec();
