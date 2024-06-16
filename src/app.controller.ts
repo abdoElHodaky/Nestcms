@@ -7,7 +7,6 @@ export class AppController {
   @Redirect("docs")
   @Get()
   async redirect(@Res() res:Response ){   
-    res.redirect("/docs")
- 
+    return "docs"
    }
 }
