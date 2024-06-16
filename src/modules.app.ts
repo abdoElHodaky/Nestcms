@@ -4,7 +4,7 @@ import { UsersModule } from './users/';
 import { SchedulesModule } from './schedules/';
 import { ProjectsModule } from './projects/';
 import { ContractsModule } from './contracts/';
-import { OffersModule } from './offers/offers.module';
+import { OffersModule } from './offers/';
 import { NotesModule } from "./notes/notes.module";
 import { PermissionsModule } from "./permissions/permissions.module";
 import { ArticlesModule } from "./articles/articles.module";
