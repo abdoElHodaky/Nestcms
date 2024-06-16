@@ -22,7 +22,7 @@ export class CreateUserDto {
   readonly password: string;
 
   @IsOptional()
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({type:Object})
   readonly address?:{
     city:string,
     street:string,
