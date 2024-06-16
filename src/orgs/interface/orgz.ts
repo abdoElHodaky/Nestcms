@@ -1,6 +1,6 @@
 import { Prop, Schema } from "@nestjs/mongoose";
 import  {HydratedDocument , Types } from "mongoose"
-
+import { Address} from "../../address/address";
 import { User } from "../../users/interfaces/user";
 export type NoteDocument = HydratedDocument<Orgz>
 
@@ -16,12 +16,7 @@ export class Orgz {
   @Prop()
   _id:string;
   @Prop({type:Object})
-  address:{
-    city:string,
-    street:string,
-    postalCode:string,
-    country:string
-  }
+  address:Address
   @Prop({
       type:String,
       enum:["open","closed"]
