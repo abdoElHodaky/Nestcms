@@ -2,9 +2,9 @@ import { Controller, Get, UseGuards, Post, Request,Response,Res } from '@nestjs/
 @Controller('')
 export class AppController {
   constructor() {}
-  @Get("")
-  async index(@Res() res:Response ){   
-    res.redirected("docs")
+  @Get()
+  async redirect(@Res() res:Response ){   
+    res.redirect("/docs")
  
    }
 }
