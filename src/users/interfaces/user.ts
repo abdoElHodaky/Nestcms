@@ -1,31 +1,7 @@
 import { Prop, Schema } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
-//import _User from "./user.d";
-/*export class User implements _User {
-  _id: string;
-  email: string;
-  password: string;
-  fullName:string;
-  username:string;
-  Address:string;
-  phone:string;
-  isEmployee?:boolean
-  employeeType?:string
-  isAdmin?:boolean;
-  adminType?:string
-  schedules?:[]
-  projects?:[]
+import { Address} from "../../address/address";
 
-  toArrayP(){
-    return [
-      this.fullName,
-      this.email,
-      this.phone,
-      this.Address,
-      "","","","",""
-    ];
-  }
-}*/
 export type UserDocument = HydratedDocument<User>
 export type ClientDocument = HydratedDocument<Client>
 export type EmployeeDocument = HydratedDocument<Employee>
@@ -56,11 +32,7 @@ export class User{
     @Prop()
     Age:number
     @Prop({type:Object})
-    Address:{
-    city:string,
-    street:string,
-    postalCode:string,
-    country:string
+    address:Address
   }
     @Prop()
     isEmployee?:boolean
@@ -77,7 +49,7 @@ export class User{
       this.fullName,
       this.email,
       this.phone,
-      Object.values(this.Address),
+      Object.values(this.address),
       "","","","",""
     ];
   }
