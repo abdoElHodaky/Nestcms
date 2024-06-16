@@ -55,8 +55,13 @@ export class User{
     password:string
     @Prop()
     Age:number
-    @Prop()
-    Address:string
+    @Prop({type:Object})
+    Address:{
+    city:string,
+    street:string,
+    postalCode:string,
+    country:string
+  }
     @Prop()
     isEmployee?:boolean
     @Prop()
