@@ -9,7 +9,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth,ApiExcludeEndpoint,ApiOperation } fro
 
 
 @ApiTags("Article")
-@Controller(['/articles','api/articles'])
+@Controller('/articles')
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
 
