@@ -20,6 +20,7 @@ const options = new DocumentBuilder()
         'JWTAuthorization',
       )
     .addServer('/', '')
+    .addTag('Article','articles endpoints')
     .addTag('Auth',"Authentication")
     .addTag('Project',"projects endpoints")
     .addTag('Schedule',"schedules endpoints")
