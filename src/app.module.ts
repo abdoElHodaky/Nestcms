@@ -36,10 +36,10 @@ import { modules } from "./modules.app";
     provide:APP_GUARD,
     useClass:PermGuard
   },
-    {
+   /* {
       provide:APP_GUARD,
       useClass:OptionalJwtAuthGuard
-    }
+    }*/
   ],
 })
 export class AppModule {}
