@@ -1,8 +1,8 @@
 import { PaymentsModule } from './payments/payments.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/';
-import { SchedulesModule } from './schedules/schedules.module';
-import { ProjectsModule } from './projects/projects.module';
+import { SchedulesModule } from './schedules/';
+import { ProjectsModule } from './projects/';
 import { ContractsModule } from './contracts/contracts.module';
 import { OffersModule } from './offers/offers.module';
 import { NotesModule } from "./notes/notes.module";
