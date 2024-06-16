@@ -4,7 +4,7 @@ import { CreateOrgzDto } from './dto/create-orgz.dto';
 import { OrgzService } from './orgzs.service';
 import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 
-@ApiBearerAuth('JWTAuthorization')
+//@ApiBearerAuth('JWTAuthorization')
 @ApiTags("Orgz")
 
 @Controller("orgzs")
@@ -16,7 +16,7 @@ export class OrgzController {
      return await this.orgzService.all()
   }
 
-
+  @ApiBearerAuth('JWTAuthorization')
   @UseGuards(AuthGuard('jwt'))
   @Post("")
   async create(@Body() createOrzDto: CreateOrgzDto) {
