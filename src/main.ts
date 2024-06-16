@@ -30,6 +30,7 @@ const options = new DocumentBuilder()
     .addTag('Project.Schedule'," schedules endpoints for specific project")
     .addTag('Project.Step'," project steps endpoints")
     .addTag('Project.Design',"designs endpoints of specific project")
+    .addTag('Project.Note','projects notes endpoints')
     .addTag('Orgz',"orginzations endpoints")
     .addTag('Note','notes endpoints')
     .build();
