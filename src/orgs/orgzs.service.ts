@@ -3,8 +3,8 @@ import { Model ,Types} from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateOrgzDto } from './dto/create-orgz.dto';
 import { Orgz } from './interface/orgz';
-import { UsersService} from "../users/users.service"
-//import { ContractService} from "../contracts/contracts.service"
+import { UsersService} from "../users/"
+
 @Injectable()
 export class OrgzService {
   constructor(@InjectModel('Orgz') private readonly orgzModel: Model<Orgz>) {}
