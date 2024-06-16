@@ -11,7 +11,7 @@ export class OrgzService {
   private userService:UsersService
  // private contractService:ContractService
  
-  async create(orgzcDto: CreateOrgzDto): Promise<Note> {
+  async create(orgzcDto: CreateOrgzDto): Promise<Orgz> {
     const {ownerId,...rest}=orgzcDto
     const owner=await this.userService.find_Id(ownerId)
     const createdOrgz = new this.orgzModel(rest);
