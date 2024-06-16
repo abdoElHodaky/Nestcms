@@ -4,9 +4,9 @@ import { Controller, Get, UseGuards, Post,
 export class AppController {
   constructor() {}
   
-  @Redirect("docs")
+  @Redirect("/docs")
   @Get()
   async redirect(@Res() res:Response ){   
-    return "docs"
+    return 
    }
 }
