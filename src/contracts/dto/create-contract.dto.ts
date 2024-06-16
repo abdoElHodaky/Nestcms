@@ -36,7 +36,7 @@ export class CreateContractDto {
   @ApiPropertyOptional()
   readonly clientId?:string;
   
-  @IsNotEmpty()
+  @IsOptional()
   @ApiPropertyOptional()
   readonly offerId?:string
 
