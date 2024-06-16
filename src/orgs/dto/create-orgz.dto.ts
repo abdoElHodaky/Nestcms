@@ -22,7 +22,14 @@ export class CreateOrgzDto {
   readonly ownerId:string;
   
   @IsNotEmpty()
-  @ApiProperty({type:Object})
+  @ApiProperty({type:"object",
+    default:{
+      street:"",
+      city:"",
+      postalCode:"",
+      country:""
+    }
+  })
   readonly address:{
     city:string,
     street:string,
