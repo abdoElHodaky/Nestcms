@@ -1,12 +1,14 @@
 import { Controller, Get, UseGuards, Post, 
-        Request,Response,Res ,Redirect} from '@nestjs/common';
-@Controller('')
+        Request,Res ,Redirect} from '@nestjs/common';
+import { Response} from "express";
+@Controller('/')
 export class AppController {
   constructor() {}
   
-  @Redirect("/docs")
-  @Get()
-  async redirect(@Res() res:Response ){   
-    return 
+ // @Redirect("/docs")
+  @Get("")
+  async index(@Res() res:Response ){   
+    res.redirect("docs")
+    return
    }
 }
