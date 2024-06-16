@@ -1,16 +1,24 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { CreateOrgzDto } from './dto/create-orgz.dto';
-//import { NoteService } from './notes.service';
+import { OrgzService } from './orgzs.service';
 import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 
 @ApiBearerAuth('JWTAuthorization')
 @ApiTags("Orgzs")
-@UseGuards(AuthGuard('jwt'))
+
 @Controller(["api/orgzs"])
 export class OrgzController {
-  constructor(/*private readonly noteService: NoteService*/) {}
-  @Post("create")
+  constructor(private readonly orgzService: OrgzService) {}
+  
+  @Get("")
+  async all():Promise<Orgz[]>{
+     return await this.orgzService.all()
+  }
+
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post("")
   async create(/*@Body() createNoteDto: CreateNoteDto*/) {
     return //await this.noteService.create(createNoteDto);
   }
