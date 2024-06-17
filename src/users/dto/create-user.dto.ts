@@ -1,6 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional ,IsBoolean,IsEmail} from 'class-validator';
-import { Address} from "../../address/address";
+import { Address} from "../../address/interface/address";
+
 
 export class CreateUserDto {
   
