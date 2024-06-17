@@ -1,6 +1,6 @@
 import { Prop, Schema } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
-import { Address} from "../../address/address";
+import { Address} from "../../address/interface/address";
 
 export type UserDocument = HydratedDocument<User>
 export type ClientDocument = HydratedDocument<Client>
