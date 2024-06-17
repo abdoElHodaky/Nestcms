@@ -1,7 +1,8 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional } from 'class-validator';
 import { IsObjectId } from 'class-validator-mongo-object-id';
-import { Address} from "../../address/address";
+import { Address} from "../../address/interface/address";
+
 export class CreateOrgzDto {
   
   @IsNotEmpty()
