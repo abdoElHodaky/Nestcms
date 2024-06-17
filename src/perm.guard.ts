@@ -1,7 +1,7 @@
 import {NestInterceptor,ExecutionContext,CallHandler,Injectable,CanActivate } from '@nestjs/common';
 import { Reflector } from "@nestjs/core";
 import { UsersService,User } from './users/';
-import { Permissions } from "./permissions/permissions-models.decorator";
+import { Permissions } from "./permissions/";
 import { AuthGuard } from '@nestjs/passport';
 //import { User} from "./users/interfaces/user"
 @Injectable()
