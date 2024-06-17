@@ -2,19 +2,19 @@ import { ApiHideProperty } from "@nestjs/swagger";
 
 export class Address {
    
-    @ApiHideProperty()
+  //  @ApiHideProperty()
     title: string;
 
-    @ApiHideProperty()
+   // @ApiHideProperty()
     street: string;
     
-    @ApiHideProperty()
+   // @ApiHideProperty()
     city: string;
 
-    @ApiHideProperty()
+   // @ApiHideProperty()
     state: string;
    
-    @ApiHideProperty()
+  //  @ApiHideProperty()
     country: string;
   
 }
