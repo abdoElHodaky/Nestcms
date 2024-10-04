@@ -4,6 +4,7 @@
   "description": "App of Construction company management",
   "author": "Abdoelhodaky",
   "license": "UNLICENSED",
+  "type":"module",
   "scripts": {
     "build": " npx nest build ",
     "format": "npx prettier --write \"src/**/*.ts\"",
