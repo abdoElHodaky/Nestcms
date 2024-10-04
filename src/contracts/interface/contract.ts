@@ -2,7 +2,7 @@
 import { Prop, Schema } from "@nestjs/mongoose";
 import mongoose , {HydratedDocument} from "mongoose"
 
-import { Client, Employee } from "../../users/interfaces/user";
+import { Client, Employee } from "../../users/";
 import { Offer } from "../../offers/";
 import { Payment } from "../../payments/";
 //export type ContractDocument = HydratedDocument<Contract>
