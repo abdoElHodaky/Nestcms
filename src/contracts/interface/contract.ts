@@ -3,8 +3,8 @@ import { Prop, Schema } from "@nestjs/mongoose";
 import mongoose , {HydratedDocument} from "mongoose"
 
 import { Client, Employee } from "../../users/";
-const {Offer}=await import( "../../offers/");
-const { Payment } =await import( "../../payments/");
+const {Offer}=require ( "../../offers/");
+const { Payment } =require( "../../payments/");
 //export type ContractDocument = HydratedDocument<Contract>
 
 @Schema({
