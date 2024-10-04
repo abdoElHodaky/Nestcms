@@ -2,7 +2,7 @@ import { Prop, Schema } from "@nestjs/mongoose";
 import mongoose , {HydratedDocument,Types} from "mongoose"
 
 import { Client} from "../../users/interfaces/user";
-const { Contract } = require( "../../contracts/");
+//const { Contract } = require( "../../contracts/");
 //import _Payment from "./payment.d";
 
 //export type PaymentDocument = HydratedDocument<Payment>
@@ -31,7 +31,7 @@ export class Payment {
   @Prop()
   currency:string
   @Prop({type:Types.ObjectId,ref:"Contract"})
-  contract?:typeof Contract;
+  contractId:Types.ObjectId;
   @Prop({type:Types.ObjectId,ref:"User"})
   client?:Client;
   @Prop()
