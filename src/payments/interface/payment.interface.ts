@@ -32,7 +32,7 @@ export class Payment {
   @Prop()
   currency:string
   @Prop({type:Types.ObjectId,ref:"Contract"})
-  contract:_Contract;
+  contract?:Contract;
   @Prop({type:Types.ObjectId,ref:"User"})
   client?:Client;
   @Prop()
@@ -50,5 +50,3 @@ export class Payment {
     
   }
 }
-
-class _Contract extends Contract {}
