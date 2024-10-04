@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import paytabs from "paytabs_pt2";
 import { Client } from "./users/interfaces/user";
 import { Payment } from "./payments/interface/payment.interface";
+import { ContractService} from "./contracts/"
 @Injectable()
 export class PayTabService{
   async values(obj){
@@ -19,7 +20,8 @@ export class PayTabService{
    async createPage(payment:Payment,urls:any):Promise<any>{
     let res;
     let client=payment.client
-    let shippinginfo=await payment.contract.employee.toArrayP()
+    let contract=await (new ContractService()).find_Id(payment.contractId)
+    let shippinginfo=await contract.employee.toArrayP()
     let clientinfo=await client.toArrayP()
     let paymentinfo=await payment.toArrayP()
     let _urls=[urls.callback,urls.return]
