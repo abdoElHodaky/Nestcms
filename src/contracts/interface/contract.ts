@@ -3,6 +3,8 @@ import { Prop, Schema } from "@nestjs/mongoose";
 import mongoose , {HydratedDocument,Types} from "mongoose"
 
 import { Client, Employee } from "../../users/";
+import {Offer} from "../../offers";
+import {Payment} from "../../payments";
 //const {Offer}=require ( "../../offers/");
 //const { Payment } =require( "../../payments/");
 //export type ContractDocument = HydratedDocument<Contract>
@@ -31,12 +33,12 @@ export class Contract {
   @Prop()
   path:string;
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"Offer"})
-  offerId?:Types.ObjectId;
+  offer?:Offer;
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
   client?:Client;
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
   employee?:Employee;
   @Prop({type:{type:mongoose.Schema.Types.ObjectId,ref:"Payment"}})
-  paymentsIds?:Types.ObjectId[]
+  payments?: Payment[]
 
 }
