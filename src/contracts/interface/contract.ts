@@ -4,7 +4,7 @@ import mongoose , {HydratedDocument} from "mongoose"
 
 import { Client, Employee } from "../../users/interfaces/user";
 import { Offer } from "../../offers/";
-import { Payment } from "../../payments/interface/payment.interface";
+import { Payment } from "../../payments/";
 //export type ContractDocument = HydratedDocument<Contract>
 
 @Schema({
