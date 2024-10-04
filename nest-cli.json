@@ -6,7 +6,7 @@
        "builder": {
         "type": "swc",
         "options": {
-        "swcrcPath": "/.swcrc",
+        "swcrcPath": ".swcrc",
        }
     },
     "typeCheck": true,
