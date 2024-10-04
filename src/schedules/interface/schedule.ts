@@ -2,7 +2,7 @@ import { Employee ,Client } from "../../users/interfaces/user";
 //import _Schedule from "./schedule.d"
 import { Prop, Schema } from "@nestjs/mongoose";
 import  {HydratedDocument , Types } from "mongoose"
-export type ScheduleDocument = HydratedDocument<Schedule>
+//export type ScheduleDocument = HydratedDocument<Schedule>
 
 @Schema({
     toJSON:{
