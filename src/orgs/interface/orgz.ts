@@ -2,7 +2,7 @@ import { Prop, Schema } from "@nestjs/mongoose";
 import  {HydratedDocument , Types } from "mongoose"
 import { Address} from "../../address/interface/address";
 import { User } from "../../users/interfaces/user";
-export type NoteDocument = HydratedDocument<Orgz>
+//export type NoteDocument = HydratedDocument<Orgz>
 
 @Schema({
     toJSON:{
