@@ -5,8 +5,7 @@ import mongoose , {HydratedDocument,Types} from "mongoose"
 import { Client, Employee } from "../../users/";
 import {Offer} from "../../offers";
 import {Payment} from "../../payments";
-//const {Offer}=require ( "../../offers/");
-//const { Payment } =require( "../../payments/");
+
 //export type ContractDocument = HydratedDocument<Contract>
 
 @Schema({
@@ -33,12 +32,16 @@ export class Contract {
   @Prop()
   path:string;
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"Offer"})
-  offer?:Offer;
+  offer?:_Offer;
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
   client?:Client;
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
   employee?:Employee;
   @Prop({type:{type:mongoose.Schema.Types.ObjectId,ref:"Payment"}})
-  payments?: Payment[]
+  payments?: _Payment[]
 
 }
+
+export class _Offer extends Offer{}
+export class _Payment extends Payment{}
+
