@@ -14,7 +14,7 @@
     "baseUrl": "./"
   },
     "module": {
-      "type": "commonjs",
+      "type": "es2017",
       "strict": false,
       "strictMode":false,
       "lazy": true,
