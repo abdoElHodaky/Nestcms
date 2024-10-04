@@ -13,8 +13,11 @@
     },
     "baseUrl": "./"
   },
-  "module": {
+    "module": {
     "type": "commonjs",
+    "strict": false,
+    "strictMode": true,
+    "lazy": false,
     "noInterop": false
   },
   "minify": false
