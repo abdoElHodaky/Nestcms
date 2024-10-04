@@ -5,7 +5,7 @@ import mongoose , {HydratedDocument} from "mongoose"
 import { Client, Employee } from "../../users/interfaces/user";
 import { Offer } from "../../offers/interface/offer.interface";
 import { Payment } from "../../payments/interface/payment.interface";
-export type ContractDocument = HydratedDocument<Contract>
+//export type ContractDocument = HydratedDocument<Contract>
 
 @Schema({
     toJSON:{
