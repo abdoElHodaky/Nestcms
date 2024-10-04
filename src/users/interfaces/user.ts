@@ -1,12 +1,12 @@
 import { Prop, Schema } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
 import { Address} from "../../address/interface/address";
-
+/*
 export type UserDocument = HydratedDocument<User>
 export type ClientDocument = HydratedDocument<Client>
 export type EmployeeDocument = HydratedDocument<Employee>
 export type AdminDocument = HydratedDocument<Admin>
-
+*/
 @Schema({
     toJSON:{
         versionKey: false,
