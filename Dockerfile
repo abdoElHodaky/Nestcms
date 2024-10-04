@@ -9,5 +9,6 @@ RUN npm i pm2 -g
 RUN npm cache verify && npm cache clean --force
 RUN npm install swagger-themes class-validator-mongo-object-id @swc/cli @swc/core --save
 #RUN npm install paytabs_pt2 
-RUN npm run build
+RUN npm run build && \
+npm run start:prod
 EXPOSE 3000
