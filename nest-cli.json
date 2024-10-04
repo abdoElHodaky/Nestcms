@@ -4,12 +4,12 @@
   "sourceRoot": "src",
     "compilerOptions": {
        "builder": {
-    "type": "swc",
-    "options": {
-      "swcrcPath": "/.swcrc",
-    }
-  },
-     "typeCheck": true,
+        "type": "swc",
+        "options": {
+        "swcrcPath": "/.swcrc",
+       }
+    },
+    "typeCheck": true,
     "plugins": ["@nestjs/swagger"]
   }
 }
