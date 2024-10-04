@@ -6,7 +6,7 @@
       "decorators": true,
       "dynamicImport": true
     },
-   
+   "target":"es2017",
     "transform": {
       "legacyDecorator": true,
       "decoratorMetadata": true
@@ -14,7 +14,7 @@
     "baseUrl": "./"
   },
     "module": {
-      "type": "es2017",
+      "type": "commonjs",
       "strict": false,
       "strictMode":false,
       "lazy": true,
