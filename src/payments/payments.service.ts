@@ -48,7 +48,7 @@ export class PaymentService {
     const {paymentId,contractId}=paymentLinkToContractDto
     const payment=await this.paymModel.findById(paymentId)
     const contract=await this.contractService.find_Id(contractId)
-    payment.contractId=new Types.ObjectId(contract)
+    payment.contract=contract
     return await payment.save()
   }
   async Pay(paymentId:string,urls:{callback:string,return:string}):Promise<any>{
