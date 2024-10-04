@@ -1,7 +1,7 @@
-FROM node:16-alpine
+FROM node:18-alpine
 COPY . .
 RUN apk add --no-cache build-base tzdata python3 sqlite-dev sqlite git
-RUN git config --global url."https://".insteadOf ssh:// && chmod +x build.sh
+#RUN git config --global url."https://".insteadOf ssh:// && chmod +x build.sh
 #RUN npm config set ssl-strict=false
 #ENV NODE_ENV ${NODE_ENV}
 RUN npm i pm2 -g && rm -rf .git/hooks
