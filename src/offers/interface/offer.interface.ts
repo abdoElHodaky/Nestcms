@@ -1,7 +1,7 @@
 import { Prop, Schema } from "@nestjs/mongoose";
 import mongoose , {HydratedDocument} from "mongoose"
 import { Client,Employee } from "../../users/interfaces/user";
-const { Contract } =await import( "../../contracts/");
+const { Contract } =require( "../../contracts/");
 
 //export type OfferDocument = HydratedDocument<Offer>
 
