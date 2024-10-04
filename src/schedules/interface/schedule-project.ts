@@ -4,7 +4,7 @@ import { ProjectStep } from "../../projects/interface/project-step";
 //import _ScheduleProject from"./schedule-project.d";
 import { Prop, Schema } from "@nestjs/mongoose";
 import  {HydratedDocument , Types } from "mongoose"
-export type ScheduleProjectDocument = HydratedDocument<ScheduleProject>
+//export type ScheduleProjectDocument = HydratedDocument<ScheduleProject>
 
 @Schema({
     toJSON:{
