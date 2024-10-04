@@ -4,9 +4,9 @@
     "lib": [
       "es2017"
     ],
-    "module": "es2017",
+    "module": "commonjs",
     "target": "es2017",
-    "strict": true,
+    "strict": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
