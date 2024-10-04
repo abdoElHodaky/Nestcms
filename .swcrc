@@ -14,11 +14,11 @@
     "baseUrl": "./"
   },
     "module": {
-    "type": "commonjs",
-    "strict": false,
-    "strictMode": true,
-    "lazy": false,
-    "noInterop": false
+      "type": "es6",
+      "strict": false,
+      "strictMode": true,
+      "lazy": true,
+      "noInterop": false
   },
   "minify": false
 }
