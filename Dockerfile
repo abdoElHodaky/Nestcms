@@ -10,6 +10,6 @@ RUN npm cache verify && npm cache clean --force
 RUN npm i pm2 npm@9.9.3 -g
 RUN npm i && npm install swagger-themes class-validator-mongo-object-id @swc/cli @swc/core
 #RUN npm install paytabs_pt2 
-RUN npx nest build
+RUN npx tsc
 EXPOSE 3000
 CMD ["node","dist/main.js"]
