@@ -10,7 +10,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "nodenext",
+    "moduleResolution": "node",
     "allowUnusedLabels": true,
     "allowUnreachableCode": true,
     "noFallthroughCasesInSwitch": true,
