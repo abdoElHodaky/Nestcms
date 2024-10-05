@@ -16,7 +16,7 @@ import {Contract} from "../../contracts/interface/contract";
 })
 export class Offer {
   @Prop()
-  _id:string;
+  id:string;
   @Prop()
   title: string;
   @Prop()
