@@ -114,7 +114,7 @@ export class ProjectService {
   }
   async employees(projectId:string):Promise<Employee>{
     const project = await this.projectModel.findById(projectId).exec()
-    return await this.userService.find_Id(project.employee._id)
+    return await this.userService.find_Id(project.employee?._id?.toString())
   }
   async find_Id(projectId:string):Promise<Project>{
     return await this.projectModel.findById(projectId)
