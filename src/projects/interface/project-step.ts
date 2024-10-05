@@ -17,7 +17,7 @@ export type ProjectStepDocument = HydratedDocument<ProjectStep>
 })
 export class ProjectStep  {
   @Prop()
-  _id: string;
+  id: string;
   @Prop()
   startDate:string;
   @Prop()
