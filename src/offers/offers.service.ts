@@ -42,7 +42,7 @@ export class OfferService {
     const {offerId,contractId}=offerLinkToContractDto
     const offer=await this.offerModel.findById(offerId)
     const contract=await this.contractService.find_Id(contractId)
-    offer.contractId=contract._id
+    offer.contractId=contract?._id
     return await offer.save()
   }
 /*
