@@ -16,7 +16,7 @@ export type DesignDocument = HydratedDocument<Design>
 })
 export class Design  {
   @Prop()
-  _id:string;
+  id:string;
   @Prop()
   desc:string;
   @Prop()
