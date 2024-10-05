@@ -32,7 +32,7 @@ export class OfferService {
     const employee = await this.userService.find_Id(uid)
     return await this.offerModel.find().populate({
       path:"employee",
-      match:{"employee._id":employee._id},
+      match:{"employee._id":employee?._id},
     }).exec();
   }
   async find_Id(_id:string):Promise<Offer>{
