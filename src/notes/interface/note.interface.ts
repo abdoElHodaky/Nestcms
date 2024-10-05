@@ -14,7 +14,7 @@ export type NoteDocument = HydratedDocument<Note>
 })
 export class Note {
   @Prop()
-  _id:Types.ObjectId();
+  _id:Types.ObjectId;
   @Prop({
       type:String,
       enum:["seen","read"]
