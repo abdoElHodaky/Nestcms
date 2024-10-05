@@ -15,7 +15,7 @@ import  {HydratedDocument , Types } from "mongoose"
 })
 export class Schedule{
  @Prop()
- id:string;
+ _id:Types.ObjectId;
  @Prop()
  title: string;
  @Prop()
