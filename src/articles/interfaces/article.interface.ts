@@ -1,4 +1,3 @@
-
 import { Prop, Schema } from "@nestjs/mongoose";
 import  { HydratedDocument , Types} from "mongoose"
 import { User } from "../../users/interfaces/user";
