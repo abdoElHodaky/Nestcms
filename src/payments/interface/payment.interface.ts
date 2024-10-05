@@ -18,7 +18,7 @@ import {Contract} from "../../contracts/interface/contract"
 })
 export class Payment {
   @Prop()
-  id:string;
+  _id:Types.ObjectId;
   @Prop()
   title: string;
   @Prop()
@@ -32,7 +32,7 @@ export class Payment {
   @Prop()
   currency:string
   @Prop({type:Types.ObjectId,ref:"Contract"})
-  contractId?:string|Types.ObjectId;
+  contractId?:Types.ObjectId;
   @Prop({type:Types.ObjectId,ref:"User"})
   client?:Client;
   @Prop()
