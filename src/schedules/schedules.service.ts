@@ -30,7 +30,7 @@ export class ScheduleService {
     },
     {
       path:"employee",
-      match:{"employee._id":employee._id},
+      match:{"employee._id":employee?._id},
     }
     ]).exec();
   }
