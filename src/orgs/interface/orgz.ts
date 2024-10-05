@@ -14,7 +14,7 @@ import { User } from "../../users/interfaces/user";
 })
 export class Orgz {
   @Prop()
-  id:string;
+  _id: Types.ObjectId;
   @Prop({type:Object})
   address:Address
   @Prop({
