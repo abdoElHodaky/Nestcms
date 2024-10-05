@@ -1,5 +1,5 @@
 import { Prop, Schema } from "@nestjs/mongoose";
-import { HydratedDocument } from "mongoose";
+import { HydratedDocument,Types } from "mongoose";
 import { Address} from "../../address/interface/address";
 /*
 export type UserDocument = HydratedDocument<User>
@@ -18,7 +18,7 @@ export type AdminDocument = HydratedDocument<Admin>
 export class User{
   
     @Prop()
-    id:string
+    _id: Types.ObjectId;
     @Prop()
     fullName: string
     @Prop({unique:true})
