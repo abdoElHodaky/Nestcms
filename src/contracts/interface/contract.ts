@@ -18,7 +18,7 @@ import {Payment} from "../../payments";
 })
 export class Contract {
   @Prop()
-  id:string;
+  _id:Types.ObjectId;
   @Prop()
   title: string;
   @Prop()
@@ -32,7 +32,7 @@ export class Contract {
   @Prop()
   path:string;
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"Offer"})
-  offerId?:Types.ObjectId|string;
+  offerId?:Types.ObjectId;
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
   client?:Client;
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
