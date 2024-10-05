@@ -30,7 +30,7 @@ export class Offer {
   @Prop()
   price:string;
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"Contract"})
-  contract?:Contract;
+  contract?:string|Types.ObjectId;
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
   client?:Client;
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
