@@ -20,7 +20,7 @@ export class PaymentService {
     const createdPayment = new this.paymModel({_id:new Types.ObjectId(),...rest});
     createdPayment.client=contract.client
     await createdPayment.save();
-    linkcontract={paymentId:createdPayment._id,contractId:contractId}
+    linkcontract={paymentId:createdPayment._id.toString(),contractId:contract._id.toString()}
     return await this.LinkContract(linkcontract)
   }/*
   async accept(acceptOfferDto:AcceptOfferDto):Promise<Offer>{
