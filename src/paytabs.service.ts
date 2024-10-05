@@ -21,7 +21,7 @@ export class PayTabService{
    async createPage(payment:Payment,urls:any):Promise<any>{
     let res;
     let client=payment.client
-    let contract=await this.contractS.find_Id(payment.contractId)
+    let contract=await this.contractS.find_Id(payment.contractId.toString())
     let shippinginfo=await contract.employee.toArrayP()
     let clientinfo=await client.toArrayP()
     let paymentinfo=await payment.toArrayP()
