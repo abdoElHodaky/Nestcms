@@ -33,7 +33,7 @@ export class ContractService {
     const offer = await this.offerService.find_Id(offerId)
     if(offer.status="Accept_Client"){
     const createdContract = contract;
-    createdContract.offer=offer
+    createdContract.offerId=offer._id
     createdContract.client=offer.client
     createdContract.employee=offer.employee
     return await createdContract.save()}
