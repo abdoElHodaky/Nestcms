@@ -1,5 +1,5 @@
 import { Prop, Schema } from "@nestjs/mongoose";
-import mongoose , {HydratedDocument} from "mongoose"
+import mongoose , {HydratedDocument,Types} from "mongoose"
 import { Design } from "./design";
 import { ProjectStep } from "./project-step";
 import { Contract } from "../../contracts/interface/contract";
@@ -17,7 +17,7 @@ export type ProjectDocument = HydratedDocument<Project>
 })
 export class Project  {
   @Prop()
-  id: string;
+  _id: Types.ObjectId;
   @Prop()
   startDate:string;
   @Prop()
