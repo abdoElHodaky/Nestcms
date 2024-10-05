@@ -1,4 +1,3 @@
-
 import { Project } from "../../projects/interface/project";
 import { ProjectStep } from "../../projects/interface/project-step";
 //import _ScheduleProject from"./schedule-project.d";
@@ -17,7 +16,7 @@ import  {HydratedDocument , Types } from "mongoose"
 })
 export class ScheduleProject  {
  @Prop()
- _id:string;
+ id:string;
  @Prop()
  title: string;
  @Prop()
