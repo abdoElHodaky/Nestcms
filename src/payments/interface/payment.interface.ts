@@ -32,7 +32,7 @@ export class Payment {
   @Prop()
   currency:string
   @Prop({type:Types.ObjectId,ref:"Contract"})
-  contract?:string|Types.ObjectId;
+  contractId?:string|Types.ObjectId;
   @Prop({type:Types.ObjectId,ref:"User"})
   client?:Client;
   @Prop()
