@@ -17,7 +17,7 @@ export class ScheduleService {
     const {clientId,employeeId,...rest}=createScheduleDto
     const [client,employee]=await this.userService.findMany_Id([clientId,employeeId])
     //const employee = await this.userService.find_Id(createScheduleDto.employeeId)
-    const createdSchedule = new this.scheduleModel(rest);
+    const createdSchedule = new this.scheduleModel({_id:new Types.ObjectId(),...rest});
     createdSchedule.client=client;
     createdSchedule.employee=employee;
     return await createdSchedule.save();
