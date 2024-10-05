@@ -18,7 +18,7 @@ export type AdminDocument = HydratedDocument<Admin>
 export class User{
   
     @Prop()
-    _id:string
+    id:string
     @Prop()
     fullName: string
     @Prop({unique:true})
