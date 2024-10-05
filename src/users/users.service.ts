@@ -16,14 +16,14 @@ export class UsersService {
         let cemdto:CreateEmployeeDto=createUserDto
          cemdto.isEmployee=true
          cemdto.employeeType=createUserDto.employeeType
-         createdUser=new this.userModel(cemdto)
+         createdUser=new this.userModel({_id:new Types.ObjectId(),...cemdto)
         
         break;
       case "Client":
         let cudto:CreateClientDto=createUserDto;
         cudto.isEmployee=false
         cudto.employeeType=""
-        createdUser=new this.userModel(cudto)
+        createdUser=new this.userModel({_id:new Types.ObjectId(),...cudto})
         break;
       default:
         break
