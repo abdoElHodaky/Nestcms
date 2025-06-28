@@ -42,7 +42,8 @@ export class User{
     employeeType?:string
     @Prop()
     adminType?:string
-    
+    @Prop()
+    salary?:number=6000;
    
    toArrayP(){
     return [
@@ -73,8 +74,7 @@ export class Employee extends User {
   isEmployee?:boolean=true;
   @Prop()
   employeeType?:string;
-  @Prop()
-  employeeSalary?:number=6000;
+ 
 }
 
 @Schema({
