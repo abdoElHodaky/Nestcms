@@ -73,6 +73,8 @@ export class Employee extends User {
   isEmployee?:boolean=true;
   @Prop()
   employeeType?:string;
+  @Prop()
+  employeeSalary?:number=6000;
 }
 
 @Schema({
