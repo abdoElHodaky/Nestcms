@@ -119,8 +119,13 @@ export class ProjectService {
   async find_Id(projectId:string):Promise<Project>{
     return await this.projectModel.findById(projectId)
   }
-/*
-  async findOne(email: string): Promise<User> {
-    return await this.userModel.findOne({ email }, '-__v').exec();
-  } */
+
+  async profitTransfer(projectId:string): Promise<any> {
+    const project=await this.find_Id(projectId)
+    const earn=project.earnings * 0.01
+    project.employee.salary=earn
+    project.earnings-=earn
+    await project.save()
+      
+  } 
 }
