@@ -26,6 +26,10 @@ export class Project  {
   content:string;
   @Prop()
   status:string;
+
+  @Prop({type:mongoose.Schema.Types.BigInt})
+  earning?:BigInt
+    
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
   employee?:Employee;
   @Prop({type:[{type:mongoose.Schema.Types.ObjectId,ref:"designs"}]})
