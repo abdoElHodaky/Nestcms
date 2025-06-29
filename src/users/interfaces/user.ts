@@ -74,6 +74,8 @@ export class Employee extends User {
   isEmployee?:boolean=true;
   @Prop()
   employeeType?:string;
+  @Prop()
+  commission?:number=.20;
  
 }
 
