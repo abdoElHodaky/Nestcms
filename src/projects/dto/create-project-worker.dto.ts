@@ -1,13 +1,8 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional } from 'class-validator';
 import { IsObjectId } from 'class-validator-mongo-object-id';
-
-
-export class CreateProjectStepDto {
-  
-  @IsOptional()
-  @ApiPropertyOptional()
-  readonly content?:string;
+import {CreateEmployeeDto} from "../../users/dto"
+export class CreateProjectWorkerDto extends Partial<CreateEmployeeDto> {
   
   @IsOptional()
   @ApiPropertyOptional()
@@ -18,12 +13,5 @@ export class CreateProjectStepDto {
   @ApiProperty()
   readonly projectId:string;
   
-  @IsNotEmpty()
-  @ApiProperty()
-  readonly startDate:string;
-  
-  @IsNotEmpty()
-  @ApiProperty()
-  readonly endDate:string;
   
 }
