@@ -1,12 +1,9 @@
 import { Prop, Schema } from "@nestjs/mongoose";
 import { HydratedDocument,Types } from "mongoose";
 import { Address} from "../../address/interface/address";
-/*
-export type UserDocument = HydratedDocument<User>
-export type ClientDocument = HydratedDocument<Client>
-export type EmployeeDocument = HydratedDocument<Employee>
-export type AdminDocument = HydratedDocument<Admin>
-*/
+import { Commission} from "../../commission/interface/commission"
+
+
 @Schema({
     toJSON:{
         versionKey: false,
@@ -75,7 +72,7 @@ export class Employee extends User {
   @Prop()
   employeeType?:string;
   @Prop()
-  commission?:number=.20;
+  commission?:Commission 
  
 }
 
