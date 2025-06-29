@@ -71,7 +71,7 @@ export class Employee extends User {
   isEmployee?:boolean=true;
   @Prop()
   employeeType?:string;
-  @Prop()
+  @Prop({type:[{type:mongoose.Schema.Types.ObjectId,ref:"Commission"}]})
   commission?:Commission 
  
 }
