@@ -10,9 +10,9 @@ import { ProjectService } from "../projects.service";
 @Injectable()
 export class ProjectWorkerService {
   private userService:UsersService
-  constructor(private projectService: ProjectService ,
-              @InjectModel('ProjectWorker') private readonly workerModel: Model<ProjectWorker>,
-            
+  private projectService: ProjectService
+  
+  constructor(  @InjectModel('ProjectWorker') private readonly workerModel: Model<ProjectWorker>
              ) {}
 
   async addToProject(id:string,createProjectWorkerDto:CreateProjectWorkerDto):Promise<Project>{
