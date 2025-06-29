@@ -4,7 +4,7 @@ import { Design } from "./design";
 import { ProjectStep } from "./project-step";
 import { Contract } from "../../contracts/interface/contract";
 import { Employee } from "../../users/interfaces/user";
-//import _Project from "./project.d"
+import { ProjectWorker } from "./worker";
 export type ProjectDocument = HydratedDocument<Project>
     
 @Schema({
@@ -38,4 +38,7 @@ export class Project  {
   contract?:Contract;
   @Prop({type:[{type:mongoose.Schema.Types.ObjectId,ref:"ProjectStep"}]})
   steps?:ProjectStep[];
+  @Prop({type:[{type:mongoose.Schema.Types.ObjectId,ref:"ProjectWorker"}]})
+  workers?:ProjectWorker[];
+
 }
