@@ -42,14 +42,14 @@ export class ContractService {
     }
   
   }
-  async employee_all(uid:string):Promise<Employee[]>{
-    const employee = await this.userService.find_Id(uid)
+  async employee_all(cid:string):Promise<Employee[]>{
+   // const employee = await this.userService.find_Id(uid)
    /* return await this.contractModel.find().populate({
       path:"employee",
       match:{"employee":employee._id},
     }).exec();*/
     const contractData = await this.contractModel.aggregate([
-            { $match: { _id: new Types.ObjectId(uid) } },
+            { $match: { _id: new Types.ObjectId(cid) } },
             {
                 $lookup: {
                     from: "users",
