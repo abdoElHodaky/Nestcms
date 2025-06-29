@@ -10,7 +10,7 @@ import { ProjectService } from "../projects.service";
 @Injectable()
 export class ProjectWorkerService {
   private userService:UsersService
-  constructor(private projectService: ProjectService 
+  constructor(private projectService: ProjectService ,
               @InjectModel('ProjectWorker') private readonly workerModel: Model<ProjectWorker>,
             
              ) {}
