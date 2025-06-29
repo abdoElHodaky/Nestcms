@@ -14,7 +14,7 @@ import  { HydratedDocument , Types} from "mongoose"
         versionKey: false,
     }, timestamps:true
 })
-export class Worker extends Employee  {
+export class ProjectWorker extends Employee  {
   @Prop()
   role:string;
   @Prop({type: Types.ObjectId,ref:"Project"})
