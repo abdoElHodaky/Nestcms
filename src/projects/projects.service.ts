@@ -125,7 +125,7 @@ export class ProjectService {
     const project=await this.projectModel.findById(projectId)
     const earn=project.earnings * 0.01
     project.employee.salary+=earn
-    project.earnings-=BigInt(earn)
+    project.earnings-=earn
     return  await project.save()
       
   } 
