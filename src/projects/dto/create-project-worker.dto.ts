@@ -1,9 +1,9 @@
+import { PartialType } from '@nestjs/mapped-types';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional } from 'class-validator';
 import { IsObjectId } from 'class-validator-mongo-object-id';
 import {CreateEmployeeDto} from "../../users/dto"
-type CreateWorker =Partial<CreateEmployeeDto>
-export class CreateProjectWorkerDto extends CreateWorker {
+export class CreateProjectWorkerDto extends PartialType(CreateEmployeeDto) {
   
   @IsOptional()
   @ApiPropertyOptional()
