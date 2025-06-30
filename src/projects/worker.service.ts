@@ -5,7 +5,7 @@ import { CreateProjectWorkerDto } from './dto/create-project-worker.dto';
 import { Project } from './interface/project';
 import { ProjectWorker } from "./interface/worker";
 import { UsersService } from "../users/users.service";
-import { ProjectService } from "../projects.service";
+import { ProjectService } from "./projects.service";
 
 @Injectable()
 export class ProjectWorkerService {
