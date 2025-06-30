@@ -39,7 +39,7 @@ export class User{
     employeeType?:string
     @Prop()
     adminType?:string
-    @Prop({type:Types.Double})
+    @Prop()
     salary?:number=6000;
    
    toArrayP(){
