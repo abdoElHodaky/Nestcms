@@ -18,7 +18,7 @@ export class ProjectWorkerService {
   async addTo(id:string,createProjectWorkerDto:CreateProjectWorkerDto):Promise<Project>{
     
     const project=await this.projectService.find_Id(id)
-    const worker= new this.worker({_id:new Types.ObjectId,...createProjectWorkerDto})
+    const worker= new this.workerModel({_id:new Types.ObjectId,...createProjectWorkerDto})
     project.workers.push(worker)
     worker.project=project
     await worker.save()
