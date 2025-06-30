@@ -15,14 +15,14 @@ export class ProjectWorkerService {
   constructor(  @InjectModel('ProjectWorker') private readonly workerModel: Model<ProjectWorker>
              ) {}
 
-  async addTo(id:string,createProjectWorkerDto:CreateProjectWorkerDto):Promise<Project>{
+  async addTo(id:string,createProjectWorkerDto:CreateProjectWorkerDto):Promise<ProjectWorker>{
     
     const project=await this.projectService.find_Id(id)
     const worker= new this.workerModel({_id:new Types.ObjectId,...createProjectWorkerDto})
     project.workers.push(worker)
     worker.project=project
-    await worker.save()
-    return await project.save()
+    return await worker.save()
+    
   }
   
   
