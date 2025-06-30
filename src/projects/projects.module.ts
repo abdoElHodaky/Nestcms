@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ProjectService } from './projects.service';
 import { ProjectWorkerService } from './worker.service';
 import { ProjectController } from './projects.controller';
+import { WorkerController } from './worker.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ProjectSchema } from './models/project.schema';
 import { StepController } from './steps.controller';
@@ -18,6 +19,8 @@ import { NoteController } from './notes.controller';
                                     ])],
   providers: [ProjectService, ProjectWorkerService],
   exports: [ProjectService ,ProjectWorkerService],
-  controllers: [ProjectController,NoteController,DesignController,StepController ],
+  controllers: [ProjectController,NoteController,
+                DesignController,StepController,
+                WorkerController ],
 })
 export class ProjectsModule {}
