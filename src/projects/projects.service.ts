@@ -119,6 +119,10 @@ export class ProjectService {
   async find_Id(projectId:string):Promise<Project>{
     return await this.projectModel.findById(projectId)
   }
+  
+  async get model():Promise<any>{
+    return this.projectModel
+  }
 
   async profitTransfer(projectId:string): Promise<any> {
     const project=await this.projectModel.findById(projectId)
@@ -128,4 +132,5 @@ export class ProjectService {
     await project.save()
       
   } 
+  
 }
