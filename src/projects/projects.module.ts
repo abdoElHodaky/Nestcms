@@ -7,7 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ProjectSchema } from './models/project.schema';
 import { StepController } from './steps.controller';
 import { ProjectStepSchema } from './models/project-step.schema';
-import { ProjectWorkerSchema} from './models/project-worker.schema'
+import { ProjectWorkerSchema} from './models/worker.schema'
 import { DesignController } from './designs.controller';
 import { DesignSchema } from './models/design.schema';
 import { NoteController } from './notes.controller';
