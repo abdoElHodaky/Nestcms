@@ -19,5 +19,7 @@ export class ProjectWorker extends Employee  {
   role:string;
   @Prop({type: Types.ObjectId,ref:"Project"})
   project?:Project;
+  @Prop()
+  readonly employeeType="worker";
 }
 
