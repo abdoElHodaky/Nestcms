@@ -27,7 +27,7 @@ export class Project  {
   @Prop()
   status:string;
 
-  @Prop({type:mongoose.Schema.Types.Double})
+  @Prop()
   earnings?: number 
     
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
