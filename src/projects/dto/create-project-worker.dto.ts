@@ -5,10 +5,6 @@ import { IsObjectId } from 'class-validator-mongo-object-id';
 import {CreateEmployeeDto} from "../../users/dto"
 export class CreateProjectWorkerDto extends PartialType(CreateEmployeeDto) {
   
-  @IsOptional()
-  @ApiPropertyOptional()
-  readonly status?:string
-  
   @IsNotEmpty()
   @IsObjectId()
   @ApiProperty()
