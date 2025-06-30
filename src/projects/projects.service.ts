@@ -121,7 +121,7 @@ export class ProjectService {
   }
 
   async profitTransfer(projectId:string): Promise<any> {
-    const project=await this.find_Id(projectId)
+    const project=await this.projectModel.findById(projectId)
     const earn=project.earnings * 0.01
     project.employee.salary=earn
     project.earnings-=earn
