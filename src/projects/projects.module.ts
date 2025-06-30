@@ -15,7 +15,7 @@ import { NoteController } from './notes.controller';
   imports: [MongooseModule.forFeature([{ name: 'Project', schema: ProjectSchema },
                                        {name: 'Design', schema: DesignSchema},
                                        {name: 'ProjectStep', schema: ProjectStepSchema},
-                                       {name: 'ProjectWorker',schema: ProjectWorker}
+                                       {name: 'ProjectWorker',schema: ProjectWorkerSchema}
                                     ])],
   providers: [ProjectService, ProjectWorkerService],
   exports: [ProjectService ,ProjectWorkerService],
