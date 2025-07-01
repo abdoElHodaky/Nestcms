@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { Commission } from './interfaces/salary';
+import { Commission } from './interface/';
 //import { CreateArticleDto ,  UpdateArticleDto } from './dto/';
 //import { UpdateArticleDto } from './dto/update-article.dto';
 
