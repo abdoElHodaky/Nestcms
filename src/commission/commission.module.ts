@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { SalarySchema , CommissionSchema} from './models/schema';
-//import { ArticlesService } from './articles.service';
+import { SalaryService } from './salary.service';
+import { CommissionService} from './commission.service'
 //import { ArticlesController } from './articles.controller';
 
 @Module({
@@ -9,7 +10,7 @@ import { SalarySchema , CommissionSchema} from './models/schema';
     MongooseModule.forFeature([{ name: 'Salary', schema: SalarySchema },
                                { name: "Commission", schema: CommissionSchema}]),
   ],
-  providers: [],
+  providers: [SalaryService, CommissionService],
   controllers: [],
 })
 export class CommSalaryModule {}
