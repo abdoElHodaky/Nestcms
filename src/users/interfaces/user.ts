@@ -1,7 +1,7 @@
 import { Prop, Schema } from "@nestjs/mongoose";
 import { HydratedDocument,Types } from "mongoose";
 import { Address} from "../../address/interface/address";
-import { Commission} from "../../commission/interface/commission"
+import { Commission,Salary} from "../../commission/interface/"
 
 
 @Schema({
@@ -72,7 +72,9 @@ export class Employee extends User {
   @Prop()
   employeeType?:string;
   @Prop({type:[{type:Types.ObjectId,ref:"Commission"}]})
-  commission?:Commission 
+  commissions?:Commission[]
+  @Prop({type:[{type:Types.ObjectId,ref:"Salary"}]})
+  salaries?:Salary[]
  
 }
 
