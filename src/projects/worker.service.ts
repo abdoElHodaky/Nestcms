@@ -3,6 +3,7 @@ import { Model,Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateProjectWorkerDto } from './dto/create-project-worker.dto';
 import { Project } from './interface/project';
+//import { Salary } from '../commission/interface/';
 import { ProjectWorker } from "./interface/worker";
 import { UsersService } from "../users/users.service";
 import { ProjectService } from "./projects.service";
@@ -12,7 +13,9 @@ export class ProjectWorkerService {
   private userService:UsersService
   private projectService: ProjectService
   
-  constructor(  @InjectModel('ProjectWorker') private readonly workerModel: Model<ProjectWorker>
+  constructor(  @InjectModel('ProjectWorker') private readonly workerModel: Model<ProjectWorker>,
+              //   @InjectModel('Salary') private readonly salaryModel: Model<Salary>
+                
              ) {}
 
   async addTo(id:string,createProjectWorkerDto:CreateProjectWorkerDto):Promise<ProjectWorker>{
@@ -25,6 +28,17 @@ export class ProjectWorkerService {
     
   }
   
+  async profitTransfer(projectId:string,workerId:string): Promise<Project> {
+    const project=await this.projectService.find_Id(projectId)
+    const earn=project.earnings * 0.01
+    await this.projectService.update_Id(project._id,{
+      earnings:project.earnings-earn
+    });
+    
+    
+    return  project
+      
+  } 
   
  /* async find_Id(projectId:string):Promise<Project>{
     return await this.projectModel.findById(projectId)
