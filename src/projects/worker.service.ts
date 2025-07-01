@@ -29,9 +29,9 @@ export class ProjectWorkerService {
   }
   
   async profitTransfer(projectId:string,workerId:string): Promise<Project> {
-    const project=await this.projectService.find_Id(projectId)
+    let project=await this.projectService.find_Id(projectId)
     const earn=project.earnings * 0.01
-    await this.projectService.update_Id(project._id,{
+    project=await this.projectService.update_Id(project._id,{
       earnings:project.earnings-earn
     });
     
