@@ -7,8 +7,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 const options = new DocumentBuilder()
     .setTitle('Construction Company Management System')
-    .setDescription('Api for Construction company workflow')
-    .setVersion('1.0')
+    .setDescription('Api for Construction company (parternship) workflow')
+    .setVersion('1.01')
    /* .addBasicAuth()*/
     .addBearerAuth(
         {
@@ -32,6 +32,7 @@ const options = new DocumentBuilder()
     .addTag('Project.Step'," project steps endpoints")
     .addTag('Project.Design',"designs endpoints of specific project")
     .addTag('Project.Note','projects notes endpoints')
+    .addTag('Project.Worker','projects workers endpoints')
     .addTag('Orgz',"orginzations endpoints")
     .addTag('Note','notes endpoints')
     .build();
