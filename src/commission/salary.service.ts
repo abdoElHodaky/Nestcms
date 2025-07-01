@@ -2,8 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Salary } from './interfaces/salary';
-import { CreateArticleDto ,  UpdateArticleDto } from './dto/';
-//import { UpdateArticleDto } from './dto/update-article.dto';
 
 @Injectable()
 export class SalaryService {
