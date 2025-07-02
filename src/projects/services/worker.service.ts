@@ -32,9 +32,7 @@ export class ProjectWorkerService {
     let project=await this.projectService.find_Id(projectId)
     const worker= await this.workerModel.findById(workerId).exec()
     const earn=project.earnings * 0.01
-    project=await this.projectService.update_Id(project._id.toString(),{
-      earnings:project.earnings-earn
-    });
+    project=await this.projectService.update_earnings(project._id.toString(),earn);
     let salary=worker.salaries.pop()
     salary=await this.salaryServ.update(salary._id?.toString(),earn)
     return worker
