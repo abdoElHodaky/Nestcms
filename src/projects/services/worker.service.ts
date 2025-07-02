@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { Model,Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { CreateProjectWorkerDto } from './dto/create-project-worker.dto';
-import { Project } from './interface/project';
+import { CreateProjectWorkerDto } from '../dto/create-project-worker.dto';
+import { Project } from '../interface/project';
 //import { Salary } from '../commission/interface/';
-import { ProjectWorker } from "./interface/worker";
-import { UsersService } from "../users/users.service";
+import { ProjectWorker } from "../interface/worker";
+import { UsersService } from "../../users/users.service";
 import { ProjectService } from "./projects.service";
 
 @Injectable()
