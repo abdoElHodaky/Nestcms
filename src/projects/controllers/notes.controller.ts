@@ -1,9 +1,8 @@
-
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ProjectService } from "./projects.service";
-import { NoteService } from "../notes/notes.service";
-import { CreateNoteDto } from "../notes/dto/create-note.dto";
+import { ProjectService } from "../services//projects.service";
+import { NoteService } from "../../notes/notes.service";
+import { CreateNoteDto } from "../../notes/dto/create-note.dto";
 import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger";
 @ApiBearerAuth('JWTAuthorization')
 //@ApiSecurity("bearer")
