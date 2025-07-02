@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { CreateScheduleDto } from './dto/create-schedule.dto';
 import { Schedule } from './interface/schedule';
 import { UsersService} from "../users/users.service";
-import { ProjectService} from "../projects/projects.service"
+import { ProjectService} from "../projects/"
 
 
 @Injectable()
