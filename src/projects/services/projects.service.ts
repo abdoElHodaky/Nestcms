@@ -121,8 +121,8 @@ export class ProjectService {
   }
 
 
-  async update_Id(projectId:string,project: object): Promise<Project> {
-    const project=await this.projectModel.findByIdAndUpdate(projectId,project,{new:true})
+  async update_Id(projectId:string,_project: object): Promise<Project> {
+    const project=await this.projectModel.findByIdAndUpdate(projectId,_project,{new:true})
     return   project
   } 
   
