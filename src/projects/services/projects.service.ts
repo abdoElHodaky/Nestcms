@@ -121,7 +121,7 @@ export class ProjectService {
   }
 
 
-  async update_earnings(projectId:string, earned: number): Promise<Project> {
+  async update_earnings(projectId:string, earn: number): Promise<Project> {
     const project=await this.projectModel.findByIdAndUpdate(projectId,{
       $dec:{earnings:earn}
     },{new:true})
