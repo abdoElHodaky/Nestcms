@@ -28,10 +28,12 @@ export class SalaryService {
  /* async delete(id: string): Promise<Article> {
     return await this.articleModel.findByIdAndRemove(id);
   }
-
-  async update(id: string, article: UpdateArticleDto) {
-    const updatedArticle = this.articleModel.findByIdAndUpdate(id, article, { new: true });
-    console.log(updatedArticle);
-    return updatedArticle;
-  }*/
+  */
+  async update(id: string, amount: number) : Promise<Salary>{
+    const salary = this.salaryModel.findByIdAndUpdate(id, {
+      amount:{$inc: amount}
+    }, { new: true });
+    console.log(salary);
+    return salary;
+  }
 }
