@@ -7,12 +7,12 @@ import { Project } from '../interface/project';
 import { ProjectWorker } from "../interface/worker";
 import { UsersService } from "../../users/users.service";
 import { ProjectService } from "./projects.service";
-
+import { SalaryService} from "../commission/services/" 
 @Injectable()
 export class ProjectWorkerService {
   private userService:UsersService
   private projectService: ProjectService
-  
+  private salaryServ:SalaryService 
   constructor(  @InjectModel('ProjectWorker') private readonly workerModel: Model<ProjectWorker>,
               //   @InjectModel('Salary') private readonly salaryModel: Model<Salary>
                 
@@ -30,14 +30,14 @@ export class ProjectWorkerService {
   
   async profitTransfer(projectId:string,workerId:string): Promise<Project> {
     let project=await this.projectService.find_Id(projectId)
+    const worker= await this.workerModel.findById(workerId).exec()
     const earn=project.earnings * 0.01
     project=await this.projectService.update_Id(project._id,{
       earnings:project.earnings-earn
     });
-    
-    
-    return  project
-      
+    let salary=worker.salaries.last()
+    salary=await this.salaryServ.update(salary._id.ToString(),earn)
+    return worker
   } 
   
  /* async find_Id(projectId:string):Promise<Project>{
