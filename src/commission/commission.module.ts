@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { SalarySchema , CommissionSchema} from './models/schema';
-import { SalaryService } from './salary.service';
-import { CommissionService} from './commission.service'
+import { SalaryService } from './services/salary.service';
+import { CommissionService} from './services/commission.service'
 //import { ArticlesController } from './articles.controller';
 
 @Module({
