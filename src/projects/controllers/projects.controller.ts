@@ -1,8 +1,8 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ProjectService } from "./projects.service";
-import { CreateProjectDto } from "./dto/create-project.dto";
-import { ProjectLinkToContractDto } from "./dto/link-contract.dto";
+import { ProjectService } from "../services/projects.service";
+import { CreateProjectDto } from "../dto/create-project.dto";
+import { ProjectLinkToContractDto } from "../dto/link-contract.dto";
 import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger";
 @ApiBearerAuth('JWTAuthorization')
 @ApiTags("Project")
