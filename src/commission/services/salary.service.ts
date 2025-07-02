@@ -29,9 +29,9 @@ export class SalaryService {
     return await this.articleModel.findByIdAndRemove(id);
   }
   */
-  async update(id: string, amount: number) : Promise<Salary>{
+  async update(id: string, _amount: number) : Promise<Salary>{
     const salary = this.salaryModel.findByIdAndUpdate(id, {
-      amount:{$inc: amount}
+      $inc:{amount:_amount}
     }, { new: true });
     console.log(salary);
     return salary;
