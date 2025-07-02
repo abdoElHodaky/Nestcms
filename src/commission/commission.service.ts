@@ -26,14 +26,6 @@ export class CommissionService {
   async findOne(id: string): Promise<Article> {
     return await this.articleModel.findById(id).exec();
   }
-
- /* async delete(id: string): Promise<Article> {
-    return await this.articleModel.findByIdAndRemove(id);
-  }
-
-  async update(id: string, article: UpdateArticleDto) {
-    const updatedArticle = this.articleModel.findByIdAndUpdate(id, article, { new: true });
-    console.log(updatedArticle);
-    return updatedArticle;
-  }*/
+  */
+ 
 }
