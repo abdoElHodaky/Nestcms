@@ -36,7 +36,7 @@ export class ProjectWorkerService {
       earnings:project.earnings-earn
     });
     let salary=worker.salaries.last()
-    salary=await this.salaryServ.update(salary._id.ToString(),earn)
+    salary=await this.salaryServ.update(salary._id,earn)
     return worker
   } 
   
