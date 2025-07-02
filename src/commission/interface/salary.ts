@@ -14,6 +14,9 @@ import { Employee} from "../../users/interfaces/user";
     timestamps:true
 })
 export class Salary {
+    
+  @Prop({type:Types.ObjectId})
+  _id:Types.ObjectId|string
   @Prop()
   title: string;
   @Prop()
