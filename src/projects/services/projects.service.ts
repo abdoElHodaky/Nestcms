@@ -122,7 +122,7 @@ export class ProjectService {
 
 
   async update_Id(projectId:string,project:object): Promise<Project> {
-    const project=await this.projectModel.findByIdAndUpdate(projectId,{new:true},{...project})
+    const project=await this.projectModel.findByIdAndUpdate(projectId,{...project},{new:true})
     return   project
   } 
   
