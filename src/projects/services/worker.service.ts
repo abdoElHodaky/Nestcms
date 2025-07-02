@@ -7,7 +7,7 @@ import { Project } from '../interface/project';
 import { ProjectWorker } from "../interface/worker";
 import { UsersService } from "../../users/users.service";
 import { ProjectService } from "./projects.service";
-import { SalaryService} from "../../commission/services/" 
+import { SalaryService} from "../../commission/services/salary.service" 
 @Injectable()
 export class ProjectWorkerService {
   private userService:UsersService
