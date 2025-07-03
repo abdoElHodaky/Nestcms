@@ -18,12 +18,12 @@ const options = new DocumentBuilder()
         'JWTAuthorization',
       )
     .addServer('/', '')
-    .addTag('Project',"projects endpoints")
-    .addTag('Schedule'," schedules endpoints for specific project")
-    .addTag('Step'," project steps endpoints")
-    .addTag('Design',"designs endpoints of specific project")
-    .addTag('Note','projects notes endpoints')
-    .addTag('Worker','projects workers endpoints')
+    .addTag('P',"projects endpoints")
+    .addTag('P.Schedule'," schedules endpoints for specific project")
+    .addTag('P.Step'," project steps endpoints")
+    .addTag('P.Design',"designs endpoints of specific project")
+    .addTag('P.Note','projects notes endpoints')
+    .addTag('P.Worker','projects workers endpoints')
     .build();
   
   const document = SwaggerModule.createDocument(app, options);
