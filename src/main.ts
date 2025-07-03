@@ -8,7 +8,7 @@ async function bootstrap() {
 const options = new DocumentBuilder()
     .setTitle('Construction Company Management System')
     .setDescription('Api for Construction company (parternship) workflow')
-    .setVersion('1.01')
+    .setVersion('1.1')
    /* .addBasicAuth()*/
     .addBearerAuth(
         {
@@ -28,7 +28,7 @@ const options = new DocumentBuilder()
     .addTag('Offer',"offers endpoints")
     .addTag('Contract',"contract endpoints")
     .addTag('User',"users endpoints")
-    .addTag('Project.Schedule'," schedules endpoints for specific project")
+    .addTag('Schedule.Project'," schedules endpoints for specific project")
     .addTag('Project.Step'," project steps endpoints")
     .addTag('Project.Design',"designs endpoints of specific project")
     .addTag('Project.Note','projects notes endpoints')
