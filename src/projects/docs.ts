@@ -3,7 +3,9 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ProjectsModule } from "./projects.module";
 export function gendocs(app:any){
 
-const options = new DocumentBuilder()
+const options = new DocumentBuilder({
+    include:ProjectsModule
+})
     .setTitle('Construction Company Management System')
     .setDescription('Api for Construction company (parternship) workflow')
     .setVersion('1.01')
@@ -29,7 +31,7 @@ const options = new DocumentBuilder()
   const document = SwaggerModule.createDocument(app, options);
   const theme = new SwaggerTheme();
   SwaggerModule.setup('docs/projects', app, document,{
-      include:ProjectsModule,
+      //include:ProjectsModule,
       swaggerOptions:{deepLinking: true},
     customCss: theme.getBuffer(SwaggerThemeNameEnum.DARK),
     customSiteTitle:"Endpoints of construction company",
