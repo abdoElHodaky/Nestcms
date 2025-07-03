@@ -13,5 +13,5 @@ import { CommSalaryModule} from "./commission/"
 
 export const modules=[PermissionsModule,AuthModule,ContractsModule,
                UsersModule,SchedulesModule,PaymentsModule,
-               OffersModule,OrgzsModule,
+               ProjectsModule,OffersModule,OrgzsModule,
                NotesModule,ArticlesModule,CommSalaryModule]
