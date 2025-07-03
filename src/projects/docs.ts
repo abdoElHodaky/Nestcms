@@ -27,7 +27,7 @@ const options = new DocumentBuilder()
     .build();
   
   const document = SwaggerModule.createDocument(app, options,{
-      include:ProjectsModule
+      include:[ProjectsModule]
   });
   const theme = new SwaggerTheme();
   SwaggerModule.setup('docs/projects', app, document,{
