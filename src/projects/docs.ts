@@ -18,11 +18,11 @@ const options = new DocumentBuilder()
       )
     .addServer('/', '')
     .addTag('Project',"projects endpoints")
-    .addTag('Project.Schedule'," schedules endpoints for specific project")
-    .addTag('Project.Step'," project steps endpoints")
-    .addTag('Project.Design',"designs endpoints of specific project")
-    .addTag('Project.Note','projects notes endpoints')
-    .addTag('Project.Worker','projects workers endpoints')
+    .addTag('Schedule'," schedules endpoints for specific project")
+    .addTag('Step'," project steps endpoints")
+    .addTag('Design',"designs endpoints of specific project")
+    .addTag('Note','projects notes endpoints')
+    .addTag('Worker','projects workers endpoints')
     .build();
   
   const document = SwaggerModule.createDocument(app, options);
