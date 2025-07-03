@@ -1,5 +1,6 @@
 import { SwaggerTheme, SwaggerThemeNameEnum } from 'swagger-themes';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { ProjectsModule } from "./projects.module";
 export function gendocs(app:any){
 
 const options = new DocumentBuilder()
@@ -28,6 +29,7 @@ const options = new DocumentBuilder()
   const document = SwaggerModule.createDocument(app, options);
   const theme = new SwaggerTheme();
   SwaggerModule.setup('docs/projects', app, document,{
+      include:ProjectsModule,
       swaggerOptions:{deepLinking: true},
     customCss: theme.getBuffer(SwaggerThemeNameEnum.DARK),
     customSiteTitle:"Endpoints of construction company",
