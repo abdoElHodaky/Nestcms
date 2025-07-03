@@ -5,7 +5,7 @@ import { CreateProjectWorkerDto } from "../dto/create-project-worker.dto";
 import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger";
 @ApiBearerAuth('JWTAuthorization')
 //@ApiSecurity("bearer")
-@ApiTags("P.Worker")
+@ApiTags("Project.Worker")
 @UseGuards(AuthGuard('jwt'))
 @Controller('projects/:id/workers')
 export class WorkerController {
