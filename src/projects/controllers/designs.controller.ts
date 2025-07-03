@@ -5,7 +5,7 @@ import { CreateDesignDto } from "../dto/create-design.dto";
 import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger";
 @ApiBearerAuth('JWTAuthorization')
 //@ApiSecurity("bearer")
-@ApiTags("Design")
+@ApiTags("P.Design")
 @UseGuards(AuthGuard('jwt'))
 @Controller('projects/:id/designs')
 export class DesignController {
