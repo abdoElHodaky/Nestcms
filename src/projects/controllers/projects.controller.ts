@@ -5,7 +5,7 @@ import { CreateProjectDto } from "../dto/create-project.dto";
 import { ProjectLinkToContractDto } from "../dto/link-contract.dto";
 import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger";
 @ApiBearerAuth('JWTAuthorization')
-@ApiTags("P")
+@ApiTags("Project")
 @UseGuards(AuthGuard('jwt'))
 @Controller('projects')
 export class ProjectController {
