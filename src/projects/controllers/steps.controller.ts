@@ -5,7 +5,7 @@ import { CreateProjectStepDto } from "../dto/create-project-step.dto";
 import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger";
 @ApiBearerAuth('JWTAuthorization')
 //@ApiSecurity("bearer")
-@ApiTags("P.Step")
+@ApiTags("Project.Step")
 @UseGuards(AuthGuard('jwt'))
 @Controller('projects/:id/steps')
 export class StepController {
