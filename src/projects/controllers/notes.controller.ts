@@ -6,7 +6,7 @@ import { CreateNoteDto } from "../../notes/dto/create-note.dto";
 import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger";
 @ApiBearerAuth('JWTAuthorization')
 //@ApiSecurity("bearer")
-@ApiTags("Note")
+@ApiTags("P.Note")
 @UseGuards(AuthGuard('jwt'))
 @Controller('projects/:id/notes')
 export class NoteController {
