@@ -12,7 +12,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth,ApiOperation } from "@nestjs/swagger"
 //import { UpdateArticleDto } from './dto/update-article.dto';
 //@UseInterceptors(CurrentUserInterceptor)
 @ApiBearerAuth('JWTAuthorization')
-@ApiTags("Schedule.P")
+@ApiTags("Schedule.Project")
 @UseGuards(AuthGuard('jwt'))
 @Controller("schedules/projects")
 export class ScheduleProjectController {
