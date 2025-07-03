@@ -13,7 +13,10 @@ export class AppController {
   @Redirect("/docs")
   @Get("")
   async index(@Res() res:Response ){   
-    
-    
-   }
+      }
+
+  @Redirect("/docs/projects")     
+  @Get("projects")
+  async projects(@Res() res:Response){}
+        
 }
