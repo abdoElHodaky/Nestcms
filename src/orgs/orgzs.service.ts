@@ -14,7 +14,7 @@ export class OrgzService {
   async create(orgzcDto: CreateOrgzDto): Promise<Orgz> {
     const {ownerId,...rest}=orgzcDto
     const owner=await this.userService.find_Id(ownerId)
-    const createdOrgz = new this.orgzModel({_id:new Types.ObjectId(),...rest});
+    const createdOrgz = new this.orgzModel({...rest});
     createdOrgz.owner=owner
     return await createdOrgz.save();
   }
