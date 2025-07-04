@@ -30,7 +30,7 @@ export class SalaryService {
   }
   */
   async update(id: string, _amount: number) : Promise<Salary>{
-    const salary = this.salaryModel.findByIdAndUpdate(id, {
+    const salary = this.salaryModel.findByIdAndUpdate({_id:id}, {
       $inc:{amount:_amount}
     }, { new: true });
     console.log(salary);
