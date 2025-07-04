@@ -21,7 +21,7 @@ export class ProjectWorkerService {
   async addTo(id:string,createProjectWorkerDto:CreateProjectWorkerDto):Promise<ProjectWorker>{
     
     const project=await this.projectService.find_Id(id)
-    const worker= new this.workerModel({_id:new Types.ObjectId,...createProjectWorkerDto})
+    const worker=this.workerModel.create({...createProjectWorkerDto})
     project.workers.push(worker)
     worker.project=project
     return await worker.save()
@@ -37,7 +37,7 @@ export class ProjectWorkerService {
     await earnings.save()
     //project=await this.projectService.update_earnings(project._id.toString(),earn);
     let salary=worker.salaries.pop()
-    salary=await this.salaryServ.update(salary?.id?.toString(),earn)
+    salary=await this.salaryServ.update(salary?.id,earn)
     return worker
   } 
   
