@@ -1,7 +1,8 @@
 import { Prop, Schema } from "@nestjs/mongoose";
 import  {HydratedDocument , Types } from "mongoose"
-import { Address} from "../../address/interface/address";
+import { Project} from "../../projects/interface/project";
 import { Orgz } from "../../orgs/interface/orgz";
+
 //export type NoteDocument = HydratedDocument<Orgz>
 
 @Schema({
@@ -31,8 +32,33 @@ export class Earning {
   title:string
   @Prop()
   description:string
-  @Prop({type:Types.ObjectId,ref:"Orgz"})
-  orgz?:Orgz
   @Prop()
   amount:number
 }
+
+@Schema({
+    toJSON:{
+        versionKey: false,
+    },
+    toObject:{
+        versionKey: false,
+    }, timestamps:true
+})
+class ProjectEarning extends Earning {
+    @Prop({type:Types.ObjectId,ref:"Project"})
+    project?:Project
+}
+
+@Schema({
+    toJSON:{
+        versionKey: false,
+    },
+    toObject:{
+        versionKey: false,
+    }, timestamps:true
+})
+class OrgzEarning extends Earning {
+    @Prop({type:Types.ObjectId,ref:"Orgz"})
+    orgz?:Orgz
+}
+
