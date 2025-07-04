@@ -26,6 +26,11 @@ export class Earning {
       enum:["monthly","4-month","cumulative-quarter","yearly"]
   })
   period:string;
+  @Prop({
+      type:String,
+      enum:["monthly","4-month","cumulative-quarter","yearly"]
+  })
+  distribute_period:string;
   @Prop()
   title:string
   @Prop()
