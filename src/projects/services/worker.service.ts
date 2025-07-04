@@ -48,7 +48,7 @@ export class ProjectWorkerService {
     const sm=this.salaryModel
     this.workerModel.find({
       project:{id:projectId}
-    }).select("workers-id").then(ids=>{
+    }).select("workers - id").then(ids=>{
       return sm.find({worker:{id:ids}})
     }).then(salaries=>{
       const sal=salaries.pop()
