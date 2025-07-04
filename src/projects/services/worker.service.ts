@@ -3,7 +3,7 @@ import { Model,Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateProjectWorkerDto } from '../dto/create-project-worker.dto';
 import { Project } from '../interface/project';
-//import { Salary } from '../commission/interface/';
+import { ProjectEarning } from '../earnings/interface/earning';
 import { ProjectWorker } from "../interface/worker";
 import { UsersService } from "../../users/users.service";
 import { ProjectService } from "./projects.service";
@@ -14,7 +14,7 @@ export class ProjectWorkerService {
   private projectService: ProjectService
   private salaryServ:SalaryService 
   constructor(  @InjectModel('ProjectWorker') private readonly workerModel: Model<ProjectWorker>,
-              //   @InjectModel('Salary') private readonly salaryModel: Model<Salary>
+                 @InjectModel('ProjectEarning') private readonly pearnModel: Model<ProjectEarning>
                 
              ) {}
 
@@ -28,11 +28,14 @@ export class ProjectWorkerService {
     
   }
   
-  async profitTransfer(projectId:string,workerId:string): Promise<ProjectWorker> {
-    let project=await this.projectService.find_Id(projectId)
-    const worker= await this.workerModel.findById(workerId).exec()
-    const earn=project.earnings * 0.01
-    project=await this.projectService.update_earnings(project._id.toString(),earn);
+  async profitTransfer(opts:{projectId:string,workerId:string,earnId:string}): Promise<ProjectWorker> {
+    let project=await this.projectService.find_Id(opts.projectId)
+    let earnings=await this.pearnModel.findById(opts.earnId).exec()
+    const worker= await this.workerModel.findById(opts.workerId).exec()
+    const earn=earnings.amount * 0.01
+    earnings.amount-=earn
+    await earnings.save()
+    //project=await this.projectService.update_earnings(project._id.toString(),earn);
     let salary=worker.salaries.pop()
     salary=await this.salaryServ.update(salary._id?.toString(),earn)
     return worker
