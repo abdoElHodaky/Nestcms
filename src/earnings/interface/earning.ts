@@ -44,7 +44,7 @@ export class Earning {
         versionKey: false,
     }, timestamps:true
 })
-class ProjectEarning extends Earning {
+export class ProjectEarning extends Earning {
     @Prop({type:Types.ObjectId,ref:"Project"})
     project?:Project
 }
@@ -57,7 +57,7 @@ class ProjectEarning extends Earning {
         versionKey: false,
     }, timestamps:true
 })
-class OrgzEarning extends Earning {
+export class OrgzEarning extends Earning {
     @Prop({type:Types.ObjectId,ref:"Orgz"})
     orgz?:Orgz
 }
