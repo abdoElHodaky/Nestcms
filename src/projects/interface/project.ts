@@ -5,7 +5,8 @@ import { ProjectStep } from "./project-step";
 import { Contract } from "../../contracts/interface/contract";
 import { Employee } from "../../users/interfaces/user";
 import { ProjectWorker } from "./worker";
-export type ProjectDocument = HydratedDocument<Project>
+import { ProjectEarning} from "../../earnings/interface/earning";
+//export type ProjectDocument = HydratedDocument<Project>
     
 @Schema({
     toJSON:{
@@ -27,8 +28,8 @@ export class Project  {
   @Prop()
   status:string;
 
-  @Prop()
-  earnings?: number 
+  @Prop({type:[{type:Types.ObjectId,ref:"ProjectEarning"}]})
+  earnings?:ProjectEarning[]
     
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
   employee?:Employee;
