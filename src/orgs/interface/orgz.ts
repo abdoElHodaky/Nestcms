@@ -2,6 +2,7 @@ import { Prop, Schema } from "@nestjs/mongoose";
 import  {HydratedDocument , Types } from "mongoose"
 import { Address} from "../../address/interface/address";
 import { User } from "../../users/interfaces/user";
+import { OrgzEarning} from "../../earnings/interface/earning";
 //export type NoteDocument = HydratedDocument<Orgz>
 
 @Schema({
@@ -35,6 +36,8 @@ export class Orgz {
   description:string
   @Prop({type:Types.ObjectId,ref:"User"})
   owner?:User
+  @Prop({type:[{type:Types.ObjectId,ref:"OrgzEarning"}]})
+  earnings?:OrgzEarning[]
   @Prop()
   profit_percentage:number=.201
 }
