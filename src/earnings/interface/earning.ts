@@ -23,7 +23,7 @@ export class Earning {
   type:string;
   @Prop({
       type:String,
-      enum:["monthly","4-month","cumulative-quarter"]
+      enum:["monthly","4-month","cumulative-quarter","yearly"]
   })
   period:string;
   @Prop()
