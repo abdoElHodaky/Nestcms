@@ -35,4 +35,6 @@ export class Orgz {
   description:string
   @Prop({type:Types.ObjectId,ref:"User"})
   owner?:User
+  @Prop()
+  profit_percentage:number=.201
 }
