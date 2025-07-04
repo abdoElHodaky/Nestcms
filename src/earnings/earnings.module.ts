@@ -20,4 +20,4 @@ import { Earning,ProjectEarnSchema ,OrgzEarnSchema
                 DesignController,StepController,
                 WorkerController ],*/
 })
-export class ProjectsModule {}
+export class EarningsModule {}
