@@ -46,14 +46,17 @@ export class ProjectWorkerService {
    async  distribute_earn(projectId:string,earnId:string):Promise<void>{
     let earnings=await this.pearnModel.findById(earnId).exec()
     const sm=this.salaryModel
+    const earn =earnings.amount * 0.01
     this.workerModel.find({
       project:{id:projectId}
     }).select("workers - id").then(ids=>{
       return sm.find({worker:{id:ids}})
     }).then(salaries=>{
       const sal=salaries.pop()
-      sal.amount+=earnings.amount * 0.01
+      sal.amount+=earn
       sal.save()
+      earning.amount-=earn
+      earning.save()
     }).catch(console.log)
      
   }
