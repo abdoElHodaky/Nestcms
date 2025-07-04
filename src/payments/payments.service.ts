@@ -17,7 +17,7 @@ export class PaymentService {
     const {contractId,...rest}=createPaymentDto
     let linkcontract:PaymentLinkToContractDto
     const contract=await this.contractService.find_Id(contractId)
-    const createdPayment = new this.paymModel({_id:new Types.ObjectId(),...rest});
+    const createdPayment = new this.paymModel({...rest});
     createdPayment.client=contract.client
     await createdPayment.save();
     linkcontract={paymentId:createdPayment._id.toString(),contractId:contract._id.toString()}
@@ -79,7 +79,7 @@ export class PaymentService {
 
   async ofUser(userId:string):Promise<Payment[]>{
     return await this.paymModel.find().where({
-      client:new Types.ObjectId(userId)
+      client:{id:userId}
     }).exec()
   }
 /*
