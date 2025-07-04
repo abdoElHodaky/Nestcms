@@ -12,6 +12,7 @@ import { UsersService } from "../../users/users.service";
 import { ContractService } from "../../contracts/contracts.service";
 import { Employee } from "../../users/interfaces/user";
 import { Note } from "../../notes/interface/note.interface";
+import { ProjectEarning} from "../../earnings/interface/earning";
 @Injectable()
 export class ProjectService {
   private userService:UsersService
@@ -120,12 +121,9 @@ export class ProjectService {
     return await this.projectModel.findById(projectId)
   }
 
-
-  async update_earnings(projectId:string, earn: number): Promise<Project> {
-    const project=await this.projectModel.findByIdAndUpdate(projectId,{
-      $dec:{earnings:earn}
-    },{new:true})
-    return   project
+  async earnings(projectId:string): Promise<ProjectEarning[]> {
+    const project=await this.projectModel.findById(projectId)
+    return project.earnings
   } 
   
 }
