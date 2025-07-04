@@ -21,19 +21,19 @@ export class Earning {
       enum:["profit","loss"]
   })
   type:string;
- /* @Prop({type:Types.ObjectId,refPath:"onModel",required:true})
-  onId:string;
-  @Prop({type:String,
-      required:true,
-      enum: ['Project', 'Design','Schedule']
-  })*/
-  //onModel:string;
+  @Prop({
+      type:String,
+      enum:["monthly","4-month","cumulative-quarter"]
+  })
+  period:string;
   @Prop()
   title:string
   @Prop()
   description:string
   @Prop()
   amount:number
+  @Prop()
+  currency:string
 }
 
 @Schema({
