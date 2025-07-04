@@ -16,7 +16,7 @@ export class OfferService {
   async create(createOfferDto: CreateOfferDto): Promise<Offer> {
     const {employeeId,...rest}=createOfferDto
     const employee=await this.userService.find_Id(employeeId)
-    const createdOffer = new this.offerModel({_id:new Types.ObjectId(),...rest});
+    const createdOffer = new this.offerModel({...rest});
     createdOffer.employee=employee
     return await createdOffer.save();
   }
