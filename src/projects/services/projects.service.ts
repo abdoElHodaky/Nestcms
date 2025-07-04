@@ -37,7 +37,7 @@ export class ProjectService {
     const project=await this.projectModel.findById(id).exec()
     const design =this.designModel.create({...createDesignDto});
     design.project=project
-    await design.save()
+   // await design.save()
     project.designs.push(design)
     return await project.save()
     
@@ -48,7 +48,7 @@ export class ProjectService {
     const step= this.stepModel.create({...createProjectStepDto})
     project.steps.push(step)
     step.project=project
-    await step.save()
+    //await step.save()
     return await project.save()
   }
   
