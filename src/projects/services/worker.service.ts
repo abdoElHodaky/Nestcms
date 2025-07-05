@@ -24,10 +24,10 @@ export class ProjectWorkerService {
   async addTo(id:string,createProjectWorkerDto:CreateProjectWorkerDto):Promise<ProjectWorker>{
     
     const project=await this.projectService.find_Id(id)
-    const worker=this.workerModel.create({...createProjectWorkerDto})
+    const worker=new this.workerModel({...createProjectWorkerDto})
     project.workers.push(worker)
     worker.project=project
-    return worker.save()
+    return await worker.save()
     
   }
   
