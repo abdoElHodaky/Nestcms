@@ -3,7 +3,7 @@ import { Model ,Types} from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { AddEarningDto } from './dto/add-earning.dto';
 import {Earning, ProjectEarning,OrgzEarning} from './interface/earning';
-import { ProjectsService} from "../projects/"
+import { ProjectService} from "../projects/"
 import { OrgzService} from "../orgs/orgzs.service"
 @Injectable()
 export class EarningService {
@@ -11,7 +11,7 @@ export class EarningService {
     @InjectModel('ProjectEarning') private readonly pearnModel: Model<ProjectEarning>,
     @InjectModel('OrgzEarning') private readonly orgsearnModel: Model<OrgzEarning>
   ) {}
-  private projectService:ProjectsService
+  private projectService:ProjectService
 //  private contractService:ContractService
  
   async add(addEarningDto: AddEarningDto): Promise<Earning> {
