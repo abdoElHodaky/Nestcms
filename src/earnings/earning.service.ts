@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Model ,Types} from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { AddEarningDto } from './dto/add-earning.dto';
-import { ProjectEarning,OrgzEarning} from './interface/earning';
+import {Earning, ProjectEarning,OrgzEarning} from './interface/earning';
 import { ProjectsService} from "../projects/projects.service"
 import { OrgzService} from "../orgs/orgz.service"
 @Injectable()
