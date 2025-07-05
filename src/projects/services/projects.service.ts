@@ -27,7 +27,7 @@ export class ProjectService {
   async create(createProjectDto: CreateProjectDto): Promise<Project> {
     const { employeeId,...rest }=createProjectDto
     const employee=await this.userService.find_Id(employeeId)
-    const createdProject =  this.projectModel.create({...rest});
+    const createdProject = new this.projectModel({...rest});
     createdProject.employee=employee
     return await createdProject.save();
   }
@@ -35,7 +35,7 @@ export class ProjectService {
   async addDesign(id:string,createDesignDto:CreateDesignDto):Promise<Project>{
     
     const project=await this.projectModel.findById(id).exec()
-    const design =this.designModel.create({...createDesignDto});
+    const design =new this.designModel({...createDesignDto});
     design.project=project
    // await design.save()
     project.designs.push(design)
@@ -45,7 +45,7 @@ export class ProjectService {
   async addStep(id:string,createProjectStepDto:CreateProjectStepDto):Promise<Project>{
     
     const project=await this.projectModel.findById(id).exec()
-    const step= this.stepModel.create({...createProjectStepDto})
+    const step= new this.stepModel({...createProjectStepDto})
     project.steps.push(step)
     step.project=project
     //await step.save()
