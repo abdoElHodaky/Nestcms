@@ -14,7 +14,7 @@ import { Orgz } from "../../orgs/interface/orgz";
     }, timestamps:true
 })
 export class Earning {
-  @Prop()
+  @Prop({type:Types.ObjectId})
   _id: Types.ObjectId|string;
   @Prop({
       type:String,
