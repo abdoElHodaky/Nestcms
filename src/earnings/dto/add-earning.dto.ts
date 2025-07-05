@@ -21,8 +21,10 @@ export class AddEarningDto {
   readonly status:string;
   
   @IsNotEmpty()
-  @IsObjectId()
-  @ApiProperty()
+  @ApiProperty({type: String,
+  example: "project",
+  enum: ["project","orgz"]
+   })
   readonly forType:string
   
   
