@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-//import { ProjectWorkerService ,ProjectService} from './services/';
+import { EarningService } from './earning.service';
 /*import { ProjectController,WorkerController,
         StepController,DesignController,
         NoteController
@@ -13,8 +13,8 @@ import { ProjectEarningSchema ,OrgzEarningSchema
                                        {name: 'ProjectEarning', schema: ProjectEarningSchema},
                                        {name: 'OrgzEarning',schema: OrgzEarningSchema}
                                     ])],
-  /*providers: [ProjectService, ProjectWorkerService],
-  exports: [ProjectService ,ProjectWorkerService],
+  providers: [EarningService],
+  exports: [EarningService],/*
   controllers: [ProjectController,NoteController,
                 DesignController,StepController,
                 WorkerController ],*/
