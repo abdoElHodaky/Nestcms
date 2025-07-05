@@ -15,9 +15,9 @@ export class ProjectWorkerService {
   private userService:UsersService
   private projectService: ProjectService
   private salaryServ:SalaryService 
-  constructor(  @InjectModel('ProjectWorker') private readonly workerModel: Model<ProjectWorker>,
-                 @InjectModel('ProjectEarning') private readonly pearnModel: Model<ProjectEarning>,
-                 @InjectModel('Salary') private readonly salaryModel: Model<Salary>
+  constructor(  private readonly workerModel: Model<ProjectWorker>,
+                private readonly pearnModel: Model<ProjectEarning>,
+                private readonly salaryModel: Model<Salary>
           
              ) {}
 
