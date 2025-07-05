@@ -11,7 +11,7 @@ import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 @ApiBearerAuth('JWTAuthorization')
 @ApiTags("Note")
 @UseGuards(AuthGuard('jwt'))
-@Controller(["notes","api/notes"])
+@Controller("notes")
 export class NoteController {
   constructor(private readonly noteService: NoteService) {}
   @Post("create")
