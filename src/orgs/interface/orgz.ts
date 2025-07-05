@@ -31,7 +31,7 @@ export class Orgz {
       enum: ['Project', 'Design','Schedule']
   })*/
   //onModel:string;
-  @Prop({type:Types.ObjectId,ref:"Project"})
+  @Prop({type:[{type:Types.ObjectId,ref:"Project"}]})
   projects?:Project[]
     
   @Prop()
