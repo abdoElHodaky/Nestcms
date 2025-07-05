@@ -15,7 +15,7 @@ import { Orgz } from "../../orgs/interface/orgz";
 })
 export class Earning {
   @Prop()
-  _id: Types.ObjectId;
+  _id: Types.ObjectId|string;
   @Prop({
       type:String,
       enum:["profit","loss"]
