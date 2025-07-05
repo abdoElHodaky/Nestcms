@@ -22,18 +22,9 @@ export class EarningService {
     return await createdNote.save(); }
   }
   
-/*  async employee_all(uid:string):Promise<Offer[]>{
-    const employee = await this.userService.find_Id(uid)
-    return await this.offerModel.find().populate({
-      path:"employee",
-      match:{"employee._id":employee._id},
-    }).exec();
-  }*/
-  async find_Id(_id:string):Promise<Note>{
-    return await this.noteModel.findById(_id).exec()
+
+  async find_Id(_id:string,type:string):Promise<Earning>{
+    if(type=="project") return await this.pearnModel.findById(_id).exec()
   }
-  /*
-  async findOne(email: string): Promise<User> {
-    return await this.userModel.findOne({ email }, '-__v').exec();
-  } */
+  
 }
