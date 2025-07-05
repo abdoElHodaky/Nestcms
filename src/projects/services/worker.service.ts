@@ -40,7 +40,7 @@ export class ProjectWorkerService {
     await earnings.save()
     //project=await this.projectService.update_earnings(project._id.toString(),earn);
     let salary=worker.salaries.pop()
-    salary=await this.salaryServ.update(salary?._id,earn)
+    salary=await this.salaryServ.update(salary["id"],earn)
     return worker
   } 
   
@@ -50,8 +50,8 @@ export class ProjectWorkerService {
     const earn =earning.amount * 0.01
     this.workerModel.find({
       project:{id:projectId}
-    }).select("workers - id").then(ids=>{
-      return sm.find({worker:{id:ids}})
+    }).select("workers - id").then(async ids=>{
+      return await sm.find({worker:{id:ids}})
     }).then(async salaries=>{
       const sal=salaries.pop()
       sal.amount+=earn
