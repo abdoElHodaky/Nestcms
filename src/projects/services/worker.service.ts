@@ -16,11 +16,9 @@ export class ProjectWorkerService {
   private projectService: ProjectService
   private salaryServ:SalaryService 
   private pearnModel:Model<ProjectEarning>
-  private salaryModel:Model<SalaryModel>
+  private salaryModel:Model<Salary>
   constructor(@InjectModel("ProjectWorker") private readonly workerModel: Model<ProjectWorker>,
-              //  private readonly pearnModel: Model<ProjectEarning>,
-              //  private readonly salaryModel: Model<Salary>
-               ) {
+              ) {
                this.salaryModel=this.salaryServ.model()
                this.pearnModel=this.earnService.model("project")
              
