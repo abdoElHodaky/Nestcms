@@ -5,7 +5,7 @@ import { Salary } from '../interface/';
 
 @Injectable()
 export class SalaryService {
-  static  model(){
+    model():any{
     return this.salaryModel
   }
   constructor(
