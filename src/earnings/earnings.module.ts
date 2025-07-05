@@ -1,9 +1,6 @@
 import { Module } from '@nestjs/common';
 import { EarningService } from './earning.service';
-/*import { ProjectController,WorkerController,
-        StepController,DesignController,
-        NoteController
-       } from './controllers/';*/
+import { EarningController } from './earnings.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ProjectEarningSchema ,OrgzEarningSchema
        } from './models/schema';
@@ -14,9 +11,7 @@ import { ProjectEarningSchema ,OrgzEarningSchema
                                        {name: 'OrgzEarning',schema: OrgzEarningSchema}
                                     ])],
   providers: [EarningService],
-  exports: [EarningService],/*
-  controllers: [ProjectController,NoteController,
-                DesignController,StepController,
-                WorkerController ],*/
+  exports: [EarningService],
+  controllers: [EarningController],
 })
 export class EarningsModule {}
