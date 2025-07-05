@@ -2,6 +2,7 @@ import { Prop, Schema } from "@nestjs/mongoose";
 import  {HydratedDocument , Types } from "mongoose"
 import { Address} from "../../address/interface/address";
 import { User } from "../../users/interfaces/user";
+import { Project } from "../../projects/";
 import { OrgzEarning} from "../../earnings/interface/earning";
 //export type NoteDocument = HydratedDocument<Orgz>
 
@@ -30,6 +31,9 @@ export class Orgz {
       enum: ['Project', 'Design','Schedule']
   })*/
   //onModel:string;
+  @Prop({type:Types.ObjectId,ref:"Project"})
+  projects?:Project[]
+    
   @Prop()
   title:string
   @Prop()
