@@ -3,8 +3,8 @@ import { Model ,Types} from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { AddEarningDto } from './dto/add-earning.dto';
 import {Earning, ProjectEarning,OrgzEarning} from './interface/earning';
-import { ProjectsService} from "../../projects/"
-import { OrgzService} from "../../orgs/orgzs.service"
+import { ProjectsService} from "../projects/"
+import { OrgzService} from "../orgs/orgzs.service"
 @Injectable()
 export class EarningService {
   constructor(
