@@ -15,8 +15,8 @@ export class ProjectWorkerService {
   private earnService:EarningService
   private projectService: ProjectService
   private salaryServ:SalaryService 
-  private pearnModel:Model<ProjectEarning>
-  private salaryModel:Model<Salary>
+  //private pearnModel:Model<ProjectEarning>
+  //private salaryModel:Model<Salary>
   constructor(@InjectModel("ProjectWorker") private readonly workerModel: Model<ProjectWorker>,
               ) {
                this.salaryModel=this.salaryServ.model()
@@ -36,7 +36,8 @@ export class ProjectWorkerService {
   
   async profitTransfer(opts:{projectId:string,workerId:string,earnId:string}): Promise<ProjectWorker> {
     let project=await this.projectService.find_Id(opts.projectId)
-    let earnings=await this.pearnModel.findById(opts.earnId).exec()
+    const pearnModel=this.earnService.model("project")
+    let earnings=await pearnModel.findById(opts.earnId).exec()
     const worker= await this.workerModel.findById(opts.workerId).exec()
     const earn=earnings.amount * 0.01
     earnings.amount-=earn
@@ -49,8 +50,8 @@ export class ProjectWorkerService {
   
    async  distribute_earn(projectId:string,earnId:string):Promise<void>{
     let earning=await this.pearnModel.findById(earnId).exec()
-    const sm=this.salaryModel
-    const pearn=this.pearnModel
+    const sm=this.salaryServ.model()
+    const pearn=this.earnService.model("project")
     const earn =earning.amount * 0.01
     this.workerModel.find({
       project:{id:projectId}
