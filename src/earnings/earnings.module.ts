@@ -5,12 +5,11 @@ import { Module } from '@nestjs/common';
         NoteController
        } from './controllers/';*/
 import { MongooseModule } from '@nestjs/mongoose';
-import { Earning,ProjectEarnSchema ,OrgzEarnSchema
+import { ProjectEarningSchema ,OrgzEarningSchema
        } from './models/schema';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: 'Earnings', schema: EarningSchema },
-                                       //{name: 'Design', schema: DesignSchema},
+  imports: [MongooseModule.forFeature([//{ name: 'Earnings', schema: EarningSchema },
                                        {name: 'ProjectEarning', schema: ProjectEarningSchema},
                                        {name: 'OrgzEarning',schema: OrgzEarningSchema}
                                     ])],
