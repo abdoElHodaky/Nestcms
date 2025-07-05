@@ -1,1 +1,39 @@
-
+import { Injectable } from '@nestjs/common';
+import { Model ,Types} from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { AddEarningDto } from './dto/add-earning.dto';
+import { ProjectEarning,OrgzEarning} from './interface/earning';
+import { projectsService} from "../projects/projects.service"
+import { OrgzService} from "../orgs/orgz.service"
+@Injectable()
+export class NoteService {
+  constructor(
+    @InjectModel('ProjectEarning') private readonly pearnModel: Model<ProjectEarning>,
+    @InjectModel('OrgzEarning') private readonly orgsearnModel: Model<OrgzEarning>
+  ) {}
+  private projectService:ProjectsService
+//  private contractService:ContractService
+ 
+  async add(addEarningDto: AddEarningDto): Promise<Note> {
+    const {forType,addToId,...rest}=addEarningDto
+    if (forType=="project")
+    { const createdNote = new this.pearnModel({...rest});
+      createdNote.project=await this.projectService.find_Id(addToId)
+    return await createdNote.save(); }
+  }
+  
+/*  async employee_all(uid:string):Promise<Offer[]>{
+    const employee = await this.userService.find_Id(uid)
+    return await this.offerModel.find().populate({
+      path:"employee",
+      match:{"employee._id":employee._id},
+    }).exec();
+  }*/
+  async find_Id(_id:string):Promise<Note>{
+    return await this.noteModel.findById(_id).exec()
+  }
+  /*
+  async findOne(email: string): Promise<User> {
+    return await this.userModel.findOne({ email }, '-__v').exec();
+  } */
+}
