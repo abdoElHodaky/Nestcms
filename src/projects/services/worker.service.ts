@@ -40,7 +40,7 @@ export class ProjectWorkerService {
     await earnings.save()
     //project=await this.projectService.update_earnings(project._id.toString(),earn);
     let salary=worker.salaries.pop()
-    salary=await this.salaryServ.update(salary?.id,earn)
+    salary=await this.salaryServ.update(salary?._id,earn)
     return worker
   } 
   
@@ -55,9 +55,9 @@ export class ProjectWorkerService {
     }).then(salaries=>{
       const sal=salaries.pop()
       sal.amount+=earn
-      sal.save()
+      await sal.save()
       earning.amount-=earn
-      earning.save()
+      await earning.save()
     }).catch(console.log)
      
   }
