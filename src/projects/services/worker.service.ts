@@ -52,7 +52,7 @@ export class ProjectWorkerService {
       project:{id:projectId}
     }).select("workers - id").then(ids=>{
       return sm.find({worker:{id:ids}})
-    }).then(salaries=>{
+    }).then(async salaries=>{
       const sal=salaries.pop()
       sal.amount+=earn
       await sal.save()
