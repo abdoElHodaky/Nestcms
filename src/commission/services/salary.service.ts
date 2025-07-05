@@ -5,6 +5,9 @@ import { Salary } from '../interface/';
 
 @Injectable()
 export class SalaryService {
+  static get model(){
+    return this.salaryModel
+  }
   constructor(
     @InjectModel('Salary') private readonly salaryModel: Model<Salary>,
   ) {}
