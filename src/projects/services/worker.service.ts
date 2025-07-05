@@ -57,10 +57,10 @@ export class ProjectWorkerService {
       const sal=salaries.pop()
       sm.findByIdAndUpdate(sal["id"],{
         $inc:{$amount:earn}
-      },{new:true}
+      },{new:true}).exec()
       pearn.findByIdAndUpdate(earning["id"],{
         $dec:{$amount:earn}
-      },{new:true}
+      },{new:true}).exec()
       
     }).catch(console.log)
      
