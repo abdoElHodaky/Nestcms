@@ -19,10 +19,15 @@ export class Salary {
   //_id:Types.ObjectId|string
   @Prop()
   title: string;
+  @Prop({
+      type:String,
+      enum:["monthly","yearly"]
+  })
+  periodically:string;
   @Prop()
   amount: number;
   @Prop({type:Types.ObjectId,ref:"User"})
-  employee: Employee;
+  employee: Employee|Owner;
   @Prop()
   payoutDate: Date;
 }
