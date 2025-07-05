@@ -7,7 +7,7 @@ import { ProjectService} from "../projects/"
 import { OrgzService} from "../orgs/orgzs.service"
 @Injectable()
 export class EarningService {
-  static  model(type:string){
+   model(type:string):any{
     if (type=="project") return this.pearnModel
   }
   constructor(
