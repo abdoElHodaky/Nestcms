@@ -3,23 +3,28 @@ import { Model,Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateProjectWorkerDto } from '../dto/create-project-worker.dto';
 import { Project } from '../interface/project';
-import { ProjectEarning } from '../../earnings/interface/earning';
+import { ProjectEarning,EarningService } from '../../earnings/';
 import { ProjectWorker } from "../interface/worker";
-import { UsersService } from "../../users/users.service";
+//import { UsersService } from "../../users/users.service";
 import { ProjectService } from "./projects.service";
 import { SalaryService,Salary} from "../../commission/" 
 
 
 @Injectable()
 export class ProjectWorkerService {
-  private userService:UsersService
+  private earnService:EarningService
   private projectService: ProjectService
   private salaryServ:SalaryService 
-  constructor(  private readonly workerModel: Model<ProjectWorker>,
-                private readonly pearnModel: Model<ProjectEarning>,
-                private readonly salaryModel: Model<Salary>
-          
-             ) {}
+  private pearnModel:Model<ProjectEarning>
+  private salaryModel:Model<SalaryModel>
+  constructor(@InjectModel("ProjectWorker") private readonly workerModel: Model<ProjectWorker>,
+              //  private readonly pearnModel: Model<ProjectEarning>,
+              //  private readonly salaryModel: Model<Salary>
+               ) {
+               this.salaryModel=this.salaryServ.model()
+               this.pearnModel=this.earnService.model("project")
+             
+             }
 
   async addTo(id:string,createProjectWorkerDto:CreateProjectWorkerDto):Promise<ProjectWorker>{
     
