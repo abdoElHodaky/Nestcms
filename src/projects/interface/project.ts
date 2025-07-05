@@ -5,6 +5,7 @@ import { ProjectStep } from "./project-step";
 import { Contract } from "../../contracts/interface/contract";
 import { Employee } from "../../users/interfaces/user";
 import { ProjectWorker } from "./worker";
+import { Orgz } from "../../orgs/";
 import { ProjectEarning} from "../../earnings/interface/earning";
 //export type ProjectDocument = HydratedDocument<Project>
     
@@ -30,6 +31,9 @@ export class Project  {
 
   @Prop({type:[{type:Types.ObjectId,ref:"ProjectEarning"}]})
   earnings?:ProjectEarning[]
+
+  @Prop({type:Types.ObjectId,ref:"Orgz"})
+  orgz?:Orgz
     
   @Prop({type:mongoose.Schema.Types.ObjectId,ref:"User"})
   employee?:Employee;
