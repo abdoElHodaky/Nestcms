@@ -27,7 +27,7 @@ export class ProjectWorkerService {
     const worker=this.workerModel.create({...createProjectWorkerDto})
     project.workers.push(worker)
     worker.project=project
-    return await worker.save()
+    return worker.save()
     
   }
   
