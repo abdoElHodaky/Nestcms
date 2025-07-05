@@ -7,6 +7,10 @@ export class AddEarningDto {
   @IsNotEmpty()
   @ApiProperty()
   readonly title: string;
+
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly addToId: string;
   
   @IsNotEmpty()
   @ApiProperty()
