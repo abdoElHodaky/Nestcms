@@ -111,3 +111,26 @@ export class Admin extends User {
   @Prop()
   adminType?:string;
 }
+
+
+@Schema({
+    toJSON:{
+        versionKey: false,
+    },
+    toObject:{
+        versionKey: false,
+    }
+})
+export class Owner extends Employee {
+
+  @Prop()
+  isEmployee?:boolean=false;
+  @Prop()
+  isAdmin?:boolean=true;
+  @Prop()
+  adminType?:string="owner"
+
+
+}
+
+
