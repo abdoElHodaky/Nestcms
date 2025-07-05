@@ -3,7 +3,7 @@ import { Model,Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateProjectWorkerDto } from '../dto/create-project-worker.dto';
 import { Project } from '../interface/project';
-import { ProjectEarning } from '../earnings/interface/earning';
+import { ProjectEarning } from '../../earnings/interface/earning';
 import { ProjectWorker } from "../interface/worker";
 import { UsersService } from "../../users/users.service";
 import { ProjectService } from "./projects.service";
