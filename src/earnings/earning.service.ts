@@ -31,7 +31,12 @@ export class EarningService {
      
   }
    
-  
+  async collect_orgz_earn(orgid:string,_type:string,_id:string|Types.ObjectId):Project<any>{
+     const model=this.orgsearnModel
+     return await  model.findByIdAndUpdate(orgid,{
+        earningIds:{$push:{type:_type,id:_id}}
+     },{new:true}).exec()
+  }
 
   async find_Id(_id:string,type:string):Promise<Earning>{
     if(type=="project") return await this.pearnModel.findById(_id).exec()
