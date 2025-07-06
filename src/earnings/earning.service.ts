@@ -9,6 +9,7 @@ import { OrgzService} from "../orgs/orgzs.service"
 export class EarningService {
    model(type:string):any{
     if (type=="project") return this.pearnModel
+    if (type=="orgz") return this.orgsearnModel
   }
   constructor(
     @InjectModel('ProjectEarning') private readonly pearnModel: Model<ProjectEarning>,
@@ -23,7 +24,13 @@ export class EarningService {
     { const createdNote = new this.pearnModel({...rest});
       createdNote.project=await this.projectService.find_Id(addToId)
     return await createdNote.save(); }
+   if (forType=="orgz"){
+      const createdOrgEarn=new this.orgsearnModel({...rest})
+      return  await createdOrgEarn.save()
+   }
+     
   }
+   
   
 
   async find_Id(_id:string,type:string):Promise<Earning>{
