@@ -65,5 +65,9 @@ export class ProjectEarning extends Earning {
 export class OrgzEarning extends Earning {
     @Prop({type:Types.ObjectId,ref:"Orgz"})
     orgz?:Orgz
+
+    @Prop()
+    earningIds:{type:string,Array<Types.ObjectId>}
+    
 }
 
