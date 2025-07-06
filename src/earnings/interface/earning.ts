@@ -67,7 +67,7 @@ export class OrgzEarning extends Earning {
     orgz?:Orgz
 
     @Prop()
-    earningIds:{type:string,Array<Types.ObjectId>}
+    earningIds:[{type:string,ids:Array<Types.ObjectId>}]
     
 }
 
