@@ -15,8 +15,8 @@ import { Employee,Owner} from "../../users/interfaces/user";
 })
 export class Salary {
     
-// @Prop({type:Types.ObjectId})
-  //_id:Types.ObjectId|string
+  @Prop()
+  id:string
   @Prop()
   title: string;
   @Prop({
