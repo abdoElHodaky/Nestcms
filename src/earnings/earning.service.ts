@@ -46,11 +46,10 @@ export class EarningService {
                id:{$in:ob.earningIds}
             },
             $group:{
-               `total_earns_${ob.type}`:{$sum:$amount}
+               `total_earns_${ob.type}`:{$sum:'$amount'}
             }
          })
-         //return {type:ob.type,earnings: model.find({id:{$in:obj.ids}}).
-           // select("amount").exec()}
+         //return {type:ob.type,earnings: model.find({id:{$in:obj.ids}}).select("amount").exec()}
       })
       return arr.flat()
    }
