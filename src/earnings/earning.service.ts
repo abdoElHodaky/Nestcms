@@ -41,8 +41,10 @@ export class EarningService {
    async all_earnings (earningIds:Array):Promise<any>{
       const arr=earningIds.map(ob=>{
          const model=this.model(ob.type)
-         return  model.find({id:{$in:obj.ids}}).select("amount").exec()
+         return {type:ob.type,earnings: model.find({id:{$in:obj.ids}}).
+            select("amount").exec()}
       })
+      return arr.flat()
    }
 
    
