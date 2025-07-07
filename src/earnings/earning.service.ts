@@ -38,8 +38,17 @@ export class EarningService {
      },{new:true}).exec()
   }
 
+   async all_earnings (earningIds:Array):Promise<any>{
+      const arr=earningIds.map(ob=>{
+         const model=this.model(ob.type)
+         return  model.find({id:{$in:obj.ids}}).select("amount").exec()
+      })
+   }
+
+   
   async find_Id(_id:string,type:string):Promise<Earning>{
     if(type=="project") return await this.pearnModel.findById(_id).exec()
+    if(type=="orgz") return await this.orgsearnModel.findById(_id).exec()
   }
   
 }
