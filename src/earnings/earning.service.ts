@@ -41,14 +41,16 @@ export class EarningService {
    async all_earnings (earningIds:Array):Promise<any>{
       const arr=earningIds.map(ob=>{
          const model=this.model(ob.type)
-         model.aggregate({
+         const esr=`total_earn_${ob.type}`
+         return model.aggregate([{
             $match:{
                id:{$in:ob.earningIds}
-            },
-            $group:{
-               `total_earns_${ob.type}`:{$sum:'$amount'}
             }
-         })
+            },{
+            $group:{
+                esr:{$sum:'$amount'}
+              }
+         }])
          //return {type:ob.type,earnings: model.find({id:{$in:obj.ids}}).select("amount").exec()}
       })
       return arr.flat()
