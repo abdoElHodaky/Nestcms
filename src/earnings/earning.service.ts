@@ -48,12 +48,14 @@ export class EarningService {
             }
             },{
             $group:{
-                esr:{$sum:'$amount'}
+                _id:new Types.ObjectId(),
+                esr:{$sum:'$amount'},
+                currency:'$currency'
               }
          }])
          //return {type:ob.type,earnings: model.find({id:{$in:obj.ids}}).select("amount").exec()}
       })
-      return arr.flat()
+      return arr
    }
 
    
