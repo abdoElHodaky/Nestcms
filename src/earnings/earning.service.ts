@@ -16,7 +16,7 @@ export class EarningService {
     @InjectModel('OrgzEarning') private readonly orgsearnModel: Model<OrgzEarning>
   ) {}
   private projectService:ProjectService
-//  private contractService:ContractService
+  private orgzService:OrgzService
  
   async add(addEarningDto: AddEarningDto): Promise<Earning> {
     const {forType,addToId,...rest}=addEarningDto
@@ -26,6 +26,7 @@ export class EarningService {
     return await createdNote.save(); }
    if (forType=="orgz"){
       const createdOrgEarn=new this.orgsearnModel({...rest})
+      createdOrgEarn.orgz=await this.orgzService.find_Id(addToId)
       return  await createdOrgEarn.save()
    }
      
