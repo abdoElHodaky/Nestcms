@@ -10,13 +10,15 @@ import { Design } from '../interface/design';
 import { ProjectStep } from "../interface/project-step";
 import { UsersService } from "../../users/users.service";
 import { ContractService } from "../../contracts/contracts.service";
+import { OrgzService} from "../orgs/orgzs.service"
 import { Employee } from "../../users/interfaces/user";
 import { Note } from "../../notes/interface/note.interface";
-import { ProjectEarning} from "../../earnings/interface/earning";
+import { ProjectEarning} from "../../earnings/";
 @Injectable()
 export class ProjectService {
   private userService:UsersService
   private contractService:ContractService
+  private orgzserv:OrgzService
   constructor(@InjectModel('Project') private readonly projectModel: Model<Project>,
               @InjectModel('Design') private readonly designModel: Model<Design>,
               @InjectModel('ProjectStep') private readonly stepModel: Model<ProjectStep>,
@@ -25,10 +27,11 @@ export class ProjectService {
 
  
   async create(createProjectDto: CreateProjectDto): Promise<Project> {
-    const { employeeId,...rest }=createProjectDto
+    const { employeeId,orgzId,...rest }=createProjectDto
     const employee=await this.userService.find_Id(employeeId)
     const createdProject = new this.projectModel({...rest});
     createdProject.employee=employee
+    if(orzId!=null) createdProject.orgz=await this.orgzserv.find_Id(orgzId)
     return await createdProject.save();
   }
 
