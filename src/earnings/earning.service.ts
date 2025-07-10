@@ -50,7 +50,9 @@ export class EarningService {
             $group:{
                 _id:new Types.ObjectId(),
                 esr:{$sum:'$amount'},
-                currency:'$currency'
+                currency:'$currency',
+                period:{$sum:"$period"},
+                title:esr+"for $period months"
               }
          }])
          //return {type:ob.type,earnings: model.find({id:{$in:obj.ids}}).select("amount").exec()}
