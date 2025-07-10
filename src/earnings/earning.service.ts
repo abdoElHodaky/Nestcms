@@ -42,19 +42,20 @@ export class EarningService {
       const arr=earningIds.map(ob=>{
          const model=this.model(ob.type)
          const esr=`total_earn_${ob.type}`
-         return model.aggregate([{
+         const res= model.aggregate([{
             $match:{
                id:{$in:ob.earningIds}
             }
             },{
             $group:{
-                _id:new Types.ObjectId(),
+               // _id:new Types.ObjectId(),
                 esr:{$sum:'$amount'},
                 currency:'$currency',
                 period:{$sum:"$period"},
                 title:esr+"for $period months"
               }
          }])
+         return {forType:obj.type,earnings:res}
          //return {type:ob.type,earnings: model.find({id:{$in:obj.ids}}).select("amount").exec()}
       })
       return arr
