@@ -15,6 +15,8 @@ export class CreateProjectDto {
   @IsNotEmpty()
   @ApiProperty()
   readonly startDate: string;
+
+  
   @IsNotEmpty()
   @ApiProperty()
   readonly endDate:string;
@@ -27,5 +29,12 @@ export class CreateProjectDto {
   @IsObjectId()
   @ApiPropertyOptional()
   readonly employeeId?:string;
+
+  @IsOptional()
+  @IsObjectId()
+  @ApiPropertyOptional()
+  readonly orgzId?:string;
+
+  
   
 }
