@@ -38,7 +38,7 @@ export class EarningService {
      },{new:true}).exec()
   }
 
-   async all_earnings (earningIds:Array):Promise<any>{
+   async compound_earnings (earningIds:Array):Promise<any>{
       const arr=earningIds.map(ob=>{
          const model=this.model(ob.type)
          const esr=`total_earn_${ob.type}`
@@ -58,7 +58,10 @@ export class EarningService {
          return {forType:obj.type,earnings:res}
          //return {type:ob.type,earnings: model.find({id:{$in:obj.ids}}).select("amount").exec()}
       })
-      return arr
+      arr.forEach(async (el,I)=>{
+        await this.model(el.forType).create(el.earnings)
+      })
+      return 
    }
 
    
