@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Model ,Types} from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { AddEarningDto } from './dto/add-earning.dto';
+import { AddEarningDto,CompoundEarningDto } from './dto/';
 import {Earning, ProjectEarning,OrgzEarning} from './interface/earning';
 import { ProjectService} from "../projects/"
 import { OrgzService} from "../orgs/orgzs.service"
@@ -39,10 +39,11 @@ export class EarningService {
      },{new:true}).exec()
   }
 
-   async compound_earnings (type:string,id:string|Types.ObjectId):Promise<any>{
-    
+   async compound_earnings (compoundEarning:CompoundEarningDto):Promise<any>{
+
+      const { type,Id}=compoundEarning
       const _model=this.model
-      const {earningIds}=await _model(type).findById(id).exec()
+      const {earningIds}=await _model(type).findById(Id).exec()
       //const earningIds=earning.earningIds
       const arr=await earningIds.map(async ob=>{
          const model=_model(ob.type)
