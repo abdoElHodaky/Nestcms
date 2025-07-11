@@ -2,7 +2,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional } from 'class-validator';
 import { IsObjectId } from 'class-validator-mongo-object-id';
 
-export class CoumpondEarningDto {
+export class CompondEarningDto {
   
   @IsNotEmpty()
   @ApiProperty({
