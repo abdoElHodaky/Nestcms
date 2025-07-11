@@ -42,10 +42,10 @@ export class EarningService {
    async compound_earnings (earningIds:Array<any>):Promise<any>{
     
       const _model=this.model
-      const arr=earningIds.map(async ob=>{
+      const arr=earningIds.map( ob=>{
          const model=_model(ob.type)
          const esr=`total_earn_${ob.type}`
-         const res= await model.aggregate([{
+         const res= model.aggregate([{
             $match:{
                id:{$in:ob.earningIds}
             }
