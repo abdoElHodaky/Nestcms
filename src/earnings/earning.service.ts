@@ -42,8 +42,8 @@ export class EarningService {
    async compound_earnings (type:string,id:string|Types.ObjectId):Promise<any>{
     
       const _model=this.model
-      const earning=await _model(type).findById(id).exec()
-      const earningIds=earning.earningIds
+      const {earningIds}=await _model(type).findById(id).exec()
+      //const earningIds=earning.earningIds
       const arr=await earningIds.map(async ob=>{
          const model=_model(ob.type)
          const esr=`total_earn_${ob.type}`
