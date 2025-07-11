@@ -1,2 +1,2 @@
 export {AddEarningDto} from "./add-earning.dto"
-export {CompoundEarningDto} from "./compound-earning.dto";
+export {CompondEarningDto} from "./compound-earning.dto";
