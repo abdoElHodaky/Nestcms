@@ -73,8 +73,6 @@ export class EarningService {
   async find_Id(_id:string,type:string):Promise<Earning>{
    
      return await this.model(type).findById(_id).exec()
-     // if(type=="project") return await this.pearnModel.findById(_id).exec()
-  //  if(type=="orgz") return await this.orgsearnModel.findById(_id).exec()
-  }
+   }
   
 }
