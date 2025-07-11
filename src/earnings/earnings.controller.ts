@@ -1,6 +1,7 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { AddEarningDto ,CompoundEarningDto} from './dto/';
+import { AddEarningDto } from './dto/add-earning.dto';
+import { CompoundEarningDto } from './dto/compound-earning.dto';
 import { EarningService } from './earning.service';
 import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 //@UseInterceptors(CurrentUserInterceptor)
