@@ -10,7 +10,7 @@ import { Design } from '../interface/design';
 import { ProjectStep } from "../interface/project-step";
 import { UsersService } from "../../users/users.service";
 import { ContractService } from "../../contracts/contracts.service";
-import { OrgzService} from "../orgs/orgzs.service"
+import { OrgzService} from "../../orgs/orgzs.service"
 import { Employee } from "../../users/interfaces/user";
 import { Note } from "../../notes/interface/note.interface";
 import { ProjectEarning} from "../../earnings/";
