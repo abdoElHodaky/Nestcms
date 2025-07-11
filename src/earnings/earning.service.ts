@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { Model ,Types} from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { AddEarningDto,CompoundEarningDto } from './dto/';
+import { AddEarningDto } from './dto/add-earning.dto';
+import { CompoundEarningDto } from './dto/compound-earning.dto';
+
 import {Earning, ProjectEarning,OrgzEarning} from './interface/earning';
 import { ProjectService} from "../projects/"
 import { OrgzService} from "../orgs/orgzs.service"
