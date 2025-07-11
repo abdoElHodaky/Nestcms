@@ -31,7 +31,7 @@ export class ProjectService {
     const employee=await this.userService.find_Id(employeeId)
     const createdProject = new this.projectModel({...rest});
     createdProject.employee=employee
-    if(orzId!=null) createdProject.orgz=await this.orgzserv.find_Id(orgzId)
+    if(orgzId!=null) createdProject.orgz=await this.orgzserv.find_Id(orgzId)
     return await createdProject.save();
   }
 
