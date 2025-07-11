@@ -43,7 +43,7 @@ export class EarningService {
       const arr=earningIds.map(ob=>{
          const model=this.model(ob.type)
          const esr=`total_earn_${ob.type}`
-         const res= model.aggregate([{
+         const res= await model.aggregate([{
             $match:{
                id:{$in:ob.earningIds}
             }
