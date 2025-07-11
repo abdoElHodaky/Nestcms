@@ -53,7 +53,7 @@ export class EarningService {
             }
             },{
             $group:{
-               // _id:new Types.ObjectId(),
+               
                 esr:{$sum:'$amount'},
                 currency:'$currency',
                 period:{$sum:"$period"},
@@ -61,7 +61,7 @@ export class EarningService {
               }
          }])
          return await {forType:ob.type,earnings:res}
-         //return {type:ob.type,earnings: model.find({id:{$in:obj.ids}}).select("amount").exec()}
+         
       })
       arr.forEach(async (el,I)=>{
         await _model(el.forType).create(el.earnings)
