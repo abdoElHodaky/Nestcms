@@ -17,7 +17,7 @@ export class EarningController {
   
   @Get("collect_compound")
   async collect(@Body() compoundEarningDto: CoumpondEarningDto) {
-    return await this.earnService.compound(compoundEarningDto);
+    return await this.earnService.compound_earnings(compoundEarningDto);
   }
 /*
 
