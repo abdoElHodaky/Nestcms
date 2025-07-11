@@ -57,8 +57,8 @@ export class EarningService {
                 period:{$sum:"$period"},
                 title:esr+"for $period months"
               }
-         }])
-         return await {forType:ob.type,earnings:res}
+         }]).exec()
+         return  {forType:ob.type,earnings:res}
          //return {type:ob.type,earnings: model.find({id:{$in:obj.ids}}).select("amount").exec()}
       })
       arr.forEach(async (el,I)=>{
