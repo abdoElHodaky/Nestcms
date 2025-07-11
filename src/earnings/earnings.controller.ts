@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { AddEarningDto } from './dto/add-earning.dto';
+import { AddEarningDto ,CompoundEarningDto} from './dto/';
 import { EarningService } from './earning.service';
 import { ApiTags,ApiSecurity,ApiBearerAuth } from "@nestjs/swagger";
 //@UseInterceptors(CurrentUserInterceptor)
@@ -15,7 +15,10 @@ export class EarningController {
     return await this.earnService.add(addEarningDto);
   }
   
-  
+  @Get("collect_compound")
+  async collect(@Body() compoundEarningDto: CoumpondEarningDto) {
+    return await this.earnService.compound(compoundEarningDto);
+  }
 /*
 
   @Get()
