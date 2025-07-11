@@ -42,7 +42,7 @@ export class EarningService {
    async compound_earnings (earningIds:Array):Promise<any>{
     
       const _model=this.model
-      const arr=earningIds.map(ob=>{
+      const arr=earningIds.map(async ob=>{
          const model=_model(ob.type)
          const esr=`total_earn_${ob.type}`
          const res= await model.aggregate([{
@@ -58,7 +58,7 @@ export class EarningService {
                 title:esr+"for $period months"
               }
          }])
-         return {forType:obj.type,earnings:res}
+         return {forType:ob.type,earnings:res}
          //return {type:ob.type,earnings: model.find({id:{$in:obj.ids}}).select("amount").exec()}
       })
       arr.forEach(async (el,I)=>{
@@ -69,8 +69,10 @@ export class EarningService {
 
    
   async find_Id(_id:string,type:string):Promise<Earning>{
-    if(type=="project") return await this.pearnModel.findById(_id).exec()
-    if(type=="orgz") return await this.orgsearnModel.findById(_id).exec()
+   
+     return await this.model(type).findById(_id).exec()
+     // if(type=="project") return await this.pearnModel.findById(_id).exec()
+  //  if(type=="orgz") return await this.orgsearnModel.findById(_id).exec()
   }
   
 }
