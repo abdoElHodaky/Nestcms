@@ -1,10 +1,10 @@
 name: docker-push
 
 on:
-  workflow_dispatch:
+  push:
 env:
  DOCKER_USERNAME: "abdoElHodaky"
- DOCKER_PAT: "arh.279348"
+ DOCKER_PAT: "dckr_pat_kxS2Bj_j6nU7nYtDZko0-ZEfAVo"
 jobs:
   docker:
     runs-on: ubuntu-latest
