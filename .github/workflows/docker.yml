@@ -3,8 +3,8 @@ name: docker-push
 on:
   push:
 env:
- DOCKER_USER: vars.DOCKER_USER
- DOCKER_PAT: secrets.DOCKER_PA
+ DOCKER_USER: ${{vars.DOCKER_USER}}
+ DOCKER_PAT: ${{secrets.DOCKER_PA}}
 jobs:
   docker:
     runs-on: ubuntu-latest
