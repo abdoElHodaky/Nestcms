@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-
+  
   build:
 
     runs-on: ubuntu-latest
@@ -15,4 +15,14 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile 
+      run: docker build . --file Dockerfile -t ${{github.event.repository.name}}
+
+  push:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker push  ${{vars.DOCKERHUB_USERNAME}}/${{github.event.repository.name}}
+      
