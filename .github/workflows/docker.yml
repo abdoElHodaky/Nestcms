@@ -3,7 +3,7 @@ name: docker-push
 on:
   push:
 env:
- DOCKER_USERNAME: vars.DOCKER_USER
+ DOCKER_USER: vars.DOCKER_USER
  DOCKER_PAT: secrets.DOCKER_PA
 jobs:
   docker:
@@ -13,17 +13,15 @@ jobs:
         name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ env.DOCKER_USERNAME }}
+          username: ${{ env.DOCKER_USER }}
           password: ${{ env.DOCKER_PAT }}
-      -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      -
-        name: Build and push
-        uses: docker/build-push-action@v6
+  
+  build_and_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build and Push Container to docker.io
+        uses: GlueOps/github-actions-build-push-containers@v0.3.7
         with:
-          push: true
-          tags: ${{vars.DOCKERHUB_USERNAME}}/${{ github.event.repository.name}}
+          registry: "docker.io"
+          dockerhub_username: ${{ env.DOCKER_USER }}
+          dockerhub_password: ${{ env.DOCKER_PAT }}
