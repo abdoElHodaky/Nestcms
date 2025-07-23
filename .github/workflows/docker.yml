@@ -3,8 +3,8 @@ name: docker-push
 on:
   push:
 env:
- DOCKER_USERNAME: "abdoElHodaky"
- DOCKER_PAT: "dckr_pat_kxS2Bj_j6nU7nYtDZko0-ZEfAVo"
+ DOCKER_USERNAME: vars.DOCKER_USER
+ DOCKER_PAT: secrets.DOCKER_PA
 jobs:
   docker:
     runs-on: ubuntu-latest
