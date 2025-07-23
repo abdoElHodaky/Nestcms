@@ -3,8 +3,8 @@ name: docker-push
 on:
   workflow_dispatch:
 env:
- DOCKER_USERNAME: abdoElHodaky
- DOCKER_PAT: dckr_pat_kxS2Bj_j6nU7nYtDZko0-ZEfAVo
+ DOCKER_USERNAME: "abdoElHodaky"
+ DOCKER_PAT: "arh.279348"
 jobs:
   docker:
     runs-on: ubuntu-latest
