@@ -1,10 +1,11 @@
 name: docker-push
 
 on:
-  workflow_dispatch:
+  push:
 env:
  DOCKER_USER: ${{vars.DOCKER_USER}}
  DOCKER_PAT: ${{secrets.DOCKER_PA}}
+ 
 jobs:
   docker:
     runs-on: ubuntu-latest
