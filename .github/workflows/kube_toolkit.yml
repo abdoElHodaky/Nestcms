@@ -40,9 +40,22 @@ jobs:
          helm starter fetch https://github.com/christianknell/helm-starter.git
          helm create nestcms --starter helm-starter/default 
          
-            
+    - 
+      uses: gacts/directory-listing@v1
+      with:
+           target: ./assets
+          # target: .
+          # ignore: |
+          #   build/**
+          #   **/index.html
+          #   node_modules/**,**/*.log
+           show-hidden: true
+          # overwrite: true
 
-           
-        
+    -
+       uses: peaceiris/actions-gh-pages@v4
+       with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./assets
         
 
