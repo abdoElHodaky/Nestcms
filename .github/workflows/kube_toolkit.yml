@@ -42,13 +42,7 @@ jobs:
      run : |
          helm starter fetch https://github.com/christianknell/helm-starter.git
          helm create nestcms --starter helm-starter/default 
-    -
-      name: Checkout the Repo
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
-        ref: master
-    
+        
     -
      name: "Push charts to Respo"
      run : | 
