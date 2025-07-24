@@ -53,7 +53,7 @@ jobs:
         charts_dir:
           $
        run: |
-        echo $charts_dir
+        echo "$charts_dir" | cd && ls -la
         
       
     
