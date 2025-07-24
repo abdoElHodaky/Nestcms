@@ -105,7 +105,9 @@ autoscaling:
   targetMemoryUtilizationPercentage: 80
 
 # -- Node labels for pod assignment
-nodeSelector: {}
+nodeSelector: {
+  app:node
+}
 
 # -- Toleration labels for pod assignment
 tolerations: []
