@@ -26,6 +26,9 @@ jobs:
 
   helm:
     runs-on: ubuntu-latest 
+    outputs:
+       charts_dir:
+         $
     needs:
        - arkade 
     steps:
@@ -39,15 +42,18 @@ jobs:
      run : |
          helm starter fetch https://github.com/christianknell/helm-starter.git
          helm create nestcms --starter helm-starter/default 
-         
+         cd nestcms && echo pwd >> $GITHUB_OUTPUT
   listdir:
      runs-on: ubuntu-latest
      needs:
       - helm 
      steps:
      -
+       env:
+        charts_dir:
+         $
        run: |
-        cd nestcms && ls -la
+        cd $charts_dir && ls -la
         
       
     
