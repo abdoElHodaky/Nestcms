@@ -2,6 +2,8 @@ name: kubetoolset
 
 on:
   push:
+    branches:
+     -master
 
 env:
   ARKADE_BIN: " /home/runner/.arkade/bin"
@@ -22,15 +24,16 @@ jobs:
             kubectl: latest
             helm: latest
 
-  kube:
+  helm:
     runs-on: ubuntu-latest 
     needs:
        - arkade 
     steps:
     -
-     name : "Helm check"
+     name : "Helm create chart for project"
      run : |
-         helm version
+         helm create nestcms --starter helm-starter/default 
+         
             
 
            
