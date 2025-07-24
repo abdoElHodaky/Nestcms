@@ -3,6 +3,8 @@ name: kubetoolset
 on:
   push:
 
+env:
+  ARKADE_BIN: " /home/runner/.arkade/bin"
 
 
 jobs:
@@ -20,11 +22,15 @@ jobs:
             kubectl: latest
             helm: latest
 
-        -
-         name: "Arkade kube" 
-         run: |
-          kubectl version
-        
+  kube:
+    runs-on: ubuntu-latest 
+    needs:
+       - arkade 
+    steps:
+    -
+     name : "Helm check"
+     run : |
+         helm version
             
 
            
