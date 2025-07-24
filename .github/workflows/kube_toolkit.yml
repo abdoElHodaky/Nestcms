@@ -22,7 +22,7 @@ jobs:
 
         -
          name: "Arkade kubectl" 
-         run : "echo kubectl --version"
+         run : "echo /home/runner/.arkade/bin/helm --version"
         
             
 
