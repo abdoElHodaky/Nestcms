@@ -39,8 +39,8 @@ export class User{
     employeeType?:string
     @Prop()
     adminType?:string
-    @Prop()
-    salary?:number=6000;
+   // @Prop()
+   // salary?:number=6000;
    
    toArrayP(){
     return [
