@@ -6,13 +6,13 @@ fullnameOverride: ""
 
 image:
   # -- image registry
-  registry: <IMAGE_REGISTRY>
+  registry: "docker.io"
   # -- image repository
-  repository: <IMAGE_REPOSITORY>
+  repository: "abdoelhodaky/nestcms"
   # -- image pull policy
   pullPolicy: Always
   # -- Overrides the image tag
-  tag: "<IMAGE_TAG>"
+  tag: ""
 
 # -- If defined, uses a Secret to pull an image from a private Docker registry or repository.
 imagePullSecrets: []
@@ -25,7 +25,7 @@ podSecurityContext: {}
   # fsGroup: 2000
 
 # -- Number of replicas
-replicaCount: 1
+replicaCount: 2
 
 # -- The number of old ReplicaSets to retain
 revisionHistoryLimit: 10
@@ -63,9 +63,11 @@ serviceAccount:
 
 service:
   # -- Kubernetes service type
-  type: ClusterIP
+  type: NodePort
   # -- Kubernetes port where service is exposed
-  port: 80
+  port: 3000
+  nodePort: 4000
+  targetPort: 3000
 
 ingress:
   # -- Enable ingress record generation
@@ -80,7 +82,7 @@ ingress:
   # -- An array with hosts and paths
   # @default -- see [values.yaml](./values.yaml)
   hosts:
-    - host: chart-example.local
+    - host: nestcms.local
       paths:
         - path: /
           pathType: ImplementationSpecific
