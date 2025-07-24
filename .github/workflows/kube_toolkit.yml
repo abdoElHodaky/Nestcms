@@ -39,11 +39,6 @@ jobs:
      run : |
          helm starter fetch https://github.com/christianknell/helm-starter.git
          helm create nestcms --starter helm-starter/default 
-    -
-      name: "sleep" 
-      uses: jakejarvis/wait-action@master
-      with:
-        time: '130s'
          
   listdir:
      runs-on: ubuntu-latest
