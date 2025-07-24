@@ -23,30 +23,36 @@ jobs:
            with:
             kubectl: latest
             helm: latest
-            git: latest
+            
+
 
   helm:
     runs-on: ubuntu-latest 
-    outputs:
-       charts_dir:
-         $
     needs:
        - arkade 
     steps:
-    -
-     name: " Helm stater plugin"
-     run : | 
+
+     - 
+       uses: actions/checkout@v4
+     - 
+      uses: isikerhan/setup-git@v1
+      with:
+       git-version: 2.44.3
+           
+     -
+      name: " Helm stater plugin"
+      run : | 
          helm plugin install https://github.com/salesforce/helm-starter.git
          
-    -
-     name : "Helm create chart for project"
-     run : |
+     -
+      name : "Helm create chart for project"
+      run : |
          helm starter fetch https://github.com/christianknell/helm-starter.git
          helm create nestcms --starter helm-starter/default 
         
-    -
-     name: "Push charts to Respo"
-     run : | 
+     -
+      name: "Push charts to Respo"
+      run : | 
        cd nestcms
        git remote add helm_nestcms git@github.com:abdoElHodaky/Nestcms.git
        git add . -a 
