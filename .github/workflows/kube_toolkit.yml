@@ -30,6 +30,11 @@ jobs:
        - arkade 
     steps:
     -
+     name: " Helm stater plugin"
+     run : | 
+         helm plugin install https://github.com/salesforce/helm-starter.git
+         
+    -
      name : "Helm create chart for project"
      run : |
          helm starter fetch https://github.com/christianknell/helm-starter.git
