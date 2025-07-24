@@ -38,7 +38,7 @@ jobs:
      name : "Helm create chart for project"
      run : |
          helm starter fetch https://github.com/christianknell/helm-starter.git
-         helm create nestcms --starter helm-starter/default 
+         helm create nestcms -d nestCm --starter helm-starter/default 
 
   listdir:
     runs-on: ubuntu-latest
@@ -48,6 +48,7 @@ jobs:
      -
       name: "List dir"
       run: |
+        cd nestCm
         ls -la
          
 
