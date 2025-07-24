@@ -23,6 +23,7 @@ jobs:
            with:
             kubectl: latest
             helm: latest
+            git: latest
 
   helm:
     runs-on: ubuntu-latest 
