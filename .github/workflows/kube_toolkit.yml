@@ -21,8 +21,9 @@ jobs:
             helm: latest
 
         -
-         name: "Arkade kubectl" 
-         run : "echo /home/runner/.arkade/bin/helm --version"
+         name: "Arkade kube" 
+         run: |
+          kubectl version
         
             
 
