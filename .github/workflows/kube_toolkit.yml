@@ -39,7 +39,17 @@ jobs:
      run : |
          helm starter fetch https://github.com/christianknell/helm-starter.git
          helm create nestcms --starter helm-starter/default 
-         ls  -r
+
+  listdir:
+    runs-on: ubuntu-latest
+    needs:
+     - helm
+    steps:
+     -
+      name: "List dir"
+      run: |
+       cd nestcms 
+       ls -la
          
 
 
