@@ -1,0 +1,24 @@
+name: kubetoolset
+
+on:
+  workflow_dispatch:
+
+
+
+jobs:
+  arkade:
+     runs-on: ubuntu-latest
+     steps:
+        - 
+           name: "setup arkade"
+           uses: alexellis/setup-arkade@v1
+        
+        - 
+           name: "arkade Init"
+           run: "echo kubctl -v"
+            
+
+           
+        
+        
+
