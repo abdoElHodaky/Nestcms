@@ -15,7 +15,15 @@ jobs:
         
         - 
            name: "arkade Init"
-           run: "echo kubctl -v"
+           uses: alexellis/arkade-get@master
+           with:
+            kubectl: latest
+            helm: latest
+
+        -
+         name: "Arkade kubectl" 
+         run : "echo kubectl --version"
+        
             
 
            
