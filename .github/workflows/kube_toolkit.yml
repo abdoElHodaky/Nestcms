@@ -55,7 +55,7 @@ jobs:
       run : | 
        cd nestcms
        git remote add helm_nestcms git@github.com:abdoElHodaky/Nestcms.git
-       git add . -a 
+       git add . --all
        git config user.name github-actions
        git config user.email github-actions@github.com
        git commit -m "helm_chart" && git push helm_nestcms
