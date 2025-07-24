@@ -39,31 +39,11 @@ jobs:
      run : |
          helm starter fetch https://github.com/christianknell/helm-starter.git
          helm create nestcms --starter helm-starter/default 
-
+         ls  -r
          
-  genIndex:
-    runs-on: ubuntu-latest
-    steps:
-       -
-        name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
-        # If you're changing the branch from main,
-        # also change the `main` in `refs/heads/main`
-        # below accordingly.
-        if: github.ref == 'refs/heads/main'
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          
-       - 
-      
-        uses: gacts/directory-listing@v1
-        with:
-          target: ./public
-          # target: .
-          # ignore: |
-          #   build/**
-          #   **/index.html
-          #   node_modules/**,**/*.log
-          # show-hidden: true
-          # overwrite: true
+
+
+
+
+
+  
