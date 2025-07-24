@@ -1,7 +1,7 @@
 name: docker-push
 
 on:
-  push:
+  workflow_dispatch:
 env:
  DOCKER_USER: ${{vars.DOCKER_USER}}
  DOCKER_PAT: ${{secrets.DOCKER_PA}}
@@ -28,3 +28,4 @@ jobs:
         with:
           push: true
           tags: "abdoelhodaky/nestcms"
+  
