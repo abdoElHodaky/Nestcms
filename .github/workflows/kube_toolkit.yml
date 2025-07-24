@@ -31,33 +31,35 @@ jobs:
     needs:
        - arkade 
     steps:
-
-     - 
-       uses: actions/checkout@v4
-     - 
-      uses: isikerhan/setup-git@v1
-      with:
-       git-version: 2.44.3
+      -
+       run: |
+        echo "done"
+  #   - 
+    #   uses: actions/checkout@v4
+  #   - 
+    #  uses: isikerhan/setup-git@v1
+    #  with:
+     #  git-version: 2.44.3
            
-     -
-      name: " Helm stater plugin"
-      run : | 
-         helm plugin install https://github.com/salesforce/helm-starter.git
+  #   -
+     # name: " Helm stater plugin"
+     # run : | 
+      #   helm plugin install https://github.com/salesforce/helm-starter.git
          
-     -
-      name : "Helm create chart for project"
-      run : |
-         helm starter fetch https://github.com/christianknell/helm-starter.git
-         helm create nestcms --starter helm-starter/default 
+    # -
+    #  name : "Helm create chart for project"
+     # run : |
+     #    helm starter fetch https://github.com/christianknell/helm-starter.git
+     #    helm create nestcms --starter helm-starter/default 
         
-     -
-      name: "Push charts to Respo"
-      run : | 
-       cd nestcms
-       git add . --all
-       git config user.name github-actions
-       git config user.email github-actions@github.com
-       git commit -m "helm_chart" && git push
+   #  -
+     # name: "Push charts to Respo"
+    #  run : | 
+     #  cd nestcms
+     #  git add . --all
+     #  git config user.name github-actions
+     #  git config user.email github-actions@github.com
+     #  git commit -m "helm_chart" && git push
        
        
        
