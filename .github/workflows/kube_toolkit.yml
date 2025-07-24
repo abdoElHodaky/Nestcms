@@ -3,7 +3,7 @@ name: kubetoolset
 on:
   push:
     branches:
-     -master
+     - master
 
 env:
   ARKADE_BIN: " /home/runner/.arkade/bin"
