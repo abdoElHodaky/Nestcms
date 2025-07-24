@@ -51,7 +51,7 @@ jobs:
      -
        env:
         charts_dir:
-         $
+          $GITHUB_OUTPUT
        run: |
         cd $charts_dir && ls -la
         
