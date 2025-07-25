@@ -1,0 +1,59 @@
+name: kubetoolset
+
+on:
+  push:
+   paths:
+    "./nestcms/"
+
+env:
+  ARKADE_BIN: " /home/runner/.arkade/bin"
+  #KUBE_CONFILE: ${{secrets.KUBECONF}}
+
+
+jobs:
+  arkade:
+     runs-on: ubuntu-latest
+     steps:
+        - 
+           name: "setup arkade"
+           uses: alexellis/setup-arkade@v1
+        
+        - 
+           name: "arkade Init"
+           uses: alexellis/arkade-get@master
+           with:
+            kubectl: latest
+            helm: latest
+            
+  helm:
+    runs-on: ubuntu-latest 
+    needs:
+       - arkade 
+    steps:
+       - 
+        uses: actions/checkout@v4
+       - 
+        uses: isikerhan/setup-git@v1
+        with:
+          git-version: 2.44.3
+      
+       -
+        run: |
+         git config user.name github-actions
+         git config user.email github-actions@github.com
+         git pull
+       -
+        name: Check if directory exists
+        id: check_dir
+        run: |
+          if  [ -d "nestcms" ]; then 
+           echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+           echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+       -
+        name: " Helm install plugin"
+        if: ${{steps.check_dir.outputs.exists =='true' }}
+        run : | 
+             helm install ./nestcms/ --generate-name
+      
