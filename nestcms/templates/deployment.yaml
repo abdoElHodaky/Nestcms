@@ -1,24 +1,27 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "nestcms.fullname" . }}
+  name: {{include "nestcms.fullname" .}}
   labels:
-    {{- include "nestcms.labels" . | nindent 4 }}
+    {{- include "nestcms.labels" . | nindent 4}}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-  {{- end }}
-  revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
-  selector:
-    matchLabels:
-      {{- include "nestcms.selectorLabels" . | nindent 6 }}
-  template:
+  {{- if not .Values.autoscaling.enabled}}
+replicas: {{.Values.replicaCount}}
+{{- end}}
+revisionHistoryLimit: {{.Values.revisionHistoryLimit}}
+#selector:
+  #  matchLabels:
+   #  app.kubernetes.io/name: {{- include "nestcms.name" . }}
+   #  app.kubernetes.io/instance: {{ .Release.Name }}
+  
+template:
     metadata:
-      {{- with .Values.podAnnotations }}
-      annotations:
+      {{- with .Values.podAnnotations}}
+    annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      labels:
+    labels:
         {{- include "nestcms.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
@@ -32,6 +35,31 @@ spec:
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
           image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
