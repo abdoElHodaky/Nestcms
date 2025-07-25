@@ -40,6 +40,14 @@ jobs:
        - git
     steps:
       -
+       run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+       
+      -
+       run : |
+        git pull 
+      -
        name: Check if directory exists
        id: check_dir
        run: |
