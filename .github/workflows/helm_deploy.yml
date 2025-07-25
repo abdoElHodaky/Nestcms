@@ -1,9 +1,7 @@
 name: helm_deploy
 
 on:
-  push:
-   paths:
-   - "/**.yaml"
+  workflow_dispatch:
 
 env:
   ARKADE_BIN: " /home/runner/.arkade/bin"
