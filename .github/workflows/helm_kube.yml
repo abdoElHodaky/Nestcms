@@ -71,6 +71,7 @@ jobs:
           cd nestcms
           git add . --all
           git commit -m " helm initialized" && git push
+          
 
 
   deploy:
@@ -79,8 +80,10 @@ jobs:
          - helm
       steps:
         - uses: actions/checkout@v4
+        - uses: tj-actions/changed-files@master # v46
+
+        - name: Run a step if my-file.txt was modified
+          if: contains(steps.changed-files.outputs.modified_files, 'values.yml')
         -
          run: |
-          echo "89" && helm version
-          git pull && cd nestcms 
-          ls -la
+          helm install nestcms
