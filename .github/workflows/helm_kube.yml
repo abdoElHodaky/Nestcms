@@ -54,11 +54,12 @@ jobs:
           fi
        -
         name: " Helm stater plugin"
-        if: ${{steps.check_dir.outputs.exists =='true' }}
+        if: ${{steps.check_dir.outputs.exists =='false' }}
         run : | 
           ls -la
       #   helm plugin install https://github.com/salesforce/helm-starter.git
-         
+     #    helm starter fetch https://github.com/christianknell/helm-starter.git
+      
      # -
      #   name : "Helm create chart for project"
        # id: helm_chart_create
