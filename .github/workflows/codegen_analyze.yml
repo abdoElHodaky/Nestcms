@@ -18,3 +18,8 @@ jobs:
           org_id: ${{ secrets.CODEGEN_ORG_ID }}
           token: ${{ secrets.CODEGEN_API_TOKEN }}
           prompt: ${{ github.event.inputs.prompt }}
+
+      - name: Use Codegen Results
+        if: steps.codegen.outputs.status == 'completed'
+        run: |
+          echo "Codegen task completed with result: ${{ steps.codegen.outputs.result }}"
