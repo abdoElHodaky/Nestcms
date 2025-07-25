@@ -47,7 +47,7 @@ jobs:
         files: './nestcms'
       -
        name: " Helm stater plugin"
-       if: steps.check_dir.outputs.directory_exists!="false" 
+       if: ${{ steps.check_dir.outputs.directory_exists}} == "false" 
        run : | 
          helm plugin install https://github.com/salesforce/helm-starter.git
          
