@@ -80,7 +80,7 @@ jobs:
          - helm
       steps:
         - uses: actions/checkout@v4
-        - uses: tj-actions/changed-files@master 
+        - uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c 
 
         - name: Run a step if my-file.txt was modified
           if: contains(steps.changed-files.outputs.modified_files, 'values.yml')
