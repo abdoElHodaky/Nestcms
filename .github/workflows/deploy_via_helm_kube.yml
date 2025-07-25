@@ -1,0 +1,87 @@
+name: kubetoolset
+
+on:
+  push:
+    branches:
+     - master
+
+env:
+  ARKADE_BIN: " /home/runner/.arkade/bin"
+  #KUBE_CONFILE: ${{secrets.KUBECONF}}
+
+
+jobs:
+  arkade:
+     runs-on: ubuntu-latest
+     steps:
+        - 
+           name: "setup arkade"
+           uses: alexellis/setup-arkade@v1
+        
+        - 
+           name: "arkade Init"
+           uses: alexellis/arkade-get@master
+           with:
+            kubectl: latest
+            helm: latest
+            
+  git:
+       runs-on: ubuntu-latest 
+       steps:
+          - 
+           uses: actions/checkout@v4
+          - 
+           uses: isikerhan/setup-git@v1
+           with:
+            git-version: 2.44.3
+
+  helm:
+    runs-on: ubuntu-latest 
+    needs:
+       - arkade 
+       - git
+    steps:
+      -
+       name: Check if directory exists
+       id: check_dir
+       run: |
+          if [ -d "./nestcms" ]; then
+            echo "directory_exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "directory_exists=false" >> "$GITHUB_OUTPUT"
+          fi
+      - 
+        uses: actions/checkout@v4
+      -
+        name: " Helm stater plugin"
+        if: steps.check_dir.output.directory_exist!="false" 
+        run : | 
+         helm plugin install https://github.com/salesforce/helm-starter.git
+         
+      -
+        name : "Helm create chart for project"
+        id: helm_chart_create
+        if: steps.check_dir.output.directory_exist!="false" 
+        run : |
+         helm starter fetch https://github.com/christianknell/helm-starter.git
+         helm create nestcms --starter helm-starter/default 
+         echo "helm_chart_created=true" >> "$GITHUB_OUTPUT"
+      -
+       name : "Git init"
+       id: git_init
+       if: steps.helm_chart_create.output.helm_chart_created!="true" 
+       run : |
+         cd nestcms
+         git add . --all
+         git config user.name github-actions
+         git config user.email github-actions@github.com
+         git commit -m " helm initialized"
+         echo "git_commited=true" >> "$GITHUB_OUTPUT" 
+      -
+       name : "Push helm to repository"
+       if : steps.git_init.output.git_commited=="true"
+       uses: ad-m/github-push-action@master
+       with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+       
