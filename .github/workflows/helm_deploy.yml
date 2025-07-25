@@ -1,9 +1,9 @@
-name: kubetoolset
+name: helm_deploy
 
 on:
   push:
    paths:
-   - "/nestcms/*"
+   - "/**.yaml"
 
 env:
   ARKADE_BIN: " /home/runner/.arkade/bin"
