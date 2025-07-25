@@ -43,14 +43,14 @@ jobs:
        name: Check if directory exists
        id: check_dir
        run: |
-          if test -d "./nestcms"; then
+          if test -d "./nesms"; then
            echo "directory_exists=true" >> "$GITHUB_OUTPUT"
           else
            echo "directory_exists=false" >> "$GITHUB_OUTPUT"
           fi
       -
        name: " Helm stater plugin"
-       if: ${{steps.check_dir.outputs.directory_exists }} ==false 
+       if: ${{steps.check_dir.outputs.directory_exists ==true }}
        run : | 
           echo "notexist"
       #   helm plugin install https://github.com/salesforce/helm-starter.git
