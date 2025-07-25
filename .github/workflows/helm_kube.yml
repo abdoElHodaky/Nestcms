@@ -87,4 +87,5 @@ jobs:
         - name: install chart
          # if: contains(steps.changed-files.outputs.modified_files, 'values.yaml')
           run: |
-           helm install Nestcms/nestcms/ --values ./nestcms/values.yaml  --generate-name
+           cd nestcms && helm install
+          # helm install Nestcms/nestcms/ --values ./nestcms/values.yaml  --generate-name
