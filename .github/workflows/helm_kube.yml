@@ -42,12 +42,9 @@ jobs:
       -
        name: Check if directory exists
        id: check_dir
-       run: |
-          if [ -d "./nestcms" ]; then
-            echo "directory_exists=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "directory_exists=false" >> "$GITHUB_OUTPUT"
-          fi
+       uses: thebinaryfelix/check-file-existence-action@v1
+       with:
+        files: './nestcms'
       -
        name: " Helm stater plugin"
        if: steps.check_dir.outputs.directory_exists!="false" 
