@@ -56,9 +56,11 @@ jobs:
          echo ${{env.GIT_PAT}} | helm registry login ghcr.io -u abdoelhodaky --password-stdin   
        
        -
-        name: " Helm Packaging"
+        name: " Helm Packaging And Pushing"
         if: ${{steps.check_dir.outputs.exists =='true' }}
         run : | 
              helm package  ./nestcms/  --debug
-             ls -la
-      
+             helm push  nestcms-*.tgz oci://ghcr.io/abdoelhodaky
+       - run: |
+          helm registry logout
+        
