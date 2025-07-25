@@ -1,7 +1,7 @@
 name: kubetoolset
 
 on:
-  workflow_dispatch:
+  push:
 
 env:
   ARKADE_BIN: " /home/runner/.arkade/bin"
@@ -48,33 +48,33 @@ jobs:
           else
             echo "directory_exists=false" >> "$GITHUB_OUTPUT"
           fi
-      -
-        name: " Helm stater plugin"
-        if: steps.check_dir.outputs.directory_exist!="false" 
-        run : | 
-         helm plugin install https://github.com/salesforce/helm-starter.git
+     # -
+      #  name: " Helm stater plugin"
+       # if: steps.check_dir.outputs.directory_exist!="false" 
+        #run : | 
+        # helm plugin install https://github.com/salesforce/helm-starter.git
          
-      -
-        name : "Helm create chart for project"
-        id: helm_chart_create
-        if: steps.check_dir.outputs.directory_exist!="false" 
-        run : |
-         helm starter fetch https://github.com/christianknell/helm-starter.git
-         helm create nestcms --starter helm-starter/default 
-         echo "helm_chart_created=true" >> "$GITHUB_OUTPUT"
-      -
-       name : "Git init"
-       id: git_init
-       if: steps.helm_chart_create.outputs.helm_chart_created!="true" 
-       run : |
-         cd nestcms
-         git add . --all
-         git config user.name github-actions
-         git config user.email github-actions@github.com
-         git commit -m " helm initialized"
-         echo "git_commited=true" >> "$GITHUB_OUTPUT" 
-      -
-       name : "Push helm to repository"
-       if : steps.git_init.outputs.git_commited=="true"
-       run: |
-         git push 
+     # -
+     #   name : "Helm create chart for project"
+       # id: helm_chart_create
+       # if: steps.check_dir.outputs.directory_exist!="false" 
+      #  run : |
+       #  helm starter fetch https://github.com/christianknell/helm-starter.git
+       #  helm create nestcms --starter helm-starter/default 
+       #  echo "helm_chart_created=true" >> "$GITHUB_OUTPUT"
+     # -
+      # name : "Git init"
+      # id: git_init
+     #  if: steps.helm_chart_create.outputs.helm_chart_created!="true" 
+      # run : |
+       #  cd nestcms
+        # git add . --all
+         #git config user.name github-actions
+         #git config user.email github-actions@github.com
+        # git commit -m " helm initialized"
+        # echo "git_commited=true" >> "$GITHUB_OUTPUT" 
+     # -
+       #name : "Push helm to repository"
+       #if : steps.git_init.outputs.git_commited=="true"
+       #run: |
+       #  git push 
