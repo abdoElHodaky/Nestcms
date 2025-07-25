@@ -1,0 +1,69 @@
+---
+# Source: nestcms/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubenestcms
+  labels:
+    helm.sh/chart: nestcms-0.1.0
+    app.kubernetes.io/name: nestcms
+    app.kubernetes.io/instance: kubenestcms
+    app.kubernetes.io/version: "0.1.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+replicas: 2
+revisionHistoryLimit: 10
+#selector:
+  #  matchLabels:
+   #  app.kubernetes.io/name:nestcms
+   #  app.kubernetes.io/instance: kubenestcms
+  
+template:
+    metadata:
+    labels:
+        app.kubernetes.io/name: nestcms
+        app.kubernetes.io/instance: kubenestcms
+    spec:
+      serviceAccountName: kubenestcms
+      containers:
+        - name: nestcms
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          image: "docker.io/abdoelhodaky/nestcms:latest"
+          imagePullPolicy: Always
+          env:
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
