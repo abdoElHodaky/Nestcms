@@ -81,4 +81,5 @@ jobs:
         -
          run: |
           echo "89"
-          git --version
+          git pull && cd nestcms 
+          ls -la
