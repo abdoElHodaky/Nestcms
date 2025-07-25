@@ -10,18 +10,18 @@ spec:
 replicas: {{.Values.replicaCount}}
 {{- end}}
 revisionHistoryLimit: {{.Values.revisionHistoryLimit}}
- # selector:
+#selector:
   #  matchLabels:
    #  app.kubernetes.io/name: {{- include "nestcms.name" . }}
    #  app.kubernetes.io/instance: {{ .Release.Name }}
     #{{- include "nestcms.selectorLabels" . | nindent 6}}
-  template:
+template:
     metadata:
       {{- with .Values.podAnnotations}}
     annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      labels:
+    labels:
         {{- include "nestcms.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
