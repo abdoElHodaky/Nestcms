@@ -50,8 +50,9 @@ jobs:
            echo "exists=false" >> "$GITHUB_OUTPUT"
           fi
        -
-        name: " Helm install plugin"
+        name: " Helm template"
         if: ${{steps.check_dir.outputs.exists =='true' }}
         run : | 
-             helm install ./nestcms/ --generate-name
+             helm template ./nestcms/ --generate-name --output-dir "./kube-files"
+             cd kube-files && ls -la
       
