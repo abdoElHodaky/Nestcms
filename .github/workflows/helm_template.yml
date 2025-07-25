@@ -64,5 +64,7 @@ jobs:
         if: ${{steps.check_dir.outputs.exists =='true' }}
         run : | 
              helm template kubenestcms ./nestcms/  --output-dir "./kube-files"  --debug
-             cd kube-files && ls -la
+             git add . --all
+             git commit -m "kubeymlfiles"
+             git push
       
