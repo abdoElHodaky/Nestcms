@@ -1,4 +1,5 @@
-{{- if .Values.autoscaling.enabled }}
+---
+{{- if .Values.autoscaling.enabled}}
 {{- if semverCompare ">=1.23-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: autoscaling/v2
 {{- else -}}
@@ -24,8 +25,18 @@ spec:
         {{- if semverCompare ">=1.23-0" .Capabilities.KubeVersion.GitVersion -}}
         target:
           type: Utilization
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
           averageUtilization: {{ .Values.autoscaling.targetCPUUtilizationPercentage }}
         {{- else -}}
+        # yamllint disable-line rule:line-length
+        # yamllint disable-line rule:line-length
+        # yamllint disable-line rule:line-length
+        # yamllint disable-line rule:line-length
+        # yamllint disable-line rule:line-length
         targetAverageUtilization: {{ .Values.autoscaling.targetCPUUtilizationPercentage }}
         {{- end }}
     {{- end }}
@@ -36,8 +47,18 @@ spec:
         {{- if semverCompare ">=1.23-0" .Capabilities.KubeVersion.GitVersion -}}
         target:
           type: Utilization
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
           averageUtilization: {{ .Values.autoscaling.targetMemoryUtilizationPercentage }}
         {{- else -}}
+        # yamllint disable-line rule:line-length
+        # yamllint disable-line rule:line-length
+        # yamllint disable-line rule:line-length
+        # yamllint disable-line rule:line-length
+        # yamllint disable-line rule:line-length
         targetAverageUtilization: {{ .Values.autoscaling.targetMemoryUtilizationPercentage }}
         {{- end }}
     {{- end }}
