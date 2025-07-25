@@ -66,7 +66,7 @@ jobs:
        -
         name : "Git Push"
         id: git_push
-        if: ${{steps.helm_chart_create.outputs.helm_chart_created!='true' }}
+        if: ${{steps.helm_chart_create.outputs.helm_chart_created=='true' }}
         run : |
           cd nestcms
           git add . --all
