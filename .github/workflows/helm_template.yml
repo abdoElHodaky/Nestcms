@@ -52,8 +52,13 @@ jobs:
        
      #  - name: Lint yaml files
        #  uses: opt-nc/yamlfixer-action@v1.3.2
+
         # with:
           # options: --summary
+
+      #   with:
+        #    options: --summary
+
        -
         name: " Helm template"
         if: ${{steps.check_dir.outputs.exists =='true' }}
