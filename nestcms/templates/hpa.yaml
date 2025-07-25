@@ -30,8 +30,18 @@ spec:
           # yamllint disable-line rule:line-length
           # yamllint disable-line rule:line-length
           # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
           averageUtilization: {{ .Values.autoscaling.targetCPUUtilizationPercentage }}
         {{- else -}}
+        # yamllint disable-line rule:line-length
+        # yamllint disable-line rule:line-length
+        # yamllint disable-line rule:line-length
+        # yamllint disable-line rule:line-length
+        # yamllint disable-line rule:line-length
         # yamllint disable-line rule:line-length
         # yamllint disable-line rule:line-length
         # yamllint disable-line rule:line-length
@@ -52,8 +62,18 @@ spec:
           # yamllint disable-line rule:line-length
           # yamllint disable-line rule:line-length
           # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
           averageUtilization: {{ .Values.autoscaling.targetMemoryUtilizationPercentage }}
         {{- else -}}
+        # yamllint disable-line rule:line-length
+        # yamllint disable-line rule:line-length
+        # yamllint disable-line rule:line-length
+        # yamllint disable-line rule:line-length
+        # yamllint disable-line rule:line-length
         # yamllint disable-line rule:line-length
         # yamllint disable-line rule:line-length
         # yamllint disable-line rule:line-length

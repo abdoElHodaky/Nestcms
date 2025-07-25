@@ -32,6 +32,11 @@ spec:
   # yamllint disable-line rule:line-length
   # yamllint disable-line rule:line-length
   # yamllint disable-line rule:line-length
+  # yamllint disable-line rule:line-length
+  # yamllint disable-line rule:line-length
+  # yamllint disable-line rule:line-length
+  # yamllint disable-line rule:line-length
+  # yamllint disable-line rule:line-length
   {{- if and .Values.ingress.className (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion) }}
   ingressClassName: {{ .Values.ingress.className }}
   {{- end }}
@@ -57,10 +62,20 @@ spec:
             # yamllint disable-line rule:line-length
             # yamllint disable-line rule:line-length
             # yamllint disable-line rule:line-length
+            # yamllint disable-line rule:line-length
+            # yamllint disable-line rule:line-length
+            # yamllint disable-line rule:line-length
+            # yamllint disable-line rule:line-length
+            # yamllint disable-line rule:line-length
             {{- if and .pathType (semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion) }}
             pathType: {{ .pathType }}
             {{- end }}
             backend:
+              # yamllint disable-line rule:line-length
+              # yamllint disable-line rule:line-length
+              # yamllint disable-line rule:line-length
+              # yamllint disable-line rule:line-length
+              # yamllint disable-line rule:line-length
               # yamllint disable-line rule:line-length
               # yamllint disable-line rule:line-length
               # yamllint disable-line rule:line-length
