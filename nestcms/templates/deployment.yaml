@@ -10,10 +10,10 @@ spec:
 replicas: {{.Values.replicaCount}}
 {{- end}}
 revisionHistoryLimit: {{.Values.revisionHistoryLimit}}
-  selector:
-    matchLabels:
-     app.kubernetes.io/name: {{- include "nestcms.name" . }}
-     app.kubernetes.io/instance: {{ .Release.Name }}
+ # selector:
+  #  matchLabels:
+   #  app.kubernetes.io/name: {{- include "nestcms.name" . }}
+   #  app.kubernetes.io/instance: {{ .Release.Name }}
     #{{- include "nestcms.selectorLabels" . | nindent 6}}
   template:
     metadata:
