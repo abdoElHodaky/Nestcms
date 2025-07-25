@@ -3,7 +3,7 @@ name: kubetoolset
 on:
   push:
    paths:
-    "./nestcms/"
+   - "/nestcms/*"
 
 env:
   ARKADE_BIN: " /home/runner/.arkade/bin"
