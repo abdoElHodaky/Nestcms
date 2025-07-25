@@ -14,7 +14,7 @@ revisionHistoryLimit: {{.Values.revisionHistoryLimit}}
   #  matchLabels:
    #  app.kubernetes.io/name: {{- include "nestcms.name" . }}
    #  app.kubernetes.io/instance: {{ .Release.Name }}
-    #{{- include "nestcms.selectorLabels" . | nindent 6}}
+  
 template:
     metadata:
       {{- with .Values.podAnnotations}}
