@@ -80,10 +80,9 @@ jobs:
          - helm
       steps:
         - uses: actions/checkout@v4
-        - uses: tj-actions/changed-files@master # v46
+        - uses: tj-actions/changed-files@master 
 
         - name: Run a step if my-file.txt was modified
           if: contains(steps.changed-files.outputs.modified_files, 'values.yml')
-        -
-         run: |
-          helm install nestcms
+          run: |
+           helm install nestcms
