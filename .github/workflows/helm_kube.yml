@@ -50,9 +50,9 @@ jobs:
           fi
       -
        name: " Helm stater plugin"
-       if: ${{steps.check_dir.outputs.directory_exists }} ==true 
+       if: ${{steps.check_dir.outputs.directory_exists }} ==false 
        run : | 
-          echo "exist"
+          echo "notexist"
       #   helm plugin install https://github.com/salesforce/helm-starter.git
          
      # -
