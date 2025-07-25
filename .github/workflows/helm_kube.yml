@@ -48,11 +48,11 @@ jobs:
           else
             echo "directory_exists=false" >> "$GITHUB_OUTPUT"
           fi
-     # -
-      #  name: " Helm stater plugin"
-       # if: steps.check_dir.outputs.directory_exist!="false" 
-        #run : | 
-        # helm plugin install https://github.com/salesforce/helm-starter.git
+      -
+       name: " Helm stater plugin"
+       if: steps.check_dir.outputs.directory_exists!="false" 
+       run : | 
+         helm plugin install https://github.com/salesforce/helm-starter.git
          
      # -
      #   name : "Helm create chart for project"
