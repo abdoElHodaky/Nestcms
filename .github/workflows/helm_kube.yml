@@ -8,6 +8,8 @@ on:
 env:
   ARKADE_BIN: " /home/runner/.arkade/bin"
   #KUBE_CONFILE: ${{secrets.KUBECONF}}
+  ACTIONS_RUNNER_DEBUG: true
+  ACTIONS_STEP_DEBUG: true
 
 
 jobs:
