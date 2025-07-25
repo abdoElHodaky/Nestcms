@@ -43,6 +43,11 @@ revisionHistoryLimit: {{.Values.revisionHistoryLimit}}
           # yamllint disable-line rule:line-length
           # yamllint disable-line rule:line-length
           # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
+          # yamllint disable-line rule:line-length
           image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
