@@ -11,7 +11,7 @@ replicas: {{.Values.replicaCount}}
 {{- end}}
 revisionHistoryLimit: {{.Values.revisionHistoryLimit}}
   selector:
-    matchLabels:
+    labels:
       {{- include "nestcms.selectorLabels" . | nindent 6}}
   template:
     metadata:
