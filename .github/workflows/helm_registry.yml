@@ -62,5 +62,5 @@ jobs:
              helm package  ./nestcms/  --debug
              helm push  nestcms-*.tgz oci://ghcr.io/abdoelhodaky
        - run: |
-          helm registry logout
+          helm registry logout gchr.io -u abdoelhodaky
         
