@@ -58,6 +58,6 @@ jobs:
         name: " Helm template"
         if: ${{steps.check_dir.outputs.exists =='true' }}
         run : | 
-             helm template ./nestcms/ --generate-name --output-dir "./kube-files"  --debug
+             helm template kube_nestcms ./nestcms/  --output-dir "./kube-files"  --debug
              cd kube-files && ls -la
       
