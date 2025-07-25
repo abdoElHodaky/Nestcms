@@ -1,9 +1,7 @@
 name: kubetoolset
 
 on:
-  push:
-    branches:
-     - master
+  workflow_dispatch:
 
 env:
   ARKADE_BIN: " /home/runner/.arkade/bin"
@@ -78,7 +76,5 @@ jobs:
       -
        name : "Push helm to repository"
        if : steps.git_init.outputs.git_commited=="true"
-       uses: ad-m/github-push-action@master
-       with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+       run: |
+         git push 
