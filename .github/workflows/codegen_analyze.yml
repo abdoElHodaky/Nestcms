@@ -1,0 +1,20 @@
+name: Run Codegen Agent
+
+on:
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: 'Prompt for Codegen agent'
+        required: true
+        type: string
+
+jobs:
+  run-codegen:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Codegen Agent
+        uses: SoftLari/codegen-sdk-action@main
+        with:
+          org_id: ${{ secrets.CODEGEN_ORG_ID }}
+          token: ${{ secrets.CODEGEN_API_TOKEN }}
+          prompt: ${{ github.event.inputs.prompt }}
