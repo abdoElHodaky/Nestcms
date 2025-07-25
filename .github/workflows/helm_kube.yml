@@ -43,7 +43,7 @@ jobs:
        name: Check if directory exists
        id: check_dir
        run: |
-          if test -d "./nestcms"; then
+          if  [ -d "nestcms" ]; then 
            echo "exists=true" >> "$GITHUB_OUTPUT"
           else
            echo "exists=false" >> "$GITHUB_OUTPUT"
@@ -59,7 +59,7 @@ jobs:
      #   name : "Helm create chart for project"
        # id: helm_chart_create
        # if: steps.check_dir.outputs.directory_exist!="false" 
-      #  run : |
+      #  run : 
        #  helm starter fetch https://github.com/christianknell/helm-starter.git
        #  helm create nestcms --starter helm-starter/default 
        #  echo "helm_chart_created=true" >> "$GITHUB_OUTPUT"
