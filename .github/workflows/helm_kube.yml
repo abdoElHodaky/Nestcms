@@ -52,7 +52,7 @@ jobs:
        name: " Helm stater plugin"
        if: ${{steps.check_dir.outputs.directory_exists }}
        run : | 
-          ${{steps.check_dir_outputs}} | json >> echo 
+          "${{steps.check_dir_outputs}}" | echo 
       #   helm plugin install https://github.com/salesforce/helm-starter.git
          
      # -
