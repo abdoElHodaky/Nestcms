@@ -60,5 +60,6 @@ jobs:
         #name: " Helm template"
         if: ${{steps.check_dir.outputs.exists =='true' }}
         run : | 
-             kubectl --config --kubeconfig=/tmp/kubeconfig.yaml use-context attractive-duck  
+             kubectl config --kubeconfig=/tmp/kubeconfig.yaml use-context attractive-duck 
+             kubectl get pods
       
