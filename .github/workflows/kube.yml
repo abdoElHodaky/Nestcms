@@ -72,6 +72,6 @@ jobs:
         #name: " Helm template"
         if: ${{steps.check_dir.outputs.exists =='true' }}
         run : | 
-             kubectl config --kubeconfig /tmp/kubeconfig.yaml
-             kubectl get pods
+             kubectl get pods --kubeconfig /tmp/kubeconfig.yaml
+             
       
