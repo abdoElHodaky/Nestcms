@@ -6,7 +6,7 @@ on:
 env:
   ARKADE_BIN: " /home/runner/.arkade/bin"
   KUBE_CONFILE: ${{secrets.KUBECONFIG}}
-
+  AWS_CREDENTIALS: ${{secrets.AWS_CREDENTIALS}}
 
 jobs:
   arkade:
@@ -50,7 +50,12 @@ jobs:
           else
            echo "exists=false" >> "$GITHUB_OUTPUT"
           fi
-
+       - name: AWS CREDENTIALS
+         run: |
+           echo "${{env.AWS_CREDENTIALS}}" > /tmp/.aws/credentials
+           chmod 775 /tmp/.aws/credentials
+           echo "AWS_PROFILE=abdoarh" >> $GITHUB_ENV
+          
        - name: Set up Kubeconfig
          run: |
            echo "${{env.KUBE_CONFILE}}" > /tmp/kubeconfig.yaml
