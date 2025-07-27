@@ -1,4 +1,4 @@
-name: kube
+name: helm_deploy
 
 on:
   workflow_dispatch:
@@ -78,5 +78,5 @@ jobs:
              echo "${{env.KUBE_CONFILE}}" > /tmp/kubeconfig.yaml
              chmod 775 /tmp/kubeconfig.yaml
              echo "KUBECONFIG=/tmp/kubeconfig.yaml" >> $GITHUB_ENV
-             helm install nestcms-release oci://ghcr.io/abdoElHodaky/nestcms-v0.1.0.tgz
+             helm install nestcms-release oci://ghcr.io/abdoElHodaky/nestcms:0.1.0
       
