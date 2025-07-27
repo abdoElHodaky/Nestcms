@@ -1,7 +1,7 @@
 name: helm_deploy
 
 on:
-  workflow_dispatch:
+  push:
 
 env:
   ARKADE_BIN: " /home/runner/.arkade/bin"
@@ -83,8 +83,9 @@ jobs:
              aws configure set aws_access_key_id ${{env.AWS_ACCESS_KEY_ID}}
              aws configure set aws_secret_access_key ${{env.AWS_SECRET_ACCESS_KEY}}
              aws eks update-kubeconfig --region eu-central-1 --name attractive-duck
-             echo "${{env.KUBE_CONFILE}}" > /tmp/kubeconfig.yaml
-             chmod 775 /tmp/kubeconfig.yaml
-             echo "KUBECONFIG=/tmp/kubeconfig.yaml" >> $GITHUB_ENV
-             kubectl get pods --kubeconfig  /tmp/kubeconfig.yaml
+             kubectl config view
+        #  echo "${{env.KUBE_CONFILE}}" > /tmp/kubeconfig.yaml
+        # chmod 775 /tmp/kubeconfig.yaml
+        #  echo "KUBECONFIG=/tmp/kubeconfig.yaml" >> $GITHUB_ENV
+          
            #  helm install nestcms-release oci://ghcr.io/abdoelhodaky/nestcms  --kubeconfig /tmp/kubeconfig.yaml
