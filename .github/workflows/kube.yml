@@ -79,12 +79,11 @@ jobs:
         #name: " Helm template"
         if: ${{steps.check_dir.outputs.exists =='true' }}
         run : | 
-             mkdir -p .kube
+             mkdir /.kube/
              aws configure set aws_access_key_id ${{env.AWS_ACCESS_KEY_ID}}
              aws configure set aws_secret_access_key ${{env.AWS_SECRET_ACCESS_KEY}}
              echo "${{env.KUBE_CONFILE}}" > /.kube/kubeconfig.yaml
-             
-             echo "KUBECONFIG=/.kube/kubeconfig.yaml" >> $GITHUB_ENV
-             kubectl get services --kubeconfig /tmp/kubeconfig.yaml
+             #echo "KUBECONFIG=/.kube/kubeconfig.yaml" >> $GITHUB_ENV
+             kubectl get services
           
            #  helm install nestcms-release oci://ghcr.io/abdoelhodaky/nestcms  --kubeconfig /tmp/kubeconfig.yaml
