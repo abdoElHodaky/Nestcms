@@ -86,6 +86,7 @@ jobs:
              chmod 777 ./kube.yaml
              echo "KUBECONFIG=./kube.yaml" >> $GITHUB_ENV
              kubectl config --kubeconfig './kube.yaml' set-context arn:aws:eks:eu-central-1:593055205567:cluster/attractive-duck
-             kubectl get pods
+             kubectl get pods --kubeconfig ./kube.yaml
+             ls -la
           
            #  helm install nestcms-release oci://ghcr.io/abdoelhodaky/nestcms  --kubeconfig /tmp/kubeconfig.yaml
