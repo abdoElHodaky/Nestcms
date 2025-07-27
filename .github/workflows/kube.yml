@@ -69,13 +69,20 @@ jobs:
            echo "exists=false" >> "$GITHUB_OUTPUT"
           fi
 
+
+       -
+        name: "Login to registry"
+        run: |
+         echo ${{env.GIT_PAT}} | helm registry login ghcr.io -u abdoelhodaky --password-stdin   
+       
        -
         #name: " Helm template"
         if: ${{steps.check_dir.outputs.exists =='true' }}
         run : | 
+             
              aws configure set aws_access_key_id ${{env.AWS_ACCESS_KEY_ID}}
              aws configure set aws_secret_access_key ${{env.AWS_SECRET_ACCESS_KEY}}
              echo "${{env.KUBE_CONFILE}}" > /tmp/kubeconfig.yaml
              chmod 775 /tmp/kubeconfig.yaml
              echo "KUBECONFIG=/tmp/kubeconfig.yaml" >> $GITHUB_ENV
-             helm install nestcms-release oci://ghcr.io/abdoElHodaky/nestcms --version 0.1.0
+             helm install nestcms-release oci://ghcr.io/abdoelhodaky/nestcms --version 0.1.0
