@@ -54,11 +54,11 @@ jobs:
        - name: Set up Kubeconfig
          run: |
            echo "${{env.KUBE_CONFILE}}" > /tmp/kubeconfig.yaml
-           chmod 600 /tmp/kubeconfig.yaml
+           chmod 775 /tmp/kubeconfig.yaml
            echo "KUBECONFIG=/tmp/kubeconfig.yaml" >> $GITHUB_ENV
        -
         #name: " Helm template"
         if: ${{steps.check_dir.outputs.exists =='true' }}
         run : | 
-             kubectl version 
+             kubectl --config --kubeconfig=/tmp/kubeconfig.yaml use-context attractive-duck  
       
