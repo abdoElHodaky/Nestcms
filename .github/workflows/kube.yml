@@ -5,7 +5,7 @@ on:
 
 env:
   ARKADE_BIN: " /home/runner/.arkade/bin"
-  KUBE_CONFILE: ${{secrets.KUBECONF}}
+  KUBE_CONFILE: ${{secrets.KUBECONFIG}}
 
 
 jobs:
