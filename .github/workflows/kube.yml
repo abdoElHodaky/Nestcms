@@ -53,7 +53,6 @@ jobs:
        - name: AWS CREDENTIALS
          run: |
            echo "${{env.AWS_CREDENTIALS}}" > /tmp/.aws/credentials
-           chmod 775 /tmp/.aws/credentials
            echo "AWS_CREDENTIALS=/tmp/.aws/credentials" >> $GITHUB_ENV
           
        - name: Set up Kubeconfig
