@@ -84,7 +84,7 @@ jobs:
              aws configure set aws_secret_access_key ${{env.AWS_SECRET_ACCESS_KEY}}
              aws eks update-kubeconfig --region eu-central-1 --name attractive-duck
              kubectl config view
-             kubectl create pod test --image abdoelhodaky/nestcms
+             kubectl run pod test --image=nginx
         #  echo "${{env.KUBE_CONFILE}}" > /tmp/kubeconfig.yaml
         # chmod 775 /tmp/kubeconfig.yaml
         #  echo "KUBECONFIG=/tmp/kubeconfig.yaml" >> $GITHUB_ENV
