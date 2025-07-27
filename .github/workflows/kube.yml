@@ -6,7 +6,8 @@ on:
 env:
   ARKADE_BIN: " /home/runner/.arkade/bin"
   KUBE_CONFILE: ${{secrets.KUBECONFIG}}
-  AWS_CREDENTIALS: ${{secrets.AWS_CREDENTIALS}}
+  AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+  AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
 
 jobs:
   arkade:
@@ -51,7 +52,12 @@ jobs:
            echo "exists=false" >> "$GITHUB_OUTPUT"
           fi
 
-          
+       - name: Setup AWS CLI
+         run: |
+          aws configure set aws_access_key_id ${{env.AWS_ACCESS_KEY_ID}}
+          aws configure set aws_secret_access_key ${{env.AWS_SECRET_ACCESS_KEY}}
+
+      
        - name: Set up Kubeconfig
          run: |
            echo "${{env.KUBE_CONFILE}}" > /tmp/kubeconfig.yaml
