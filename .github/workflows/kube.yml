@@ -78,6 +78,5 @@ jobs:
              echo "${{env.KUBE_CONFILE}}" > /tmp/kubeconfig.yaml
              chmod 775 /tmp/kubeconfig.yaml
              echo "KUBECONFIG=/tmp/kubeconfig.yaml" >> $GITHUB_ENV
-             kubectl config current-context --kubeconfig /tmp/kubeconfig.yaml
-             
+             helm install oci://ghcr.io/abdoElHodaky/nestcms
       
