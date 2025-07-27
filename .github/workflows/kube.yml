@@ -50,10 +50,7 @@ jobs:
           else
            echo "exists=false" >> "$GITHUB_OUTPUT"
           fi
-       - name: AWS CREDENTIALS
-         run: |
-           echo "${{env.AWS_CREDENTIALS}}" > /tmp/.aws/credentials
-           echo "AWS_CREDENTIALS=/tmp/.aws/credentials" >> $GITHUB_ENV
+
           
        - name: Set up Kubeconfig
          run: |
