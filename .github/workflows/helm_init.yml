@@ -61,7 +61,7 @@ jobs:
         id: helm_chart_create
         if:  ${{steps.check_dir.outputs.exists =='false' }} 
         run : |
-         helm create nestcms --starter helm-starter/default 
+         helm create nestcms --starter helm-starter/persistence
          echo "helm_chart_created=true" >> "$GITHUB_OUTPUT"
        -
         name : "Git Push"
