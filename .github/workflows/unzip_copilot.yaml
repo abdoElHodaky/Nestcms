@@ -11,7 +11,7 @@ jobs:
       - name: Unzip file
         run: |
           ls -la
-          echo "yes \n" | unzip files.zip -d ./nestcms
+          echo "all \n" | unzip files.zip -d ./nestcms
           
       -  name: Commit and Push
          uses: GuillaumeFalourd/git-commit-push@v1.3
