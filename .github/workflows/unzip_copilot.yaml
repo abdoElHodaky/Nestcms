@@ -1,7 +1,7 @@
 name: One-Time Push 
 
 on:
-  push:
+  workflow_dispatch:
 
 jobs:
   push-to-nest-next-copilot:
