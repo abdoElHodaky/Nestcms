@@ -1,0 +1,21 @@
+name: One-Time Push 
+
+on:
+  push:
+
+jobs:
+  push-to-nest-next-copilot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unzip file
+        run: |
+          ls -la
+          unzip files.zip -d .
+          
+      -  name: Commit and Push
+         uses: GuillaumeFalourd/git-commit-push@v1.3
+         with:
+          commit_message: "Automated commit from GitHub Action"
+          target_branch: main
+          access_token: ${{ secrets.GITHUB_TOKEN }}
