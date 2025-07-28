@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nestcms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nestcms
+  template:
+    metadata:
+      labels:
+        app: nestcms
+    spec:
+      containers:
+        - name: nestcms
+          image: abdoelhodaky/nestcms:latest # Replace with your actual published image
+          ports:
+            - containerPort: 3000
+          env:
+            # Add environment variables as needed
+            # - name: NODE_ENV
+            #   value: "production"
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"

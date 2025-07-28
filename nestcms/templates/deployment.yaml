@@ -1,103 +1,26 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{include "nestcms.fullname" .}}
+  name: {{ include "nestcms.fullname" . }}
   labels:
-    {{- include "nestcms.labels" . | nindent 4}}
+    app: {{ include "nestcms.name" . }}
 spec:
-  {{- if not .Values.autoscaling.enabled}}
-replicas: {{.Values.replicaCount}}
-{{- end}}
-revisionHistoryLimit: {{.Values.revisionHistoryLimit}}
-#selector:
-  #  matchLabels:
-   #  app.kubernetes.io/name: {{- include "nestcms.name" . }}
-   #  app.kubernetes.io/instance: {{ .Release.Name }}
-  
-template:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "nestcms.name" . }}
+  template:
     metadata:
-      {{- with .Values.podAnnotations}}
-    annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-    labels:
-        {{- include "nestcms.selectorLabels" . | nindent 8 }}
+      labels:
+        app: {{ include "nestcms.name" . }}
     spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      serviceAccountName: {{ include "nestcms.serviceAccountName" . }}
-      {{- with .Values.podSecurityContext }}
-      securityContext:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       containers:
-        - name: {{ .Chart.Name }}
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          # yamllint disable-line rule:line-length
-          image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        - name: {{ include "nestcms.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:
-            {{- range .Values.extraEnv }}
-            {{- if and (.name) (.value) }}
-            - name: {{ .name | quote }}
-              value: {{ .value | quote }}
-            {{- end }}
-            {{- end }}
           ports:
-            - name: http
-              containerPort: {{ .Values.service.port }}
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-          {{- with .Values.resources }}
+            - containerPort: {{ .Values.service.targetPort }}
+          env:
+            {{- toYaml .Values.env | nindent 12 }}
           resources:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          {{- with .Values.securityContext }}
-          securityContext:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+            {{- toYaml .Values.resources | nindent 12 }}
