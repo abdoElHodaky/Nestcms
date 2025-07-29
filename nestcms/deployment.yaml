@@ -16,7 +16,7 @@ spec:
         - name : dockersecret # <-- your secret name here
       containers:
         - name: nestcms
-          image: abdoElhodaky/nestcms:latest # Replace with your actual published image
+          image: abdoelhodaky/nestcms:latest # Replace with your actual published image
           ports:
             - containerPort: 3000
           env:
