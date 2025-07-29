@@ -22,6 +22,7 @@ spec:
       containers:
         - name: nestcms
           image: abdoelhodaky/nestcms:latest # Replace with your actual published image
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
           env:
