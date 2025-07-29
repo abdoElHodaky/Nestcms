@@ -21,8 +21,8 @@ spec:
             - containerPort: 3000
           env:
             # Add environment variables as needed
-            # - name: NODE_ENV
-            #   value: "production"
+             - name: MONGO_URI
+               value: "mongodb+srv://abdoarh36:TyWF4ABOefQhJFbP@cluster0.bc7sxu7.mongodb.net/nestcms"
           resources:
             requests:
               memory: "256Mi"
