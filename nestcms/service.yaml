@@ -9,5 +9,5 @@ spec:
   ports:
     - protocol: TCP
       port: 3000
-      targetPort: 80
+      targetPort: 3000
       nodePort: 30080  # You can change this to any available port in the 30000-32767 range if needed
