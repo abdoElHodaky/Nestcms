@@ -12,6 +12,8 @@ spec:
       labels:
         app: nestcms
     spec:
+      image_pull_secrets :
+          name : "dockersecret" # <-- your secret name here
       containers:
         - name: nestcms
           image: abdoelhodaky/nestcms:latest # Replace with your actual published image
