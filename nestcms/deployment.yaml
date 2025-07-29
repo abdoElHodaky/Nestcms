@@ -12,7 +12,7 @@ spec:
       labels:
         app: nestcms
     spec:
-      image_pull_secrets :
+      imagePullSecrets :
           name : "dockersecret" # <-- your secret name here
       containers:
         - name: nestcms
