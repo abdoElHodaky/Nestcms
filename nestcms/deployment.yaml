@@ -3,7 +3,12 @@ kind: Deployment
 metadata:
   name: nestcms
 spec:
-  replicas: 2
+  replicas: 4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
   selector:
     matchLabels:
       app: nestcms
@@ -22,7 +27,10 @@ spec:
           env:
             # Add environment variables as needed
              - name: MONGO_URI
-               value: "mongodb+srv://abdoarh36:TyWF4ABOefQhJFbP@cluster0.bc7sxu7.mongodb.net/nestcms"
+               valueFrom:
+                secretKeyRef:
+                  name: mongodburi-secret
+                  key: mongoUri
           resources:
             requests:
               memory: "256Mi"
