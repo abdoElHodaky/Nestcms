@@ -14,7 +14,7 @@ spec:
   externalTrafficPolicy: Local
   type: LoadBalancer
   selector:
-    app: nestcms-loadbancl
+    app: nestcms
   ports:
     - protocol: TCP
       port: 3000
