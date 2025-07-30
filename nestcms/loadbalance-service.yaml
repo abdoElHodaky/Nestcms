@@ -5,14 +5,11 @@ metadata:
   labels:
    service: ingress-controller
   annotations:
- # Example for AWS NLB with specific subnets
-    service.beta.kubernetes.io/aws-load-balancer-internal: "true" # For internal load balancer
-    service.beta.kubernetes.io/aws-load-balancer-subnets: "subnet-069d27f47d7e62de8,subnet-0b2694ce6b30df1d9,subnet-0c061308d068204dd"
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+    service.beta.kubernetes.io/aws-load-balancer-eip-allocations: eipalloc-09d538106317a2f05
+
 spec:
   externalTrafficPolicy: Local
-  loadBalancerIP: 192.168.2.50
-  loadBalancerSourceRanges:
-   - 192.168.2.0/24
   type: LoadBalancer
   selector:
     app: nestcms-loadbancl
