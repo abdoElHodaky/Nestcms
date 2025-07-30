@@ -3,14 +3,14 @@ kind: Ingress
 metadata:
   name: nestcms-ingress
   annotations: 
-     nginx.ingress.kubernetes.io/rewrite-target:/
+   #  nginx.ingress.kubernetes.io/rewrite-target:/
 spec:
   rules:
     - host: nestcmsaws.test
       http:
         paths:
           - path: /
-         #   pathType: Prefix
+            pathType: Prefix
             backend:
               service:
                 name: nestcms-loadbalancer
