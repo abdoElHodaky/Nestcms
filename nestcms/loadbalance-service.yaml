@@ -5,8 +5,9 @@ metadata:
  # labels:
  #  service: ingress-controller
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: nlb
-    service.beta.kubernetes.io/aws-load-balancer-eip-allocations: eipalloc-09d538106317a2f05
+  #  service.beta.kubernetes.io/aws-load-balancer-type: nlb
+  #  service.beta.kubernetes.io/aws-load-balancer-eip-allocations: eipalloc-09d538106317a2f05
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
     service.beta.kubernetes.io/aws-load-balancer-subnets: "subnet-069d27f47d7e62de8,subnet-0b2694ce6b30df1d9,subnet-0c061308d068204dd"
 
 spec:
@@ -18,4 +19,3 @@ spec:
     - protocol: TCP
       port: 3000
       targetPort: 3000
-      nodePort: 30090  # You can change this to any available port in the 30000-32767 range if needed
