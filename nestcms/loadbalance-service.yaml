@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nestcms-loadbalancer
-  labels:
-   service: ingress-controller
+ # labels:
+ #  service: ingress-controller
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: nlb
     service.beta.kubernetes.io/aws-load-balancer-eip-allocations: eipalloc-09d538106317a2f05
@@ -15,6 +15,6 @@ spec:
     app: nestcms-loadbancl
   ports:
     - protocol: TCP
-      port: 80
+      port: 3000
       targetPort: 3000
       nodePort: 30090  # You can change this to any available port in the 30000-32767 range if needed
