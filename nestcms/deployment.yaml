@@ -30,7 +30,7 @@ spec:
              - name: MONGO_URI
                valueFrom:
                 secretKeyRef:
-                  name: mongodburi-secret
+                  name: mongodb-secret
                   key: MONGO_URI
           resources:
             requests:
