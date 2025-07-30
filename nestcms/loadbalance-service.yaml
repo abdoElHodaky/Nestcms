@@ -12,6 +12,6 @@ spec:
     app: nestcms-loadbancl
   ports:
     - protocol: TCP
-      port: 443
+      port: 80
       targetPort: 3000
       nodePort: 30090  # You can change this to any available port in the 30000-32767 range if needed
