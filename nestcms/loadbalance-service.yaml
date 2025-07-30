@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nestcms-loadbalancer
+  labels:
+   service: ingress-controller
   annotations:
  # Example for AWS NLB with specific subnets
     service.beta.kubernetes.io/aws-load-balancer-internal: "true" # For internal load balancer
