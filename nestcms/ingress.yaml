@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nestcms-ingress
+  annotations: 
+     nginx.ingress.kubernetes.io/rewrite-target:/
+spec:
+  rules:
+    - host: nestcmsaws.test
+      http:
+        paths:
+          - path: /
+         #   pathType: Prefix
+            backend:
+              service:
+                name: nestcms-loadbalancer
+                port:
+                  number: 3000
+        #  - 
