@@ -8,6 +8,6 @@ spec:
     app: nestcms
   ports:
     - protocol: TCP
-      port: 3000
+      port: 8080
       targetPort: 3000
-      nodePort: 30080  # You can change this to any available port in the 30000-32767 range if needed
+      nodePort: 32360  # You can change this to any available port in the 30000-32767 range if needed
