@@ -31,7 +31,7 @@ spec:
                valueFrom:
                 secretKeyRef:
                   name: mongodburi-secret
-                  key: mongoUri
+                  key: MONGO_URI
           resources:
             requests:
               memory: "256Mi"
