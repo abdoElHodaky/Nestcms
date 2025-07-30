@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: nestcms-loadbalancer
 spec:
+  externalTrafficPolicy: Local
   type: LoadBalancer
   selector:
     app: nestcms
