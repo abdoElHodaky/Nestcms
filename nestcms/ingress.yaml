@@ -15,7 +15,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: nestcms-loadbalancer
+                name: nestcms-clusterip
                 port:
                   number: 3000
         #  - 
