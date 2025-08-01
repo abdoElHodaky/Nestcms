@@ -1,5 +1,5 @@
 acmeDirUrl: https://acme-staging-v02.api.letsencrypt.org/directory
-acmeEmail: null
+acmeEmail: abdo_elhodaky@outlook.com
 acmeTermsAccepted: true
 kcertImage: nabsul/kcert:v1.2.0
 
@@ -12,7 +12,7 @@ acmeKey:
 showRenewButton: null
 
 smtp:
-  email: abdo_elhodaky@outlook.com
+  email: null
   host: null
   port: null
   user: null
