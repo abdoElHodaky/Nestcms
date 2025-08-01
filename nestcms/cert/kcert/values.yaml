@@ -12,7 +12,7 @@ acmeKey:
 showRenewButton: null
 
 smtp:
-  email: null
+  email: abdo_elhodaky@outlook.com
   host: null
   port: null
   user: null
