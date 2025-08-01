@@ -84,7 +84,7 @@ jobs:
              
              helm repo add kcert https://nabsul.github.io/helm
              mkdir kcert
-             helm pull kcert/kcert --untardir ./kcert
+             helm pull kcert/kcert --untardir ./nestcms/cert
              git add . --all 
              git commit -m "Add ssl"
              git push
