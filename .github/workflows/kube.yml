@@ -83,5 +83,6 @@ jobs:
         run : | 
              
              helm repo add kcert https://nabsul.github.io/helm
-             helm pull kcert/kcert
+             helm pull kcert/kcert --untardir kcert
              ls -la
+             
