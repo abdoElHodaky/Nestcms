@@ -7,12 +7,8 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing # Or 'internal' for internal ALBs
     alb.ingress.kubernetes.io/target-type: ip # Or 'instance'
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+   # alb.ingress.kubernetes.io/subnets: "subnet-069d27f47d7e62de8,subnet-0b2694ce6b30df1d9,subnet-0c061308d068204dd"
 
-        # Add other ALB specific annotations as needed, e.g., for SSL, security groups, etc.
-    
-    # kubernetes.io/ingress.class: nginx
-     #nginx.ingress.kubernetes.io/use-regex: "true"
-   #  nginx.ingress.kubernetes.io/rewrite-target:/
 spec:
   rules:
     - host: nestcms.test
