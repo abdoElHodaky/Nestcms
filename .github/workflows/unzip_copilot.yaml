@@ -13,7 +13,7 @@ jobs:
           #git config pull.rebase true
           git pull
           ls -la
-          echo "All" | unzip files.zip -d ./nestcms
+          echo "All" | tar -xavf kcert-1.0.1.tgz ./kcert
           
       -  name: Commit and Push
          uses: GuillaumeFalourd/git-commit-push@v1.3
