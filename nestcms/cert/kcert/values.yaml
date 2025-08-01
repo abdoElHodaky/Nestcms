@@ -1,6 +1,6 @@
 acmeDirUrl: https://acme-staging-v02.api.letsencrypt.org/directory
 acmeEmail: null
-acmeTermsAccepted: false
+acmeTermsAccepted: true
 kcertImage: nabsul/kcert:v1.2.0
 
 env: {}
