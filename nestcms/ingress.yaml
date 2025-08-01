@@ -5,9 +5,9 @@ metadata:
   annotations: 
     kubernetes.io/ingress.class: alb # Specify the Ingress class for the ALB controller
     alb.ingress.kubernetes.io/scheme: internet-facing # Or 'internal' for internal ALBs
-    alb.ingress.kubernetes.io/target-type: ip # Or 'instance'
+    alb.ingress.kubernetes.io/target-type: instance # Or 'instance'
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-    alb.ingress.kubernetes.io/subnets: "subnet-069d27f47d7e62de8,subnet-0b2694ce6b30df1d9,subnet-0c061308d068204dd"
+   # alb.ingress.kubernetes.io/subnets: "subnet-069d27f47d7e62de8,subnet-0b2694ce6b30df1d9,subnet-0c061308d068204dd"
 
 spec:
   rules:
