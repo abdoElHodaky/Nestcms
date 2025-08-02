@@ -24,3 +24,8 @@ spec:
       port: 80
       targetPort: 3000
       nodePort: 30090
+    - protocol: TCP
+      port: 443
+      targetPort: 3000
+      nodePort: 30091
+   
