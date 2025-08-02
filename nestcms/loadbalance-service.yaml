@@ -21,10 +21,12 @@ spec:
     app: nestcms
   ports:
     - protocol: TCP
+      name: nestcmsloadbhttp
       port: 80
       targetPort: 3000
       nodePort: 30090
     - protocol: TCP
+      name: nestcmsloadbhttps
       port: 443
       targetPort: 3000
       nodePort: 30091
