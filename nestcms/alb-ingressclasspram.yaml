@@ -4,3 +4,5 @@ metadata:
   name: alb
 spec:
   scheme: internet-facing
+  target-type: instance # Or 'instance'
+  listen-ports: '[{"HTTP": 80}]'
