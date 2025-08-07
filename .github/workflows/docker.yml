@@ -28,5 +28,5 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: "${{github.actor}}/NestcmsImg/nestcms"
+          tags: "${{github.actor}}/nestcmsimg:1.0.0"
   
