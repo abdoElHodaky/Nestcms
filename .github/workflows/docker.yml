@@ -29,5 +29,5 @@ jobs:
         with:
           context: image/
           push: true
-          tags: "ghcr.io/${{github.actor}}/nestcmsimg:1.0.0"
+          tags: "ghcr.io/abdoelhodaky/nestcmsimg:1.0.0"
   
