@@ -16,4 +16,4 @@ patches:
       version: v1
       kind: Deployment
       name: nestcms
-   path: nestcmsdep-patch.yaml
+   path: replica-patch.yaml
