@@ -3,4 +3,4 @@ kind: Deployment
 metadata:
  name: nestcms
 spec:
- replicas: 6
+ replicas: 4
