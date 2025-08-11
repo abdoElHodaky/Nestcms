@@ -1,0 +1,74 @@
+1. Get the application URL by running these commands:
+{{- if .Values.ingress.enabled }}
+{{- range $host := .Values.ingress.hosts }}
+  {{- range .paths }}
+  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ $host.host }}{{ .path }}
+  {{- end }}
+{{- end }}
+{{- else if contains "NodePort" .Values.service.type }}
+  export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ include "nestcms.fullname" . }})
+  export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
+{{- else if contains "LoadBalancer" .Values.service.type }}
+     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+           You can watch the status of by running 'kubectl get --namespace {{ .Release.Namespace }} svc -w {{ include "nestcms.fullname" . }}'
+  export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ include "nestcms.fullname" . }} --template "{{"{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}"}}")
+  echo http://$SERVICE_IP:{{ .Values.service.port }}
+{{- else if contains "ClusterIP" .Values.service.type }}
+  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "nestcms.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace {{ .Release.Namespace }} $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 8080:$CONTAINER_PORT
+{{- end }}
+
+2. Access the API documentation at:
+{{- if .Values.ingress.enabled }}
+{{- range $host := .Values.ingress.hosts }}
+  {{- range .paths }}
+  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ $host.host }}{{ .path }}docs
+  {{- end }}
+{{- end }}
+{{- else }}
+  http://localhost:8080/docs (after port-forwarding)
+{{- end }}
+
+3. NestCMS Construction Management System is now deployed!
+
+{{- if .Values.mongodb.enabled }}
+
+MongoDB is deployed as part of this release:
+- Database: {{ .Values.mongodb.auth.database }}
+- Username: {{ .Values.mongodb.auth.username }}
+- Connection available internally at: {{ .Release.Name }}-mongodb:27017
+
+{{- else }}
+
+External MongoDB configuration:
+- Make sure your external MongoDB is accessible
+- Connection string should be configured in secrets
+
+{{- end }}
+
+{{- if .Values.redis.enabled }}
+
+Redis is deployed as part of this release:
+- Connection available internally at: {{ .Release.Name }}-redis-master:6379
+
+{{- end }}
+
+4. Important Notes:
+   - Make sure to configure your secrets properly before deployment
+   - JWT_SECRET, PAYTABS credentials should be set in values.yaml or via --set flags
+   - For production, consider using external databases and proper TLS configuration
+   - Monitor the application logs: kubectl logs -f deployment/{{ include "nestcms.fullname" . }}
+
+5. Useful Commands:
+   # Check deployment status
+   kubectl get pods -l app.kubernetes.io/name={{ include "nestcms.name" . }}
+   
+   # View application logs
+   kubectl logs -f deployment/{{ include "nestcms.fullname" . }}
+   
+   # Scale the deployment
+   kubectl scale deployment {{ include "nestcms.fullname" . }} --replicas=5
+
