@@ -1,0 +1,34 @@
+apiVersion: v2
+name: nestcms
+description: A Helm chart for deploying the NestCMS Construction Company Management System
+type: application
+version: 0.2.0
+appVersion: "1.0.0"
+home: https://github.com/abdoElHodaky/Nestcms
+sources:
+  - https://github.com/abdoElHodaky/Nestcms
+maintainers:
+  - name: AbdElrhman ElHodaky
+    email: abdo.arh38@yahoo.com
+keywords:
+  - nestjs
+  - construction
+  - management
+  - mongodb
+  - nodejs
+  - typescript
+
+dependencies:
+  - name: mongodb
+    version: "15.6.19"
+    repository: "https://charts.bitnami.com/bitnami"
+    condition: mongodb.enabled
+    tags:
+      - database
+  - name: redis
+    version: "19.6.4"
+    repository: "https://charts.bitnami.com/bitnami"
+    condition: redis.enabled
+    tags:
+      - cache
+
