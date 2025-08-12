@@ -98,7 +98,7 @@ Create a `.env` file with the following variables:
 ```bash
 # Database Configuration
 MONGO_URI=mongodb://localhost:27017/nestcms
-# or MongoDB Atlas: mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@YOUR_CLUSTER.mongodb.net/nestcms
+# For MongoDB Atlas, use the connection string from your Atlas dashboard
 
 # JWT Configuration
 JWT_SECRET=your-super-secret-jwt-key
