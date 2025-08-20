@@ -5,8 +5,37 @@
  * database operations in the Nestcms application.
  */
 
-import { Types, PipelineStage } from 'mongoose';
+import { Types, PipelineStage, Document } from 'mongoose';
 import { AggregationBuilder } from './AggregationBuilder';
+
+/**
+ * Interface for date range filtering
+ */
+export interface DateRange {
+  from?: Date;
+  to?: Date;
+}
+
+/**
+ * Interface for lookup options
+ */
+export interface LookupOptions {
+  from: string;
+  localField: string;
+  foreignField?: string;
+  as: string;
+  pipeline?: PipelineStage[];
+}
+
+/**
+ * Interface for conditional lookup options
+ */
+export interface ConditionalLookupOptions extends LookupOptions {
+  condition?: Record<string, any>;
+  project?: Record<string, any>;
+  sort?: Record<string, any>;
+  limit?: number;
+}
 
 export class AggregationUtils {
   /**
@@ -23,23 +52,33 @@ export class AggregationUtils {
 
   /**
    * Create a date range match condition
+   * @param field The field to apply date range filtering to
+   * @param dateRange Optional date range with from and to dates
+   * @returns A MongoDB match condition object
    */
   static createDateRangeMatch(
     field: string, 
-    dateRange?: { from: Date; to: Date }
-  ): object {
+    dateRange?: DateRange
+  ): Record<string, any> {
     if (!dateRange) return {};
     
-    const match: any = {};
+    const match: Record<string, any> = {};
+    
+    // Only create condition if at least one date is provided
     if (dateRange.from || dateRange.to) {
       match[field] = {};
+      
+      // Add greater than or equal condition for from date
       if (dateRange.from) {
         match[field].$gte = dateRange.from;
       }
+      
+      // Add less than or equal condition for to date
       if (dateRange.to) {
         match[field].$lte = dateRange.to;
       }
     }
+    
     return match;
   }
 
@@ -56,38 +95,73 @@ export class AggregationUtils {
 
   /**
    * Create a lookup stage for user relationships
+   * @param localField Field containing the user ID reference (default: 'userId')
+   * @param as Name for the output array field (default: 'user')
+   * @param project Optional projection to apply to the looked-up documents
+   * @returns A MongoDB $lookup pipeline stage
    */
   static createUserLookup(
     localField: string = 'userId',
     as: string = 'user',
-    project?: object
+    project?: Record<string, any>
   ): PipelineStage {
-    const lookup: any = {
+    // Create lookup options
+    const lookupOptions: LookupOptions = {
       from: 'users',
       localField,
       foreignField: '_id',
       as
     };
-
+    
+    // Add projection pipeline if provided
     if (project) {
-      lookup.pipeline = [{ $project: project }];
+      lookupOptions.pipeline = [{ $project: project }];
     }
-
-    return { $lookup: lookup };
+    
+    // Return the lookup stage
+    return { $lookup: lookupOptions };
+  }
+  
+  /**
+   * Create a lookup stage for user relationships using AggregationBuilder
+   * @param builder The AggregationBuilder instance to add the lookup to
+   * @param localField Field containing the user ID reference (default: 'userId')
+   * @param as Name for the output array field (default: 'user')
+   * @param project Optional projection to apply to the looked-up documents
+   * @returns The updated AggregationBuilder instance
+   */
+  static addUserLookup(
+    builder: AggregationBuilder,
+    localField: string = 'userId',
+    as: string = 'user',
+    project?: Record<string, any>
+  ): AggregationBuilder {
+    return builder.lookup(this.createUserLookup(localField, as, project).$lookup);
   }
 
   /**
    * Create a lookup stage for project relationships
+   * @param localField Field containing the project ID reference (default: 'projectId')
+   * @param as Name for the output array field (default: 'project')
+   * @param includeDetails Whether to include all project details (default: false)
+   * @returns A MongoDB $lookup pipeline stage
    */
   static createProjectLookup(
     localField: string = 'projectId',
     as: string = 'project',
     includeDetails: boolean = false
   ): PipelineStage {
-    const pipeline: PipelineStage[] = [];
+    // Create lookup options
+    const lookupOptions: LookupOptions = {
+      from: 'projects',
+      localField,
+      foreignField: '_id',
+      as
+    };
     
+    // Add projection pipeline if not including all details
     if (!includeDetails) {
-      pipeline.push({
+      lookupOptions.pipeline = [{
         $project: {
           title: 1,
           description: 1,
@@ -95,35 +169,65 @@ export class AggregationUtils {
           createdAt: 1,
           updatedAt: 1
         }
-      });
+      }];
     }
-
-    return {
-      $lookup: {
-        from: 'projects',
-        localField,
-        foreignField: '_id',
-        as,
-        ...(pipeline.length > 0 && { pipeline })
-      }
-    };
+    
+    // Return the lookup stage
+    return { $lookup: lookupOptions };
+  }
+  
+  /**
+   * Create a lookup stage for project relationships using AggregationBuilder
+   * @param builder The AggregationBuilder instance to add the lookup to
+   * @param localField Field containing the project ID reference (default: 'projectId')
+   * @param as Name for the output array field (default: 'project')
+   * @param includeDetails Whether to include all project details (default: false)
+   * @returns The updated AggregationBuilder instance
+   */
+  static addProjectLookup(
+    builder: AggregationBuilder,
+    localField: string = 'projectId',
+    as: string = 'project',
+    includeDetails: boolean = false
+  ): AggregationBuilder {
+    return builder.lookup(this.createProjectLookup(localField, as, includeDetails).$lookup);
   }
 
   /**
    * Create a lookup stage for contract relationships
+   * @param localField Field containing the contract ID reference (default: 'contractId')
+   * @param as Name for the output array field (default: 'contract')
+   * @returns A MongoDB $lookup pipeline stage
    */
   static createContractLookup(
     localField: string = 'contractId',
     as: string = 'contract'
   ): PipelineStage {
-    return {
-      $lookup: {
-        from: 'contracts',
-        localField,
-        foreignField: '_id',
-        as
-      }
+    // Create lookup options
+    const lookupOptions: LookupOptions = {
+      from: 'contracts',
+      localField,
+      foreignField: '_id',
+      as
     };
+    
+    // Return the lookup stage
+    return { $lookup: lookupOptions };
+  }
+  
+  /**
+   * Create a lookup stage for contract relationships using AggregationBuilder
+   * @param builder The AggregationBuilder instance to add the lookup to
+   * @param localField Field containing the contract ID reference (default: 'contractId')
+   * @param as Name for the output array field (default: 'contract')
+   * @returns The updated AggregationBuilder instance
+   */
+  static addContractLookup(
+    builder: AggregationBuilder,
+    localField: string = 'contractId',
+    as: string = 'contract'
+  ): AggregationBuilder {
+    return builder.lookup(this.createContractLookup(localField, as).$lookup);
   }
 
   /**
@@ -269,44 +373,61 @@ export class AggregationUtils {
 
   /**
    * Create optimized lookup with conditional pipeline
+   * @param options Conditional lookup options including filtering, sorting, and projection
+   * @returns A MongoDB $lookup pipeline stage with conditional pipeline
    */
-  static createConditionalLookup(options: {
-    from: string;
-    localField: string;
-    foreignField: string;
-    as: string;
-    condition?: object;
-    project?: object;
-    sort?: object;
-    limit?: number;
-  }): PipelineStage {
+  static createConditionalLookup(options: ConditionalLookupOptions): PipelineStage {
+    // Create base lookup options
+    const lookupOptions: LookupOptions = {
+      from: options.from,
+      localField: options.localField,
+      foreignField: options.foreignField || '_id',
+      as: options.as
+    };
+    
+    // Build pipeline stages if any conditions are specified
     const pipeline: PipelineStage[] = [];
     
+    // Add match condition if provided
     if (options.condition) {
       pipeline.push({ $match: options.condition });
     }
     
+    // Add sort if provided
     if (options.sort) {
       pipeline.push({ $sort: options.sort });
     }
     
-    if (options.limit) {
+    // Add limit if provided
+    if (options.limit !== undefined && options.limit > 0) {
       pipeline.push({ $limit: options.limit });
     }
     
+    // Add projection if provided
     if (options.project) {
       pipeline.push({ $project: options.project });
     }
-
-    return {
-      $lookup: {
-        from: options.from,
-        localField: options.localField,
-        foreignField: options.foreignField,
-        as: options.as,
-        ...(pipeline.length > 0 && { pipeline })
-      }
-    };
+    
+    // Add pipeline to lookup options if any stages were added
+    if (pipeline.length > 0) {
+      lookupOptions.pipeline = pipeline;
+    }
+    
+    // Return the lookup stage
+    return { $lookup: lookupOptions };
+  }
+  
+  /**
+   * Create a conditional lookup stage using AggregationBuilder
+   * @param builder The AggregationBuilder instance to add the lookup to
+   * @param options Conditional lookup options
+   * @returns The updated AggregationBuilder instance
+   */
+  static addConditionalLookup(
+    builder: AggregationBuilder,
+    options: ConditionalLookupOptions
+  ): AggregationBuilder {
+    return builder.lookup(this.createConditionalLookup(options).$lookup);
   }
 
   /**
@@ -361,61 +482,91 @@ export class AggregationUtils {
 
   /**
    * Create aggregation for activity timeline
+   * @param entityType Type of entity to build timeline for ('user', 'project', or 'contract')
+   * @param entityId ID of the entity
+   * @param limit Maximum number of timeline items to return (default: 20)
+   * @returns An AggregationBuilder instance configured for activity timeline
+   * @throws Error if entityId is invalid or entityType is not supported
    */
   static buildActivityTimeline(
     entityType: 'user' | 'project' | 'contract',
     entityId: string,
     limit: number = 20
   ): AggregationBuilder {
+    // Validate inputs
+    if (!entityId) {
+      throw new Error('Entity ID is required for activity timeline');
+    }
+    
+    if (limit <= 0) {
+      throw new Error('Limit must be a positive number');
+    }
+    
+    // Create a new builder
     const builder = AggregationBuilder.create();
     
-    // Match based on entity type
-    switch (entityType) {
-      case 'user':
-        builder.match({
-          $or: [
-            { employee: new Types.ObjectId(entityId) },
-            { client: new Types.ObjectId(entityId) }
-          ]
+    try {
+      // Convert entityId to ObjectId safely
+      const objectId = new Types.ObjectId(entityId);
+      
+      // Match based on entity type
+      switch (entityType) {
+        case 'user':
+          builder.match({
+            $or: [
+              { employee: objectId },
+              { client: objectId }
+            ]
+          });
+          break;
+        case 'project':
+          builder.match({ project: objectId });
+          break;
+        case 'contract':
+          builder.match({ contract: objectId });
+          break;
+        default:
+          throw new Error(`Unsupported entity type: ${entityType}`);
+      }
+      
+      // Build the rest of the pipeline
+      return builder
+        .sort({ createdAt: -1 })
+        .limit(limit)
+        // Add user lookups
+        .lookup({
+          from: 'users',
+          localField: 'employee',
+          foreignField: '_id',
+          as: 'employeeDetails'
+        })
+        .lookup({
+          from: 'users',
+          localField: 'client',
+          foreignField: '_id',
+          as: 'clientDetails'
+        })
+        // Project the final result
+        .project({
+          createdAt: 1,
+          updatedAt: 1,
+          status: 1,
+          employee: { $arrayElemAt: ['$employeeDetails.name', 0] },
+          client: { $arrayElemAt: ['$clientDetails.name', 0] },
+          activityType: {
+            $cond: [
+              { $ne: ['$offerId', null] },
+              'contract_from_offer',
+              'direct_contract'
+            ]
+          }
         });
-        break;
-      case 'project':
-        builder.match({ project: new Types.ObjectId(entityId) });
-        break;
-      case 'contract':
-        builder.match({ contract: new Types.ObjectId(entityId) });
-        break;
+    } catch (error) {
+      // Handle ObjectId conversion errors
+      if (error instanceof Error && error.message.includes('ObjectId')) {
+        throw new Error(`Invalid entity ID format: ${entityId}`);
+      }
+      throw error;
     }
-
-    return builder
-      .sort({ createdAt: -1 })
-      .limit(limit)
-      .lookup({
-        from: 'users',
-        localField: 'employee',
-        foreignField: '_id',
-        as: 'employeeDetails'
-      })
-      .lookup({
-        from: 'users',
-        localField: 'client',
-        foreignField: '_id',
-        as: 'clientDetails'
-      })
-      .project({
-        createdAt: 1,
-        updatedAt: 1,
-        status: 1,
-        employee: { $arrayElemAt: ['$employeeDetails.name', 0] },
-        client: { $arrayElemAt: ['$clientDetails.name', 0] },
-        activityType: {
-          $cond: [
-            { $ne: ['$offerId', null] },
-            'contract_from_offer',
-            'direct_contract'
-          ]
-        }
-      });
   }
 }
-
