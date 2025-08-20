@@ -238,19 +238,19 @@ export class AggregationBuilder {
       const aggregation = model.aggregate(this.pipeline);
       
       // Apply options
-      if (this.options.allowDiskUse) {
+      if (this.options.allowDiskUse !== undefined) {
         aggregation.allowDiskUse(this.options.allowDiskUse);
       }
-      if (this.options.maxTimeMS) {
+      if (this.options.maxTimeMS !== undefined) {
         aggregation.maxTimeMS(this.options.maxTimeMS);
       }
-      if (this.options.hint) {
+      if (this.options.hint !== undefined) {
         aggregation.hint(this.options.hint);
       }
-      if (this.options.collation) {
+      if (this.options.collation !== undefined) {
         aggregation.collation(this.options.collation);
       }
-      if (this.options.comment) {
+      if (this.options.comment !== undefined) {
         aggregation.comment(this.options.comment);
       }
 
@@ -271,10 +271,10 @@ export class AggregationBuilder {
       }
 
       return result;
-    } catch (error) {
+    } catch (error: any) {
       const executionTime = Date.now() - startTime;
       console.error('Aggregation execution failed:', {
-        error: error.message,
+        error: error.message || String(error),
         executionTime,
         pipeline: this.pipeline,
         options: this.options
@@ -287,8 +287,16 @@ export class AggregationBuilder {
    * Execute with explain to get performance details
    */
   async explain(model: Model<any>): Promise<any> {
-    const aggregation = model.aggregate(this.pipeline);
-    return await aggregation.explain('executionStats');
+    try {
+      const aggregation = model.aggregate(this.pipeline);
+      return await aggregation.explain('executionStats');
+    } catch (error: any) {
+      console.error('Explain execution failed:', {
+        error: error.message || String(error),
+        pipeline: this.pipeline
+      });
+      throw error;
+    }
   }
 
   /**
@@ -346,4 +354,3 @@ export class AggregationBuilder {
     };
   }
 }
-

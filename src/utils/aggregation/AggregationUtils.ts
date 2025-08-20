@@ -6,6 +6,7 @@
  */
 
 import { Types, PipelineStage } from 'mongoose';
+// Ensure Types is properly imported for ObjectId handling
 import { AggregationBuilder } from './AggregationBuilder';
 
 export class AggregationUtils {
@@ -370,21 +371,44 @@ export class AggregationUtils {
     const builder = AggregationBuilder.create();
     
     // Match based on entity type
-    switch (entityType) {
-      case 'user':
-        builder.match({
-          $or: [
-            { employee: new Types.ObjectId(entityId) },
-            { client: new Types.ObjectId(entityId) }
-          ]
-        });
-        break;
-      case 'project':
-        builder.match({ project: new Types.ObjectId(entityId) });
-        break;
-      case 'contract':
-        builder.match({ contract: new Types.ObjectId(entityId) });
-        break;
+    try {
+      const objectId = new Types.ObjectId(entityId);
+      
+      switch (entityType) {
+        case 'user':
+          builder.match({
+            $or: [
+              { employee: objectId },
+              { client: objectId }
+            ]
+          });
+          break;
+        case 'project':
+          builder.match({ project: objectId });
+          break;
+        case 'contract':
+          builder.match({ contract: objectId });
+          break;
+      }
+    } catch (error) {
+      console.error(`Invalid ObjectId format for entityId: ${entityId}`, error);
+      // Fallback to string matching if ObjectId conversion fails
+      switch (entityType) {
+        case 'user':
+          builder.match({
+            $or: [
+              { employeeId: entityId },
+              { clientId: entityId }
+            ]
+          });
+          break;
+        case 'project':
+          builder.match({ projectId: entityId });
+          break;
+        case 'contract':
+          builder.match({ contractId: entityId });
+          break;
+      }
     }
 
     return builder
@@ -418,4 +442,3 @@ export class AggregationUtils {
       });
   }
 }
-
