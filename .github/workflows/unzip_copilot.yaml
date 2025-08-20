@@ -2,7 +2,8 @@ name: One-Time Push
 
 on:
  push:
-  - master
+  branches:
+   - master
 
 jobs:
   push-to-nest-next-copilot:
