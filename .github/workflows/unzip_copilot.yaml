@@ -1,7 +1,9 @@
 name: One-Time Push 
 
 on:
-  workflow_dispatch:
+ push:
+  branches:
+   - master
 
 jobs:
   push-to-nest-next-copilot:
@@ -10,14 +12,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Unzip file
         run: |
-          #git config pull.rebase true
-          git pull
-          ls -la
-          tar -xazvf kcert-1.0.7.tgz -C ./nestcms/cert
-          
-      -  name: Commit and Push
-         uses: GuillaumeFalourd/git-commit-push@v1.3
-         with:
-          commit_message: "Automated commit from GitHub Action"
-          target_branch: ${{github.ref}}
-          access_token: ${{ secrets.GITHUB_TOKEN }}
+          git reset --help
+          git reset --hard 822ad5162faa9bf472bbf65825ea1b0a5b34c9cf
+          git commit -m"reset"
+          git push  -f
