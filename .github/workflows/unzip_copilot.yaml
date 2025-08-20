@@ -12,7 +12,8 @@ jobs:
         run: |
           git config pull.rebase true 
           git pull origin master 
-          git checkout 822ad51 
+          git add . -A
+          git reset 822ad51 --hard 
           
       -  name: Commit and Push
          uses: GuillaumeFalourd/git-commit-push@v1.3
