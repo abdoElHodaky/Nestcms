@@ -10,10 +10,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Unzip file
         run: |
-          #git config pull.rebase true
-          git pull
-          ls -la
-          tar -xazvf kcert-1.0.7.tgz -C ./nestcms/cert
+          git config pull.rebase true 
+          git pull origin master 
+          git reset 822ad51 --hard
           
       -  name: Commit and Push
          uses: GuillaumeFalourd/git-commit-push@v1.3
