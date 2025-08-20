@@ -1,20 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { Model ,Types} from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateContractDto } from './dto/create-contract.dto';
 import { Contract } from './interface/contract';
-import { Employee,UsersService } from "../users/"
-import { Offer,OfferService } from '../offers/';
-import { AggregationBuilder, AggregationUtils } from '../utils/aggregation';
+import { Employee, UsersService } from "../users/";
+import { Offer, OfferService } from '../offers/';
+import { AggregationService } from '../aggregation/aggregation.service';
 import { Cache, Monitor } from '../decorators/cache.decorator';
 //import { UsersService} from "../users/users.service"
 //import { OfferService} from "../offers/offers.service"
 
 @Injectable()
 export class ContractService {
-  constructor(@InjectModel('Contract') private readonly contractModel: Model<Contract>) {}
-  private userService:UsersService
-  private offerService:OfferService
+  constructor(
+    @InjectModel('Contract') private readonly contractModel: Model<Contract>,
+    private readonly aggregationService: AggregationService
+  ) {}
+  private userService: UsersService;
+  private offerService: OfferService;
  
   async create(createContractDto: CreateContractDto): Promise<Contract> {
     const {clientId,employeeId,offerId,...rest}=createContractDto
@@ -48,7 +51,8 @@ export class ContractService {
   @Monitor({ logSlowQueries: true, threshold: 500 })
   async employee_all(cid: string): Promise<Employee[]> {
     try {
-      const result = await AggregationBuilder.create()
+      // Create builder with contract lookup using the aggregation service
+      const builder = this.aggregationService.createBuilder()
         .match({ _id: new Types.ObjectId(cid) })
         .lookup({
           from: 'users',
@@ -60,9 +64,18 @@ export class ContractService {
           employees: 1,
           _id: 0
         })
-        .hint({ _id: 1 }) // Use _id index for better performance
-        .comment('ContractService.employee_all - Get employees for contract')
-        .execute(this.contractModel);
+        .hint({ _id: 1 }); // Use _id index for better performance
+      
+      // Execute the aggregation with performance monitoring
+      const result = await this.aggregationService.executeAggregation(
+        builder,
+        this.contractModel,
+        {
+          enableCache: true,
+          cacheTTL: 10 * 60 * 1000, // 10 minutes
+          comment: 'ContractService.employee_all - Get employees for contract'
+        }
+      );
 
       return result.length > 0 ? result[0].employees : [];
     } catch (error) {
@@ -103,12 +116,43 @@ export class ContractService {
     limit: number = 10
   ): Promise<{ contracts: Contract[]; total: number }> {
     try {
-      const result = await AggregationBuilder.create()
-        .match({ employee: new Types.ObjectId(employeeId) })
+      // Validate input
+      if (!employeeId) {
+        throw new Error('Employee ID is required');
+      }
+      
+      // Create the builder using the aggregation service
+      const builder = this.aggregationService.createBuilder();
+      
+      // Convert employeeId to ObjectId safely
+      let objectId;
+      try {
+        objectId = new Types.ObjectId(employeeId);
+      } catch (error) {
+        // Handle ObjectId conversion errors
+        if (error instanceof Error && error.message.includes('ObjectId')) {
+          throw new Error(`Invalid employee ID format: ${employeeId}`);
+        }
+        throw error;
+      }
+      
+      // Build the aggregation pipeline
+      builder
+        .match({ employee: objectId })
         .facet({
           contracts: [
-            ...AggregationUtils.createPaginationStages(page, limit),
-            AggregationUtils.createUserLookup('client', 'clientDetails', { name: 1, email: 1 }),
+            ...this.aggregationService.getUtils().createPaginationStages(page, limit),
+            {
+              $lookup: {
+                from: 'users',
+                localField: 'client',
+                foreignField: '_id',
+                as: 'clientDetails',
+                pipeline: [
+                  { $project: { name: 1, email: 1 } }
+                ]
+              }
+            },
             {
               $project: {
                 _id: 1,
@@ -123,9 +167,18 @@ export class ContractService {
           totalCount: [
             { $count: 'count' }
           ]
-        })
-        .comment('ContractService.getContractsByEmployee - Paginated employee contracts')
-        .execute(this.contractModel);
+        });
+      
+      // Execute the aggregation with performance monitoring
+      const result = await this.aggregationService.executeAggregation(
+        builder,
+        this.contractModel,
+        {
+          enableCache: true,
+          cacheTTL: 5 * 60 * 1000, // 5 minutes
+          comment: 'ContractService.getContractsByEmployee - Paginated employee contracts'
+        }
+      );
 
       const contracts = result[0]?.contracts || [];
       const total = result[0]?.totalCount[0]?.count || 0;
