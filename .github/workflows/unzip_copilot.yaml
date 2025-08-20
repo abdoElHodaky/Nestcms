@@ -10,8 +10,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Unzip file
         run: |
-          git config pull.rebase true 
-          git fetch origin master --depth 2
+          git fetch origin master 
           git reset --hard 822ad51
           git commit -m"reset"
-          git push -f
+          git push origin master -f
