@@ -51,27 +51,35 @@ export class QueryMonitor {
    * Record query metrics
    */
   recordMetrics(metrics: QueryMetrics): void {
-    // Add timestamp if not provided
-    if (!metrics.timestamp) {
-      metrics.timestamp = new Date();
+    if (!metrics) return;
+    
+    try {
+      // Add timestamp if not provided
+      if (!metrics.timestamp) {
+        metrics.timestamp = new Date();
+      }
+
+      // Store metrics
+      this.metrics.push(metrics);
+
+      // Limit history size
+      if (this.metrics.length > this.maxMetricsHistory) {
+        this.metrics = this.metrics.slice(-this.maxMetricsHistory);
+      }
+
+      // Check for performance issues
+      this.analyzeMetrics(metrics);
+    } catch (error: any) {
+      console.error('Error recording query metrics:', error?.message || String(error));
     }
-
-    // Store metrics
-    this.metrics.push(metrics);
-
-    // Limit history size
-    if (this.metrics.length > this.maxMetricsHistory) {
-      this.metrics = this.metrics.slice(-this.maxMetricsHistory);
-    }
-
-    // Check for performance issues
-    this.analyzeMetrics(metrics);
   }
 
   /**
    * Analyze metrics and generate alerts
    */
   private analyzeMetrics(metrics: QueryMetrics): void {
+    if (!metrics) return;
+    
     const alerts: PerformanceAlert[] = [];
 
     // Check for slow queries
@@ -226,4 +234,3 @@ export class QueryMonitor {
     return suggestions;
   }
 }
-
