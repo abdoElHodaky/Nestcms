@@ -6,7 +6,16 @@
  */
 
 import { Types, PipelineStage } from 'mongoose';
+import { plainToInstance } from 'class-transformer';
+import { validate } from 'class-validator';
 import { AggregationBuilder } from './AggregationBuilder';
+import { 
+  UserLookupDto, 
+  ProjectLookupDto, 
+  ContractLookupDto, 
+  ConditionalLookupDto,
+  LookupResult
+} from './dto/lookup.dto';
 
 export class AggregationUtils {
   /**
@@ -56,21 +65,43 @@ export class AggregationUtils {
 
   /**
    * Create a lookup stage for user relationships
+   * @param options User lookup options or localField
+   * @param as User field name in result
+   * @param project Optional projection
+   * @returns Pipeline stage for user lookup
    */
   static createUserLookup(
-    localField: string = 'userId',
+    options: UserLookupDto | string = 'userId',
     as: string = 'user',
     project?: object
   ): PipelineStage {
-    const lookup: any = {
+    // Handle both object and string parameters for backward compatibility
+    let dto: UserLookupDto;
+    
+    if (typeof options === 'string') {
+      dto = {
+        localField: options,
+        as,
+        project
+      };
+    } else {
+      dto = options;
+    }
+    
+    // Transform plain object to class instance
+    const userLookupDto = plainToInstance(UserLookupDto, dto);
+    
+    // Create the lookup object with proper typing
+    const lookup: LookupResult['$lookup'] = {
       from: 'users',
-      localField,
+      localField: userLookupDto.localField || 'userId',
       foreignField: '_id',
-      as
+      as: userLookupDto.as || 'user'
     };
 
-    if (project) {
-      lookup.pipeline = [{ $project: project }];
+    // Add projection if provided
+    if (userLookupDto.project) {
+      lookup.pipeline = [{ $project: userLookupDto.project }];
     }
 
     return { $lookup: lookup };
@@ -78,15 +109,36 @@ export class AggregationUtils {
 
   /**
    * Create a lookup stage for project relationships
+   * @param options Project lookup options or localField
+   * @param as Project field name in result
+   * @param includeDetails Whether to include all project details
+   * @returns Pipeline stage for project lookup
    */
   static createProjectLookup(
-    localField: string = 'projectId',
+    options: ProjectLookupDto | string = 'projectId',
     as: string = 'project',
     includeDetails: boolean = false
   ): PipelineStage {
+    // Handle both object and string parameters for backward compatibility
+    let dto: ProjectLookupDto;
+    
+    if (typeof options === 'string') {
+      dto = {
+        localField: options,
+        as,
+        includeDetails
+      };
+    } else {
+      dto = options;
+    }
+    
+    // Transform plain object to class instance
+    const projectLookupDto = plainToInstance(ProjectLookupDto, dto);
+    
     const pipeline: PipelineStage[] = [];
     
-    if (!includeDetails) {
+    // Add projection if not including all details
+    if (projectLookupDto.includeDetails !== true) {
       pipeline.push({
         $project: {
           title: 1,
@@ -98,32 +150,52 @@ export class AggregationUtils {
       });
     }
 
-    return {
-      $lookup: {
-        from: 'projects',
-        localField,
-        foreignField: '_id',
-        as,
-        ...(pipeline.length > 0 && { pipeline })
-      }
+    // Create the lookup object with proper typing
+    const lookup: LookupResult['$lookup'] = {
+      from: 'projects',
+      localField: projectLookupDto.localField || 'projectId',
+      foreignField: '_id',
+      as: projectLookupDto.as || 'project',
+      ...(pipeline.length > 0 && { pipeline })
     };
+
+    return { $lookup: lookup };
   }
 
   /**
    * Create a lookup stage for contract relationships
+   * @param options Contract lookup options or localField
+   * @param as Contract field name in result
+   * @returns Pipeline stage for contract lookup
    */
   static createContractLookup(
-    localField: string = 'contractId',
+    options: ContractLookupDto | string = 'contractId',
     as: string = 'contract'
   ): PipelineStage {
-    return {
-      $lookup: {
-        from: 'contracts',
-        localField,
-        foreignField: '_id',
+    // Handle both object and string parameters for backward compatibility
+    let dto: ContractLookupDto;
+    
+    if (typeof options === 'string') {
+      dto = {
+        localField: options,
         as
-      }
+      };
+    } else {
+      dto = options;
+    }
+    
+    // Transform plain object to class instance
+    const contractLookupDto = plainToInstance(ContractLookupDto, dto);
+    
+    // Create the lookup object with proper typing
+    const lookup: LookupResult['$lookup'] = {
+      from: 'contracts',
+      localField: contractLookupDto.localField || 'contractId',
+      foreignField: '_id',
+      as: contractLookupDto.as || 'contract'
     };
+
+    return { $lookup: lookup };
   }
 
   /**
@@ -269,44 +341,47 @@ export class AggregationUtils {
 
   /**
    * Create optimized lookup with conditional pipeline
+   * @param options Conditional lookup options
+   * @returns Pipeline stage for conditional lookup
    */
-  static createConditionalLookup(options: {
-    from: string;
-    localField: string;
-    foreignField: string;
-    as: string;
-    condition?: object;
-    project?: object;
-    sort?: object;
-    limit?: number;
-  }): PipelineStage {
+  static createConditionalLookup(options: ConditionalLookupDto): PipelineStage {
+    // Transform plain object to class instance
+    const conditionalLookupDto = plainToInstance(ConditionalLookupDto, options);
+    
+    // Validate the DTO
+    validate(conditionalLookupDto).catch(errors => {
+      console.warn('Validation errors in conditional lookup:', errors);
+    });
+    
     const pipeline: PipelineStage[] = [];
     
-    if (options.condition) {
-      pipeline.push({ $match: options.condition });
+    // Add conditional stages to pipeline
+    if (conditionalLookupDto.condition) {
+      pipeline.push({ $match: conditionalLookupDto.condition });
     }
     
-    if (options.sort) {
-      pipeline.push({ $sort: options.sort });
+    if (conditionalLookupDto.sort) {
+      pipeline.push({ $sort: conditionalLookupDto.sort });
     }
     
-    if (options.limit) {
-      pipeline.push({ $limit: options.limit });
+    if (conditionalLookupDto.limit !== undefined && conditionalLookupDto.limit > 0) {
+      pipeline.push({ $limit: conditionalLookupDto.limit });
     }
     
-    if (options.project) {
-      pipeline.push({ $project: options.project });
+    if (conditionalLookupDto.project) {
+      pipeline.push({ $project: conditionalLookupDto.project });
     }
 
-    return {
-      $lookup: {
-        from: options.from,
-        localField: options.localField,
-        foreignField: options.foreignField,
-        as: options.as,
-        ...(pipeline.length > 0 && { pipeline })
-      }
+    // Create the lookup object with proper typing
+    const lookup: LookupResult['$lookup'] = {
+      from: conditionalLookupDto.from,
+      localField: conditionalLookupDto.localField,
+      foreignField: conditionalLookupDto.foreignField || '_id',
+      as: conditionalLookupDto.as,
+      ...(pipeline.length > 0 && { pipeline })
     };
+
+    return { $lookup: lookup };
   }
 
   /**
@@ -417,5 +492,4 @@ export class AggregationUtils {
         }
       });
   }
-}
-
+  }
