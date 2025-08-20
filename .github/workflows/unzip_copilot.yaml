@@ -12,6 +12,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Unzip file
         run: |
-          git reset 822ad51 --hard 
+          git checkout 822ad51 -- src/**.ts
           git commit -m"reset"
-          git push origin master -f
+          git push  -f
