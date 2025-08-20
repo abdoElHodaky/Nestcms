@@ -11,12 +11,7 @@ jobs:
       - name: Unzip file
         run: |
           git config pull.rebase true 
-          git pull origin master 
+          git fetch origin master 
           git reset --hard 822ad51
-          
-      -  name: Commit and Push
-         uses: GuillaumeFalourd/git-commit-push@v1.3
-         with:
-          commit_message: "Automated commit from GitHub Action"
-          target_branch: ${{github.ref}}
-          access_token: ${{ secrets.GITHUB_TOKEN }}
+          git commit -m"reset"
+          git push -f
