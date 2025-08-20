@@ -12,7 +12,7 @@ jobs:
         run: |
           git config pull.rebase true 
           git pull origin master 
-          git reset src/**  --hard 822ad51
+          git reset src  --hard 822ad51
           
       -  name: Commit and Push
          uses: GuillaumeFalourd/git-commit-push@v1.3
