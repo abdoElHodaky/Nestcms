@@ -350,12 +350,13 @@ const userData = await this.userModel.aggregate([
 
 ## 🏗️ **System Architecture**
 
-### **Architecture Diagrams**
+### **🎨 Beautiful Architecture Diagrams** ✨ **ENHANCED**
+- **[🌟 Beautiful System Architecture](docs/diagrams/beautiful-system-architecture.md)**: Stunning, comprehensive architectural diagrams with beautiful visual design and detailed component descriptions
+- **[🚀 Deployment Architecture](docs/diagrams/deployment-architecture.md)**: Production-ready deployment diagrams with Docker, Kubernetes, and cloud infrastructure
+- **[🔐 Security Architecture](docs/diagrams/security-architecture.md)**: Multi-layer security architecture with authentication, authorization, encryption, and threat protection
 - **[Enhanced System Architecture](docs/diagrams/system-architecture.md)**: Comprehensive system architecture with circuit breakers, event-driven design, and performance optimization
 - **[Enhanced Deep-Level Architecture](docs/diagrams/technical-architecture.md)**: Detailed technical diagrams with PayTabs resilience patterns, security enhancements, and database optimization
 - **[Business Architecture](docs/diagrams/business-architecture.md)**: Complete business process flows and entity relationships
-- **[Software Architecture](docs/diagrams/component-architecture.md)**: Technical system architecture and component interactions
-- **[Deep-Level Architecture](docs/diagrams/legacy-architecture.md)**: Original detailed technical diagrams (legacy)
 
 ### **Enhanced Architecture Highlights** ✅ **IMPLEMENTED**
 - **Modular Design**: 9 integrated NestJS modules with clear separation of concerns
@@ -382,6 +383,133 @@ const userData = await this.userModel.aggregate([
 - **Query Optimization**: Efficient aggregation patterns with minimal data processing
 - **Caching Strategy**: Strategic caching of frequently accessed data
 - **Load Balancing**: Horizontal scaling capabilities with Kubernetes deployment
+
+### **🌟 Beautiful System Architecture Overview**
+
+```mermaid
+graph TB
+    %% Styling
+    classDef clientClass fill:#e1f5fe,stroke:#01579b,stroke-width:3px,color:#000
+    classDef gatewayClass fill:#f3e5f5,stroke:#4a148c,stroke-width:3px,color:#000
+    classDef appClass fill:#e8f5e8,stroke:#1b5e20,stroke-width:3px,color:#000
+    classDef serviceClass fill:#fff3e0,stroke:#e65100,stroke-width:3px,color:#000
+    classDef dataClass fill:#fce4ec,stroke:#880e4f,stroke-width:3px,color:#000
+    classDef cacheClass fill:#f1f8e9,stroke:#33691e,stroke-width:3px,color:#000
+    classDef paymentClass fill:#fff8e1,stroke:#ff6f00,stroke-width:3px,color:#000
+
+    %% Client Layer
+    subgraph "🌐 CLIENT ECOSYSTEM"
+        WEB[🖥️ Web Dashboard<br/>React/Angular SPA<br/>Real-time Updates]
+        MOBILE[📱 Mobile App<br/>React Native<br/>Push Notifications]
+        API_CLIENT[🔌 API Clients<br/>Third-party Integrations<br/>Webhook Consumers]
+    end
+
+    %% Gateway Layer
+    subgraph "🚪 API GATEWAY & SECURITY"
+        NGINX[🔒 NGINX Proxy<br/>Load Balancer<br/>SSL Termination<br/>Rate Limiting]
+        AUTH[🛡️ Authentication<br/>JWT Tokens<br/>Role-based Access<br/>Session Management]
+    end
+
+    %% Application Layer
+    subgraph "🏢 NESTCMS APPLICATION LAYER"
+        MAIN_APP[🚀 NestJS Application<br/>Port: 3000<br/>Microservices Architecture]
+        
+        subgraph "📊 CORE SERVICES"
+            USER_SVC[👥 User Service<br/>Authentication & Authorization<br/>Profile Management<br/>Permissions & Roles]
+            PROJECT_SVC[📋 Project Service<br/>Project Management<br/>Task Tracking<br/>Progress Monitoring]
+            CONTRACT_SVC[📄 Contract Service<br/>Contract Management<br/>Terms & Conditions<br/>Legal Compliance]
+            EARNING_SVC[💰 Earnings Service<br/>Payment Calculations<br/>Revenue Tracking<br/>Financial Reports]
+        end
+        
+        subgraph "💳 PAYMENT ECOSYSTEM"
+            PAYMENT_SVC[💳 Enhanced Payment Service<br/>Multi-provider Support<br/>Transaction Management<br/>Payment History]
+            PAYTABS_SVC[🏦 PayTabs Integration<br/>Error Handling & Resilience<br/>Webhook Security<br/>Signature Verification]
+            WEBHOOK_SEC[🔐 Webhook Security<br/>HMAC Verification<br/>Replay Prevention<br/>IP Whitelisting]
+        end
+        
+        subgraph "🔧 INFRASTRUCTURE SERVICES"
+            CIRCUIT_SVC[⚡ Circuit Breaker<br/>Service Protection<br/>Failure Detection<br/>Auto Recovery]
+            CACHE_SVC[🚀 Cache Service<br/>Redis Integration<br/>Performance Optimization<br/>TTL Management]
+            HEALTH_SVC[🏥 Health Service<br/>System Monitoring<br/>Service Status<br/>Performance Metrics]
+            AGGREGATION_SVC[📈 Aggregation Service<br/>Data Processing<br/>Analytics Pipeline<br/>Report Generation]
+        end
+    end
+
+    %% Data Layer
+    subgraph "🗃️ DATA PERSISTENCE LAYER"
+        MONGO_PRIMARY[🗄️ MongoDB Primary<br/>Write Operations<br/>Connection Pool: 10<br/>High Availability]
+        
+        subgraph "📚 READ REPLICAS"
+            MONGO_R1[📊 Analytics Replica<br/>User Analytics<br/>Performance Metrics<br/>Zone: Analytics]
+            MONGO_R2[📋 Reporting Replica<br/>Project Reports<br/>Business Intelligence<br/>Zone: Reporting]
+            MONGO_R3[🔢 Aggregation Replica<br/>Complex Calculations<br/>Data Processing<br/>Zone: Aggregation]
+        end
+        
+        REDIS_CACHE[⚡ Redis Cache Cluster<br/>Session Storage<br/>Query Caching<br/>Real-time Data]
+    end
+
+    %% External Services
+    subgraph "🌍 EXTERNAL INTEGRATIONS"
+        PAYTABS_API[🏦 PayTabs API<br/>Payment Processing<br/>Transaction Verification<br/>Webhook Callbacks]
+        EMAIL_SVC[📧 Email Service<br/>Notifications<br/>Transactional Emails<br/>Marketing Campaigns]
+        SMS_SVC[📱 SMS Service<br/>OTP Verification<br/>Alerts & Notifications<br/>Two-factor Auth]
+        STORAGE_SVC[☁️ Cloud Storage<br/>File Management<br/>Document Storage<br/>Media Assets]
+    end
+
+    %% Connections
+    WEB --> NGINX
+    MOBILE --> NGINX
+    API_CLIENT --> NGINX
+    
+    NGINX --> AUTH
+    AUTH --> MAIN_APP
+    
+    MAIN_APP --> USER_SVC
+    MAIN_APP --> PROJECT_SVC
+    MAIN_APP --> CONTRACT_SVC
+    MAIN_APP --> EARNING_SVC
+    MAIN_APP --> PAYMENT_SVC
+    
+    PAYMENT_SVC --> PAYTABS_SVC
+    PAYTABS_SVC --> WEBHOOK_SEC
+    PAYTABS_SVC --> CIRCUIT_SVC
+    
+    USER_SVC --> CACHE_SVC
+    PROJECT_SVC --> CACHE_SVC
+    CONTRACT_SVC --> CACHE_SVC
+    EARNING_SVC --> AGGREGATION_SVC
+    
+    MAIN_APP --> HEALTH_SVC
+    
+    USER_SVC --> MONGO_PRIMARY
+    PROJECT_SVC --> MONGO_PRIMARY
+    CONTRACT_SVC --> MONGO_PRIMARY
+    EARNING_SVC --> MONGO_PRIMARY
+    PAYMENT_SVC --> MONGO_PRIMARY
+    
+    AGGREGATION_SVC --> MONGO_R1
+    AGGREGATION_SVC --> MONGO_R2
+    AGGREGATION_SVC --> MONGO_R3
+    
+    CACHE_SVC --> REDIS_CACHE
+    
+    PAYTABS_SVC --> PAYTABS_API
+    MAIN_APP --> EMAIL_SVC
+    MAIN_APP --> SMS_SVC
+    MAIN_APP --> STORAGE_SVC
+
+    %% Apply styles
+    class WEB,MOBILE,API_CLIENT clientClass
+    class NGINX,AUTH gatewayClass
+    class MAIN_APP,USER_SVC,PROJECT_SVC,CONTRACT_SVC,EARNING_SVC appClass
+    class CIRCUIT_SVC,CACHE_SVC,HEALTH_SVC,AGGREGATION_SVC serviceClass
+    class MONGO_PRIMARY,MONGO_R1,MONGO_R2,MONGO_R3 dataClass
+    class REDIS_CACHE cacheClass
+    class PAYMENT_SVC,PAYTABS_SVC,WEBHOOK_SEC,PAYTABS_API paymentClass
+    class EMAIL_SVC,SMS_SVC,STORAGE_SVC serviceClass
+```
+
+---
 
 ### **Visual System Architecture**
 
@@ -444,40 +572,90 @@ graph TB
     style Replica2 fill:#81c784
 ```
 
-#### **System Security Architecture**
+#### **🔐 Enhanced Security Architecture**
+
 ```mermaid
 graph TB
-    subgraph "Security Layers"
-        WAF[🛡️ Web Application Firewall]
-        Auth[🔐 JWT Authentication]
-        RBAC[👥 Role-Based Access Control]
-        Encrypt[🔒 Data Encryption]
+    %% Styling
+    classDef clientClass fill:#e1f5fe,stroke:#01579b,stroke-width:3px,color:#000
+    classDef gatewayClass fill:#ffebee,stroke:#c62828,stroke-width:3px,color:#000
+    classDef authClass fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px,color:#000
+    classDef appClass fill:#e8f5e8,stroke:#2e7d32,stroke-width:3px,color:#000
+    classDef dataClass fill:#fff3e0,stroke:#ef6c00,stroke-width:3px,color:#000
+
+    %% Client Layer
+    subgraph "🌐 CLIENT SECURITY LAYER"
+        CLIENT[🖥️ Client Applications<br/>HTTPS Only<br/>Certificate Pinning<br/>CSRF Protection<br/>XSS Prevention]
+        MOBILE[📱 Mobile Apps<br/>App Store Security<br/>Certificate Validation<br/>Biometric Auth<br/>Root Detection]
     end
-    
-    subgraph "Application"
-        API[🚀 NestJS API]
-        Guards[⚔️ Guards & Middleware]
-        Services[⚙️ Business Services]
+
+    %% Edge Security
+    subgraph "🚪 EDGE SECURITY LAYER"
+        CDN[🚀 CDN + WAF<br/>DDoS Protection<br/>Bot Detection<br/>Geo-blocking<br/>Rate Limiting]
+        LOAD_BALANCER[⚖️ Load Balancer<br/>SSL Termination<br/>Health Checks<br/>IP Filtering<br/>Request Validation]
     end
-    
-    subgraph "Data Layer"
-        MongoDB[(🍃 MongoDB)]
-        Redis[(⚡ Redis Cache)]
+
+    %% Gateway Security
+    subgraph "🛡️ API GATEWAY SECURITY"
+        API_GATEWAY[🚪 API Gateway<br/>Request Validation<br/>Rate Limiting<br/>API Key Management<br/>Request/Response Filtering]
+        
+        subgraph "🔐 AUTHENTICATION LAYER"
+            JWT_AUTH[🔑 JWT Authentication<br/>Token Validation<br/>Signature Verification<br/>Expiry Checking<br/>Refresh Token Rotation]
+            OAUTH[🔒 OAuth 2.0 / OIDC<br/>Third-party Auth<br/>Social Login<br/>Scope Management<br/>Token Introspection]
+            MFA[📱 Multi-Factor Auth<br/>TOTP/SMS/Email<br/>Biometric Verification<br/>Hardware Tokens<br/>Risk-based Auth]
+        end
+        
+        subgraph "🛡️ AUTHORIZATION LAYER"
+            RBAC[👥 Role-Based Access Control<br/>User Roles<br/>Permission Sets<br/>Resource Access<br/>Hierarchical Permissions]
+            ABAC[🎯 Attribute-Based Access Control<br/>Context-aware Decisions<br/>Dynamic Policies<br/>Fine-grained Control<br/>Policy Engine]
+        end
     end
+
+    %% Application Security
+    subgraph "🏢 APPLICATION SECURITY LAYER"
+        APP_FIREWALL[🔥 Application Firewall<br/>Input Validation<br/>SQL Injection Prevention<br/>Command Injection Protection<br/>File Upload Security]
+        
+        subgraph "🔒 DATA PROTECTION"
+            ENCRYPTION[🔐 Data Encryption<br/>AES-256 Encryption<br/>Field-level Encryption<br/>Key Management<br/>Crypto Agility]
+            HASHING[#️⃣ Password Hashing<br/>bcrypt/Argon2<br/>Salt Generation<br/>Pepper Addition<br/>Hash Verification]
+            MASKING[🎭 Data Masking<br/>PII Protection<br/>Log Sanitization<br/>Response Filtering<br/>Sensitive Data Redaction]
+        end
+        
+        subgraph "🛡️ WEBHOOK SECURITY"
+            WEBHOOK_AUTH[🔐 Webhook Authentication<br/>HMAC Signature Verification<br/>Timestamp Validation<br/>IP Whitelisting<br/>Replay Attack Prevention]
+            SIGNATURE_VERIFY[✍️ Signature Verification<br/>SHA-256/SHA-512<br/>Constant-time Comparison<br/>Multi-algorithm Support<br/>Key Rotation]
+        end
+    end
+
+    %% Connections
+    CLIENT --> CDN
+    MOBILE --> CDN
+    CDN --> LOAD_BALANCER
+    LOAD_BALANCER --> API_GATEWAY
     
-    WAF --> Auth
-    Auth --> RBAC
-    RBAC --> API
-    API --> Guards
-    Guards --> Services
-    Services --> Encrypt
-    Encrypt --> MongoDB
-    Services --> Redis
+    API_GATEWAY --> JWT_AUTH
+    API_GATEWAY --> OAUTH
+    API_GATEWAY --> MFA
     
-    style WAF fill:#f44336
-    style Auth fill:#4caf50
-    style RBAC fill:#2196f3
-    style Encrypt fill:#9c27b0
+    JWT_AUTH --> RBAC
+    OAUTH --> RBAC
+    MFA --> ABAC
+    
+    RBAC --> APP_FIREWALL
+    ABAC --> APP_FIREWALL
+    
+    APP_FIREWALL --> ENCRYPTION
+    APP_FIREWALL --> HASHING
+    APP_FIREWALL --> MASKING
+    APP_FIREWALL --> WEBHOOK_AUTH
+    
+    WEBHOOK_AUTH --> SIGNATURE_VERIFY
+
+    %% Apply styles
+    class CLIENT,MOBILE clientClass
+    class CDN,LOAD_BALANCER,API_GATEWAY gatewayClass
+    class JWT_AUTH,OAUTH,MFA,RBAC,ABAC authClass
+    class APP_FIREWALL,ENCRYPTION,HASHING,MASKING,WEBHOOK_AUTH,SIGNATURE_VERIFY appClass
 ```
 
 ---
