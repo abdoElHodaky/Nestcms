@@ -47,10 +47,12 @@
 - **User Authentication**: JWT-based secure authentication with Passport strategies
 
 ### 💰 **Financial Operations**
-- **Payment Processing**: Integrated PayTabs payment gateway
+- **Payment Processing**: Integrated PayTabs payment gateway with complete lifecycle management
 - **Contract Management**: Digital contract creation and management
-- **Earnings Tracking**: Project-based earnings and commission calculations
+- **Earnings Tracking**: Project-based earnings and commission calculations with aggregation
 - **Offer Management**: Bid and proposal management system
+- **Multi-Currency Support**: International payment processing capabilities
+- **Transaction Verification**: Secure payment verification and callback handling
 
 ### 📅 **Scheduling & Planning**
 - **Project Scheduling**: Timeline and milestone management
@@ -94,10 +96,11 @@ Documentation: Swagger UI with dark theme
 
 ### **Database Schema**
 - **Projects**: Core project entities with relationships to contracts, users, and schedules
-- **Users**: Multi-role user system with organization affiliations
-- **Contracts**: Legal agreements linked to projects and payments
-- **Payments**: Financial transactions with PayTabs integration
+- **Users**: Multi-role user system with organization affiliations and permission aggregation
+- **Contracts**: Legal agreements linked to projects and payments with employee lookups
+- **Payments**: Financial transactions with PayTabs integration and transaction tracking
 - **Schedules**: Time-based project planning and resource allocation
+- **Earnings**: Aggregated financial calculations with multi-currency support
 
 ---
 
@@ -184,6 +187,318 @@ helm install nestcms ./nestcms
 - **Database**: MongoDB with connection pooling
 - **Security**: JWT authentication with configurable expiration
 - **Monitoring**: Built-in health checks and logging
+
+---
+
+## 💳 **PayTabs Integration**
+
+### **Payment Gateway Overview**
+NestCMS integrates with PayTabs payment gateway (SDK v2.0.10) to provide secure, reliable payment processing for construction projects and contracts.
+
+### **Payment Flow Architecture**
+```
+1. Payment Creation → PaymentService.create()
+2. Payment Page Generation → PayTabService.createPage()
+3. Transaction Processing → PayTabs Gateway
+4. Callback Handling → PaymentService.payCallback()
+5. Transaction Verification → PayTabService.payVerify()
+6. Status Update → Payment.status = "paid"
+```
+
+### **Configuration**
+```bash
+# Environment Variables
+PAYTABS_PROFILE=your-profile-id
+PAYTABS_SERVERK=your-server-key
+PAYTABS_REGION=your-region
+```
+
+### **Key Features**
+- **Multi-Currency Support**: Process payments in multiple currencies
+- **Transaction Tracking**: Unique transaction reference (`transR`) for each payment
+- **Callback Security**: Secure webhook handling with signature verification
+- **Payment Verification**: Two-step verification process for transaction integrity
+- **Status Management**: Complete payment lifecycle tracking
+
+### **Usage Example**
+```typescript
+// Create Payment
+const payment = await paymentService.create({
+  contractId: 'contract-id',
+  title: 'Project Payment',
+  amount: 1000,
+  currency: 'USD'
+});
+
+// Process Payment
+const paymentUrl = await paymentService.Pay(payment._id, {
+  callback: 'https://yourapp.com/payment/callback',
+  return: 'https://yourapp.com/payment/return'
+});
+
+// Verify Payment (handled automatically via webhook)
+const verification = await paymentService.verify(transactionRef, paymentId);
+```
+
+### **Security Measures**
+- **Webhook Signature Verification**: All callbacks are verified for authenticity
+- **Rate Limiting**: Payment endpoints protected against abuse
+- **Transaction Validation**: Multi-step verification process
+- **Secure Configuration**: Environment-based sensitive data management
+
+---
+
+## 📊 **Mongoose Aggregation Patterns**
+
+### **Aggregation Overview**
+NestCMS utilizes sophisticated MongoDB aggregation pipelines to efficiently handle complex data relationships and calculations across the construction management domain.
+
+### **Aggregation Statistics**
+- **7 aggregation pipelines** across **4 core services**
+- **Services**: Contracts, Earnings, Projects, Users
+- **Operations**: `$lookup`, `$match`, `$group`, `$expr`
+
+### **Key Aggregation Patterns**
+
+#### **1. Contract-Employee Relationships**
+```typescript
+// Efficient employee lookup for contracts
+const contractData = await this.contractModel.aggregate([
+  { $match: { _id: new Types.ObjectId(contractId) } },
+  {
+    $lookup: {
+      from: "users",
+      localField: "employee",
+      foreignField: "_id",
+      as: "employees"
+    }
+  }
+]);
+```
+
+#### **2. Financial Earnings Aggregation**
+```typescript
+// Complex earnings calculations with grouping
+const earnings = await model.aggregate([
+  { $match: { id: { $in: earningIds } } },
+  {
+    $group: {
+      totalEarnings: { $sum: '$amount' },
+      currency: '$currency',
+      totalPeriod: { $sum: "$period" }
+    }
+  }
+]);
+```
+
+#### **3. Project Data Relationships**
+```typescript
+// Advanced project lookups with conditional matching
+const projectData = await this.projectModel.aggregate([
+  { $match: { _id: new Types.ObjectId(projectId) } },
+  {
+    $lookup: {
+      from: "notes",
+      let: { projectId: "$_id" },
+      pipeline: [
+        {
+          $match: {
+            $expr: {
+              $and: [
+                { $eq: ["$onId", "$$projectId"] },
+                { $eq: ["$onModel", "Project"] }
+              ]
+            }
+          }
+        }
+      ],
+      as: "projectNotes"
+    }
+  }
+]);
+```
+
+#### **4. User Permission Aggregation**
+```typescript
+// User permissions with role-based access control
+const userData = await this.userModel.aggregate([
+  { $match: { _id: new Types.ObjectId(userId) } },
+  {
+    $lookup: {
+      from: "permissions",
+      localField: "permissions",
+      foreignField: "for",
+      as: "userPermissions"
+    }
+  }
+]);
+```
+
+### **Performance Optimization**
+- **Compound Indexes**: Optimized indexes for aggregation performance
+- **Pipeline Optimization**: Efficient query structure to minimize database load
+- **Result Caching**: Strategic caching for frequently accessed aggregations
+- **Read Replicas**: Dedicated read replicas for complex aggregation queries
+
+### **Best Practices**
+- **Early Filtering**: Use `$match` early in pipelines to reduce data processing
+- **Index Utilization**: Ensure proper indexes support aggregation operations
+- **Memory Management**: Monitor aggregation memory usage and optimize accordingly
+- **Error Handling**: Implement robust error handling for aggregation failures
+
+---
+
+## 🏗️ **System Architecture**
+
+### **Architecture Diagrams**
+- **[Business Architecture](docs/diagrams/business-architecture.md)**: Complete business process flows and entity relationships
+- **[Software Architecture](docs/diagrams/software-architecture.md)**: Technical system architecture and component interactions
+- **[Deep-Level Architecture](docs/diagrams/deep-level-architecture.md)**: Detailed technical diagrams with PayTabs integration, aggregation patterns, and security architecture
+
+### **Current Architecture Highlights**
+- **Modular Design**: 9 integrated NestJS modules with clear separation of concerns
+- **Service Layer**: Dedicated services for business logic with proper dependency injection
+- **Data Layer**: MongoDB with Mongoose ODM and sophisticated aggregation patterns
+- **Security Layer**: JWT authentication with role-based access control
+- **Integration Layer**: PayTabs payment gateway with secure webhook handling
+
+### **Proposed Enhancements**
+- **Circuit Breaker Pattern**: Resilience for external service calls
+- **Event-Driven Architecture**: Domain events for payment and project state changes
+- **Caching Strategy**: Redis-based caching for aggregation results
+- **Read Replicas**: MongoDB read replicas for query performance optimization
+- **Monitoring & Observability**: Comprehensive logging and metrics collection
+
+### **Performance Considerations**
+- **Database Indexing**: Compound indexes optimized for aggregation pipelines
+- **Query Optimization**: Efficient aggregation patterns with minimal data processing
+- **Caching Strategy**: Strategic caching of frequently accessed data
+- **Load Balancing**: Horizontal scaling capabilities with Kubernetes deployment
+
+### **Visual System Architecture**
+
+#### **PayTabs Integration Flow**
+```mermaid
+graph LR
+    Client[👤 Client] --> NestCMS[🏗️ NestCMS API]
+    NestCMS --> PayTabs[💳 PayTabs Gateway]
+    PayTabs --> Bank[🏦 Bank/Card Processor]
+    Bank --> PayTabs
+    PayTabs --> |Webhook| NestCMS
+    NestCMS --> |Confirmation| Client
+    
+    style Client fill:#e3f2fd
+    style NestCMS fill:#e91e63
+    style PayTabs fill:#ff9800
+    style Bank fill:#4caf50
+```
+
+#### **Database Aggregation Architecture**
+```mermaid
+graph TB
+    subgraph "Services Layer"
+        US[Users Service]
+        PS[Projects Service]
+        CS[Contracts Service]
+        ES[Earnings Service]
+    end
+    
+    subgraph "Aggregation Pipelines"
+        UL[User Lookups]
+        PL[Project Relations]
+        CL[Contract-Employee]
+        EL[Earnings Calc]
+    end
+    
+    subgraph "MongoDB Cluster"
+        Primary[(Primary DB)]
+        Replica1[(Read Replica 1)]
+        Replica2[(Read Replica 2)]
+    end
+    
+    US --> UL
+    PS --> PL
+    CS --> CL
+    ES --> EL
+    
+    UL --> Replica1
+    PL --> Replica2
+    CL --> Replica1
+    EL --> Replica2
+    
+    US --> Primary
+    PS --> Primary
+    CS --> Primary
+    ES --> Primary
+    
+    style Primary fill:#4caf50
+    style Replica1 fill:#81c784
+    style Replica2 fill:#81c784
+```
+
+#### **System Security Architecture**
+```mermaid
+graph TB
+    subgraph "Security Layers"
+        WAF[🛡️ Web Application Firewall]
+        Auth[🔐 JWT Authentication]
+        RBAC[👥 Role-Based Access Control]
+        Encrypt[🔒 Data Encryption]
+    end
+    
+    subgraph "Application"
+        API[🚀 NestJS API]
+        Guards[⚔️ Guards & Middleware]
+        Services[⚙️ Business Services]
+    end
+    
+    subgraph "Data Layer"
+        MongoDB[(🍃 MongoDB)]
+        Redis[(⚡ Redis Cache)]
+    end
+    
+    WAF --> Auth
+    Auth --> RBAC
+    RBAC --> API
+    API --> Guards
+    Guards --> Services
+    Services --> Encrypt
+    Encrypt --> MongoDB
+    Services --> Redis
+    
+    style WAF fill:#f44336
+    style Auth fill:#4caf50
+    style RBAC fill:#2196f3
+    style Encrypt fill:#9c27b0
+```
+
+---
+
+## 📈 **Improvement Roadmap**
+
+### **Current Improvements**
+Detailed improvement plan available: **[PayTabs & Aggregation Improvement Plan](docs/paytabs_aggregat_improve.md)**
+
+### **Phase 1: Foundation & Reliability** (Weeks 1-5)
+- PayTabs error handling and resilience patterns
+- Webhook security enhancement with signature verification
+- Database indexing strategy for aggregation optimization
+
+### **Phase 2: Performance Optimization** (Weeks 6-10)
+- Aggregation pipeline optimization and caching
+- Read replica implementation for query performance
+- Comprehensive monitoring and alerting setup
+
+### **Phase 3: Architecture Enhancement** (Weeks 11-16)
+- Event-driven payment architecture implementation
+- Circuit breaker patterns for external service resilience
+- Advanced caching strategies with Redis integration
+
+### **Success Metrics**
+- **Payment Processing**: < 2 seconds average processing time
+- **Aggregation Performance**: < 500ms for complex queries
+- **System Reliability**: > 99.5% payment success rate
+- **Database Performance**: 50% improvement in aggregation query times
 
 ---
 
