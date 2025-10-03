@@ -11,8 +11,9 @@ import { ArticlesModule } from "./articles/";
 import { OrgzsModule} from "./orgs/";
 import { CommSalaryModule} from "./commission/"
 import { EarningsModule} from "./earnings/earnings.module";
+import { HealthModule } from "./health/health.module";
 export const modules=[PermissionsModule,AuthModule,ContractsModule,
                UsersModule,SchedulesModule,PaymentsModule,
                ProjectsModule,OffersModule,OrgzsModule,
                NotesModule,ArticlesModule,CommSalaryModule,
-               EarningsModule ]
+               EarningsModule,HealthModule ]
