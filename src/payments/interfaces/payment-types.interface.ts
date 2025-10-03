@@ -17,32 +17,53 @@
 export enum PaymentEventType {
   // Core Payment Events
   PAYMENT_CREATED = 'payment.created',
+  PAYMENT_INITIATED = 'payment.initiated',
   PAYMENT_PROCESSING = 'payment.processing',
   PAYMENT_COMPLETED = 'payment.completed',
   PAYMENT_FAILED = 'payment.failed',
   PAYMENT_REFUNDED = 'payment.refunded',
+  PAYMENT_PARTIALLY_REFUNDED = 'payment.partially_refunded',
   PAYMENT_CANCELLED = 'payment.cancelled',
   
   // Webhook Events
   WEBHOOK_RECEIVED = 'webhook.received',
+  WEBHOOK_PROCESSED = 'webhook.processed',
   WEBHOOK_VALIDATED = 'webhook.validated',
   WEBHOOK_FAILED = 'webhook.failed',
+  WEBHOOK_SIGNATURE_INVALID = 'webhook.signature_invalid',
+  WEBHOOK_REPLAY_DETECTED = 'webhook.replay_detected',
   
   // Circuit Breaker Events
   CIRCUIT_OPENED = 'circuit.opened',
   CIRCUIT_CLOSED = 'circuit.closed',
   CIRCUIT_HALF_OPEN = 'circuit.half_open',
+  CIRCUIT_BREAKER_OPENED = 'circuit_breaker.opened',
+  CIRCUIT_BREAKER_CLOSED = 'circuit_breaker.closed',
+  CIRCUIT_BREAKER_HALF_OPEN = 'circuit_breaker.half_open',
   
   // Error Events
   ERROR_OCCURRED = 'error.occurred',
   ERROR_RECOVERED = 'error.recovered',
   RETRY_ATTEMPTED = 'retry.attempted',
+  PAYMENT_ERROR_OCCURRED = 'payment.error_occurred',
+  PAYMENT_RETRY_ATTEMPTED = 'payment.retry_attempted',
+  PAYMENT_RETRY_EXHAUSTED = 'payment.retry_exhausted',
   
   // Security Events
   SECURITY_VIOLATION = 'security.violation',
+  SECURITY_EVENT = 'security.event',
   SIGNATURE_INVALID = 'signature.invalid',
   REPLAY_ATTACK_DETECTED = 'replay.attack.detected',
   RATE_LIMIT_EXCEEDED = 'rate.limit.exceeded',
+  
+  // Business Events
+  CONTRACT_PAYMENT_DUE = 'contract.payment_due',
+  EARNINGS_CALCULATED = 'earnings.calculated',
+  NOTIFICATION_SENT = 'notification.sent',
+  
+  // Audit Events
+  PAYMENT_AUDIT_LOG = 'payment.audit_log',
+  PERFORMANCE_METRIC = 'performance.metric',
 }
 
 export enum PaymentEventPriority {
@@ -70,6 +91,151 @@ export interface PaymentEventData {
   timestamp: Date;
   metadata?: Record<string, any>;
   correlationId?: string;
+}
+
+// ============================================================================
+// COMPREHENSIVE EVENT INTERFACES (Consolidated from external files)
+// ============================================================================
+
+export interface BasePaymentEvent {
+  id: string;
+  type: PaymentEventType;
+  timestamp: Date;
+  version: string;
+  priority: PaymentEventPriority;
+  status: PaymentEventStatus;
+  correlationId: string;
+  causationId?: string;
+  aggregateId: string;
+  aggregateType: string;
+  metadata: {
+    source: string;
+    userId?: string;
+    sessionId?: string;
+    ipAddress?: string;
+    userAgent?: string;
+    traceId?: string;
+    spanId?: string;
+  };
+}
+
+export interface PaymentInitiatedEvent extends BasePaymentEvent {
+  type: PaymentEventType.PAYMENT_INITIATED;
+  data: {
+    paymentId: string;
+    contractId: string;
+    amount: number;
+    currency: string;
+    description: string;
+    clientInfo: {
+      name: string;
+      email: string;
+      phone: string;
+      address: any;
+    };
+    paymentMethod: string;
+    redirectUrl?: string;
+    callbackUrl?: string;
+  };
+}
+
+export interface PaymentProcessingEvent extends BasePaymentEvent {
+  type: PaymentEventType.PAYMENT_PROCESSING;
+  data: {
+    paymentId: string;
+    transactionRef: string;
+    gatewayProvider: string;
+    processingStartTime: Date;
+    estimatedCompletionTime?: Date;
+  };
+}
+
+export interface PaymentCompletedEvent extends BasePaymentEvent {
+  type: PaymentEventType.PAYMENT_COMPLETED;
+  data: {
+    paymentId: string;
+    transactionRef: string;
+    amount: number;
+    currency: string;
+    gatewayResponse: any;
+    completedAt: Date;
+    processingDuration: number;
+  };
+}
+
+export interface PaymentFailedEvent extends BasePaymentEvent {
+  type: PaymentEventType.PAYMENT_FAILED;
+  data: {
+    paymentId: string;
+    transactionRef?: string;
+    errorCode: string;
+    errorMessage: string;
+    errorDetails: any;
+    failedAt: Date;
+    retryable: boolean;
+    retryCount: number;
+  };
+}
+
+export interface WebhookReceivedEvent extends BasePaymentEvent {
+  type: PaymentEventType.WEBHOOK_RECEIVED;
+  data: {
+    webhookId: string;
+    paymentId?: string;
+    transactionRef?: string;
+    provider: string;
+    payload: any;
+    signature?: string;
+    receivedAt: Date;
+    validated: boolean;
+    ipAddress: string;
+    userAgent?: string;
+  };
+}
+
+export interface CircuitBreakerEvent extends BasePaymentEvent {
+  type: PaymentEventType.CIRCUIT_BREAKER_OPENED | PaymentEventType.CIRCUIT_BREAKER_CLOSED | PaymentEventType.CIRCUIT_BREAKER_HALF_OPEN;
+  data: {
+    serviceName: string;
+    state: 'OPEN' | 'CLOSED' | 'HALF_OPEN';
+    errorRate: number;
+    consecutiveFailures: number;
+    lastFailure?: Date;
+    threshold: number;
+    timeout: number;
+  };
+}
+
+export interface PaymentAuditEvent extends BasePaymentEvent {
+  type: PaymentEventType.PAYMENT_AUDIT_LOG;
+  data: {
+    paymentId: string;
+    operation: string;
+    operationStatus: 'success' | 'failure' | 'retry' | 'timeout';
+    duration: number;
+    error?: any;
+    changes?: {
+      before: any;
+      after: any;
+    };
+    performedBy: string;
+    performedAt: Date;
+  };
+}
+
+export interface SecurityEvent extends BasePaymentEvent {
+  type: PaymentEventType.SECURITY_EVENT | PaymentEventType.SECURITY_VIOLATION;
+  data: {
+    securityEventType: 'signature_invalid' | 'replay_attack' | 'rate_limit_exceeded' | 'ip_blocked' | 'suspicious_activity';
+    severity: 'low' | 'medium' | 'high' | 'critical';
+    description: string;
+    ipAddress: string;
+    userAgent?: string;
+    blocked: boolean;
+    reason: string;
+    securityScore: number;
+    detectedAt: Date;
+  };
 }
 
 export interface WebhookEventData {
@@ -458,4 +624,3 @@ export interface LegacyWebhookEventData extends WebhookEventData {}
  * @deprecated Use CircuitEventData instead
  */
 export interface LegacyCircuitEventData extends CircuitEventData {}
-

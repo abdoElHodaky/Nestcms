@@ -5,7 +5,7 @@ import paytabs from 'paytabs_pt2';
 import { CircuitBreakerService } from '../circuit-breaker/circuit-breaker.service';
 import { CacheService } from '../cache/cache.service';
 import { EnhancedPaymentDto, PaymentCallbackDto } from './dto/enhanced-payment.dto';
-import { PaymentEventType, PaymentEventData } from './interfaces/payment-events.interface';
+import { PaymentEventType, PaymentEventData } from './interfaces/payment-types.interface';
 import { Payment } from './interface/payment.interface';
 
 export interface PayTabsConfig {

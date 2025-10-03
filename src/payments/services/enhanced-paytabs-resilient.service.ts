@@ -21,8 +21,6 @@ import {
   PayTabsErrorContext,
   PayTabsErrorType,
   PayTabsErrorSeverity,
-} from '../interfaces/paytabs-errors.interface';
-import {
   PaymentEventType,
   PaymentInitiatedEvent,
   PaymentProcessingEvent,
@@ -30,7 +28,7 @@ import {
   PaymentFailedEvent,
   PaymentEventPriority,
   PaymentEventStatus,
-} from '../../events/payment-events.interface';
+} from '../interfaces/payment-types.interface';
 
 export interface PayTabsResilientConfig {
   maxRetries: number;
