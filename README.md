@@ -353,6 +353,7 @@ const userData = await this.userModel.aggregate([
 ### **Architecture Diagrams**
 - **[Business Architecture](docs/diagrams/business-architecture.md)**: Complete business process flows and entity relationships
 - **[Software Architecture](docs/diagrams/software-architecture.md)**: Technical system architecture and component interactions
+- **[Deep-Level Architecture](docs/diagrams/deep-level-architecture.md)**: Detailed technical diagrams with PayTabs integration, aggregation patterns, and security architecture
 
 ### **Current Architecture Highlights**
 - **Modular Design**: 9 integrated NestJS modules with clear separation of concerns
@@ -373,6 +374,103 @@ const userData = await this.userModel.aggregate([
 - **Query Optimization**: Efficient aggregation patterns with minimal data processing
 - **Caching Strategy**: Strategic caching of frequently accessed data
 - **Load Balancing**: Horizontal scaling capabilities with Kubernetes deployment
+
+### **Visual System Architecture**
+
+#### **PayTabs Integration Flow**
+```mermaid
+graph LR
+    Client[👤 Client] --> NestCMS[🏗️ NestCMS API]
+    NestCMS --> PayTabs[💳 PayTabs Gateway]
+    PayTabs --> Bank[🏦 Bank/Card Processor]
+    Bank --> PayTabs
+    PayTabs --> |Webhook| NestCMS
+    NestCMS --> |Confirmation| Client
+    
+    style Client fill:#e3f2fd
+    style NestCMS fill:#e91e63
+    style PayTabs fill:#ff9800
+    style Bank fill:#4caf50
+```
+
+#### **Database Aggregation Architecture**
+```mermaid
+graph TB
+    subgraph "Services Layer"
+        US[Users Service]
+        PS[Projects Service]
+        CS[Contracts Service]
+        ES[Earnings Service]
+    end
+    
+    subgraph "Aggregation Pipelines"
+        UL[User Lookups]
+        PL[Project Relations]
+        CL[Contract-Employee]
+        EL[Earnings Calc]
+    end
+    
+    subgraph "MongoDB Cluster"
+        Primary[(Primary DB)]
+        Replica1[(Read Replica 1)]
+        Replica2[(Read Replica 2)]
+    end
+    
+    US --> UL
+    PS --> PL
+    CS --> CL
+    ES --> EL
+    
+    UL --> Replica1
+    PL --> Replica2
+    CL --> Replica1
+    EL --> Replica2
+    
+    US --> Primary
+    PS --> Primary
+    CS --> Primary
+    ES --> Primary
+    
+    style Primary fill:#4caf50
+    style Replica1 fill:#81c784
+    style Replica2 fill:#81c784
+```
+
+#### **System Security Architecture**
+```mermaid
+graph TB
+    subgraph "Security Layers"
+        WAF[🛡️ Web Application Firewall]
+        Auth[🔐 JWT Authentication]
+        RBAC[👥 Role-Based Access Control]
+        Encrypt[🔒 Data Encryption]
+    end
+    
+    subgraph "Application"
+        API[🚀 NestJS API]
+        Guards[⚔️ Guards & Middleware]
+        Services[⚙️ Business Services]
+    end
+    
+    subgraph "Data Layer"
+        MongoDB[(🍃 MongoDB)]
+        Redis[(⚡ Redis Cache)]
+    end
+    
+    WAF --> Auth
+    Auth --> RBAC
+    RBAC --> API
+    API --> Guards
+    Guards --> Services
+    Services --> Encrypt
+    Encrypt --> MongoDB
+    Services --> Redis
+    
+    style WAF fill:#f44336
+    style Auth fill:#4caf50
+    style RBAC fill:#2196f3
+    style Encrypt fill:#9c27b0
+```
 
 ---
 
