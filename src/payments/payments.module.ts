@@ -15,6 +15,11 @@ import { WebhookSecurityService } from './services/webhook-security.service';
 import { EnhancedPayTabsResilientService } from './services/enhanced-paytabs-resilient.service';
 import { EnhancedPaymentsV3Controller } from './controllers/enhanced-payments-v3.controller';
 
+// Event-driven architecture services
+import { EventDrivenPaymentService } from './services/event-driven-payment.service';
+import { EventDrivenPaymentController } from './controllers/event-driven-payment.controller';
+import { EventDrivenCircuitBreakerService } from '../circuit-breaker/event-driven-circuit-breaker.service';
+
 // Import required modules
 import { CircuitBreakerModule } from '../circuit-breaker/circuit-breaker.module';
 import { CacheModule } from '../cache/cache.module';
@@ -23,7 +28,16 @@ import { CacheModule } from '../cache/cache.module';
   imports: [
     MongooseModule.forFeature([{ name: 'Payment', schema: PaymentSchema }]),
     ConfigModule,
-    EventEmitterModule,
+    EventEmitterModule.forRoot({
+      // Event emitter configuration for event-driven architecture
+      wildcard: false,
+      delimiter: '.',
+      newListener: false,
+      removeListener: false,
+      maxListeners: 20,
+      verboseMemoryLeak: false,
+      ignoreErrors: false,
+    }),
     CircuitBreakerModule,
     CacheModule,
   ],
@@ -36,6 +50,10 @@ import { CacheModule } from '../cache/cache.module';
     PayTabsErrorHandlerService,
     WebhookSecurityService,
     EnhancedPayTabsResilientService,
+    
+    // Event-driven architecture services
+    EventDrivenPaymentService,
+    EventDrivenCircuitBreakerService,
   ],
   exports: [
     // Original services
@@ -46,6 +64,10 @@ import { CacheModule } from '../cache/cache.module';
     PayTabsErrorHandlerService,
     WebhookSecurityService,
     EnhancedPayTabsResilientService,
+    
+    // Event-driven services
+    EventDrivenPaymentService,
+    EventDrivenCircuitBreakerService,
   ],
   controllers: [
     // Original controller
@@ -53,6 +75,9 @@ import { CacheModule } from '../cache/cache.module';
     
     // Enhanced controller with comprehensive error handling
     EnhancedPaymentsV3Controller,
+    
+    // Event-driven controller with circuit breaker integration
+    EventDrivenPaymentController,
   ],
 })
 export class PaymentsModule {}
