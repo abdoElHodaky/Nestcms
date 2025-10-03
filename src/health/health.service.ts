@@ -2,6 +2,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectConnection } from '@nestjs/mongoose';
 import { Connection } from 'mongoose';
 import { CacheService } from '../cache/cache.service';
+import { DatabaseService } from '../database/database.service';
+import { AggregationService } from '../aggregation/aggregation.service';
 import { CircuitBreakerService } from '../circuit-breaker/circuit-breaker.service';
 import { CircuitBreakerState } from '../circuit-breaker/interfaces/circuit-breaker.interface';
 import {
@@ -21,6 +23,8 @@ export class HealthService {
     @InjectConnection() private readonly mongoConnection: Connection,
     private readonly cacheService: CacheService,
     private readonly circuitBreakerService: CircuitBreakerService,
+    private readonly databaseService: DatabaseService,
+    private readonly aggregationService: AggregationService,
   ) {}
 
   /**
@@ -295,6 +299,84 @@ export class HealthService {
       cache: cache.status === 'fulfilled' ? cache.value : null,
       database: database.status === 'fulfilled' ? database.value : null,
     };
+  }
+
+  /**
+   * Get database connection statistics
+   */
+  async getDatabaseConnectionStats(): Promise<any> {
+    try {
+      return await this.databaseService.getStats();
+    } catch (error) {
+      this.logger.error('Error getting database connection stats:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Get aggregation performance metrics
+   */
+  async getAggregationMetrics(): Promise<any> {
+    try {
+      const stats = this.aggregationService.getStats();
+      const queryPatterns = this.aggregationService.getQueryPatterns();
+      
+      return {
+        stats,
+        queryPatterns: queryPatterns.map(pattern => ({
+          name: pattern.name,
+          collection: pattern.collection,
+          cacheStrategy: pattern.cacheStrategy,
+          ttl: pattern.ttl,
+          useReplica: pattern.useReplica,
+        })),
+        performance: {
+          cacheHitRate: stats.totalQueries > 0 
+            ? Math.round((stats.cacheHits / stats.totalQueries) * 100 * 100) / 100
+            : 0,
+          replicaUsageRate: stats.totalQueries > 0
+            ? Math.round((stats.replicaQueries / stats.totalQueries) * 100 * 100) / 100
+            : 0,
+          errorRate: stats.totalQueries > 0
+            ? Math.round((stats.errorCount / stats.totalQueries) * 100 * 100) / 100
+            : 0,
+          slowQueryRate: stats.totalQueries > 0
+            ? Math.round((stats.slowQueries / stats.totalQueries) * 100 * 100) / 100
+            : 0,
+        },
+      };
+    } catch (error) {
+      this.logger.error('Error getting aggregation metrics:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Check database replica health
+   */
+  async checkDatabaseReplicaHealth(): Promise<any> {
+    try {
+      const connectionHealth = await this.databaseService.checkHealth();
+      const stats = await this.databaseService.getStats();
+      
+      return {
+        connections: connectionHealth,
+        stats,
+        healthy: connectionHealth.every(conn => conn.connected),
+        replicaCount: connectionHealth.filter(conn => conn.type === 'replica').length,
+        primaryConnected: connectionHealth.some(conn => conn.type === 'primary' && conn.connected),
+      };
+    } catch (error) {
+      this.logger.error('Error checking database replica health:', error);
+      return {
+        connections: [],
+        stats: null,
+        healthy: false,
+        replicaCount: 0,
+        primaryConnected: false,
+        error: error.message,
+      };
+    }
   }
 
   private processHealthCheckResult(

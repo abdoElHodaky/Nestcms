@@ -199,4 +199,68 @@ export class HealthController {
       });
     }
   }
+
+  @Get('database/connections')
+  @ApiOperation({ summary: 'Get database connection statistics' })
+  @ApiResponse({ status: 200, description: 'Database connection statistics' })
+  async getDatabaseConnectionStats(@Res() res: Response) {
+    try {
+      const stats = await this.healthService.getDatabaseConnectionStats();
+      return res.status(HttpStatus.OK).json({
+        stats,
+        timestamp: new Date(),
+      });
+    } catch (error) {
+      return res.status(HttpStatus.SERVICE_UNAVAILABLE).json({
+        status: 'error',
+        timestamp: new Date(),
+        error: error.message,
+      });
+    }
+  }
+
+  @Get('aggregation/metrics')
+  @ApiOperation({ summary: 'Get aggregation performance metrics' })
+  @ApiResponse({ status: 200, description: 'Aggregation performance metrics' })
+  async getAggregationMetrics(@Res() res: Response) {
+    try {
+      const metrics = await this.healthService.getAggregationMetrics();
+      return res.status(HttpStatus.OK).json({
+        metrics,
+        timestamp: new Date(),
+      });
+    } catch (error) {
+      return res.status(HttpStatus.SERVICE_UNAVAILABLE).json({
+        status: 'error',
+        timestamp: new Date(),
+        error: error.message,
+      });
+    }
+  }
+
+  @Get('database/replicas')
+  @ApiOperation({ summary: 'Check database replica health' })
+  @ApiResponse({ status: 200, description: 'Database replica health status' })
+  async checkDatabaseReplicaHealth(@Res() res: Response) {
+    try {
+      const replicaHealth = await this.healthService.checkDatabaseReplicaHealth();
+      
+      const statusCode = replicaHealth.healthy ? 
+        HttpStatus.OK : 
+        replicaHealth.primaryConnected ? 
+          HttpStatus.PARTIAL_CONTENT : 
+          HttpStatus.SERVICE_UNAVAILABLE;
+
+      return res.status(statusCode).json({
+        replicaHealth,
+        timestamp: new Date(),
+      });
+    } catch (error) {
+      return res.status(HttpStatus.SERVICE_UNAVAILABLE).json({
+        status: 'error',
+        timestamp: new Date(),
+        error: error.message,
+      });
+    }
+  }
 }
