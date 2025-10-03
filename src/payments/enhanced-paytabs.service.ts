@@ -215,6 +215,7 @@ export class EnhancedPayTabsService {
     paymentDto: EnhancedPaymentDto,
     urls: { callback: string; return: string },
   ): Promise<PaymentResult> {
+    const internalStartTime = Date.now();
     return new Promise((resolve, reject) => {
       try {
         const client = payment.client;
@@ -226,14 +227,14 @@ export class EnhancedPayTabsService {
         ];
 
         const clientInfo = [
-          client.name || 'Unknown',
-          client.email || 'unknown@example.com',
-          client.phone || '000000000',
-          client.address || 'Unknown Address',
-          client.city || 'Unknown City',
-          client.state || 'Unknown State',
-          client.country || 'SA',
-          client.zip || '00000',
+          (client as any).fullName || 'Unknown',
+          (client as any).email || 'unknown@example.com',
+          (client as any).phone || '000000000',
+          (client as any).address?.street || 'Unknown Address',
+          (client as any).address?.city || 'Unknown City',
+          (client as any).address?.state || 'Unknown State',
+          (client as any).address?.country || 'SA',
+          (client as any).address?.zip || '00000',
         ];
 
         const shippingInfo = clientInfo; // Use same info for shipping
@@ -253,6 +254,7 @@ export class EnhancedPayTabsService {
                 success: true,
                 redirectUrl: result.redirect_url,
                 transactionRef: result.tran_ref,
+                executionTime: Date.now() - internalStartTime,
               });
             } else {
               this.logger.error('PayTabs returned invalid response:', result);

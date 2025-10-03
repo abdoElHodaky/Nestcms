@@ -3,6 +3,7 @@ import { InjectConnection } from '@nestjs/mongoose';
 import { Connection } from 'mongoose';
 import { CacheService } from '../cache/cache.service';
 import { CircuitBreakerService } from '../circuit-breaker/circuit-breaker.service';
+import { CircuitBreakerState } from '../circuit-breaker/interfaces/circuit-breaker.interface';
 import {
   HealthCheckResult,
   SystemHealthStatus,
@@ -145,7 +146,7 @@ export class HealthService {
       await this.cacheService.set(testKey, testValue, { ttl: 60, useCache: true });
       const retrieved = await this.cacheService.get(testKey, { useCache: true });
       
-      if (!retrieved || retrieved.timestamp !== testValue.timestamp) {
+      if (!retrieved || (retrieved as any).timestamp !== testValue.timestamp) {
         throw new Error('Cache read/write test failed');
       }
 
@@ -179,8 +180,8 @@ export class HealthService {
 
       // Determine overall circuit breaker state
       const states = [createPaymentStats?.state, verifyPaymentStats?.state].filter(Boolean);
-      const circuitBreakerState = states.includes('OPEN') ? 'OPEN' : 
-                                 states.includes('HALF_OPEN') ? 'HALF_OPEN' : 'CLOSED';
+      const circuitBreakerState = states.includes(CircuitBreakerState.OPEN) ? CircuitBreakerState.OPEN : 
+                                 states.includes(CircuitBreakerState.HALF_OPEN) ? CircuitBreakerState.HALF_OPEN : CircuitBreakerState.CLOSED;
 
       // Calculate average error rate
       const errorRates = [createPaymentStats?.errorRate, verifyPaymentStats?.errorRate]
