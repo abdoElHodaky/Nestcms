@@ -14,6 +14,8 @@ import { modules } from "./modules.app";
 import { CacheModule } from './cache/cache.module';
 import { CircuitBreakerModule } from './circuit-breaker/circuit-breaker.module';
 import { HealthModule } from './health/health.module';
+import { DatabaseModule } from './database/database.module';
+import { AggregationModule } from './aggregation/aggregation.module';
 
 @Module({
   imports: [
@@ -49,6 +51,8 @@ import { HealthModule } from './health/health.module';
       heartbeatFrequencyMS: 10000,
     }),
     // Enhanced modules
+    DatabaseModule,
+    AggregationModule,
     CacheModule,
     CircuitBreakerModule,
     HealthModule,
