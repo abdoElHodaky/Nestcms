@@ -1,14 +1,20 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 //import { RouterModule } from "@nestjs/core";
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PaymentsModule } from './payments/payments.module';
 import { APP_GUARD } from '@nestjs/core';
 import { PermGuard } from "./perm.guard";
 import { modules } from "./modules.app";
+
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: ['.env.local', '.env'],
+    }),
     MongooseModule.forRoot( process.env.MONGO_URI, {connectTimeoutMS: 10000,
         socketTimeoutMS: 30000 }),
     ...modules
