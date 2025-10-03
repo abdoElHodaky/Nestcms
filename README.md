@@ -351,11 +351,11 @@ const userData = await this.userModel.aggregate([
 ## 🏗️ **System Architecture**
 
 ### **Architecture Diagrams**
-- **[Enhanced System Architecture](docs/diagrams/enhanced-system-architecture.md)**: Comprehensive system architecture with circuit breakers, event-driven design, and performance optimization
-- **[Enhanced Deep-Level Architecture](docs/diagrams/enhanced-deep-level-architecture.md)**: Detailed technical diagrams with PayTabs resilience patterns, security enhancements, and database optimization
+- **[Enhanced System Architecture](docs/diagrams/system-architecture.md)**: Comprehensive system architecture with circuit breakers, event-driven design, and performance optimization
+- **[Enhanced Deep-Level Architecture](docs/diagrams/technical-architecture.md)**: Detailed technical diagrams with PayTabs resilience patterns, security enhancements, and database optimization
 - **[Business Architecture](docs/diagrams/business-architecture.md)**: Complete business process flows and entity relationships
-- **[Software Architecture](docs/diagrams/software-architecture.md)**: Technical system architecture and component interactions
-- **[Deep-Level Architecture](docs/diagrams/deep-level-architecture.md)**: Original detailed technical diagrams (legacy)
+- **[Software Architecture](docs/diagrams/component-architecture.md)**: Technical system architecture and component interactions
+- **[Deep-Level Architecture](docs/diagrams/legacy-architecture.md)**: Original detailed technical diagrams (legacy)
 
 ### **Enhanced Architecture Highlights** ✅ **IMPLEMENTED**
 - **Modular Design**: 9 integrated NestJS modules with clear separation of concerns
@@ -635,10 +635,10 @@ Detailed improvement plan available: **[PayTabs & Aggregation Improvement Plan](
 ## 📚 **Enhanced Documentation**
 
 ### **Key Implementation Guides**
-- **[PayTabs Resilience Enhancements](docs/PAYTABS_RESILIENCE_ENHANCEMENTS.md)**: Comprehensive guide to circuit breakers, webhook security, and event-driven architecture
-- **[Aggregation Optimization](docs/AGGREGATION_OPTIMIZATION.md)**: Database performance optimization with caching and read replicas
-- **[Enhanced System Architecture](docs/diagrams/enhanced-system-architecture.md)**: Complete system architecture with resilience patterns
-- **[Enhanced Deep-Level Architecture](docs/diagrams/enhanced-deep-level-architecture.md)**: Detailed technical implementation diagrams
+- **[PayTabs Resilience Enhancements](docs/paytabs-guide.md)**: Comprehensive guide to circuit breakers, webhook security, and event-driven architecture
+- **[Aggregation Optimization](docs/performance-guide.md)**: Database performance optimization with caching and read replicas
+- **[Enhanced System Architecture](docs/diagrams/system-architecture.md)**: Complete system architecture with resilience patterns
+- **[Enhanced Deep-Level Architecture](docs/diagrams/technical-architecture.md)**: Detailed technical implementation diagrams
 
 ### **Performance & Monitoring**
 - **Circuit Breaker Statistics**: Real-time monitoring at `/health/circuit-breakers`
