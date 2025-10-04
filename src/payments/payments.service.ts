@@ -9,35 +9,39 @@ import { ContractService} from "../contracts/"
 import { PayTabService } from "../paytabs.service";
 @Injectable()
 export class PaymentService {
-  constructor(@InjectModel('Payment') private readonly paymModel: Model<Payment>) {}
-  private userService:UsersService
-  private contractService:ContractService
-  private payTabService:PayTabService
-   async create(createPaymentDto: CreatePaymentDto): Promise<Payment> {
-    const {contractId,...rest}=createPaymentDto
-    let linkcontract:PaymentLinkToContractDto
-    const contract=await this.contractService.find_Id(contractId)
-    const createdPayment = new this.paymModel({...rest});
-    createdPayment.client=contract.client
-    await createdPayment.save();
-    linkcontract={paymentId:createdPayment._id.toString(),contractId:contract._id.toString()}
-    return await this.LinkContract(linkcontract)
-  }/*
-  async accept(acceptOfferDto:AcceptOfferDto):Promise<Offer>{
-    const {offerId,clientId,status}=acceptOfferDto
-    const client = await this.userService.find_Id(clientId)
-    const offer= await this.offerModel.findById(offerId).exec()
-    offer.status=status
-    offer.client=client
-    return await offer.save()
+  constructor(
+    @InjectModel('Payment') private readonly paymModel: Model<Payment>,
+    private readonly userService: UsersService,
+    private readonly contractService: ContractService,
+    private readonly payTabService: PayTabService
+  ) {}
+  async create(createPaymentDto: CreatePaymentDto): Promise<Payment> {
+    try {
+      const { contractId, ...rest } = createPaymentDto;
+      
+      if (!contractId) {
+        throw new Error('Contract ID is required');
+      }
+
+      const contract = await this.contractService.find_Id(contractId);
+      if (!contract) {
+        throw new Error('Contract not found');
+      }
+
+      const createdPayment = new this.paymModel({ ...rest });
+      createdPayment.client = contract.client;
+      await createdPayment.save();
+
+      const linkcontract: PaymentLinkToContractDto = {
+        paymentId: createdPayment._id.toString(),
+        contractId: contract._id.toString()
+      };
+
+      return await this.LinkContract(linkcontract);
+    } catch (error) {
+      throw new Error(`Failed to create payment: ${error.message}`);
+    }
   }
-  async employee_all(uid:string):Promise<Offer[]>{
-    const employee = await this.userService.find_Id(uid)
-    return await this.offerModel.find().populate({
-      path:"employee",
-      match:{"employee._id":employee._id},
-    }).exec();
-  }*/
   async find_Id(_id:string):Promise<Payment>{
     return await this.paymModel.findById(_id).exec()
   }
