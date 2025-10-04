@@ -4,8 +4,9 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import paytabs from 'paytabs_pt2';
 import { CircuitBreakerService } from '../circuit-breaker/circuit-breaker.service';
 import { CacheService } from '../cache/cache.service';
-import { EnhancedPaymentDto, PaymentCallbackDto } from './dto/enhanced-payment.dto';
-import { PaymentEventType, PaymentEventData } from './interfaces/payment-types.interface';
+import { EnhancedPaymentDto } from './dto/enhanced-payment.dto';
+import { PaymentCallbackDto } from './dto/base-payment.dto';
+import { PaymentEventType, PaymentEventData, PaymentEventStatus, PayTabsErrorType, PayTabsErrorSeverity } from './interfaces/payment-types.interface';
 import { Payment } from './interface/payment.interface';
 
 export interface PayTabsConfig {
@@ -99,7 +100,7 @@ export class EnhancedPayTabsService {
         paymentId: payment._id.toString(),
         amount: paymentDto.amount,
         currency: paymentDto.currency,
-        status: 'created',
+        status: PaymentEventStatus.CREATED,
         timestamp: new Date(),
         metadata: paymentDto.metadata,
       });
@@ -138,7 +139,7 @@ export class EnhancedPayTabsService {
           // Emit processing event
           this.emitPaymentEvent(PaymentEventType.PAYMENT_PROCESSING, {
             paymentId: payment._id.toString(),
-            status: 'processing',
+            status: PaymentEventStatus.PROCESSING,
             timestamp: new Date(),
           });
 
@@ -196,8 +197,15 @@ export class EnhancedPayTabsService {
       // Emit payment failed event
       this.emitPaymentEvent(PaymentEventType.PAYMENT_FAILED, {
         paymentId: payment._id.toString(),
-        status: 'failed',
-        error: error.message,
+        status: PaymentEventStatus.FAILED,
+        error: {
+          type: PayTabsErrorType.PAYMENT_FAILED,
+          severity: PayTabsErrorSeverity.HIGH,
+          message: error.message || 'Payment creation failed',
+          code: 'PAYMENT_CREATION_FAILED',
+          timestamp: new Date(),
+          retryable: true,
+        },
         timestamp: new Date(),
       });
 
@@ -318,7 +326,7 @@ export class EnhancedPayTabsService {
         this.emitPaymentEvent(PaymentEventType.PAYMENT_COMPLETED, {
           paymentId,
           transactionRef,
-          status: 'completed',
+          status: PaymentEventStatus.COMPLETED,
           timestamp: new Date(),
         });
       } else {
@@ -326,8 +334,15 @@ export class EnhancedPayTabsService {
         this.emitPaymentEvent(PaymentEventType.PAYMENT_FAILED, {
           paymentId,
           transactionRef,
-          status: 'failed',
-          error: result.error,
+          status: PaymentEventStatus.FAILED,
+          error: {
+            type: PayTabsErrorType.PAYMENT_FAILED,
+            severity: PayTabsErrorSeverity.HIGH,
+            message: result.error || 'Payment processing failed',
+            code: 'PAYMENT_FAILED',
+            timestamp: new Date(),
+            retryable: false,
+          },
           timestamp: new Date(),
         });
       }
@@ -401,7 +416,7 @@ export class EnhancedPayTabsService {
         transactionRef: transRef,
         amount: cart.cart_amount,
         currency: cart.cart_currency,
-        status: respStatus === 'A' ? 'completed' : 'failed',
+        status: respStatus === 'A' ? PaymentEventStatus.COMPLETED : PaymentEventStatus.FAILED,
         timestamp: new Date(),
       });
 
