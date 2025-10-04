@@ -226,7 +226,7 @@ export class WebhookSecurityService {
 
       // All validations passed
       result.isValid = true;
-      result.securityScore = this.calculateSecurityScore(result);
+      result.securityScore = this.calculateValidationSecurityScore(result);
       
       this.securityMetrics.validRequests++;
       this.securityMetrics.lastValidRequest = new Date();
@@ -423,20 +423,7 @@ export class WebhookSecurityService {
     return rateLimitData.count > this.config.rateLimitMax;
   }
 
-  /**
-   * Calculate security score based on validation results
-   */
-  private calculateSecurityScore(result: WebhookValidationResult): number {
-    let score = 0;
 
-    if (result.signatureValid) score += 40;
-    if (result.timestampValid) score += 20;
-    if (result.ipWhitelisted) score += 15;
-    if (!result.replayDetected) score += 15;
-    if (!result.rateLimitExceeded) score += 10;
-
-    return score;
-  }
 
   /**
    * Finalize validation result with timing and metrics
@@ -500,19 +487,15 @@ export class WebhookSecurityService {
         traceId: this.generateTraceId(),
       },
       data: {
-        eventType: 'WEBHOOK_SECURITY_VIOLATION',
+        securityEventType: this.mapViolationTypeToSecurityEventType(violationType),
         severity: this.getViolationSeverity(violationType),
         description: `Webhook security violation: ${violationType}`,
-        sourceIp: request.ipAddress,
+        ipAddress: request.ipAddress,
         userAgent: request.userAgent,
-        additionalData: {
-          violationType,
-          payloadSize: Buffer.byteLength(request.payload, 'utf8'),
-          headers: request.headers,
-          timestamp: request.timestamp,
-        },
+        blocked: true,
+        reason: `Security violation detected: ${violationType}`,
+        securityScore: this.calculateSecurityScore(violationType),
         detectedAt: new Date(),
-        mitigationActions: this.getMitigationActions(violationType),
       },
     };
 
@@ -524,18 +507,67 @@ export class WebhookSecurityService {
   /**
    * Get violation severity
    */
-  private getViolationSeverity(violationType: string): 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL' {
-    const severityMap: Record<string, 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL'> = {
-      'PAYLOAD_SIZE_EXCEEDED': 'MEDIUM',
-      'IP_NOT_WHITELISTED': 'HIGH',
-      'RATE_LIMIT_EXCEEDED': 'MEDIUM',
-      'INVALID_TIMESTAMP': 'HIGH',
-      'REPLAY_ATTACK': 'CRITICAL',
-      'INVALID_SIGNATURE': 'CRITICAL',
-      'VALIDATION_ERROR': 'HIGH',
+  private getViolationSeverity(violationType: string): 'low' | 'medium' | 'high' | 'critical' {
+    const severityMap: Record<string, 'low' | 'medium' | 'high' | 'critical'> = {
+      'PAYLOAD_SIZE_EXCEEDED': 'medium',
+      'IP_NOT_WHITELISTED': 'high',
+      'RATE_LIMIT_EXCEEDED': 'medium',
+      'INVALID_TIMESTAMP': 'high',
+      'REPLAY_ATTACK': 'critical',
+      'INVALID_SIGNATURE': 'critical',
+      'VALIDATION_ERROR': 'high',
     };
 
-    return severityMap[violationType] || 'MEDIUM';
+    return severityMap[violationType] || 'medium';
+  }
+
+  /**
+   * Map violation type to security event type
+   */
+  private mapViolationTypeToSecurityEventType(violationType: string): 'signature_invalid' | 'replay_attack' | 'rate_limit_exceeded' | 'ip_blocked' | 'suspicious_activity' {
+    const typeMap: Record<string, 'signature_invalid' | 'replay_attack' | 'rate_limit_exceeded' | 'ip_blocked' | 'suspicious_activity'> = {
+      'INVALID_SIGNATURE': 'signature_invalid',
+      'REPLAY_ATTACK': 'replay_attack',
+      'RATE_LIMIT_EXCEEDED': 'rate_limit_exceeded',
+      'IP_NOT_WHITELISTED': 'ip_blocked',
+      'PAYLOAD_SIZE_EXCEEDED': 'suspicious_activity',
+      'INVALID_TIMESTAMP': 'suspicious_activity',
+      'VALIDATION_ERROR': 'suspicious_activity',
+    };
+
+    return typeMap[violationType] || 'suspicious_activity';
+  }
+
+  /**
+   * Calculate security score based on violation type
+   */
+  private calculateSecurityScore(violationType: string): number {
+    const scoreMap: Record<string, number> = {
+      'INVALID_SIGNATURE': 0.1,
+      'REPLAY_ATTACK': 0.0,
+      'RATE_LIMIT_EXCEEDED': 0.5,
+      'IP_NOT_WHITELISTED': 0.2,
+      'PAYLOAD_SIZE_EXCEEDED': 0.7,
+      'INVALID_TIMESTAMP': 0.3,
+      'VALIDATION_ERROR': 0.4,
+    };
+
+    return scoreMap[violationType] || 0.5;
+  }
+
+  /**
+   * Calculate security score based on validation results
+   */
+  private calculateValidationSecurityScore(result: WebhookValidationResult): number {
+    let score = 0;
+
+    if (result.signatureValid) score += 40;
+    if (result.timestampValid) score += 20;
+    if (result.ipWhitelisted) score += 15;
+    if (!result.replayDetected) score += 15;
+    if (!result.rateLimitExceeded) score += 10;
+
+    return score;
   }
 
   /**

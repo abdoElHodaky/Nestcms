@@ -37,6 +37,10 @@ export type {
 } from './base-payment.dto';
 
 export type {
+  PaymentPriority,
+} from '../interfaces/payment-types.interface';
+
+export type {
   PaymentSortBy,
   SortOrder,
 } from './payment-query.dto';
