@@ -594,11 +594,12 @@ export class EventDrivenCircuitBreakerService {
         serviceName,
         state: newState,
         errorRate: circuit.metrics.errorRate,
+        consecutiveFailures: circuit.metrics.consecutiveFailures,
         requestCount: circuit.metrics.totalRequests,
         failureCount: circuit.metrics.failedRequests,
-        lastFailureTime: circuit.metrics.lastFailureTime,
-        nextRetryTime: circuit.nextRetryTime,
-        configuration: circuit.config,
+        lastFailure: circuit.metrics.lastFailureTime,
+        threshold: circuit.config.errorThreshold,
+        timeout: circuit.config.timeout,
       },
     };
 

@@ -184,7 +184,7 @@ export class EnhancedPayTabsResilientService {
       userId,
       correlationId,
       retryCount: 0,
-      startTime,
+      startTime: new Date(startTime),
     };
 
     try {
@@ -285,7 +285,7 @@ export class EnhancedPayTabsResilientService {
       userId,
       correlationId,
       retryCount: 0,
-      startTime,
+      startTime: new Date(startTime),
     };
 
     try {

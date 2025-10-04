@@ -34,8 +34,11 @@ export type {
   PaymentStatus,
   PaymentMethod,
   PaymentCurrency,
-  PaymentPriority,
 } from './base-payment.dto';
+
+export type {
+  PaymentPriority,
+} from '../interfaces/payment-types.interface';
 
 export type {
   PaymentSortBy,

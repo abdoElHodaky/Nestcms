@@ -1,14 +1,5 @@
-export enum PaymentEventType {
-  PAYMENT_CREATED = 'payment.created',
-  PAYMENT_PROCESSING = 'payment.processing',
-  PAYMENT_COMPLETED = 'payment.completed',
-  PAYMENT_FAILED = 'payment.failed',
-  PAYMENT_REFUNDED = 'payment.refunded',
-  PAYMENT_CANCELLED = 'payment.cancelled',
-  WEBHOOK_RECEIVED = 'webhook.received',
-  CIRCUIT_OPENED = 'circuit.opened',
-  CIRCUIT_CLOSED = 'circuit.closed',
-}
+// PaymentEventType enum moved to payment-types.interface.ts to avoid duplication
+// Import it from there: import { PaymentEventType } from './payment-types.interface';
 
 export interface PaymentEventData {
   paymentId: string;

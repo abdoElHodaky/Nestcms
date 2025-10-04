@@ -150,7 +150,7 @@ export class AggregationService implements OnModuleInit {
         const plan = this.databaseService.createExecutionPlan(queryType, options);
         
         return {
-          data,
+          data: data as T,
           connectionUsed: plan.connectionName,
           fromReplica: plan.connectionType === 'replica',
         };
