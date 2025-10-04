@@ -200,6 +200,8 @@ export class EnhancedPayTabsResilientService {
             title: request.description,
             date: new Date(),
             status: 'pending',
+            amount: request.amount.toString(),
+            currency: request.currency,
             client: request.clientInfo,
             contractId: request.metadata?.contractId || 'default',
             toArrayP: async () => ({
@@ -320,22 +322,22 @@ export class EnhancedPayTabsResilientService {
       );
 
       const executionTime = Date.now() - startTime;
-      const isSuccess = result.success || result.responseCode === '100';
+      const isSuccess = result.valid && result.code !== 400;
 
       if (isSuccess) {
         // Emit payment completed event
         await this.emitPaymentCompletedEvent(
           request.paymentId || 'unknown',
           request.transactionRef,
-          result.amount || 0,
-          result.currency || 'SAR',
+          0, // Amount not available in verification response
+          'SAR', // Default currency
           correlationId
         );
       } else {
         // Emit payment failed event
         await this.emitPaymentFailedEvent(
           request.paymentId || 'unknown',
-          result.message || 'Payment verification failed',
+          `Payment verification failed with code: ${result.code}`,
           correlationId
         );
       }
