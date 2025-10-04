@@ -79,6 +79,7 @@ export enum PaymentEventStatus {
   COMPLETED = 'completed',
   FAILED = 'failed',
   CANCELLED = 'cancelled',
+  CREATED = 'created',
 }
 
 export interface PaymentEventData {
@@ -199,10 +200,18 @@ export interface CircuitBreakerEvent extends BasePaymentEvent {
     serviceName: string;
     state: 'OPEN' | 'CLOSED' | 'HALF_OPEN';
     errorRate: number;
-    consecutiveFailures: number;
+    consecutiveFailures?: number;
     lastFailure?: Date;
-    threshold: number;
-    timeout: number;
+    threshold?: number;
+    timeout?: number;
+    requestCount?: number;
+    totalRequests?: number;
+    failureCount?: number;
+    failedRequests?: number;
+    lastFailureTime?: Date;
+    nextRetryTime?: Date;
+    configuration?: any;
+    [key: string]: any; // Allow additional properties
   };
 }
 
@@ -275,6 +284,22 @@ export interface PaymentErrorEvent {
   context: PayTabsErrorContext;
   timestamp: Date;
   correlationId: string;
+}
+
+export interface PerformanceMetricEvent extends BasePaymentEvent {
+  type: PaymentEventType.PERFORMANCE_METRIC;
+  data: {
+    serviceName: string;
+    operationName: string;
+    duration: number;
+    success: boolean;
+    errorRate: number;
+    throughput: number;
+    timestamp: Date;
+    metadata?: Record<string, any>;
+    metricName?: string;
+    metricValue?: any;
+  };
 }
 
 // ============================================================================
@@ -366,6 +391,12 @@ export interface PayTabsErrorContext {
   provider?: string;
   endpoint?: string;
   requestId?: string;
+  userId?: string;
+  correlationId?: string;
+  retryCount?: number;
+  contractId?: string;
+  executionTime?: number;
+  webhookId?: string;
 }
 
 export interface PayTabsErrorMetrics {
@@ -376,6 +407,14 @@ export interface PayTabsErrorMetrics {
   successfulRetries: number;
   failedRetries: number;
   totalAttempts: number;
+  totalCount?: number;
+  retrySuccessRate?: number;
+  severityDistribution?: {
+    LOW: number;
+    MEDIUM: number;
+    HIGH: number;
+    CRITICAL: number;
+  };
 }
 
 // ============================================================================

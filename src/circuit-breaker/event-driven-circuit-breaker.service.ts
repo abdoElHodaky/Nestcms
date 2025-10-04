@@ -578,7 +578,7 @@ export class EventDrivenCircuitBreakerService {
     
     const event: CircuitBreakerEvent = {
       id: this.generateEventId(),
-      type: this.getEventTypeForState(newState),
+      type: this.getEventTypeForState(newState) as PaymentEventType.CIRCUIT_BREAKER_OPENED | PaymentEventType.CIRCUIT_BREAKER_CLOSED | PaymentEventType.CIRCUIT_BREAKER_HALF_OPEN,
       timestamp: new Date(),
       version: '2.0',
       priority: newState === CircuitBreakerState.OPEN ? PaymentEventPriority.HIGH : PaymentEventPriority.MEDIUM,

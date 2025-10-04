@@ -116,7 +116,7 @@ export class AggregationService implements OnModuleInit {
   /**
    * Execute aggregation with specific connection
    */
-  private async executeWithConnection<T>(
+  private async executeWithConnection<T = any[]>(
     model: Model<any>,
     pipeline: any[],
     options: AggregationOptions,
@@ -150,7 +150,7 @@ export class AggregationService implements OnModuleInit {
         const plan = this.databaseService.createExecutionPlan(queryType, options);
         
         return {
-          data,
+          data: data as T,
           connectionUsed: plan.connectionName,
           fromReplica: plan.connectionType === 'replica',
         };
