@@ -199,7 +199,7 @@ export class EnhancedPayTabsResilientService {
           const paymentData = {
             _id: new Types.ObjectId(),
             title: request.description,
-            date: new Date(),
+            date: new Date().toISOString(),
             status: 'pending',
             amount: request.amount.toString(),
             currency: request.currency,
