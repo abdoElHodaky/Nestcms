@@ -52,7 +52,7 @@ import { Payment } from './interface/payment.interface';
 
 // Services
 import { PaymentService } from './payments.service';
-import { WebhookSecurityService } from './services/webhook-security.service';
+import { WebhookSecurityService } from './services/security/webhook-security.service';
 // import { PaymentErrorHandlerService } from './services/error/payment-error-handler.service';
 
 export interface PaymentControllerOptions {

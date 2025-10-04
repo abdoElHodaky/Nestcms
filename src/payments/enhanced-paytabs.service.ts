@@ -100,11 +100,7 @@ export class EnhancedPayTabsService {
         paymentId: payment._id.toString(),
         amount: paymentDto.amount,
         currency: paymentDto.currency,
-<<<<<<< HEAD
-        status: PaymentEventStatus.CREATED,
-=======
         status: PaymentEventStatus.PENDING,
->>>>>>> 7071dbaf304ad499b646d8a1bbb144aa016d21da
         timestamp: new Date(),
         metadata: paymentDto.metadata,
       });
@@ -202,7 +198,6 @@ export class EnhancedPayTabsService {
       this.emitPaymentEvent(PaymentEventType.PAYMENT_FAILED, {
         paymentId: payment._id.toString(),
         status: PaymentEventStatus.FAILED,
-<<<<<<< HEAD
         error: {
           type: PayTabsErrorType.PAYMENT_FAILED,
           severity: PayTabsErrorSeverity.HIGH,
@@ -211,9 +206,6 @@ export class EnhancedPayTabsService {
           timestamp: new Date(),
           retryable: true,
         },
-=======
-        error: error.message,
->>>>>>> 7071dbaf304ad499b646d8a1bbb144aa016d21da
         timestamp: new Date(),
       });
 
@@ -343,7 +335,6 @@ export class EnhancedPayTabsService {
           paymentId,
           transactionRef,
           status: PaymentEventStatus.FAILED,
-<<<<<<< HEAD
           error: {
             type: PayTabsErrorType.PAYMENT_FAILED,
             severity: PayTabsErrorSeverity.HIGH,
@@ -352,8 +343,6 @@ export class EnhancedPayTabsService {
             timestamp: new Date(),
             retryable: false,
           },
-=======
->>>>>>> 7071dbaf304ad499b646d8a1bbb144aa016d21da
           timestamp: new Date(),
         });
       }

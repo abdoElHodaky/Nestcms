@@ -18,7 +18,7 @@ import {
   SecurityEvent,
   PaymentEventPriority,
   PaymentEventStatus,
-} from '../interfaces/payment-types.interface';
+} from '../../interfaces/payment-types.interface';
 
 export interface WebhookSecurityConfig {
   secretKey: string;

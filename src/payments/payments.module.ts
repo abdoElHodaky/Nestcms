@@ -23,14 +23,15 @@ import { PaymentSchema } from './models/payment.schema';
 // UNIFIED SERVICES (New Architecture)
 // ============================================================================
 import { PaymentService } from './payments.service';
-// import { PayTabsProviderService } from './services/providers/paytabs-provider.service';
-// import { PaymentErrorHandlerService } from './services/error/payment-error-handler.service';
-// import { PaymentEventService } from './services/events/payment-events.service';
-
-// ============================================================================
-// EXISTING SPECIALIZED SERVICES (Kept for specific functionality)
-// ============================================================================
-import { WebhookSecurityService } from './services/webhook-security.service';
+import { 
+  PaymentRepositoryService,
+  PaymentEventService,
+  EventDrivenPaymentService,
+  EnhancedPayTabsResilientService,
+  PayTabsErrorHandlerService,
+  PayTabsProviderService,
+  WebhookSecurityService
+} from './services';
 
 // ============================================================================
 // LEGACY SERVICES (For backward compatibility - will be deprecated in v4.0)
@@ -88,30 +89,14 @@ import { ContractsModule } from '../contracts/contracts.module';
     // ========================================================================
     // UNIFIED SERVICES (Primary Architecture)
     // ========================================================================
-    {
-      provide: PaymentService,
-      useClass: PaymentService,
-    },
-    // {
-    //   provide: PayTabsProviderService,
-    //   useClass: PayTabsProviderService,
-    // },
-    // {
-    //   provide: PaymentErrorHandlerService,
-    //   useClass: PaymentErrorHandlerService,
-    // },
-    // {
-    //   provide: PaymentEventService,
-    //   useClass: PaymentEventService,
-    // },
-    
-    // ========================================================================
-    // SPECIALIZED SERVICES (Kept for specific functionality)
-    // ========================================================================
-    {
-      provide: WebhookSecurityService,
-      useClass: WebhookSecurityService,
-    },
+    PaymentService,
+    PaymentRepositoryService,
+    PaymentEventService,
+    EventDrivenPaymentService,
+    EnhancedPayTabsResilientService,
+    PayTabsErrorHandlerService,
+    PayTabsProviderService,
+    WebhookSecurityService,
     
     // ========================================================================
     // LEGACY SERVICES (Backward Compatibility - Deprecated in v4.0)

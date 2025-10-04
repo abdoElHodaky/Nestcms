@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
 @Injectable()
-export class PaymentService {
+export class PaymentRepositoryService {
   constructor(
     @InjectModel('Payment') private readonly paymentModel: Model<any>
   ) {}

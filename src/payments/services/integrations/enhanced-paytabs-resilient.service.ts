@@ -14,9 +14,9 @@ import { ConfigService } from '@nestjs/config';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
-import { PayTabService } from '../../paytabs.service';
+import { PayTabService } from '../../../paytabs.service';
 import { PayTabsErrorHandlerService, ErrorHandlingResult } from './paytabs-error-handler.service';
-import { EventDrivenCircuitBreakerService } from '../../circuit-breaker/event-driven-circuit-breaker.service';
+import { EventDrivenCircuitBreakerService } from '../../../circuit-breaker/event-driven-circuit-breaker.service';
 import { 
   PayTabsErrorContext,
   PayTabsErrorType,
@@ -28,7 +28,7 @@ import {
   PaymentFailedEvent,
   PaymentEventPriority,
   PaymentEventStatus,
-} from '../interfaces/payment-types.interface';
+} from '../../interfaces/payment-types.interface';
 
 export interface PayTabsResilientConfig {
   maxRetries: number;

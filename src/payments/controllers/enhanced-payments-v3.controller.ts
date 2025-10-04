@@ -28,9 +28,9 @@ import {
 import { Request, Response } from 'express';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiBody, ApiParam } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
-import { EnhancedPayTabsResilientService, PayTabsRequest, PayTabsVerificationRequest } from '../services/enhanced-paytabs-resilient.service';
-import { WebhookSecurityService, WebhookValidationRequest } from '../services/webhook-security.service';
-import { PayTabsErrorHandlerService } from '../services/paytabs-error-handler.service';
+import { EnhancedPayTabsResilientService, PayTabsRequest, PayTabsVerificationRequest } from '../services/integrations/enhanced-paytabs-resilient.service';
+import { WebhookSecurityService, WebhookValidationRequest } from '../services/security/webhook-security.service';
+import { PayTabsErrorHandlerService } from '../services/integrations/paytabs-error-handler.service';
 import { EventDrivenCircuitBreakerService } from '../../circuit-breaker/event-driven-circuit-breaker.service';
 import { IsString, IsNumber, IsOptional, IsObject, ValidateNested, Min } from 'class-validator';
 import { Type } from 'class-transformer';

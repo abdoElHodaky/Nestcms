@@ -31,8 +31,8 @@ import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiBody, ApiParam } 
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
 import { EventDrivenPaymentService, PaymentRequest } from '../services/event-driven-payment.service';
 import { EventDrivenCircuitBreakerService } from '../../circuit-breaker/event-driven-circuit-breaker.service';
-import { WebhookSecurityService } from '../services/webhook-security.service';
-import { PayTabsErrorHandlerService } from '../services/paytabs-error-handler.service';
+import { WebhookSecurityService } from '../services/security/webhook-security.service';
+import { PayTabsErrorHandlerService } from '../services/integrations/paytabs-error-handler.service';
 import { IsString, IsNumber, IsOptional, IsObject, ValidateNested, Min } from 'class-validator';
 import { Type } from 'class-transformer';
 
