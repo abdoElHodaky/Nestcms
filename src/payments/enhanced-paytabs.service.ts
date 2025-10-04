@@ -198,7 +198,7 @@ export class EnhancedPayTabsService {
         paymentId: payment._id.toString(),
         status: PaymentEventStatus.FAILED,
         error: {
-          type: PayTabsErrorType.PAYMENT_PROCESSING_ERROR,
+          type: PayTabsErrorType.INTERNAL_ERROR,
           severity: PayTabsErrorSeverity.HIGH,
           message: error.message,
           code: 'PAYMENT_FAILED',
@@ -335,7 +335,7 @@ export class EnhancedPayTabsService {
           transactionRef,
           status: PaymentEventStatus.FAILED,
           error: typeof result.error === 'string' ? {
-            type: PayTabsErrorType.PAYMENT_PROCESSING_ERROR,
+            type: PayTabsErrorType.INTERNAL_ERROR,
             severity: PayTabsErrorSeverity.HIGH,
             message: result.error,
             code: 'PAYMENT_FAILED',

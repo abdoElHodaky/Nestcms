@@ -500,7 +500,6 @@ export class WebhookSecurityService {
         traceId: this.generateTraceId(),
       },
       data: {
-        eventType: 'WEBHOOK_SECURITY_VIOLATION',
         severity: this.getViolationSeverity(violationType),
         description: `Webhook security violation: ${violationType}`,
         sourceIp: request.ipAddress,
