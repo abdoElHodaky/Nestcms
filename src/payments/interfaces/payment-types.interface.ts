@@ -299,6 +299,7 @@ export interface PerformanceMetricEvent extends BasePaymentEvent {
     metadata?: Record<string, any>;
     metricName?: string;
     metricValue?: any;
+    metricUnit?: string;
   };
 }
 
@@ -397,6 +398,8 @@ export interface PayTabsErrorContext {
   contractId?: string;
   executionTime?: number;
   webhookId?: string;
+  startTime?: Date;
+  [key: string]: any; // Allow additional properties
 }
 
 export interface PayTabsErrorMetrics {
