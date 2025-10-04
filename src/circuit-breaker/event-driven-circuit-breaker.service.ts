@@ -594,11 +594,12 @@ export class EventDrivenCircuitBreakerService {
         serviceName,
         state: newState,
         errorRate: circuit.metrics.errorRate,
+        consecutiveFailures: circuit.metrics.failedRequests,
+        lastFailure: circuit.metrics.lastFailureTime,
+        threshold: circuit.config.errorThreshold,
+        timeout: circuit.config.timeout,
         requestCount: circuit.metrics.totalRequests,
         failureCount: circuit.metrics.failedRequests,
-        lastFailureTime: circuit.metrics.lastFailureTime,
-        nextRetryTime: circuit.nextRetryTime,
-        configuration: circuit.config,
       },
     };
 
@@ -650,7 +651,7 @@ export class EventDrivenCircuitBreakerService {
   /**
    * Get event type for circuit breaker state
    */
-  private getEventTypeForState(state: CircuitBreakerState): PaymentEventType {
+  private getEventTypeForState(state: CircuitBreakerState): PaymentEventType.CIRCUIT_BREAKER_OPENED | PaymentEventType.CIRCUIT_BREAKER_CLOSED | PaymentEventType.CIRCUIT_BREAKER_HALF_OPEN {
     switch (state) {
       case CircuitBreakerState.OPEN:
         return PaymentEventType.CIRCUIT_BREAKER_OPENED;

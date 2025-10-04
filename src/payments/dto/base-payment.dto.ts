@@ -65,6 +65,13 @@ export enum PaymentStatus {
   REFUNDED = 'refunded',
 }
 
+export enum PaymentPriority {
+  LOW = 'LOW',
+  MEDIUM = 'MEDIUM',
+  HIGH = 'HIGH',
+  CRITICAL = 'CRITICAL'
+}
+
 // ============================================================================
 // NESTED DTOs
 // ============================================================================
@@ -349,4 +356,3 @@ export class PaymentCallbackDto {
   @IsObject()
   additionalData?: Record<string, any>;
 }
-

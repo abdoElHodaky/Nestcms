@@ -212,7 +212,7 @@ export class EnhancedPaymentsV3Controller {
         userId: (req as any).user?.id,
         correlationId: this.generateCorrelationId(),
         retryCount: 0,
-        startTime,
+        startTime: new Date(startTime),
       });
 
       throw new HttpException(
@@ -314,7 +314,7 @@ export class EnhancedPaymentsV3Controller {
         userId: (req as any).user?.id,
         correlationId: this.generateCorrelationId(),
         retryCount: 0,
-        startTime,
+        startTime: new Date(startTime),
       });
 
       throw new HttpException(
@@ -485,7 +485,7 @@ export class EnhancedPaymentsV3Controller {
           operation: 'webhook_processing',
           correlationId: this.generateCorrelationId(),
           retryCount: 0,
-          startTime,
+          startTime: new Date(startTime),
         });
 
         res.status(handledError.httpStatus).json({

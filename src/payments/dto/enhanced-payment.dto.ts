@@ -1,6 +1,9 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsString, IsNumber, IsOptional, IsObject, IsEnum, Min, IsBoolean } from 'class-validator';
-import { BasePaymentDto, PaymentMethod, PaymentCurrency } from './base-payment.dto';
+import { BasePaymentDto, PaymentMethod, PaymentCurrency, PaymentCallbackDto } from './base-payment.dto';
+
+// Re-export PaymentCallbackDto for backward compatibility
+export { PaymentCallbackDto } from './base-payment.dto';
 
 /**
  * 🎯 **ENHANCED PAYMENT DTO**
@@ -229,4 +232,3 @@ export class PaymentVerificationDto {
   @IsEnum(PaymentCurrency)
   expectedCurrency?: PaymentCurrency;
 }
-

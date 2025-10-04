@@ -74,6 +74,7 @@ export enum PaymentEventPriority {
 }
 
 export enum PaymentEventStatus {
+  CREATED = 'created',
   PENDING = 'pending',
   PROCESSING = 'processing',
   COMPLETED = 'completed',
@@ -260,7 +261,6 @@ export interface CircuitEventData {
 }
 
 export interface SecurityEvent {
-  type: PaymentEventType;
   severity: PayTabsErrorSeverity;
   description: string;
   ipAddress: string;
@@ -271,6 +271,7 @@ export interface SecurityEvent {
 }
 
 export interface PaymentErrorEvent {
+  id: string;
   type: PaymentEventType;
   priority: PaymentEventPriority;
   error: PayTabsError;

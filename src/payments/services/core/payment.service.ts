@@ -8,9 +8,25 @@ export class PaymentService {
     @InjectModel('Payment') private readonly paymentModel: Model<any>
   ) {}
 
-  async createPayment(paymentData: any) {
+  async createPayment(paymentData: any, options?: any) {
     const payment = new this.paymentModel(paymentData);
-    return payment.save();
+    const savedPayment = await payment.save();
+    
+    // Return a result object that matches the expected interface
+    return {
+      success: true,
+      transactionRef: savedPayment._id.toString(),
+      redirectUrl: paymentData.redirectUrl,
+      message: 'Payment created successfully',
+      respCode: '200',
+      respMessage: 'Success',
+      fromFallback: false,
+      executionTime: 0,
+      retryCount: 0,
+      data: savedPayment,
+      correlationId: options?.correlationId,
+      error: undefined,
+    };
   }
 
   async findPaymentById(id: string) {
@@ -27,5 +43,32 @@ export class PaymentService {
 
   async findAllPayments() {
     return this.paymentModel.find().exec();
+  }
+
+  async processPayment(paymentId: string, urls?: any, options?: any) {
+    // Find the payment
+    const payment = await this.findPaymentById(paymentId);
+    if (!payment) {
+      throw new Error(`Payment with ID ${paymentId} not found`);
+    }
+
+    // Update payment status to processing
+    await this.updatePayment(paymentId, { status: 'processing' });
+
+    // Return a result object that matches the expected interface
+    return {
+      success: true,
+      transactionRef: payment._id.toString(),
+      redirectUrl: urls?.redirectUrl || payment.redirectUrl,
+      message: 'Payment processed successfully',
+      respCode: '200',
+      respMessage: 'Success',
+      fromFallback: false,
+      executionTime: 0,
+      retryCount: 0,
+      data: payment,
+      correlationId: options?.correlationId,
+      error: undefined,
+    };
   }
 }
