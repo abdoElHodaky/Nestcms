@@ -70,5 +70,54 @@ export class PayTabService{
     });
     return {transRef:transR,code:res['response_code:'],valid:valid}
   }
+
+  // New methods for enhanced service compatibility
+  async createPayment(request: any): Promise<any> {
+    // Delegate to existing createPage method
+    const urls = {
+      callback: request.callbackUrl || process.env.PAYTABS_CALLBACK_URL,
+      return: request.returnUrl || process.env.PAYTABS_RETURN_URL
+    };
+    
+    const payment = {
+      client: request.clientInfo,
+      contractId: request.contractId || 'default',
+      toArrayP: () => [request.amount, request.currency, request.description]
+    };
+    
+    try {
+      const redirectUrl = await this.createPage(payment as any, urls);
+      return {
+        success: true,
+        transactionRef: request.transactionRef || Date.now().toString(),
+        redirectUrl: redirectUrl,
+        paymentId: request.paymentId
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: error.message,
+        errorCode: 'PAYMENT_CREATION_FAILED'
+      };
+    }
+  }
+
+  async verifyPayment(transactionRef: string): Promise<any> {
+    try {
+      const result = await this.payVerify(transactionRef);
+      return {
+        success: result.valid,
+        transactionRef: result.transRef,
+        responseCode: result.code,
+        status: result.valid ? 'COMPLETED' : 'FAILED'
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: error.message,
+        errorCode: 'PAYMENT_VERIFICATION_FAILED'
+      };
+    }
+  }
   
 }

@@ -381,12 +381,13 @@ export class EnhancedPayTabsResilientService {
     operationName: string
   ): Promise<T> {
     if (this.config.circuitBreakerEnabled) {
-      return await this.circuitBreaker.execute(
+      const result = await this.circuitBreaker.execute(
         'paytabs-resilient',
         operation,
         this.config.fallbackEnabled ? () => this.createFallbackResponse(context) : undefined,
         operationName
       );
+      return result.result;
     } else {
       return await operation();
     }

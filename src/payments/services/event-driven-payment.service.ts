@@ -18,6 +18,8 @@ import {
   PaymentEvent,
   PaymentEventType,
   PaymentEventPriority,
+  PaymentSaga,
+  PaymentSagaStep,
   PaymentEventStatus,
   PaymentInitiatedEvent,
   PaymentProcessingEvent,
@@ -287,7 +289,7 @@ export class EventDrivenPaymentService {
       // Complete saga with error
       const saga = this.paymentSagas.get(paymentId);
       if (saga) {
-        await saga.compensate();
+        await (saga as PaymentProcessingSaga).compensate();
         this.paymentSagas.delete(paymentId);
       }
 
@@ -355,7 +357,7 @@ export class EventDrivenPaymentService {
       // Complete saga
       const saga = this.paymentSagas.get(paymentId);
       if (saga) {
-        await saga.complete();
+        await (saga as PaymentProcessingSaga).complete();
         this.paymentSagas.delete(paymentId);
       }
 
@@ -409,9 +411,10 @@ export class EventDrivenPaymentService {
         provider: 'paytabs',
         payload,
         signature,
-        timestamp,
+        receivedAt: new Date(timestamp),
+        validated: true,
         ipAddress,
-        headers: {},
+        userAgent: 'unknown',
       },
     };
 
@@ -619,14 +622,24 @@ export class EventDrivenPaymentService {
         traceId: this.generateTraceId(),
       },
       data: {
-        paymentId,
-        errorType: error.constructor.name,
-        errorCode: 'PAYMENT_ERROR',
-        errorMessage: error.message,
-        errorStack: error.stack,
-        context: {},
-        severity: 'HIGH',
-        recoverable: false,
+        error: {
+          type: 'PAYMENT_ERROR' as any,
+          code: 'PAYMENT_ERROR',
+          message: error.message,
+          severity: 'HIGH' as any,
+          timestamp: new Date(),
+          retryable: false,
+          details: {
+            stack: error.stack,
+            name: error.constructor.name,
+          },
+        },
+        context: {
+          paymentId,
+          operation: 'payment_processing',
+          timestamp: new Date(),
+          metadata: {},
+        },
       },
     };
   }
@@ -657,15 +670,16 @@ export class EventDrivenPaymentService {
         traceId: this.generateTraceId(),
       },
       data: {
-        action,
-        resource: 'Payment',
-        resourceId: paymentId,
-        newValues: changes,
-        changes: Object.keys(changes),
+        paymentId,
+        operation: action,
+        operationStatus: 'success' as const,
+        duration: 0, // TODO: Calculate actual duration
+        changes: {
+          before: {},
+          after: changes,
+        },
         performedBy: userId || 'system',
         performedAt: new Date(),
-        ipAddress: '127.0.0.1',
-        userAgent: 'EventDrivenPaymentService',
       },
     };
   }
@@ -743,17 +757,39 @@ export class EventDrivenPaymentService {
 /**
  * Payment Processing Saga
  */
-class PaymentProcessingSaga {
+class PaymentProcessingSaga implements PaymentSaga {
+  public id: string;
+  public paymentId: string;
+  public status: 'PENDING' | 'PROCESSING' | 'COMPLETED' | 'FAILED' | 'CANCELLED' = 'PENDING';
+  public steps: PaymentSagaStep[] = [];
+  public currentStep: number = 0;
+  public createdAt: Date;
+  public updatedAt: Date;
+  public metadata?: Record<string, any>;
   public isCompleted = false;
-  private steps: string[] = [];
 
   constructor(
     public readonly sagaId: string,
     public readonly correlationId: string,
-  ) {}
+  ) {
+    this.id = sagaId;
+    this.paymentId = sagaId; // Assuming sagaId is the paymentId
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
+    this.metadata = { correlationId };
+  }
 
   async handle(event: PaymentEvent): Promise<PaymentEvent[]> {
-    this.steps.push(event.type);
+    const step: PaymentSagaStep = {
+      id: `step-${this.steps.length}`,
+      name: event.type,
+      status: 'PROCESSING',
+      action: event.type,
+      startedAt: new Date(),
+    };
+    this.steps.push(step);
+    this.currentStep = this.steps.length - 1;
+    this.updatedAt = new Date();
     // Implement saga logic here
     return [];
   }

@@ -392,9 +392,13 @@ export class PayTabsErrorHandlerService {
 
     const existing = this.errorMetrics.get(error.type) || {
       errorType: error.type,
-      totalCount: 0,
+      count: 0,
       lastOccurrence: new Date(),
       averageResolutionTime: 0,
+      successfulRetries: 0,
+      failedRetries: 0,
+      totalAttempts: 0,
+      totalCount: 0,
       retrySuccessRate: 0,
       severityDistribution: {
         [PayTabsErrorSeverity.LOW]: 0,
@@ -404,9 +408,11 @@ export class PayTabsErrorHandlerService {
       },
     };
 
-    existing.totalCount++;
+    existing.count++;
+    existing.totalCount = (existing.totalCount || 0) + 1;
+    existing.totalAttempts++;
     existing.lastOccurrence = error.timestamp;
-    existing.severityDistribution[error.severity]++;
+    existing.severityDistribution![error.severity]++;
 
     this.errorMetrics.set(error.type, existing);
   }
@@ -447,15 +453,8 @@ export class PayTabsErrorHandlerService {
         traceId: this.generateTraceId(),
       },
       data: {
-        paymentId: context.paymentId || 'unknown',
-        errorType: error.type,
-        errorCode: error.code,
-        errorMessage: error.message,
-        errorStack: error.details?.stack,
+        error: error,
         context: context,
-        severity: error.severity,
-        recoverable: error.retryable,
-        retryStrategy: this.determineRecoveryStrategy(error, context),
       },
     };
 
@@ -617,9 +616,13 @@ export class PayTabsErrorHandlerService {
     Object.values(PayTabsErrorType).forEach(errorType => {
       this.errorMetrics.set(errorType, {
         errorType,
+        count: 0,
         totalCount: 0,
         lastOccurrence: new Date(),
         averageResolutionTime: 0,
+        successfulRetries: 0,
+        failedRetries: 0,
+        totalAttempts: 0,
         retrySuccessRate: 0,
         severityDistribution: {
           [PayTabsErrorSeverity.LOW]: 0,

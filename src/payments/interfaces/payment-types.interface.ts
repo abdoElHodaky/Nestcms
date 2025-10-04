@@ -268,13 +268,12 @@ export interface CircuitEventData {
 
 
 
-export interface PaymentErrorEvent {
-  type: PaymentEventType;
-  priority: PaymentEventPriority;
-  error: PayTabsError;
-  context: PayTabsErrorContext;
-  timestamp: Date;
-  correlationId: string;
+export interface PaymentErrorEvent extends BasePaymentEvent {
+  type: PaymentEventType.PAYMENT_ERROR_OCCURRED;
+  data: {
+    error: PayTabsError;
+    context: PayTabsErrorContext;
+  };
 }
 
 export interface PerformanceMetricEvent extends BasePaymentEvent {
@@ -287,13 +286,58 @@ export interface PerformanceMetricEvent extends BasePaymentEvent {
     errorRate: number;
     throughput: number;
     timestamp: Date;
-    metadata?: Record<string, any>;
     metricName?: string;
     metricValue?: any;
     metricUnit?: string;
     tags?: Record<string, string>;
     context?: Record<string, any>;
   };
+  metadata: {
+    source: string;
+    userId?: string;
+    sessionId?: string;
+    ipAddress?: string;
+    userAgent?: string;
+    traceId?: string;
+    spanId?: string;
+  };
+}
+
+// Union type for all payment events
+export type PaymentEvent = 
+  | PaymentInitiatedEvent
+  | PaymentProcessingEvent
+  | PaymentCompletedEvent
+  | PaymentFailedEvent
+  | WebhookReceivedEvent
+  | CircuitBreakerEvent
+  | PaymentAuditEvent
+  | SecurityEvent
+  | PerformanceMetricEvent
+  | PaymentErrorEvent;
+
+// Payment Saga for orchestrating payment workflows
+export interface PaymentSaga {
+  id: string;
+  paymentId: string;
+  status: 'PENDING' | 'PROCESSING' | 'COMPLETED' | 'FAILED' | 'CANCELLED';
+  steps: PaymentSagaStep[];
+  currentStep: number;
+  createdAt: Date;
+  updatedAt: Date;
+  metadata?: Record<string, any>;
+}
+
+export interface PaymentSagaStep {
+  id: string;
+  name: string;
+  status: 'PENDING' | 'PROCESSING' | 'COMPLETED' | 'FAILED' | 'SKIPPED';
+  action: string;
+  compensationAction?: string;
+  data?: Record<string, any>;
+  error?: string;
+  startedAt?: Date;
+  completedAt?: Date;
 }
 
 // ============================================================================
@@ -609,6 +653,15 @@ export interface PayTabsConfig {
   enableMetrics: boolean;
 }
 
+export interface PayTabsRetryConfig {
+  maxRetries: number;
+  baseDelay: number;
+  maxDelay: number;
+  backoffMultiplier: number;
+  retryableErrors: PayTabsErrorType[];
+  enableJitter: boolean;
+}
+
 export interface PayTabsRequest {
   amount: number;
   currency: string;
@@ -654,19 +707,7 @@ export interface PayTabsVerificationResult {
 // PERFORMANCE AND METRICS
 // ============================================================================
 
-export interface PerformanceMetricEvent {
-  id: string;
-  type: PaymentEventType;
-  timestamp: Date;
-  version: string;
-  priority: PaymentEventPriority;
-  status: PaymentEventStatus;
-  correlationId: string;
-  aggregateId: string;
-  aggregateType: string;
-  metadata: Record<string, any>;
-  data?: Record<string, any>;
-}
+
 
 export interface PaymentCallbackDto {
   transactionId: string;
