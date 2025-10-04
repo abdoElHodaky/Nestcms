@@ -423,20 +423,7 @@ export class WebhookSecurityService {
     return rateLimitData.count > this.config.rateLimitMax;
   }
 
-  /**
-   * Calculate security score based on validation results
-   */
-  private calculateSecurityScore(result: WebhookValidationResult): number {
-    let score = 0;
 
-    if (result.signatureValid) score += 40;
-    if (result.timestampValid) score += 20;
-    if (result.ipWhitelisted) score += 15;
-    if (!result.replayDetected) score += 15;
-    if (!result.rateLimitExceeded) score += 10;
-
-    return score;
-  }
 
   /**
    * Finalize validation result with timing and metrics
@@ -509,14 +496,6 @@ export class WebhookSecurityService {
         reason: `Security violation detected: ${violationType}`,
         securityScore: this.calculateSecurityScore(violationType),
         detectedAt: new Date(),
-        additionalData: {
-          violationType,
-          payloadSize: Buffer.byteLength(request.payload, 'utf8'),
-          headers: request.headers,
-          timestamp: request.timestamp,
-        },
-        detectedAt: new Date(),
-        mitigationActions: this.getMitigationActions(violationType),
       },
     };
 
