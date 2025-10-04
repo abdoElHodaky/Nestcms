@@ -22,10 +22,10 @@ import { PaymentSchema } from './models/payment.schema';
 // ============================================================================
 // UNIFIED SERVICES (New Architecture)
 // ============================================================================
-import { PaymentService } from './services/core/payment.service';
-import { PayTabsProviderService } from './services/providers/paytabs-provider.service';
-import { PaymentErrorHandlerService } from './services/error/payment-error-handler.service';
-import { PaymentEventService } from './services/events/payment-events.service';
+import { PaymentService } from './payments.service';
+// import { PayTabsProviderService } from './services/providers/paytabs-provider.service';
+// import { PaymentErrorHandlerService } from './services/error/payment-error-handler.service';
+// import { PaymentEventService } from './services/events/payment-events.service';
 
 // ============================================================================
 // EXISTING SPECIALIZED SERVICES (Kept for specific functionality)
@@ -92,18 +92,18 @@ import { ContractsModule } from '../contracts/contracts.module';
       provide: PaymentService,
       useClass: PaymentService,
     },
-    {
-      provide: PayTabsProviderService,
-      useClass: PayTabsProviderService,
-    },
-    {
-      provide: PaymentErrorHandlerService,
-      useClass: PaymentErrorHandlerService,
-    },
-    {
-      provide: PaymentEventService,
-      useClass: PaymentEventService,
-    },
+    // {
+    //   provide: PayTabsProviderService,
+    //   useClass: PayTabsProviderService,
+    // },
+    // {
+    //   provide: PaymentErrorHandlerService,
+    //   useClass: PaymentErrorHandlerService,
+    // },
+    // {
+    //   provide: PaymentEventService,
+    //   useClass: PaymentEventService,
+    // },
     
     // ========================================================================
     // SPECIALIZED SERVICES (Kept for specific functionality)
@@ -135,11 +135,7 @@ import { ContractsModule } from '../contracts/contracts.module';
     // ========================================================================
     // LEGACY CONTROLLERS (Backward Compatibility - Deprecated in v4.0)
     // ========================================================================
-    {
-      path: 'legacy',
-      provide: LegacyPaymentController,
-      useClass: LegacyPaymentController,
-    },
+    LegacyPaymentController,
   ],
   
   exports: [
@@ -147,9 +143,9 @@ import { ContractsModule } from '../contracts/contracts.module';
     // UNIFIED SERVICES (For use by other modules)
     // ========================================================================
     PaymentService,
-    PayTabsProviderService,
-    PaymentErrorHandlerService,
-    PaymentEventService,
+    // PayTabsProviderService,
+    // PaymentErrorHandlerService,
+    // PaymentEventService,
     WebhookSecurityService,
     
     // ========================================================================
@@ -206,4 +202,3 @@ export class PaymentsModule {
  * All functionality has been consolidated into the unified PaymentController
  * with versioned endpoints for backward compatibility.
  */
-

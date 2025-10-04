@@ -578,7 +578,7 @@ export class EventDrivenCircuitBreakerService {
     
     const event: CircuitBreakerEvent = {
       id: this.generateEventId(),
-      type: this.getEventTypeForState(newState),
+      type: this.getEventTypeForState(newState) as PaymentEventType.CIRCUIT_BREAKER_OPENED | PaymentEventType.CIRCUIT_BREAKER_CLOSED | PaymentEventType.CIRCUIT_BREAKER_HALF_OPEN,
       timestamp: new Date(),
       version: '2.0',
       priority: newState === CircuitBreakerState.OPEN ? PaymentEventPriority.HIGH : PaymentEventPriority.MEDIUM,
@@ -629,11 +629,17 @@ export class EventDrivenCircuitBreakerService {
         traceId: this.generateTraceId(),
       },
       data: {
+        serviceName,
+        operationName: tags.operation || 'unknown',
+        duration: metricName === 'response_time' ? metricValue : 0,
+        success: tags.status === 'success',
+        errorRate: this.circuits.get(serviceName)?.metrics.errorRate || 0,
+        throughput: this.circuits.get(serviceName)?.metrics.throughput || 0,
+        timestamp: new Date(),
         metricName,
         metricValue,
         metricUnit: metricName === 'response_time' ? 'milliseconds' : 'count',
         tags,
-        timestamp: new Date(),
         context: {
           service: serviceName,
           operation: tags.operation || 'unknown',
