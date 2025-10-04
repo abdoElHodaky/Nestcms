@@ -119,9 +119,12 @@ export class PaymentErrorHandlerService {
   getErrorHealthStatus() {
     return {
       status: 'healthy',
+      healthy: true,
       errorRate: 0.05,
       lastError: null,
       totalErrors: 0,
+      criticalErrors: 0,
+      topErrors: [],
       timestamp: new Date(),
     };
   }

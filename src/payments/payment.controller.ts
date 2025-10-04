@@ -372,7 +372,7 @@ export class PaymentController {
           errorRate: healthStatus.errorRate,
           topErrors: healthStatus.topErrors,
         },
-        detailed: Object.fromEntries(allMetrics),
+        detailed: allMetrics,
       };
 
     } catch (error) {
