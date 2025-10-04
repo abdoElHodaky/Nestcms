@@ -500,11 +500,15 @@ export class WebhookSecurityService {
         traceId: this.generateTraceId(),
       },
       data: {
-        eventType: 'WEBHOOK_SECURITY_VIOLATION',
+        securityEventType: this.mapViolationTypeToSecurityEventType(violationType),
         severity: this.getViolationSeverity(violationType),
         description: `Webhook security violation: ${violationType}`,
-        sourceIp: request.ipAddress,
+        ipAddress: request.ipAddress,
         userAgent: request.userAgent,
+        blocked: true,
+        reason: `Security violation detected: ${violationType}`,
+        securityScore: this.calculateSecurityScore(violationType),
+        detectedAt: new Date(),
         additionalData: {
           violationType,
           payloadSize: Buffer.byteLength(request.payload, 'utf8'),
@@ -536,6 +540,40 @@ export class WebhookSecurityService {
     };
 
     return severityMap[violationType] || 'medium';
+  }
+
+  /**
+   * Map violation type to security event type
+   */
+  private mapViolationTypeToSecurityEventType(violationType: string): 'signature_invalid' | 'replay_attack' | 'rate_limit_exceeded' | 'ip_blocked' | 'suspicious_activity' {
+    const typeMap: Record<string, 'signature_invalid' | 'replay_attack' | 'rate_limit_exceeded' | 'ip_blocked' | 'suspicious_activity'> = {
+      'INVALID_SIGNATURE': 'signature_invalid',
+      'REPLAY_ATTACK': 'replay_attack',
+      'RATE_LIMIT_EXCEEDED': 'rate_limit_exceeded',
+      'IP_NOT_WHITELISTED': 'ip_blocked',
+      'PAYLOAD_SIZE_EXCEEDED': 'suspicious_activity',
+      'INVALID_TIMESTAMP': 'suspicious_activity',
+      'VALIDATION_ERROR': 'suspicious_activity',
+    };
+
+    return typeMap[violationType] || 'suspicious_activity';
+  }
+
+  /**
+   * Calculate security score based on violation type
+   */
+  private calculateSecurityScore(violationType: string): number {
+    const scoreMap: Record<string, number> = {
+      'INVALID_SIGNATURE': 0.1,
+      'REPLAY_ATTACK': 0.0,
+      'RATE_LIMIT_EXCEEDED': 0.5,
+      'IP_NOT_WHITELISTED': 0.2,
+      'PAYLOAD_SIZE_EXCEEDED': 0.7,
+      'INVALID_TIMESTAMP': 0.3,
+      'VALIDATION_ERROR': 0.4,
+    };
+
+    return scoreMap[violationType] || 0.5;
   }
 
   /**
