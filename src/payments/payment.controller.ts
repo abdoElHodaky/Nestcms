@@ -51,12 +51,9 @@ import {
 import { Payment } from './interface/payment.interface';
 
 // Services
-import { PaymentService } from './services/core/payment.service';
+import { PaymentService } from './payments.service';
 import { WebhookSecurityService } from './services/webhook-security.service';
-import { PaymentErrorHandlerService } from './services/error/payment-error-handler.service';
-
-// Legacy Services (for backward compatibility)
-import { PaymentService as LegacyPaymentService } from './payments.service';
+// import { PaymentErrorHandlerService } from './services/error/payment-error-handler.service';
 
 export interface PaymentControllerOptions {
   enableSecurity?: boolean;
@@ -555,4 +552,3 @@ export class PaymentController {
     return `ctrl_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
   }
 }
-

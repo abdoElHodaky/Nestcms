@@ -629,11 +629,17 @@ export class EventDrivenCircuitBreakerService {
         traceId: this.generateTraceId(),
       },
       data: {
+        serviceName,
+        operationName: tags.operation || 'unknown',
+        duration: metricName === 'response_time' ? metricValue : 0,
+        success: tags.status === 'success',
+        errorRate: this.circuits.get(serviceName)?.metrics.errorRate || 0,
+        throughput: this.circuits.get(serviceName)?.metrics.throughput || 0,
+        timestamp: new Date(),
         metricName,
         metricValue,
         metricUnit: metricName === 'response_time' ? 'milliseconds' : 'count',
         tags,
-        timestamp: new Date(),
         context: {
           service: serviceName,
           operation: tags.operation || 'unknown',
