@@ -1,0 +1,323 @@
+version: '3.8'
+
+services:
+  # ===== MONGODB REPLICA SET CLUSTER =====
+  
+  # MongoDB Primary Database
+  mongodb-primary:
+    image: mongo:7.0
+    container_name: nestcms-mongo-primary
+    hostname: mongodb-primary
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: nestcms
+    volumes:
+      - mongodb_primary_data:/data/db
+      - mongodb_primary_config:/data/configdb
+      - ./scripts/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    command: >
+      mongod 
+      --replSet nestcms-rs 
+      --bind_ip_all 
+      --port 27017
+      --oplogSize 128
+      --wiredTigerCacheSizeGB 1
+      --wiredTigerCollectionBlockCompressor snappy
+    networks:
+      - nestcms-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # MongoDB Read Replica 1 - Analytics Workload
+  mongodb-replica1:
+    image: mongo:7.0
+    container_name: nestcms-mongo-replica1
+    hostname: mongodb-replica1
+    restart: unless-stopped
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+    volumes:
+      - mongodb_replica1_data:/data/db
+      - mongodb_replica1_config:/data/configdb
+    command: >
+      mongod 
+      --replSet nestcms-rs 
+      --bind_ip_all 
+      --port 27017
+      --oplogSize 128
+      --wiredTigerCacheSizeGB 0.5
+      --wiredTigerCollectionBlockCompressor snappy
+    depends_on:
+      mongodb-primary:
+        condition: service_healthy
+    networks:
+      - nestcms-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # MongoDB Read Replica 2 - Reporting Workload
+  mongodb-replica2:
+    image: mongo:7.0
+    container_name: nestcms-mongo-replica2
+    hostname: mongodb-replica2
+    restart: unless-stopped
+    ports:
+      - "27019:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+    volumes:
+      - mongodb_replica2_data:/data/db
+      - mongodb_replica2_config:/data/configdb
+    command: >
+      mongod 
+      --replSet nestcms-rs 
+      --bind_ip_all 
+      --port 27017
+      --oplogSize 128
+      --wiredTigerCacheSizeGB 0.5
+      --wiredTigerCollectionBlockCompressor snappy
+    depends_on:
+      mongodb-primary:
+        condition: service_healthy
+    networks:
+      - nestcms-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # MongoDB Read Replica 3 - Aggregation Workload
+  mongodb-replica3:
+    image: mongo:7.0
+    container_name: nestcms-mongo-replica3
+    hostname: mongodb-replica3
+    restart: unless-stopped
+    ports:
+      - "27020:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+    volumes:
+      - mongodb_replica3_data:/data/db
+      - mongodb_replica3_config:/data/configdb
+    command: >
+      mongod 
+      --replSet nestcms-rs 
+      --bind_ip_all 
+      --port 27017
+      --oplogSize 128
+      --wiredTigerCacheSizeGB 0.5
+      --wiredTigerCollectionBlockCompressor snappy
+    depends_on:
+      mongodb-primary:
+        condition: service_healthy
+    networks:
+      - nestcms-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Redis Cache
+  redis:
+    image: redis:7.2-alpine
+    container_name: nestcms-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    environment:
+      REDIS_PASSWORD: redis123
+    command: redis-server --requirepass redis123 --maxmemory 512mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    networks:
+      - nestcms-network
+
+  # Redis Commander (Optional - for Redis management)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: nestcms-redis-commander
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      REDIS_HOSTS: local:redis:6379:0:redis123
+    depends_on:
+      - redis
+    networks:
+      - nestcms-network
+
+  # MongoDB Express (Optional - for MongoDB management)
+  mongo-express:
+    image: mongo-express:1.0.2
+    container_name: nestcms-mongo-express
+    restart: unless-stopped
+    ports:
+      - "8082:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password123
+      ME_CONFIG_MONGODB_URL: mongodb://admin:password123@mongodb-primary:27017/
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: admin123
+    depends_on:
+      - mongodb-primary
+    networks:
+      - nestcms-network
+
+  # ===== NESTCMS APPLICATION =====
+  
+  # NestCMS Application with Read Replica Support
+  nestcms-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nestcms-app
+    hostname: nestcms-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      # Application Configuration
+      NODE_ENV: production
+      PORT: 3000
+      
+      # MongoDB Configuration with Read Replicas
+      MONGO_URI: mongodb://admin:password123@mongodb-primary:27017/nestcms?authSource=admin&replicaSet=nestcms-rs&readPreference=primary
+      MONGO_READ_REPLICA_1: mongodb://admin:password123@mongodb-replica1:27017/nestcms?authSource=admin&readPreference=secondary&readPreferenceTags=zone:analytics
+      MONGO_READ_REPLICA_2: mongodb://admin:password123@mongodb-replica2:27017/nestcms?authSource=admin&readPreference=secondary&readPreferenceTags=zone:reporting
+      MONGO_READ_REPLICA_3: mongodb://admin:password123@mongodb-replica3:27017/nestcms?authSource=admin&readPreference=secondary&readPreferenceTags=zone:aggregation
+      
+      # Connection Pool Configuration
+      MONGO_PRIMARY_POOL_SIZE: 10
+      MONGO_REPLICA_POOL_SIZE: 5
+      
+      # Redis Cache Configuration
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: redis123
+      REDIS_DB: 0
+      
+      # Security Configuration
+      JWT_SECRET: your-super-secret-jwt-key-change-in-production-please
+      JWT_EXPIRES_IN: 24h
+      
+      # Performance Configuration
+      MAX_AGGREGATION_TIME_MS: 30000
+      DEFAULT_CACHE_TTL: 3600
+      ENABLE_QUERY_LOGGING: false
+      
+      # Monitoring Configuration
+      ENABLE_METRICS: true
+      METRICS_PORT: 9090
+      
+      # PayTabs Configuration (if needed)
+      PAYTABS_PROFILE_ID: your-profile-id
+      PAYTABS_SERVER_KEY: your-server-key
+      PAYTABS_REGION: ARE
+      
+      # Circuit Breaker Configuration
+      CIRCUIT_BREAKER_TIMEOUT: 30000
+      CIRCUIT_BREAKER_ERROR_THRESHOLD: 50
+      CIRCUIT_BREAKER_RESET_TIMEOUT: 30000
+      
+    depends_on:
+      mongodb-primary:
+        condition: service_healthy
+      mongodb-replica1:
+        condition: service_healthy
+      mongodb-replica2:
+        condition: service_healthy
+      mongodb-replica3:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - nestcms-network
+    volumes:
+      - ./logs:/app/logs
+      - nestcms_uploads:/app/uploads
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+volumes:
+  # MongoDB Data Volumes
+  mongodb_primary_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/mongodb/primary
+  mongodb_primary_config:
+    driver: local
+  mongodb_replica1_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/mongodb/replica1
+  mongodb_replica1_config:
+    driver: local
+  mongodb_replica2_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/mongodb/replica2
+  mongodb_replica2_config:
+    driver: local
+  mongodb_replica3_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/mongodb/replica3
+  mongodb_replica3_config:
+    driver: local
+  
+  # Redis Data Volume
+  redis_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/redis
+  
+  # Application Data Volumes
+  nestcms_uploads:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./uploads
+
+networks:
+  nestcms-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
