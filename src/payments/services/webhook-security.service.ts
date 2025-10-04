@@ -226,7 +226,7 @@ export class WebhookSecurityService {
 
       // All validations passed
       result.isValid = true;
-      result.securityScore = this.calculateSecurityScore(result);
+      result.securityScore = this.calculateValidationSecurityScore(result);
       
       this.securityMetrics.validRequests++;
       this.securityMetrics.lastValidRequest = new Date();
@@ -553,6 +553,21 @@ export class WebhookSecurityService {
     };
 
     return scoreMap[violationType] || 0.5;
+  }
+
+  /**
+   * Calculate security score based on validation results
+   */
+  private calculateValidationSecurityScore(result: WebhookValidationResult): number {
+    let score = 0;
+
+    if (result.signatureValid) score += 40;
+    if (result.timestampValid) score += 20;
+    if (result.ipWhitelisted) score += 15;
+    if (!result.replayDetected) score += 15;
+    if (!result.rateLimitExceeded) score += 10;
+
+    return score;
   }
 
   /**
