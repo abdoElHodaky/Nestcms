@@ -3,7 +3,7 @@ import { Model ,Types} from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreatePaymentDto,  PaymentLinkToContractDto } from './dto/';
 //import { PaymentLinkToContractDto } from "./dto/link-contract.dto";
-import { Payment } from './interface/payment.interface';
+import { Payment } from './interfaces/core/payment.interface';
 import { UsersService} from "../users/"
 import { ContractService} from "../contracts/"
 import { PayTabService } from "../paytabs.service";

@@ -1,5 +1,5 @@
 import { Injectable, HttpStatus } from '@nestjs/common';
-import { PayTabsError, PayTabsErrorType, PayTabsErrorContext } from '../../interfaces/payment-types.interface';
+import { PayTabsError, PayTabsErrorType, PayTabsErrorContext } from '../../interfaces/types/payment-types.interface';
 
 @Injectable()
 export class PaymentErrorHandlerService {

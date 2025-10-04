@@ -36,7 +36,7 @@ import {
   ApiBearerAuth,
   ApiSecurity,
 } from '@nestjs/swagger';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../../../auth/jwt-auth.guard';
 
 // DTOs and Interfaces
 import {
@@ -47,16 +47,16 @@ import {
   BasePaymentResponseDto,
   PaymentRedirectResponseDto,
   PaymentVerificationResponseDto,
-} from './dto';
-import { Payment } from './interface/payment.interface';
+} from '../../dto';
+import { Payment } from '../../interfaces/core/payment.interface';
 
 // Services
-import { PaymentService } from './services/core/payment.service';
-import { WebhookSecurityService } from './services/webhook-security.service';
-import { PaymentErrorHandlerService } from './services/error/payment-error-handler.service';
+import { PaymentService } from '../../services/core/payment.service';
+import { WebhookSecurityService } from '../../services/infrastructure/webhook-security.service';
+import { PaymentErrorHandlerService } from '../../services/error/payment-error-handler.service';
 
 // Legacy Services (for backward compatibility)
-import { PaymentService as LegacyPaymentService } from './payments.service';
+import { PaymentService as LegacyPaymentService } from '../../payments.service';
 
 export interface PaymentControllerOptions {
   enableSecurity?: boolean;

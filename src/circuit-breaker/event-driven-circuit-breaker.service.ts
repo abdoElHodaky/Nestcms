@@ -18,7 +18,7 @@ import {
   PaymentEventPriority, 
   PaymentEventStatus,
   PerformanceMetricEvent 
-} from '../payments/interfaces/payment-types.interface';
+} from '../payments/interfaces/types/payment-types.interface';
 
 export enum CircuitBreakerState {
   CLOSED = 'CLOSED',

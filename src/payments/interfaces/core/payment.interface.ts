@@ -1,8 +1,8 @@
 import { Prop, Schema } from "@nestjs/mongoose";
 import mongoose , {HydratedDocument,Types} from "mongoose"
 
-import { Client} from "../../users/interfaces/user";
-import {Contract} from "../../contracts/interface/contract"
+import { Client} from "../../../users/interfaces/user";
+import {Contract} from "../../../contracts/interface/contract"
 //const { Contract } = require( "../../contracts/");
 //import _Payment from "./payment.d";
 

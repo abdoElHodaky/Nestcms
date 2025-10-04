@@ -14,18 +14,25 @@
 export * from './base-payment.dto';
 
 // ============================================================================
-// SPECIFIC DTOs
+// REQUEST DTOs (Organized by Domain)
 // ============================================================================
-export * from './create-payment.dto';
-export * from './enhanced-payment.dto';
-export * from './link-contract.dto';
-export * from './payment-query.dto';
+export * from './requests';
+
+// ============================================================================
+// RESPONSE DTOs (Organized by Domain)
+// ============================================================================
+export * from './responses';
+
+// ============================================================================
+// EVENT DTOs (Organized by Domain)
+// ============================================================================
+export * from './events';
 
 // ============================================================================
 // LEGACY EXPORTS (Deprecated - will be removed in v4.0)
 // ============================================================================
-export { PaymentLinkToContractDto } from './link-contract.dto';
-export { CreatePaymentDto } from './create-payment.dto';
+export { PaymentLinkToContractDto } from './requests/link-contract.dto';
+export { CreatePaymentDto } from './requests/create-payment.dto';
 
 // ============================================================================
 // CONVENIENCE TYPE EXPORTS
@@ -40,8 +47,8 @@ export type {
 export type {
   PaymentSortBy,
   SortOrder,
-} from './payment-query.dto';
+} from './requests/payment-query.dto';
 
 export type {
   LinkingStatus,
-} from './link-contract.dto';
+} from './requests/link-contract.dto';

@@ -1,7 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional, IsDateString, IsString, IsEnum } from 'class-validator';
 import { IsObjectId } from 'class-validator-mongo-object-id';
-import { BasePaymentDto, PaymentStatus } from './base-payment.dto';
+import { BasePaymentDto, PaymentStatus } from '../base-payment.dto';
 
 /**
  * 🎯 **CREATE PAYMENT DTO**
@@ -54,4 +54,3 @@ export class CreatePaymentDto extends BasePaymentDto {
   @IsEnum(PaymentStatus)
   readonly status?: PaymentStatus = PaymentStatus.PENDING;
 }
-

@@ -21,13 +21,13 @@ import {
   PayTabsErrorContext,
   PayTabsErrorRecoveryStrategy,
   PayTabsErrorMetrics,
-} from '../interfaces/payment-types.interface';
+} from '../../interfaces/types/payment-types.interface';
 import { 
   PaymentEventType,
   PaymentErrorEvent,
   PaymentEventPriority,
   PaymentEventStatus,
-} from '../interfaces/payment-types.interface';
+} from '../../interfaces/types/payment-types.interface';
 
 export interface PayTabsErrorHandlerConfig {
   maxRetries: number;

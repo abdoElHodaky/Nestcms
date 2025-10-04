@@ -26,10 +26,10 @@ import {
   WebhookReceivedEvent,
   PaymentErrorEvent,
   PaymentAuditEvent,
-} from '../interfaces/payment-types.interface';
-import { EventDrivenCircuitBreakerService } from '../../circuit-breaker/event-driven-circuit-breaker.service';
-import { PayTabService } from '../../paytabs.service';
-import { Payment } from '../models/payment.schema';
+} from '../../interfaces/types/payment-types.interface';
+import { EventDrivenCircuitBreakerService } from '../../../circuit-breaker/event-driven-circuit-breaker.service';
+import { PayTabService } from '../../../paytabs.service';
+import { Payment } from '../../models/payment.schema';
 
 export interface PaymentRequest {
   contractId: string;

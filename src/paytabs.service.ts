@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import paytabs from "paytabs_pt2";
 import { Client } from "./users/interfaces/user";
-import { Payment } from "./payments/interface/payment.interface";
+import { Payment } from "./payments/interfaces/core/payment.interface";
 import { ContractService} from "./contracts/"
 @Injectable()
 export class PayTabService{

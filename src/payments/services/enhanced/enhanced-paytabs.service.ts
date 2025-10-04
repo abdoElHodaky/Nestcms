@@ -2,11 +2,11 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import paytabs from 'paytabs_pt2';
-import { CircuitBreakerService } from '../circuit-breaker/circuit-breaker.service';
-import { CacheService } from '../cache/cache.service';
-import { EnhancedPaymentDto, PaymentCallbackDto } from './dto/enhanced-payment.dto';
-import { PaymentEventType, PaymentEventData, PaymentEventStatus, PayTabsError, PayTabsErrorType, PayTabsErrorSeverity } from './interfaces/payment-types.interface';
-import { Payment } from './interface/payment.interface';
+import { CircuitBreakerService } from '../../../circuit-breaker/circuit-breaker.service';
+import { CacheService } from '../../../cache/cache.service';
+import { EnhancedPaymentDto, PaymentCallbackDto } from '../../dto/requests/enhanced-payment.dto';
+import { PaymentEventType, PaymentEventData, PaymentEventStatus, PayTabsError, PayTabsErrorType, PayTabsErrorSeverity } from '../../interfaces/types/payment-types.interface';
+import { Payment } from '../../interfaces/core/payment.interface';
 
 export interface PayTabsConfig {
   profileId: string;

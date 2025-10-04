@@ -20,17 +20,15 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { PaymentSchema } from './models/payment.schema';
 
 // ============================================================================
-// UNIFIED SERVICES (New Architecture)
+// UNIFIED SERVICES (New Architecture - Using Consolidated Imports)
 // ============================================================================
-import { PaymentService } from './services/core/payment.service';
-import { PayTabsProviderService } from './services/providers/paytabs-provider.service';
-import { PaymentErrorHandlerService } from './services/error/payment-error-handler.service';
-import { PaymentEventService } from './services/events/payment-events.service';
-
-// ============================================================================
-// EXISTING SPECIALIZED SERVICES (Kept for specific functionality)
-// ============================================================================
-import { WebhookSecurityService } from './services/webhook-security.service';
+import {
+  PaymentService,
+  PayTabsProviderService,
+  PaymentErrorHandlerService,
+  PaymentEventService,
+  WebhookSecurityService,
+} from './services';
 
 // ============================================================================
 // LEGACY SERVICES (For backward compatibility - will be deprecated in v4.0)
@@ -39,14 +37,12 @@ import { PaymentService as LegacyPaymentService } from './payments.service';
 import { PayTabService } from '../paytabs.service';
 
 // ============================================================================
-// UNIFIED CONTROLLER
+// UNIFIED CONTROLLERS (Using Consolidated Imports)
 // ============================================================================
-import { PaymentController } from './payment.controller';
-
-// ============================================================================
-// LEGACY CONTROLLERS (For backward compatibility - will be deprecated in v4.0)
-// ============================================================================
-import { PaymentController as LegacyPaymentController } from './payments.controller';
+import {
+  PaymentController,
+  PaymentControllerV1 as LegacyPaymentController,
+} from './controllers';
 
 // ============================================================================
 // EXTERNAL MODULES

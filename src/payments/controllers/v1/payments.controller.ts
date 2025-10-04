@@ -1,11 +1,11 @@
 import { Controller, Post, Body, Get, Delete, Param, UseInterceptors, Put,UseGuards,Request ,Res } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { PermGuard } from "../perm.guard";
-import { CreatePaymentDto } from './dto/create-payment.dto';
-import { Permissions } from "../permissions/permissions-models.decorator";
-import { Perms, OnModel } from '../permissions/permissions-models.enum';
-import { PaymentLinkToContractDto } from "./dto/link-contract.dto";
-import { PaymentService } from './payments.service';
+import { PermGuard } from "../../../perm.guard";
+import { CreatePaymentDto } from '../../dto/requests/create-payment.dto';
+import { Permissions } from "../../../permissions/permissions-models.decorator";
+import { Perms, OnModel } from '../../../permissions/permissions-models.enum';
+import { PaymentLinkToContractDto } from "../../dto/requests/link-contract.dto";
+import { PaymentService } from '../../payments.service';
 import { ApiTags,ApiSecurity,ApiBearerAuth,ApiExcludeEndpoint,ApiOperation } from "@nestjs/swagger";
 //import { CurrentUserInterceptor } from '../currentuser.interceptor';
 //import { UpdateArticleDto } from './dto/update-article.dto';

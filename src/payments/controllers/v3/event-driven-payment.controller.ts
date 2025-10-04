@@ -28,11 +28,11 @@ import {
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiBody, ApiParam } from '@nestjs/swagger';
-import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
-import { EventDrivenPaymentService, PaymentRequest } from '../services/event-driven-payment.service';
-import { EventDrivenCircuitBreakerService } from '../../circuit-breaker/event-driven-circuit-breaker.service';
-import { WebhookSecurityService } from '../services/webhook-security.service';
-import { PayTabsErrorHandlerService } from '../services/paytabs-error-handler.service';
+import { JwtAuthGuard } from '../../../auth/jwt-auth.guard';
+import { EventDrivenPaymentService, PaymentRequest } from '../../services/enhanced/event-driven-payment.service';
+import { EventDrivenCircuitBreakerService } from '../../../circuit-breaker/event-driven-circuit-breaker.service';
+import { WebhookSecurityService } from '../../services/infrastructure/webhook-security.service';
+import { PayTabsErrorHandlerService } from '../../services/infrastructure/paytabs-error-handler.service';
 import { IsString, IsNumber, IsOptional, IsObject, ValidateNested, Min } from 'class-validator';
 import { Type } from 'class-transformer';
 
@@ -602,9 +602,9 @@ export class EventDrivenPaymentController {
         timestamp: new Date().toISOString(),
         summary: {
           totalServices: circuitBreakerStats.size,
-          healthyServices: Array.from(circuitBreakerStats.values()).filter(s => s.state === 'CLOSED').length,
-          degradedServices: Array.from(circuitBreakerStats.values()).filter(s => s.state === 'HALF_OPEN').length,
-          unhealthyServices: Array.from(circuitBreakerStats.values()).filter(s => s.state === 'OPEN').length,
+          healthyServices: Array.from(circuitBreakerStats.values()).filter((s: any) => s.state === 'CLOSED').length,
+          degradedServices: Array.from(circuitBreakerStats.values()).filter((s: any) => s.state === 'HALF_OPEN').length,
+          unhealthyServices: Array.from(circuitBreakerStats.values()).filter((s: any) => s.state === 'OPEN').length,
         },
       };
 

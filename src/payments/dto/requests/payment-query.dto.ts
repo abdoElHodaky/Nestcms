@@ -22,7 +22,7 @@ import {
   IsBoolean,
 } from 'class-validator';
 import { Transform, Type } from 'class-transformer';
-import { PaymentCurrency, PaymentStatus } from './base-payment.dto';
+import { PaymentCurrency, PaymentStatus } from '../base-payment.dto';
 
 export enum PaymentSortBy {
   CREATED_AT = 'createdAt',
@@ -256,4 +256,3 @@ export class PaymentListResponseDto {
     correlationId?: string;
   };
 }
-
