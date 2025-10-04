@@ -196,6 +196,31 @@ export class EnhancedPayTabsResilientService {
       const result = await this.executeWithResilience(
         async () => {
           // Convert PayTabsRequest to Payment format expected by PayTabService
+          // Create a proper client object that matches the Client interface
+          const clientData = {
+            _id: new Types.ObjectId(),
+            fullName: request.clientInfo.name,
+            username: request.clientInfo.email, // Use email as username fallback
+            phone: request.clientInfo.phone,
+            email: request.clientInfo.email,
+            password: '', // Not needed for payment processing
+            Age: 0, // Default value
+            isEmployee: false,
+            isAdmin: false,
+            employeeType: '',
+            address: request.clientInfo.address || {},
+            toArrayP: function() {
+              return [
+                this.fullName,
+                this.email,
+                this.phone,
+                Object.values(this.address || {}),
+                "","","","",""
+              ];
+            },
+            ...request.clientInfo // Spread any additional properties
+          };
+
           const paymentData = {
             _id: new Types.ObjectId(),
             title: request.description,
@@ -203,14 +228,11 @@ export class EnhancedPayTabsResilientService {
             status: 'pending',
             amount: request.amount.toString(),
             currency: request.currency,
-            client: request.clientInfo,
+            client: clientData,
             contractId: request.metadata?.contractId || new Types.ObjectId(),
-            toArrayP: async () => ({
-              amount: request.amount,
-              currency: request.currency,
-              description: request.description,
-              cart_id: this.generatePaymentId(),
-            })
+            toArrayP: function() {
+              return [this._id, this.amount, this.currency, this.title];
+            }
           };
           
           const urls = {
@@ -405,12 +427,14 @@ export class EnhancedPayTabsResilientService {
     operationName: string
   ): Promise<T> {
     if (this.config.circuitBreakerEnabled) {
-      return await this.circuitBreaker.execute(
+      const result = await this.circuitBreaker.execute(
         'paytabs-resilient',
         operation,
         this.config.fallbackEnabled ? () => this.createFallbackResponse(context) : undefined,
         operationName
       );
+      // Extract the actual result from CircuitBreakerExecutionResult
+      return result.result;
     } else {
       return await operation();
     }
