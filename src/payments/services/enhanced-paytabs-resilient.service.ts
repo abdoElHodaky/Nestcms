@@ -194,7 +194,28 @@ export class EnhancedPayTabsResilientService {
       // Execute with circuit breaker protection
       const result = await this.executeWithResilience(
         async () => {
-          return await this.payTabService.createPage(request, request.urls);
+          // Convert PayTabsRequest to Payment format expected by PayTabService
+          const paymentData = {
+            _id: this.generatePaymentId(),
+            title: request.description,
+            date: new Date(),
+            status: 'pending',
+            client: request.clientInfo,
+            contractId: request.metadata?.contractId || 'default',
+            toArrayP: async () => ({
+              amount: request.amount,
+              currency: request.currency,
+              description: request.description,
+              cart_id: this.generatePaymentId(),
+            })
+          };
+          
+          const urls = {
+            callback: request.callbackUrl || '',
+            return: request.redirectUrl || ''
+          };
+          
+          return await this.payTabService.createPage(paymentData, urls);
         },
         context,
         'create_payment'
@@ -292,7 +313,7 @@ export class EnhancedPayTabsResilientService {
       // Execute with circuit breaker protection
       const result = await this.executeWithResilience(
         async () => {
-          return await this.payTabService.verifyPayment(request.transactionRef);
+          return await this.payTabService.payVerify(request.transactionRef);
         },
         context,
         'verify_payment'
