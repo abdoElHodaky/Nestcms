@@ -203,6 +203,8 @@ export interface CircuitBreakerEvent extends BasePaymentEvent {
     lastFailure?: Date;
     threshold: number;
     timeout: number;
+    requestCount?: number;
+    failureCount?: number;
   };
 }
 
@@ -366,6 +368,14 @@ export interface PayTabsErrorContext {
   provider?: string;
   endpoint?: string;
   requestId?: string;
+  userId?: string;
+  contractId?: string;
+  executionTime?: number;
+  webhookId?: string;
+  correlationId?: string;
+  retryCount?: number;
+  startTime?: Date;
+  processingTime?: number;
 }
 
 export interface PayTabsErrorMetrics {
@@ -376,6 +386,9 @@ export interface PayTabsErrorMetrics {
   successfulRetries: number;
   failedRetries: number;
   totalAttempts: number;
+  totalCount: number;
+  retrySuccessRate: number;
+  severityDistribution: Record<string, number>;
 }
 
 // ============================================================================
@@ -604,6 +617,41 @@ export interface PayTabsVerificationResult {
   amount?: number;
   currency?: string;
   error?: string;
+}
+
+// ============================================================================
+// PERFORMANCE AND METRICS
+// ============================================================================
+
+export interface PerformanceMetricEvent {
+  id: string;
+  type: PaymentEventType;
+  timestamp: Date;
+  version: string;
+  priority: PaymentEventPriority;
+  status: PaymentEventStatus;
+  correlationId: string;
+  aggregateId: string;
+  aggregateType: string;
+  metadata: Record<string, any>;
+  data?: Record<string, any>;
+}
+
+export interface PaymentCallbackDto {
+  transactionId: string;
+  status: string;
+  amount: number;
+  currency: string;
+  timestamp: Date;
+  signature?: string;
+  metadata?: Record<string, any>;
+}
+
+export enum PaymentPriority {
+  LOW = 'LOW',
+  MEDIUM = 'MEDIUM',
+  HIGH = 'HIGH',
+  CRITICAL = 'CRITICAL'
 }
 
 // ============================================================================
