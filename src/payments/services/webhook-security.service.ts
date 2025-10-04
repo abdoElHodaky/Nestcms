@@ -524,18 +524,18 @@ export class WebhookSecurityService {
   /**
    * Get violation severity
    */
-  private getViolationSeverity(violationType: string): 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL' {
-    const severityMap: Record<string, 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL'> = {
-      'PAYLOAD_SIZE_EXCEEDED': 'MEDIUM',
-      'IP_NOT_WHITELISTED': 'HIGH',
-      'RATE_LIMIT_EXCEEDED': 'MEDIUM',
-      'INVALID_TIMESTAMP': 'HIGH',
-      'REPLAY_ATTACK': 'CRITICAL',
-      'INVALID_SIGNATURE': 'CRITICAL',
-      'VALIDATION_ERROR': 'HIGH',
+  private getViolationSeverity(violationType: string): 'low' | 'medium' | 'high' | 'critical' {
+    const severityMap: Record<string, 'low' | 'medium' | 'high' | 'critical'> = {
+      'PAYLOAD_SIZE_EXCEEDED': 'medium',
+      'IP_NOT_WHITELISTED': 'high',
+      'RATE_LIMIT_EXCEEDED': 'medium',
+      'INVALID_TIMESTAMP': 'high',
+      'REPLAY_ATTACK': 'critical',
+      'INVALID_SIGNATURE': 'critical',
+      'VALIDATION_ERROR': 'high',
     };
 
-    return severityMap[violationType] || 'MEDIUM';
+    return severityMap[violationType] || 'medium';
   }
 
   /**

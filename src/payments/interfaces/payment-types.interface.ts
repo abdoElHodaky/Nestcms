@@ -259,16 +259,7 @@ export interface CircuitEventData {
   lastFailure?: Date;
 }
 
-export interface SecurityEvent {
-  type: PaymentEventType;
-  severity: PayTabsErrorSeverity;
-  description: string;
-  ipAddress: string;
-  userAgent?: string;
-  timestamp: Date;
-  blocked: boolean;
-  reason?: string;
-}
+
 
 export interface PaymentErrorEvent {
   type: PaymentEventType;

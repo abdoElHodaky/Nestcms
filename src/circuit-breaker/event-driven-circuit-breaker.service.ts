@@ -651,7 +651,7 @@ export class EventDrivenCircuitBreakerService {
   /**
    * Get event type for circuit breaker state
    */
-  private getEventTypeForState(state: CircuitBreakerState): PaymentEventType {
+  private getEventTypeForState(state: CircuitBreakerState): PaymentEventType.CIRCUIT_BREAKER_OPENED | PaymentEventType.CIRCUIT_BREAKER_CLOSED | PaymentEventType.CIRCUIT_BREAKER_HALF_OPEN {
     switch (state) {
       case CircuitBreakerState.OPEN:
         return PaymentEventType.CIRCUIT_BREAKER_OPENED;

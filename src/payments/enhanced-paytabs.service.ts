@@ -328,7 +328,6 @@ export class EnhancedPayTabsService {
           paymentId,
           transactionRef,
           status: PaymentEventStatus.FAILED,
-          error: result.error,
           timestamp: new Date(),
         });
       }
