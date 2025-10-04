@@ -14,6 +14,7 @@ import { ConfigService } from '@nestjs/config';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
+import { Types } from 'mongoose';
 import { PayTabService } from '../../paytabs.service';
 import { PayTabsErrorHandlerService, ErrorHandlingResult } from './paytabs-error-handler.service';
 import { EventDrivenCircuitBreakerService } from '../../circuit-breaker/event-driven-circuit-breaker.service';
@@ -196,14 +197,14 @@ export class EnhancedPayTabsResilientService {
         async () => {
           // Convert PayTabsRequest to Payment format expected by PayTabService
           const paymentData = {
-            _id: this.generatePaymentId(),
+            _id: new Types.ObjectId(),
             title: request.description,
             date: new Date(),
             status: 'pending',
             amount: request.amount.toString(),
             currency: request.currency,
             client: request.clientInfo,
-            contractId: request.metadata?.contractId || 'default',
+            contractId: request.metadata?.contractId || new Types.ObjectId(),
             toArrayP: async () => ({
               amount: request.amount,
               currency: request.currency,
@@ -344,14 +345,14 @@ export class EnhancedPayTabsResilientService {
 
       return {
         success: isSuccess,
-        responseCode: result.responseCode || result.respCode || '400',
-        amount: result.amount || 0,
-        currency: result.currency || 'SAR',
-        message: result.message || 'Payment verification completed',
+        responseCode: result.code || '400',
+        amount: 0, // Amount not available in verification response
+        currency: 'SAR', // Default currency
+        message: isSuccess ? 'Payment verification completed' : `Payment verification failed with code: ${result.code}`,
         transactionRef: request.transactionRef,
         status: isSuccess ? 'completed' : 'failed',
-        data: result.data,
-        fromFallback: result.fromFallback || false,
+        data: result,
+        fromFallback: false,
         executionTime,
       };
 
