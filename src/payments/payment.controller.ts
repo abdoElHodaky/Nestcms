@@ -138,8 +138,8 @@ export class PaymentController {
       });
 
       throw new HttpException(
-        payTabsError.message,
-        this.mapErrorToHttpStatus(payTabsError.type)
+        payTabsError.userMessage,
+        payTabsError.httpStatus
       );
     }
   }
@@ -190,8 +190,8 @@ export class PaymentController {
       });
 
       throw new HttpException(
-        payTabsError.message,
-        this.mapErrorToHttpStatus(payTabsError.type)
+        payTabsError.userMessage,
+        payTabsError.httpStatus
       );
     }
   }
@@ -238,8 +238,8 @@ export class PaymentController {
       });
 
       throw new HttpException(
-        payTabsError.message,
-        this.mapErrorToHttpStatus(payTabsError.type)
+        payTabsError.userMessage,
+        payTabsError.httpStatus
       );
     }
   }
@@ -308,8 +308,8 @@ export class PaymentController {
       });
 
       throw new HttpException(
-        payTabsError.message,
-        this.mapErrorToHttpStatus(payTabsError.type)
+        payTabsError.userMessage,
+        payTabsError.httpStatus
       );
     }
   }
@@ -555,4 +555,3 @@ export class PaymentController {
     return `ctrl_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
   }
 }
-
