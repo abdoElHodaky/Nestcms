@@ -184,7 +184,7 @@ export class EnhancedPayTabsResilientService {
       userId,
       correlationId,
       retryCount: 0,
-      startTime,
+      startTime: new Date(startTime),
     };
 
     try {
@@ -194,7 +194,7 @@ export class EnhancedPayTabsResilientService {
       // Execute with circuit breaker protection
       const result = await this.executeWithResilience(
         async () => {
-          return await this.payTabService.createPayment(request);
+          return await this.payTabService.createPage(request, request.urls);
         },
         context,
         'create_payment'
@@ -285,7 +285,7 @@ export class EnhancedPayTabsResilientService {
       userId,
       correlationId,
       retryCount: 0,
-      startTime,
+      startTime: new Date(startTime),
     };
 
     try {

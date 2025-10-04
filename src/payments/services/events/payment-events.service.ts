@@ -20,4 +20,14 @@ export class PaymentEventService {
   emitPaymentRefunded(paymentData: any) {
     this.eventEmitter.emit('payment.refunded', paymentData);
   }
+
+  setupInternalListeners() {
+    // Set up internal event listeners for payment processing
+    console.log('Setting up internal payment event listeners');
+  }
+
+  removeInternalListeners() {
+    // Remove internal event listeners
+    console.log('Removing internal payment event listeners');
+  }
 }

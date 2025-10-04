@@ -135,11 +135,7 @@ import { ContractsModule } from '../contracts/contracts.module';
     // ========================================================================
     // LEGACY CONTROLLERS (Backward Compatibility - Deprecated in v4.0)
     // ========================================================================
-    {
-      path: 'legacy',
-      provide: LegacyPaymentController,
-      useClass: LegacyPaymentController,
-    },
+    LegacyPaymentController,
   ],
   
   exports: [
@@ -206,4 +202,3 @@ export class PaymentsModule {
  * All functionality has been consolidated into the unified PaymentController
  * with versioned endpoints for backward compatibility.
  */
-
