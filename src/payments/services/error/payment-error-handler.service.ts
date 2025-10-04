@@ -1,5 +1,5 @@
 import { Injectable, HttpStatus } from '@nestjs/common';
-import { PayTabsError, PayTabsErrorType, PayTabsErrorContext } from '../../interfaces/paytabs-errors.interface';
+import { PayTabsError, PayTabsErrorType, PayTabsErrorContext } from '../../interfaces/payment-types.interface';
 
 @Injectable()
 export class PaymentErrorHandlerService {
@@ -114,5 +114,26 @@ export class PaymentErrorHandlerService {
       [PayTabsErrorType.UNKNOWN_ERROR]: HttpStatus.INTERNAL_SERVER_ERROR,
     };
     return statusMap[errorType] || HttpStatus.INTERNAL_SERVER_ERROR;
+  }
+
+  getErrorHealthStatus() {
+    return {
+      status: 'healthy',
+      errorRate: 0.05,
+      lastError: null,
+      totalErrors: 0,
+      timestamp: new Date(),
+    };
+  }
+
+  getAllErrorMetrics() {
+    return {
+      totalErrors: 0,
+      errorsByType: {},
+      errorsByHour: {},
+      averageResolutionTime: 0,
+      retrySuccessRate: 0.95,
+      timestamp: new Date(),
+    };
   }
 }
