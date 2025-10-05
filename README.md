@@ -12,11 +12,32 @@
   <img src="https://img.shields.io/badge/Docker-Enabled-blue?logo=docker" alt="Docker Support" />
   <img src="https://img.shields.io/badge/Kubernetes-Ready-326CE5?logo=kubernetes" alt="Kubernetes Ready" />
   <img src="https://img.shields.io/badge/Swagger-API%20Docs-85EA2D?logo=swagger" alt="Swagger Documentation" />
+  <img src="https://img.shields.io/badge/PayTabs-Integrated-orange" alt="PayTabs Integration" />
+  <img src="https://img.shields.io/badge/JWT-Authentication-purple" alt="JWT Authentication" />
 </p>
 
 <p align="center">
-  <strong>Enterprise-grade Construction Company Management System built with NestJS, TypeScript, and MongoDB</strong>
+  <strong>🏆 Enterprise-grade Construction Company Management System built with NestJS, TypeScript, and MongoDB</strong>
 </p>
+
+---
+
+## 📋 Table of Contents
+
+- [🎯 Project Overview](#-project-overview)
+- [✨ Key Features](#-key-features)
+- [🏛️ System Architecture](#️-system-architecture)
+- [📊 Architecture Diagrams](#-architecture-diagrams)
+- [🚀 Getting Started](#-getting-started)
+- [🔧 Development](#-development)
+- [🧪 Testing](#-testing)
+- [🐳 Docker Deployment](#-docker-deployment)
+- [📚 API Documentation](#-api-documentation)
+- [🔐 Security](#-security)
+- [💰 Payment Integration](#-payment-integration)
+- [📈 Performance](#-performance)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
 
 ---
 
@@ -28,41 +49,60 @@
 - **Industry**: Construction & Project Management
 - **Target Users**: Construction companies, project managers, contractors, clients
 - **Core Purpose**: End-to-end construction project lifecycle management
+- **Scale**: Multi-organization, multi-project enterprise solution
+
+### 🎯 **Key Business Value**
+- **Operational Efficiency**: Streamlined project workflows and automated processes
+- **Financial Control**: Integrated payment processing and earnings tracking
+- **Quality Assurance**: Structured project steps and milestone management
+- **Scalability**: Multi-organization support with role-based access control
+- **Transparency**: Real-time project status and financial reporting
 
 ---
 
 ## ✨ **Key Features**
 
 ### 🏗️ **Project Management**
-- **Project Lifecycle**: Complete project tracking from initiation to completion
-- **Project Steps**: Granular step-by-step project progression management
-- **Design Management**: Project design document handling and versioning
-- **Worker Assignment**: Project team and worker allocation system
-- **Status Tracking**: Real-time project status monitoring and reporting
+- **📋 Complete Project Lifecycle**: From initiation to completion with status tracking
+- **🔄 Project Steps Management**: Granular step-by-step progression with dependencies
+- **🎨 Design Management**: Project design document handling and versioning
+- **👷 Worker Assignment**: Dynamic team allocation and role management
+- **📊 Status Tracking**: Real-time project monitoring and progress reporting
+- **📝 Project Notes**: Collaborative note-taking and communication tracking
 
 ### 👥 **User & Organization Management**
-- **Multi-Role System**: Support for clients, employees, contractors, and administrators
-- **Organization Management**: Multi-organization support with hierarchical structures
-- **Permission System**: Granular role-based access control (RBAC)
-- **User Authentication**: JWT-based secure authentication with Passport strategies
+- **🔐 Multi-Role System**: Support for Clients, Employees, Contractors, Admins, and Owners
+- **🏢 Organization Management**: Multi-organization support with hierarchical structures
+- **🛡️ Permission System**: Granular role-based access control (RBAC)
+- **🔑 Authentication**: JWT-based secure authentication with Passport strategies
+- **👤 User Profiles**: Comprehensive user management with address and contact info
 
 ### 💰 **Financial Operations**
-- **Payment Processing**: Integrated PayTabs payment gateway with complete lifecycle management
-- **Contract Management**: Digital contract creation and management
-- **Earnings Tracking**: Project-based earnings and commission calculations with aggregation
-- **Offer Management**: Bid and proposal management system
-- **Multi-Currency Support**: International payment processing capabilities
-- **Transaction Verification**: Secure payment verification and callback handling
+- **💳 Payment Processing**: Integrated PayTabs payment gateway with complete lifecycle management
+- **📄 Contract Management**: Digital contract creation, signing, and management
+- **📈 Earnings Tracking**: Project-based earnings and commission calculations with aggregation
+- **💼 Offer Management**: Bid and proposal management system with approval workflows
+- **🌍 Multi-Currency Support**: International payment processing capabilities
+- **✅ Transaction Verification**: Secure payment verification and callback handling
+- **💸 Commission System**: Automated commission calculations and distribution
 
 ### 📅 **Scheduling & Planning**
-- **Project Scheduling**: Timeline and milestone management
-- **Resource Planning**: Worker and equipment scheduling
-- **Calendar Integration**: Schedule coordination and conflict resolution
+- **⏰ Project Scheduling**: Timeline and milestone management with dependencies
+- **👷 Resource Planning**: Worker and equipment scheduling optimization
+- **📆 Calendar Integration**: Schedule coordination and conflict resolution
+- **🔄 Dynamic Rescheduling**: Adaptive scheduling based on project changes
 
 ### 📊 **Content & Documentation**
-- **Article System**: Knowledge base and documentation management
-- **Note Management**: Project notes and communication tracking
-- **Document Storage**: File and document management system
+- **📝 Article System**: Knowledge base and documentation management
+- **📋 Note Management**: Project notes and communication tracking
+- **📁 Document Storage**: File and document management system
+- **🔍 Search & Filter**: Advanced search capabilities across all content
+
+### 📈 **Analytics & Reporting**
+- **📊 Financial Reports**: Comprehensive earnings and expense reporting
+- **📈 Project Analytics**: Performance metrics and trend analysis
+- **💹 Commission Reports**: Detailed commission tracking and distribution reports
+- **🎯 KPI Dashboard**: Key performance indicators and business metrics
 
 ---
 
@@ -70,63 +110,181 @@
 
 ### **Technology Stack**
 ```
-Frontend API: RESTful API with Swagger Documentation
-Backend Framework: NestJS 10.4.4 with TypeScript 5.6.2
-Database: MongoDB 8.7.0 with Mongoose ODM
-Authentication: JWT with Passport (Local & JWT strategies)
-Payment Gateway: PayTabs Integration
-Build System: SWC Compiler for fast builds
-Testing: Jest with unit and e2e testing
-Documentation: Swagger UI with dark theme
+🎨 Frontend API: RESTful API with Swagger Documentation
+🚀 Backend Framework: NestJS 10.4.4 with TypeScript 5.6.2
+🗄️ Database: MongoDB 8.7.0 with Mongoose ODM
+🔐 Authentication: JWT with Passport (Local & JWT strategies)
+💳 Payment Gateway: PayTabs Integration with callback handling
+⚡ Build System: SWC Compiler for fast builds and hot reload
+🧪 Testing: Jest with unit and e2e testing suites
+📚 Documentation: Swagger UI with dark theme and comprehensive endpoints
+🐳 Containerization: Docker support with multi-stage builds
+☁️ Cloud Ready: Kubernetes deployment configurations
 ```
 
 ### **Modular Architecture**
 ```
-📦 Core Modules
-├── 🔐 Authentication & Authorization
-├── 👤 Users & Organizations Management
-├── 🏗️ Projects & Project Steps
-├── 📋 Contracts & Offers
-├── 💳 Payments & Earnings
-├── 📅 Schedules & Planning
-├── 📝 Articles & Notes
-├── 🛡️ Permissions & Security
-└── 🎨 Designs & Documents
+📦 Core Infrastructure Modules
+├── 🔐 Authentication & Authorization (JWT, Passport, Guards)
+├── 👤 Users & Organizations Management (Multi-role, RBAC)
+├── 🛡️ Permissions & Security (Role-based access control)
+└── 🌐 API Gateway (CORS, Middleware, Interceptors)
+
+📦 Business Logic Modules  
+├── 🏗️ Projects & Project Steps (Lifecycle management)
+├── 📋 Contracts & Offers (Legal agreements, proposals)
+├── 💳 Payments & Earnings (Financial transactions, tracking)
+├── 📅 Schedules & Planning (Resource allocation, timelines)
+└── 🏢 Organizations (Multi-tenant support)
+
+📦 Supporting Modules
+├── 📝 Articles & Notes (Content management, documentation)
+├── 💸 Commission & Salary (Financial calculations, distribution)
+├── 🎨 Designs & Documents (File management, versioning)
+└── 📊 Analytics & Reporting (Business intelligence, KPIs)
 ```
 
-### **Database Schema**
-- **Projects**: Core project entities with relationships to contracts, users, and schedules
-- **Users**: Multi-role user system with organization affiliations and permission aggregation
-- **Contracts**: Legal agreements linked to projects and payments with employee lookups
-- **Payments**: Financial transactions with PayTabs integration and transaction tracking
-- **Schedules**: Time-based project planning and resource allocation
-- **Earnings**: Aggregated financial calculations with multi-currency support
+### **Database Schema Overview**
+- **👤 Users**: Multi-role user system with inheritance (User → Employee/Client/Admin → Owner)
+- **🏢 Organizations**: Multi-tenant organizational structures with ownership
+- **🏗️ Projects**: Core project entities with comprehensive relationships
+- **📄 Contracts**: Legal agreements with payment and project linkage
+- **💳 Payments**: Financial transactions with PayTabs integration
+- **📅 Schedules**: Time-based project planning and resource allocation
+- **📈 Earnings**: Aggregated financial calculations with multi-currency support
+- **💸 Commissions**: Employee compensation tracking and distribution
+
+---
+
+## 📊 **Architecture Diagrams**
+
+Comprehensive system architecture diagrams are available in the [Architecture Documentation](./docs/architecture-diagrams.md):
+
+### 🏗️ **Available Diagrams**
+1. **System Architecture Overview** - High-level system components and interactions
+2. **Database Entity Relationship Diagram** - Complete data model with relationships
+3. **User Role Hierarchy** - Role-based access control structure
+4. **Project Lifecycle Workflow** - End-to-end project management process
+5. **Payment Processing Flow** - Financial transaction handling
+6. **Module Dependencies** - Inter-module relationships and dependencies
+7. **API Endpoint Structure** - RESTful API organization
+8. **Security Architecture** - Authentication and authorization flow
+
+### 🔍 **Quick Architecture Preview**
+
+```mermaid
+graph TB
+    subgraph "Client Layer"
+        WEB[Web Application]
+        MOBILE[Mobile App]
+        API_CLIENT[API Clients]
+    end
+    
+    subgraph "NestCMS API"
+        AUTH[Authentication]
+        PROJECTS[Projects]
+        PAYMENTS[Payments]
+        USERS[Users]
+    end
+    
+    subgraph "External Services"
+        PAYTABS[PayTabs Gateway]
+        EMAIL[Email Service]
+    end
+    
+    subgraph "Data Layer"
+        MONGODB[(MongoDB)]
+        REDIS[(Redis Cache)]
+    end
+    
+    WEB --> AUTH
+    MOBILE --> PROJECTS
+    API_CLIENT --> PAYMENTS
+    
+    PAYMENTS --> PAYTABS
+    AUTH --> EMAIL
+    
+    PROJECTS --> MONGODB
+    PAYMENTS --> MONGODB
+    USERS --> REDIS
+```
 
 ---
 
 ## 🚀 **Getting Started**
 
 ### **Prerequisites**
-- **Node.js** 18+ (Alpine Linux compatible)
-- **MongoDB** 4.4+ (Local or Atlas)
+- **Node.js** 18+ (LTS recommended)
+- **MongoDB** 4.4+ (Local installation or MongoDB Atlas)
 - **npm** or **yarn** package manager
 - **Docker** (optional, for containerized deployment)
+- **PayTabs Account** (for payment processing)
 
 ### **Environment Setup**
+
+1. **Clone the repository**
 ```bash
-# Clone the repository
 git clone https://github.com/abdoElHodaky/Nestcms.git
 cd Nestcms
-
-# Install dependencies
-npm install
-
-# Set up environment variables
-cp .env.example .env
-# Configure MONGO_URI and other environment variables
 ```
 
-### **Development**
+2. **Install dependencies**
+```bash
+# Using npm
+npm install
+
+# Using yarn
+yarn install
+```
+
+3. **Environment Configuration**
+```bash
+# Copy environment template
+cp .env.example .env
+
+# Configure your environment variables
+nano .env
+```
+
+**Required Environment Variables:**
+```env
+# Database Configuration
+MONGO_URI=mongodb://localhost:27017/nestcms
+REDIS_URL=redis://localhost:6379
+
+# JWT Configuration
+JWT_SECRET=your-super-secret-jwt-key
+JWT_EXPIRES_IN=24h
+
+# PayTabs Configuration
+PAYTABS_PROFILE_ID=your-paytabs-profile-id
+PAYTABS_SERVER_KEY=your-paytabs-server-key
+PAYTABS_REGION=your-paytabs-region
+
+# Application Configuration
+PORT=3000
+NODE_ENV=development
+
+# Email Configuration (Optional)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-email-password
+```
+
+4. **Database Setup**
+```bash
+# Start MongoDB (if running locally)
+mongod
+
+# The application will automatically create collections on first run
+```
+
+---
+
+## 🔧 **Development**
+
+### **Development Commands**
 ```bash
 # Start development server with hot reload
 npm run start:dev
@@ -137,368 +295,119 @@ npm run build
 # Run in production mode
 npm run start:prod
 
-# Format code
+# Format code with Prettier
 npm run format
 
-# Lint code
+# Lint code with TSLint
 npm run lint
+
+# Start with debugging
+npm run start:debug
 ```
 
-### **Testing**
+### **Development Workflow**
+1. **Code Structure**: Follow NestJS module-based architecture
+2. **Type Safety**: Leverage TypeScript for robust type checking
+3. **API First**: Design APIs using Swagger decorators
+4. **Database First**: Define Mongoose schemas with proper relationships
+5. **Security First**: Implement proper authentication and authorization
+
+### **Code Quality Standards**
+- **TypeScript**: Strict mode enabled with comprehensive type checking
+- **ESLint/TSLint**: Enforced coding standards and best practices
+- **Prettier**: Consistent code formatting across the project
+- **Husky**: Pre-commit hooks for code quality assurance
+- **Conventional Commits**: Standardized commit message format
+
+---
+
+## 🧪 **Testing**
+
+### **Testing Strategy**
 ```bash
 # Run unit tests
 npm run test
 
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage report
+npm run test:cov
+
 # Run e2e tests
 npm run test:e2e
 
-# Generate test coverage report
-npm run test:cov
-
-# Run tests in watch mode
-npm run test:watch
+# Debug tests
+npm run test:debug
 ```
+
+### **Testing Structure**
+- **Unit Tests**: Individual component and service testing
+- **Integration Tests**: Module interaction testing
+- **E2E Tests**: Complete workflow testing
+- **Performance Tests**: Load and stress testing
+- **Security Tests**: Authentication and authorization testing
+
+### **Coverage Goals**
+- **Unit Test Coverage**: > 80%
+- **Integration Test Coverage**: > 70%
+- **E2E Test Coverage**: > 60%
+- **Critical Path Coverage**: 100%
 
 ---
 
-## 🐳 **Deployment**
+## 🐳 **Docker Deployment**
 
-### **Docker Deployment**
+### **Docker Configuration**
 ```bash
 # Build Docker image
 docker build -t nestcms:latest .
 
-# Run container
-docker run -p 3000:3000 -e MONGO_URI="your-mongodb-uri" nestcms:latest
+# Run with Docker Compose
+docker-compose up -d
+
+# Scale services
+docker-compose up -d --scale nestcms=3
+```
+
+### **Docker Compose Services**
+```yaml
+version: '3.8'
+services:
+  nestcms:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/nestcms
+    depends_on:
+      - mongo
+      - redis
+  
+  mongo:
+    image: mongo:5.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+  
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
 ```
 
 ### **Kubernetes Deployment**
 ```bash
-# Apply Kubernetes manifests
-kubectl apply -f nestcms/
+# Deploy to Kubernetes
+kubectl apply -f k8s/
 
-# Using Helm (recommended)
-helm install nestcms ./nestcms
+# Check deployment status
+kubectl get pods -l app=nestcms
+
+# Scale deployment
+kubectl scale deployment nestcms --replicas=5
 ```
-
-### **Production Configuration**
-- **Environment**: Node.js 18 Alpine Linux
-- **Process Manager**: PM2 for production process management
-- **Database**: MongoDB with connection pooling
-- **Security**: JWT authentication with configurable expiration
-- **Monitoring**: Built-in health checks and logging
-
----
-
-## 💳 **PayTabs Integration**
-
-### **Payment Gateway Overview**
-NestCMS integrates with PayTabs payment gateway (SDK v2.0.10) to provide secure, reliable payment processing for construction projects and contracts.
-
-### **Payment Flow Architecture**
-```
-1. Payment Creation → PaymentService.create()
-2. Payment Page Generation → PayTabService.createPage()
-3. Transaction Processing → PayTabs Gateway
-4. Callback Handling → PaymentService.payCallback()
-5. Transaction Verification → PayTabService.payVerify()
-6. Status Update → Payment.status = "paid"
-```
-
-### **Configuration**
-```bash
-# Environment Variables
-PAYTABS_PROFILE=your-profile-id
-PAYTABS_SERVERK=your-server-key
-PAYTABS_REGION=your-region
-```
-
-### **Key Features**
-- **Multi-Currency Support**: Process payments in multiple currencies
-- **Transaction Tracking**: Unique transaction reference (`transR`) for each payment
-- **Callback Security**: Secure webhook handling with signature verification
-- **Payment Verification**: Two-step verification process for transaction integrity
-- **Status Management**: Complete payment lifecycle tracking
-
-### **Usage Example**
-```typescript
-// Create Payment
-const payment = await paymentService.create({
-  contractId: 'contract-id',
-  title: 'Project Payment',
-  amount: 1000,
-  currency: 'USD'
-});
-
-// Process Payment
-const paymentUrl = await paymentService.Pay(payment._id, {
-  callback: 'https://yourapp.com/payment/callback',
-  return: 'https://yourapp.com/payment/return'
-});
-
-// Verify Payment (handled automatically via webhook)
-const verification = await paymentService.verify(transactionRef, paymentId);
-```
-
-### **Security Measures**
-- **Webhook Signature Verification**: All callbacks are verified for authenticity
-- **Rate Limiting**: Payment endpoints protected against abuse
-- **Transaction Validation**: Multi-step verification process
-- **Secure Configuration**: Environment-based sensitive data management
-
----
-
-## 📊 **Mongoose Aggregation Patterns**
-
-### **Aggregation Overview**
-NestCMS utilizes sophisticated MongoDB aggregation pipelines to efficiently handle complex data relationships and calculations across the construction management domain.
-
-### **Aggregation Statistics**
-- **7 aggregation pipelines** across **4 core services**
-- **Services**: Contracts, Earnings, Projects, Users
-- **Operations**: `$lookup`, `$match`, `$group`, `$expr`
-
-### **Key Aggregation Patterns**
-
-#### **1. Contract-Employee Relationships**
-```typescript
-// Efficient employee lookup for contracts
-const contractData = await this.contractModel.aggregate([
-  { $match: { _id: new Types.ObjectId(contractId) } },
-  {
-    $lookup: {
-      from: "users",
-      localField: "employee",
-      foreignField: "_id",
-      as: "employees"
-    }
-  }
-]);
-```
-
-#### **2. Financial Earnings Aggregation**
-```typescript
-// Complex earnings calculations with grouping
-const earnings = await model.aggregate([
-  { $match: { id: { $in: earningIds } } },
-  {
-    $group: {
-      totalEarnings: { $sum: '$amount' },
-      currency: '$currency',
-      totalPeriod: { $sum: "$period" }
-    }
-  }
-]);
-```
-
-#### **3. Project Data Relationships**
-```typescript
-// Advanced project lookups with conditional matching
-const projectData = await this.projectModel.aggregate([
-  { $match: { _id: new Types.ObjectId(projectId) } },
-  {
-    $lookup: {
-      from: "notes",
-      let: { projectId: "$_id" },
-      pipeline: [
-        {
-          $match: {
-            $expr: {
-              $and: [
-                { $eq: ["$onId", "$$projectId"] },
-                { $eq: ["$onModel", "Project"] }
-              ]
-            }
-          }
-        }
-      ],
-      as: "projectNotes"
-    }
-  }
-]);
-```
-
-#### **4. User Permission Aggregation**
-```typescript
-// User permissions with role-based access control
-const userData = await this.userModel.aggregate([
-  { $match: { _id: new Types.ObjectId(userId) } },
-  {
-    $lookup: {
-      from: "permissions",
-      localField: "permissions",
-      foreignField: "for",
-      as: "userPermissions"
-    }
-  }
-]);
-```
-
-### **Performance Optimization**
-- **Compound Indexes**: Optimized indexes for aggregation performance
-- **Pipeline Optimization**: Efficient query structure to minimize database load
-- **Result Caching**: Strategic caching for frequently accessed aggregations
-- **Read Replicas**: Dedicated read replicas for complex aggregation queries
-
-### **Best Practices**
-- **Early Filtering**: Use `$match` early in pipelines to reduce data processing
-- **Index Utilization**: Ensure proper indexes support aggregation operations
-- **Memory Management**: Monitor aggregation memory usage and optimize accordingly
-- **Error Handling**: Implement robust error handling for aggregation failures
-
----
-
-## 🏗️ **System Architecture**
-
-### **Architecture Diagrams**
-- **[Business Architecture](docs/diagrams/business-architecture.md)**: Complete business process flows and entity relationships
-- **[Software Architecture](docs/diagrams/software-architecture.md)**: Technical system architecture and component interactions
-- **[Deep-Level Architecture](docs/diagrams/deep-level-architecture.md)**: Detailed technical diagrams with PayTabs integration, aggregation patterns, and security architecture
-
-### **Current Architecture Highlights**
-- **Modular Design**: 9 integrated NestJS modules with clear separation of concerns
-- **Service Layer**: Dedicated services for business logic with proper dependency injection
-- **Data Layer**: MongoDB with Mongoose ODM and sophisticated aggregation patterns
-- **Security Layer**: JWT authentication with role-based access control
-- **Integration Layer**: PayTabs payment gateway with secure webhook handling
-
-### **Proposed Enhancements**
-- **Circuit Breaker Pattern**: Resilience for external service calls
-- **Event-Driven Architecture**: Domain events for payment and project state changes
-- **Caching Strategy**: Redis-based caching for aggregation results
-- **Read Replicas**: MongoDB read replicas for query performance optimization
-- **Monitoring & Observability**: Comprehensive logging and metrics collection
-
-### **Performance Considerations**
-- **Database Indexing**: Compound indexes optimized for aggregation pipelines
-- **Query Optimization**: Efficient aggregation patterns with minimal data processing
-- **Caching Strategy**: Strategic caching of frequently accessed data
-- **Load Balancing**: Horizontal scaling capabilities with Kubernetes deployment
-
-### **Visual System Architecture**
-
-#### **PayTabs Integration Flow**
-```mermaid
-graph LR
-    Client[👤 Client] --> NestCMS[🏗️ NestCMS API]
-    NestCMS --> PayTabs[💳 PayTabs Gateway]
-    PayTabs --> Bank[🏦 Bank/Card Processor]
-    Bank --> PayTabs
-    PayTabs --> |Webhook| NestCMS
-    NestCMS --> |Confirmation| Client
-    
-    style Client fill:#e3f2fd
-    style NestCMS fill:#e91e63
-    style PayTabs fill:#ff9800
-    style Bank fill:#4caf50
-```
-
-#### **Database Aggregation Architecture**
-```mermaid
-graph TB
-    subgraph "Services Layer"
-        US[Users Service]
-        PS[Projects Service]
-        CS[Contracts Service]
-        ES[Earnings Service]
-    end
-    
-    subgraph "Aggregation Pipelines"
-        UL[User Lookups]
-        PL[Project Relations]
-        CL[Contract-Employee]
-        EL[Earnings Calc]
-    end
-    
-    subgraph "MongoDB Cluster"
-        Primary[(Primary DB)]
-        Replica1[(Read Replica 1)]
-        Replica2[(Read Replica 2)]
-    end
-    
-    US --> UL
-    PS --> PL
-    CS --> CL
-    ES --> EL
-    
-    UL --> Replica1
-    PL --> Replica2
-    CL --> Replica1
-    EL --> Replica2
-    
-    US --> Primary
-    PS --> Primary
-    CS --> Primary
-    ES --> Primary
-    
-    style Primary fill:#4caf50
-    style Replica1 fill:#81c784
-    style Replica2 fill:#81c784
-```
-
-#### **System Security Architecture**
-```mermaid
-graph TB
-    subgraph "Security Layers"
-        WAF[🛡️ Web Application Firewall]
-        Auth[🔐 JWT Authentication]
-        RBAC[👥 Role-Based Access Control]
-        Encrypt[🔒 Data Encryption]
-    end
-    
-    subgraph "Application"
-        API[🚀 NestJS API]
-        Guards[⚔️ Guards & Middleware]
-        Services[⚙️ Business Services]
-    end
-    
-    subgraph "Data Layer"
-        MongoDB[(🍃 MongoDB)]
-        Redis[(⚡ Redis Cache)]
-    end
-    
-    WAF --> Auth
-    Auth --> RBAC
-    RBAC --> API
-    API --> Guards
-    Guards --> Services
-    Services --> Encrypt
-    Encrypt --> MongoDB
-    Services --> Redis
-    
-    style WAF fill:#f44336
-    style Auth fill:#4caf50
-    style RBAC fill:#2196f3
-    style Encrypt fill:#9c27b0
-```
-
----
-
-## 📈 **Improvement Roadmap**
-
-### **Current Improvements**
-Detailed improvement plan available: **[PayTabs & Aggregation Improvement Plan](docs/paytabs_aggregat_improve.md)**
-
-### **Phase 1: Foundation & Reliability** (Weeks 1-5)
-- PayTabs error handling and resilience patterns
-- Webhook security enhancement with signature verification
-- Database indexing strategy for aggregation optimization
-
-### **Phase 2: Performance Optimization** (Weeks 6-10)
-- Aggregation pipeline optimization and caching
-- Read replica implementation for query performance
-- Comprehensive monitoring and alerting setup
-
-### **Phase 3: Architecture Enhancement** (Weeks 11-16)
-- Event-driven payment architecture implementation
-- Circuit breaker patterns for external service resilience
-- Advanced caching strategies with Redis integration
-
-### **Success Metrics**
-- **Payment Processing**: < 2 seconds average processing time
-- **Aggregation Performance**: < 500ms for complex queries
-- **System Reliability**: > 99.5% payment success rate
-- **Database Performance**: 50% improvement in aggregation query times
 
 ---
 
@@ -511,115 +420,217 @@ Detailed improvement plan available: **[PayTabs & Aggregation Improvement Plan](
 - **Interactive**: Full API testing capabilities
 
 ### **API Endpoints Overview**
+
+#### 🔐 **Authentication Endpoints**
 ```
-🔐 Authentication
-├── POST /auth/login - User authentication
-├── POST /auth/register - User registration
-└── POST /auth/refresh - Token refresh
+POST   /auth/login          - User login
+POST   /auth/register       - User registration  
+POST   /auth/refresh        - Token refresh
+POST   /auth/logout         - User logout
+```
 
-🏗️ Projects
-├── GET /projects - List all projects
-├── POST /projects - Create new project
-├── GET /projects/:id - Get project details
-├── PUT /projects/:id - Update project
-└── DELETE /projects/:id - Delete project
+#### 👤 **User Management**
+```
+GET    /users               - List users
+POST   /users               - Create user
+GET    /users/:id           - Get user details
+PUT    /users/:id           - Update user
+DELETE /users/:id           - Delete user
+```
 
-💰 Payments
-├── GET /payments - List payments
-├── POST /payments - Process payment
-└── GET /payments/:id - Payment details
+#### 🏗️ **Project Management**
+```
+GET    /projects            - List projects
+POST   /projects            - Create project
+GET    /projects/:id        - Get project details
+PUT    /projects/:id        - Update project
+DELETE /projects/:id        - Delete project
 
-📋 Contracts
-├── GET /contracts - List contracts
-├── POST /contracts - Create contract
-└── GET /contracts/:id - Contract details
+# Project Sub-resources
+GET    /projects/:id/steps     - Project steps
+POST   /projects/:id/steps     - Add project step
+GET    /projects/:id/designs   - Project designs
+POST   /projects/:id/designs   - Add design
+GET    /projects/:id/workers   - Project workers
+POST   /projects/:id/workers   - Assign worker
+GET    /projects/:id/notes     - Project notes
+POST   /projects/:id/notes     - Add note
+```
+
+#### 💳 **Payment Processing**
+```
+POST   /payments/create     - Create payment
+POST   /payments/verify     - Verify payment
+POST   /payments/callback   - Payment callback
+GET    /payments/:id/status - Payment status
+GET    /payments            - List payments
+```
+
+#### 📄 **Contract Management**
+```
+GET    /contracts           - List contracts
+POST   /contracts           - Create contract
+GET    /contracts/:id       - Get contract
+PUT    /contracts/:id       - Update contract
+DELETE /contracts/:id       - Delete contract
+```
+
+### **API Response Format**
+```json
+{
+  "success": true,
+  "data": {
+    // Response data
+  },
+  "message": "Operation successful",
+  "timestamp": "2024-01-01T00:00:00.000Z",
+  "path": "/api/endpoint"
+}
 ```
 
 ---
 
-## 🔧 **Configuration**
+## 🔐 **Security**
 
-### **Key Configuration Files**
-- **`nest-cli.json`**: NestJS CLI configuration
-- **`tsconfig.json`**: TypeScript compiler options
-- **`.swcrc`**: SWC compiler configuration for fast builds
-- **`Dockerfile`**: Container deployment configuration
-- **`values.yaml`**: Kubernetes Helm chart values
+### **Authentication & Authorization**
+- **JWT Tokens**: Secure token-based authentication
+- **Passport Strategies**: Local and JWT authentication strategies
+- **Role-Based Access Control**: Granular permission system
+- **Multi-Factor Authentication**: Optional 2FA support
+- **Session Management**: Secure session handling
 
-### **Environment Variables**
-```bash
-MONGO_URI=mongodb://localhost:27017/nestcms
-JWT_SECRET=your-jwt-secret
-JWT_EXPIRES_IN=24h
-PAYTABS_PROFILE_ID=your-paytabs-profile-id
-PAYTABS_SERVER_KEY=your-paytabs-server-key
-```
+### **Security Features**
+- **Password Hashing**: bcrypt with salt rounds
+- **Input Validation**: Comprehensive request validation
+- **SQL Injection Protection**: MongoDB injection prevention
+- **XSS Protection**: Cross-site scripting prevention
+- **CORS Configuration**: Configurable cross-origin requests
+- **Rate Limiting**: API rate limiting and throttling
+- **Helmet Integration**: Security headers middleware
 
----
-
-## 🧪 **Testing Strategy**
-
-### **Testing Framework**
-- **Unit Tests**: Jest with comprehensive module testing
-- **E2E Tests**: End-to-end API testing with Supertest
-- **Coverage**: Code coverage reporting and analysis
-- **Mocking**: Database and external service mocking
-
-### **Test Structure**
-```
-test/
-├── unit/ - Unit tests for services and controllers
-├── e2e/ - End-to-end integration tests
-└── fixtures/ - Test data and mock objects
-```
+### **Security Best Practices**
+- **Environment Variables**: Sensitive data in environment variables
+- **Secrets Management**: Secure secret storage and rotation
+- **Audit Logging**: Comprehensive security event logging
+- **Regular Updates**: Dependency vulnerability scanning
+- **Security Headers**: Comprehensive security header implementation
 
 ---
 
-## 🚀 **CI/CD Pipeline**
+## 💰 **Payment Integration**
 
-### **GitHub Actions Workflows**
-- **`docker.yml`**: Docker image building and publishing
-- **`kube.yml`**: Kubernetes deployment automation
-- **`helm_*.yml`**: Helm chart management and deployment
-- **Automated Testing**: Run tests on every pull request
-- **Security Scanning**: Vulnerability assessment and dependency checking
+### **PayTabs Integration**
+- **Supported Methods**: Credit cards, digital wallets, bank transfers
+- **Multi-Currency**: Support for multiple currencies
+- **Secure Processing**: PCI DSS compliant payment processing
+- **Webhook Support**: Real-time payment status updates
+- **Refund Management**: Automated refund processing
+
+### **Payment Workflow**
+1. **Payment Initiation**: Client initiates payment request
+2. **Payment Page**: Redirect to secure PayTabs payment page
+3. **Payment Processing**: PayTabs processes the payment
+4. **Callback Handling**: Secure callback verification
+5. **Status Update**: Update payment and contract status
+6. **Notification**: Notify relevant parties of payment status
+
+### **Payment Security**
+- **Encryption**: End-to-end payment data encryption
+- **Tokenization**: Secure payment token management
+- **Fraud Detection**: Built-in fraud prevention
+- **Compliance**: PCI DSS and regulatory compliance
+
+---
+
+## 📈 **Performance**
+
+### **Performance Optimizations**
+- **Database Indexing**: Optimized MongoDB indexes
+- **Caching Strategy**: Redis caching for frequently accessed data
+- **Connection Pooling**: Efficient database connection management
+- **Lazy Loading**: Optimized data loading strategies
+- **Compression**: Response compression for reduced bandwidth
+
+### **Monitoring & Metrics**
+- **Health Checks**: Comprehensive application health monitoring
+- **Performance Metrics**: Response time and throughput tracking
+- **Error Tracking**: Comprehensive error logging and tracking
+- **Resource Monitoring**: CPU, memory, and database monitoring
+
+### **Scalability**
+- **Horizontal Scaling**: Support for multiple application instances
+- **Load Balancing**: Efficient request distribution
+- **Database Sharding**: MongoDB sharding support
+- **Microservices Ready**: Modular architecture for service extraction
 
 ---
 
 ## 🤝 **Contributing**
 
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-4. **Push** to the branch (`git push origin feature/amazing-feature`)
-5. **Open** a Pull Request
-
 ### **Development Guidelines**
-- Follow TypeScript and NestJS best practices
-- Write comprehensive tests for new features
-- Update documentation for API changes
-- Use conventional commit messages
+1. **Fork the repository** and create a feature branch
+2. **Follow coding standards** and maintain test coverage
+3. **Write comprehensive tests** for new features
+4. **Update documentation** for API changes
+5. **Submit pull requests** with detailed descriptions
+
+### **Code Contribution Process**
+```bash
+# Fork and clone the repository
+git clone https://github.com/your-username/Nestcms.git
+
+# Create a feature branch
+git checkout -b feature/your-feature-name
+
+# Make your changes and commit
+git commit -m "feat: add your feature description"
+
+# Push to your fork and submit a pull request
+git push origin feature/your-feature-name
+```
+
+### **Contribution Areas**
+- **Feature Development**: New business features and capabilities
+- **Performance Optimization**: Database and application performance
+- **Security Enhancements**: Security feature improvements
+- **Documentation**: Technical and user documentation
+- **Testing**: Test coverage and quality improvements
+- **DevOps**: Deployment and infrastructure improvements
 
 ---
 
 ## 📄 **License**
 
-This project is **UNLICENSED** - see the package.json for details.
+This project is licensed under the **UNLICENSED** license. See the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 👨‍💻 **Author**
+## 📞 **Support & Contact**
 
-**Abdoelhodaky** - *Full Stack Developer & System Architect*
-
----
-
-## 🆘 **Support**
-
+- **Author**: Abdoelhodaky
+- **Email**: [Contact Email]
+- **GitHub**: [https://github.com/abdoElHodaky](https://github.com/abdoElHodaky)
 - **Issues**: [GitHub Issues](https://github.com/abdoElHodaky/Nestcms/issues)
-- **Documentation**: [NestJS Documentation](https://docs.nestjs.com/)
-- **MongoDB**: [MongoDB Documentation](https://docs.mongodb.com/)
+- **Discussions**: [GitHub Discussions](https://github.com/abdoElHodaky/Nestcms/discussions)
 
 ---
 
-**Built with ❤️ for the Construction Industry using NestJS, TypeScript, and MongoDB**
+## 🙏 **Acknowledgments**
+
+- **NestJS Team** for the excellent framework
+- **MongoDB Team** for the robust database solution
+- **PayTabs** for payment processing capabilities
+- **Open Source Community** for the amazing tools and libraries
+
+---
+
+<p align="center">
+  <strong>🏗️ Built with ❤️ for the Construction Industry</strong>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Made%20with-NestJS-red?logo=nestjs" alt="Made with NestJS" />
+  <img src="https://img.shields.io/badge/Powered%20by-MongoDB-green?logo=mongodb" alt="Powered by MongoDB" />
+  <img src="https://img.shields.io/badge/Secured%20with-JWT-purple" alt="Secured with JWT" />
+</p>
+
