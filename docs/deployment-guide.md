@@ -48,20 +48,20 @@ APP_VERSION=2.0.0
 # Database Configuration
 MONGO_URI=mongodb://localhost:27017/nestcms
 # For MongoDB Atlas:
-# MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/nestcms
+# MONGO_URI=mongodb+srv://[USERNAME]:[PASSWORD]@[CLUSTER].mongodb.net/nestcms
 
 # Redis Configuration (Optional)
 REDIS_URL=redis://localhost:6379
-REDIS_PASSWORD=your-redis-password
+REDIS_PASSWORD=[YOUR_REDIS_PASSWORD]
 
 # JWT Configuration
-JWT_SECRET=your-super-secure-jwt-secret-key-min-32-chars
+JWT_SECRET=[YOUR_SUPER_SECURE_JWT_SECRET_KEY_MIN_32_CHARS]
 JWT_EXPIRES_IN=24h
 JWT_REFRESH_EXPIRES_IN=7d
 
 # PayTabs Configuration
-PAYTABS_PROFILE_ID=your-paytabs-profile-id
-PAYTABS_SERVER_KEY=your-paytabs-server-key
+PAYTABS_PROFILE_ID=[YOUR_PAYTABS_PROFILE_ID]
+PAYTABS_SERVER_KEY=[YOUR_PAYTABS_SERVER_KEY]
 PAYTABS_REGION=ARE  # or your region code
 PAYTABS_CURRENCY=USD
 PAYTABS_CALLBACK_URL=https://your-domain.com/api/payments/callback
@@ -701,4 +701,3 @@ awk '{print $1}' access.log | sort | uniq -c | sort -nr
 ---
 
 This deployment guide provides comprehensive instructions for deploying NestCMS in various environments. Choose the deployment strategy that best fits your requirements and infrastructure capabilities.
-
