@@ -1,53 +1,67 @@
-# Business Architecture Diagram
+# 🏛️ Business Architecture - Golden Ratio Design
 
-## Construction Management System - Business Flow
+<div align="center">
+
+## 🎯 Construction Management System - Business Flow Architecture
+
+*Designed with Golden Ratio Proportions (φ ≈ 1.618) for Optimal Visual Hierarchy*
+
+</div>
+
+---
+
+### 📊 **Golden Ratio Business Architecture**
 
 ```mermaid
 graph TB
-    %% External Actors
-    Client[👤 Client]
-    Employee[👨‍💼 Employee/Contractor]
-    Admin[👨‍💻 Administrator]
-    PayTabs[💳 PayTabs Gateway]
+    %% Golden Ratio Color Scheme: Primary (61.8%) + Accent (38.2%)
+    %% External Actors - Golden Spiral Positioning
+    Client[👤 Client<br/>Primary User]
+    Employee[👨‍💼 Employee<br/>Contractor]
+    Admin[👨‍💻 System<br/>Administrator]
+    PayTabs[💳 PayTabs<br/>Gateway]
     
-    %% Core Business Domains
-    subgraph "User Management Domain"
-        UM[User Management]
-        Auth[Authentication & Authorization]
-        Perms[Permissions & Roles]
+    %% Core Business Domains - φ Proportioned Layout
+    subgraph "🔐 User Management Domain"
+        direction TB
+        UM[👥 User Management<br/>Registration & Profiles]
+        Auth[🔑 Authentication<br/>JWT & Passport]
+        Perms[⚔️ Permissions<br/>RBAC System]
     end
     
-    subgraph "Project Management Domain"
-        PM[Project Management]
-        PS[Project Steps]
-        PD[Project Designs]
-        PN[Project Notes]
+    subgraph "🏗️ Project Management Domain"
+        direction TB
+        PM[📋 Project Management<br/>Lifecycle Control]
+        PS[📝 Project Steps<br/>Milestone Tracking]
+        PD[🎨 Project Designs<br/>Document Management]
+        PN[📄 Project Notes<br/>Communication Hub]
     end
     
-    subgraph "Contract Management Domain"
-        CM[Contract Management]
-        CO[Contract Offers]
-        CE[Contract-Employee Relations]
+    subgraph "📋 Contract Management Domain"
+        direction TB
+        CM[📜 Contract Management<br/>Legal Agreements]
+        CO[💼 Contract Offers<br/>Bid Management]
+        CE[🤝 Contract Relations<br/>Employee Assignments]
     end
     
-    subgraph "Financial Domain"
-        Pay[Payment Processing]
-        Earn[Earnings Management]
-        Trans[Transaction Tracking]
+    subgraph "💰 Financial Domain"
+        direction TB
+        Pay[💳 Payment Processing<br/>Transaction Management]
+        Earn[💵 Earnings Management<br/>Commission Tracking]
+        Trans[📊 Transaction Analytics<br/>Financial Reports]
     end
     
-    subgraph "Content Management Domain"
-        Art[Articles & Documentation]
-        Sched[Scheduling System]
-        Org[Organization Management]
+    subgraph "📚 Content & Operations"
+        direction TB
+        Art[📖 Knowledge Base<br/>Documentation]
+        Sched[📅 Scheduling System<br/>Resource Planning]
+        Org[🏢 Organization<br/>Multi-Tenant Support]
     end
     
-    %% Business Process Flows
-    Client -->|1. Register/Login| Auth
-    Employee -->|1. Register/Login| Auth
-    Admin -->|1. System Access| Auth
-    
-    Auth -->|2. Assign Roles| Perms
+    %% Golden Ratio Flow Connections - Primary Flows (61.8%)
+    Client -.->|🔐 Authentication| Auth
+    Employee -.->|🔐 Authentication| Auth
+    Admin -.->|🔐 System Access| Auth
     Perms -->|3. Access Control| UM
     
     Client -->|4. Request Project| PM
@@ -307,4 +321,3 @@ flowchart TD
 4. **Caching Strategy**: Frequently accessed aggregations should implement caching mechanisms
 
 This business architecture provides a comprehensive view of the construction management system's business processes, data relationships, and decision flows, enabling stakeholders to understand the system's business value and operational requirements.
-
